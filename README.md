@@ -7,4 +7,4 @@ Saruulbuyan Munkhtur
 Ugtakhbayar Surakhbayar
 Хадбаатар Төгөлдөр
 
-##Inspired Website [Case UI](https://caseui.com/demo/)
+**Inspired Website [Case UI](https://caseui.com/demo/)
