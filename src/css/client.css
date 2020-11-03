@@ -1,0 +1,86 @@
+.background{
+    background-color: rgb(236, 234, 234);
+    margin: 5%;
+    padding: 1%;
+    height: 100%;
+}
+.add-new, .export{
+    width: 7%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    position: relative;
+    left: 85%;
+}
+#form-background{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: none;
+    z-index: 2;
+    cursor: pointer;
+    top:0;
+}
+#form{
+    width: 60%;
+    background-color: white;
+    position: absolute;
+    top:15%;
+    left:15%;
+    text-align: center;
+    border-radius: 2px;
+}
+#form input{
+    width: 50%;
+}
+.add-new{
+    background-color: #1cc88a;
+}
+.export{
+    background-color: #fe9365;
+}
+.filter{
+    display: flex;
+    gap: 30px;
+}
+input, select{
+    border-color: solid 0.5px rgb(158, 157, 157);
+}
+.filter-name{
+    color: rgb(202, 200, 200);
+}
+.search input{
+    background-color: rgb(248, 247, 247);
+    background-image:url("searchicon.png");
+    background-repeat: no-repeat;
+    background-position:9px 7px;
+    background-size: 15px;
+    border:none;  
+    border-radius: 3px;
+    width: 130%;
+    height: 100%;
+    font-size: 12px;
+    padding-left: 30px;
+} 
+.case{
+    padding: 2%;
+    background-color: white;
+    font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    color: #5a5c69;
+}
+hr.case-text{
+    border-top: solid 0.5px gray;
+}
+.show{
+    font-size: 12px;
+}
+table th{
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px solid #ddd;
+}
+table{
+    width: 100%;
+}
