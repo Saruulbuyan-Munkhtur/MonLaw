@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client's register form</title>
+    <link rel="stylesheet" href="multistep-form.css">
+    <script src="multistep-form.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div id="background">
+        <div class="container">
+            <div>
+                <header>Register</header>
+                <div class="multi-step">
+                    <div class="step active">
+                        <p>Name</p>
+                        <div class="bullet">
+                            <span>1</span>
+                        </div>
+                        <div class="check fas fa-check"></div>
+                    </div>
+                    <div class="step">
+                        <p>Contact</p>
+                        <div class="bullet">
+                            <span>2</span>
+                        </div>
+                        <div class="check fas fa-check"></div>
+                    </div>
+                    <div class="step">
+                        <p>Details</p>
+                        <div class="bullet">
+                            <span>3</span>
+                        </div>
+                        <div class="check fas fa-check"></div>
+                    </div>
+                    <div class="step">
+                        <p>Date</p>
+                        <div class="bullet">
+                            <span>4</span>
+                        </div>
+                        <div class="check fas fa-check"></div>
+                    </div>
+                </div>
+                <div class="form-outer">
+                    <form action="#">
+                        <section class="pages">
+                            <div class="title">Хэрэглэгчийн мэдээлэл:</div>
+                            <div class="field">
+                                <div class="label">Эцэг эхийн нэр</div>
+                                <input type="text" id="last-name">
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэрэглэгчийн нэр</div>
+                                <input type="text" id="first-name">
+                            </div>
+                            <div class="field">
+                                <div class="label" id="gender">Хүйс</div>
+                                <select>
+                                    <option>Эрэгтэй</option>
+                                    <option>Эмэгтэй</option>
+                                    <option>Бусад</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <button>Дараагийнх</button>
+                            </div>
+                        </section>
+
+                        <section class="pages">
+                            <div class="title">Хэрэглэгчийн дэлгэрэнгүй мэдээлэл:</div>
+                            <div class="field">
+                                <div class="label">Гэрийн хаяг</div>
+                                <input type="text" id="home-address">
+                            </div>
+                            <div class="field">
+                                <div class="label">Утасны дугаар</div>
+                                <input type="text" id="phone-number">
+                            </div>
+                            <div class="field">
+                                <div class="label">Яаралтай холбогдох дугаар</div>
+                                <input type="text" id="emergency-numer">
+                            </div>
+                            <div class="field">
+                                <div class="label">Төрсөн он, сар, өдөр</div>
+                                <input type="date" id="birth-date">
+                            </div>
+                           
+                            <div class="field btn">
+                                <button class="prev">Өмнөх</button>
+                                <button class="next">Дараагийнх</button>
+                            </div>
+                        </section>
+
+                        <section class="pages">
+                            <div class="title">Хэргийн мэдээлэл:</div>
+                            <div class="field">
+                                <div class="label">Хэргийн дугаар</div>
+                                <input type="text" id="case-ID">
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэргийн нэр</div>
+                                <input type="text" id="case-name">
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэргийн мэдээлэл</div>
+                                <input type="text" id="case-information">
+                            </div>
+                            <div class="field"> 
+                                <div class="label">Дэлгэрэнгүй тайлбар</div>
+                                <input type="text" id="case-description">
+                            </div>
+                            <div class="field btn">
+                                <button class="prev">Previous</button>
+                                <button class="next">Next</button>
+                            </div>
+                        </section>
+
+                        
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

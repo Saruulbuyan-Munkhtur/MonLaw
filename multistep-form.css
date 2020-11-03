@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+body{
+    background: yellow;
+}
+
+ #background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;   
+}
+
+.container {
+   width: 80%; 
+   background: #fff;
+   border-radius: 20px;
+   padding: 50px 35px 30px 35px;
+   text-align: center;
+}
+
+.container header{
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.form-outer{
+    width: 100%;
+}
+
+.form-outer form {
+    display: flex;
+    width: 400%;
+}
+
+.form-outer form .pages{
+    width: 25%;
+}
+
+.form-outer .pages .title{
+    text-align: left;
+    font-size: 25px;
+}
+
+.form-outer .field{
+    
+    height: 50px;
+    width: 100%;
+    margin: 45px 0;
+}
+
+.form-outer .pages .field .label {
+ margin-bottom: 10px;
+}
+
+.form-outer .pages .field input{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 1em;
+}
+
+.form-outer .pages .field button{
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    background-color: lightblue;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.form-outer .pages .field button:hover {
+    background-color: black;
+    color: white;
+}
+
+form .pages select{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 15px;
+    padding-right: 5px;
+    font-size: 1em;
+}
+
+.form-outer .pages .btn {
+    display: flex;
+}
+
+.form-outer{
+    /* overflow: hidden; IMPORTANT!!!*/
+}
+
+.container .multi-step{
+    display: flex;
+    margin: 40px 0;
+}
+
+.container .multi-step .step{
+    text-align: center;
+    width: 100%;
+}
+
+.container .multi-step .step p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.container .step .bullet {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border: 1px solid lightblue;
+  border-radius: 50%;
+  font-size: 1em;
+  display: inline-block;
+  background: lightblue;  
+} 
+
+.step .check {
+    display: none;
+}
+
+.multi-step .step .bullet:before {
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 130px;
+    background-color: lightgrey;
+    margin-top: 9px;
+    margin-left: 20px;
+
+}
+.multi-step .step:last-child .bullet:before {
+    display: none;
+}
+
+.multi-step .active .bullet {
+    background-color: green;
+    border: green;
+    color:white;
+}
+
+
