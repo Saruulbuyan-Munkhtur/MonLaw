@@ -53,7 +53,7 @@ input, select{
 }
 .search input{
     background-color: rgb(248, 247, 247);
-    background-image:url("searchicon.png");
+    background-image:url("../../assets/searchicon.png");
     background-repeat: no-repeat;
     background-position:9px 7px;
     background-size: 15px;
