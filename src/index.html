@@ -24,13 +24,13 @@
           <a class="active_link" href="#">Admin</a>
         </div>
         <div class="navbar__right">
-          <div class="notifications">
-            <a href="">
-              <i class="fa fa-search" onclick="showWindow(this)"></i>
-            </a>
+          <div class="notification" onclick="viewToggle(this)">
+            <div>
+              <i class="fa fa-search"></i>
+            </div>
             <div class="notification__id">
               <div class="notification__header">
-                <h4>Read More Messages</h4>
+                <h4>Notifications</h4>
                 <h5>Clear All</h5>
               </div>
               <ul class="notification__ul">
@@ -40,12 +40,8 @@
                     <span class="notification__icon__status"></span>
                   </div>
                   <div class="notification__data">
-                    <h4 class="notification__title">
-                      Lorem ipsum dolor sit amet.
-                    </h4>
-                    <p class="notification__content">
-                      Emily : <span>58m</span>
-                    </p>
+                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <p>Emily : <span>58m</span></p>
                   </div>
                 </li>
                 <li>
@@ -63,20 +59,85 @@
                   </div>
                 </li>
                 <div class="notification__footer">
-                  <p>Read More Messages</p>
+                  <p>View All</p>
                 </div>
               </ul>
             </div>
           </div>
-          <div class="messages">
-            <a href="">
+          <div class="messages" onclick="viewToggle(this)">
+            <div>
               <i class="fa fa-clock-o"></i>
-            </a>
+            </div>
+            <div class="messages__id">
+              <div class="messages__header">
+                <h4>Messages</h4>
+                <h5>Clear All</h5>
+              </div>
+              <ul class="messages__ul">
+                <li>
+                  <div class="messages__icon">
+                    <img width="50" src="../assets/avatar1.png" alt="" />
+                    <span class="messages__icon__status"></span>
+                  </div>
+                  <div class="messages__data">
+                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <p>Emily : <span>58m</span></p>
+                  </div>
+                </li>
+                <li>
+                  <div class="messages__icon">
+                    <img width="50" src="../assets/avatar2.png" alt="" />
+                    <span class="messages__icon__status"></span>
+                  </div>
+                  <div class="messages__data">
+                    <h4 class="messages__title">Lorem ipsum dolor sit amet.</h4>
+                    <p class="messages__content">Emily : <span>58m</span></p>
+                  </div>
+                </li>
+                <div class="messages__footer">
+                  <p>See All Messages</p>
+                </div>
+              </ul>
+            </div>
           </div>
-          <div class="profile">
-            <a href="">
+          <div class="profile" onclick="viewToggle(this)">
+            <div>
               <img width="30" src="../assets/judge.svg" alt="judge" />
-            </a>
+            </div>
+            <div class="profile__id">
+              <div class="profile__header">
+                <img width="70" src="../assets/avatar3.png" alt="" />
+                <div>
+                  <h4>User name</h4>
+                  <small>email</small>
+                </div>
+              </div>
+              <ul class="profile__ul">
+                <li>
+                  <i class="fa fa-user"></i>
+                  <h5>My Profile</h5>
+                </li>
+                <li>
+                  <i class="fa fa-user"></i>
+                  <h5>My Profile</h5>
+                </li>
+                <li>
+                  <i class="fa fa-user"></i>
+                  <h5>My Profile</h5>
+                </li>
+                <li>
+                  <i class="fa fa-user"></i>
+                  <h5>My Profile</h5>
+                </li>
+                <li>
+                  <i class="fa fa-user"></i>
+                  <h5>My Profile</h5>
+                </li>
+                <div class="profile__footer">
+                  <button>View Profile</button>
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
