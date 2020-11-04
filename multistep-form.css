@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+body{
+    background: yellow;
+}
+
+ #background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;   
+}
+
+.container {
+   width: 80%; 
+   background: #fff;
+   border-radius: 20px;
+   padding: 50px 35px 30px 35px;
+   text-align: center;
+}
+
+.container header{
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.form-outer{
+    width: 100%;
+}
+
+.form-outer form {
+    display: flex;
+    width: 400%;
+}
+
+.form-outer form .pages{
+    width: 25%;
+}
+
+.form-outer .pages .title{
+    text-align: left;
+    font-size: 25px;
+}
+
+.form-outer .field{
+    height: 50px;
+    width: 100%;
+    margin: 45px 0;
+    
+}
+
+.form-outer .pages .field .label {
+ margin-bottom: 10px;
+}
+
+.form-outer .pages .field input{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 1em;
+}
+/*
+.field textarea{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 1em;
+}
+*/
+.form-outer .pages .field button{
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    background-color: lightblue;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.form-outer .pages .field button:hover {
+    background-color: black;
+    color: white;
+}
+
+form .pages select{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 15px;
+    padding-right: 5px;
+    font-size: 1em;
+}
+
+.form-outer .pages .btn {
+    display: flex;
+}
+
+.form-outer{
+    /* verflow: hidden; IMPORTANT!!!*/
+}
+
+
+.desc textarea{
+    height: 200px;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: -20px;
+    padding: 20px;
+    border-radius: 20px;
+    border:1px solid lightgray;
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+    padding-left: 0px
+}
+
+#progressbar .active {
+    color: green;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar .step0:before {
+    content: ""
+}
+
+#progressbar li:before {
+    width: 40px;
+    height: 40px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    margin: auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 10px;
+    background: #E0E0E0;
+    position: absolute;
+    left: 0;
+    top: 17px;
+    
+}
+
+#progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+#progressbar li:first-child:after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: orange;
+}
+
+span {
+    font-size: 1.8em;
+}
