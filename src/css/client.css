@@ -135,12 +135,17 @@ table td button{
     top:9px;
     left:96%;
 }
-#view-client table{
+#view-client table, #view-client-edit table{
     width: 90%;
-    text-align: center;
+    text-align: left;
     position: relative;
     top: 30px;
     left: 5%;
+    color:rgb(51, 51, 51);
+}
+#view-client th{
+    background-color:rgb(53, 158, 53);
+    color:white;
 }
 #view-client-edit{
     width: 50%;
@@ -156,4 +161,14 @@ table td button{
     position: absolute;
     top:9px;
     left:96%;
+}
+#view-client-edit button{
+    position: absolute;
+    background-color: rgb(109, 109, 238);
+    color:white;
+    border: none;
+}
+#view-client-edit th{
+    background-color:  rgb(109, 109, 238);
+    color: white;
 }

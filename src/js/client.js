@@ -28,8 +28,8 @@ var data={
 };
 var createEl1 = document.createElement('div');
 var createEl2 = document.createElement('div');
-var createEl3_forInput = document.createElement('div');
-var createEl4_forInput = document.createElement('div');
+var createEl3_forEdit = document.createElement('div');
+var createEl4_forEdit = document.createElement('div');
 
 function showTable(){
     var createEl = document.createElement('div');
@@ -81,10 +81,7 @@ function view(x){
     content2= "";
 
     document.getElementById('view-background').style.display="block";
-   
     var getEl = document.getElementById('view-client') 
-    
-   
     var datasContent= data.contents;
     var datasDetail= data.details;
    
@@ -93,29 +90,28 @@ function view(x){
         content='\
         <table>\
             <tr>\
-                <th>Ерөнхий мэдээлэл</th>\
+                <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
             </tr>\
                 <tr>\
-                    <td> Овог нэр: <input value="'+ datasContent[i].name + '"></td>\
+                    <td><b> Овог нэр: </b> '+ datasContent[i].name + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Утас: "+datasContent[i].phone + '</td>\
+                    <td><b> Утас: </b> '+datasContent[i].phone + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "И-мэйл: "+datasContent[i].email + '</td>\
+                    <td><b> И-мэйл: </b> '+datasContent[i].email + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Хаяг: "+datasContent[i].address + '</td>\
+                    <td><b> Хаяг: </b> '+datasContent[i].address + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Компани: "+datasContent[i].company + '</td>\
+                    <td><b> Компани: </b> '+datasContent[i].company + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Албан тушаал: "+datasContent[i].title + '</td>\
+                    <td><b> Албан тушаал: </b> '+datasContent[i].title + '</td>\
                 </tr>\
             </table>';
         }
-        
     }
     for(var i in datasDetail){
         if(x == datasDetail[i].id){  
@@ -123,33 +119,32 @@ function view(x){
             content2='\
             <table>\
                 <tr>\
-                    <th>Нарийвчилсан мэдээлэл</th>\
+                    <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b>Төрсөн огноо: </b> '+ datasDetail[i].birthday + '</td>\
+                    <td><b> Төрсөн огноо: </b> '+ datasDetail[i].birthday + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Хүйс" + datasDetail[i].sex + '</td>\
+                    <td><b> Хүйс: </b> '+ datasDetail[i].sex + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Гэрлэлт" + datasDetail[i].marrital + '</td>\
+                    <td><b> Гэрлэлт: </b> '+ datasDetail[i].marrital + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Жолооны үнэмлэхний дугаар: " + datasDetail[i].driverID + '</td>\
+                    <td><b> Жолооны үнэмлэхний дугаар: </b> '+ datasDetail[i].driverID + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Яаралтай үед холбоо барих хүний нэр: " + datasDetail[i].emergencyName + '</td>\
+                    <td><b> Яаралтай үед холбоо барих хүний нэр: </b> '+ datasDetail[i].emergencyName + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Яаралтай үед холбоо барих хүний дугаар: " + datasDetail[i].emergencyPhone + '</td>\
+                    <td><b> Яаралтай үед холбоо барих хүний дугаар: </b> '+ datasDetail[i].emergencyPhone + '</td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Таны хэн болох: " + datasDetail[i].who + '</td>\
+                    <td><b> Таны хэн болох: </b> '+ datasDetail[i].who + '</td>\
                 </tr>\
             </table>\
             ' ;
         }
-    
     }
     createEl1.innerHTML=content;
     createEl2.innerHTML = content2;
@@ -160,40 +155,103 @@ function edit(x){
     content = "";
     content2= "";
     document.getElementById('view-background').style.display="block";
-    var getEl = document.getElementById('view-client') 
+    var getEl = document.getElementById('view-client-edit') 
     var datasContent= data.contents;
     var datasDetail= data.details;
     for(var i in datasContent){
         if(x == datasContent[i].id){
         content='\
-        <table>\
-            <tr>\
-                <th>Ерөнхий мэдээлэл</th>\
-            </tr>\
+            <table>\
                 <tr>\
-                <td><b> Овог нэр: </b><input value="'+ datasContent[i].name + '"></td>\
+                    <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Утас: "+datasContent[i].phone + '</td>\
+                    <td><b> Овог нэр: </b> <input value="'+datasContent[i].name + '" id="name"></td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "И-мэйл: "+datasContent[i].email + '</td>\
+                    <td><b> Утас: </b><input value="'+datasContent[i].phone + '" id="phone"></td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Хаяг: "+datasContent[i].address + '</td>\
+                    <td><b> И-мэйл: </b><input value="'+datasContent[i].email + '" id="email"></td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Компани: "+datasContent[i].company + '</td>\
+                    <td><b> Хаяг: </b><input value="'+datasContent[i].address + '" id="address"></td>\
                 </tr>\
                 <tr>\
-                    <td>'+ "Албан тушаал: "+datasContent[i].title + '</td>\
+                    <td><b> Компани: </b><input value="'+datasContent[i].company + '" id="company"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Албан тушаал: </b><input value="'+datasContent[i].title + '" id="title"></td>\
                 </tr>\
             </table>';
         }
-        
     }
+    for(var i in datasDetail){
+        if(x == datasDetail[i].id){  
+        content2='\
+            <table>\
+                <tr>\
+                    <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
+                </tr>\
+                <tr>\
+                    <td><b> Төрсөн огноо: </b> <input value="'+ datasDetail[i].birthday + '" id="birthDay"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хүйс: </b> <input value="'+ datasDetail[i].sex + '" id="sex"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marrital + '" id="marritalSta"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Жолооны үнэмлэхний дугаар: </b> <input value="'+ datasDetail[i].driverID + '" id="driverLi"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Яаралтай үед холбоо барих хүний нэр: </b> <input value="'+ datasDetail[i].emergencyName + '" id="emergencyName"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Яаралтай үед холбоо барих хүний дугаар: </b> <input value="'+ datasDetail[i].emergencyPhone + '" id="emergencyPhone"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Таны хэн болох: </b> <input value="'+ datasDetail[i].who + '" id="emergencyWho"></td>\
+                </tr>\
+            </table>' ;
+        }
+    }
+    createEl3_forEdit.innerHTML =content;
+    createEl4_forEdit.innerHTML =content2;
+    getEl.appendChild(createEl3_forEdit);
+    getEl.appendChild(createEl4_forEdit);
+    
 }
+function saveIt(content){
+    var getEl = document.getElementById('view-client-edit');
+    let newName = document.getElementById('name').value;
+    let newPhone = document.getElementById('phone').value;
+    let newEmail = document.getElementById('email').value;
+    let newAddress = document.getElementById('address').value;
+    let newCompany = document.getElementById('company').value;
+    let newTitle = document.getElementById('title').value;
+    let newBirthday = document.getElementById('birthDay').value;
+    let newSex = document.getElementById('sex').value;
+    let newMarital = document.getElementById('marritalSta').value;
+    let newDriverli = document.getElementById('driverLi').value;
+    let newEmergencyname = document.getElementById('emergencyName').value;
+    let newEmergencyphone = document.getElementById('emergencyPhone').value;
+    let newEmergencywho = document.getElementById('emergencyWho').value;
+    let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
+    let newContent2 = { birthday: newBirthday, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
 
+    data.contents.update(content, newContent1);
+    data.details.update(content, newContent2);
+    
+}
+function update(content, newContent1) {
+    let i = app.controller.product.indexOf(productId);
+    data.c[i] = product;
+}
+add: function (product) {
+    app.data.products.push(product);
+}
 function closeIt(){
     document.getElementById('view-background').style.display="none";
     createEl1.innerHTML= "";
