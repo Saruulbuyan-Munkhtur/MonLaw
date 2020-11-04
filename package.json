@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Saruulbuyan-Munkhtur/MonLaw/issues"
   },
-  "homepage": "https://github.com/Saruulbuyan-Munkhtur/MonLaw#readme"
+  "homepage": "https://github.com/Saruulbuyan-Munkhtur/MonLaw#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
