@@ -7,9 +7,10 @@ body{
     padding: 0%;
 }
 .main-content-container{
+    position: relative;
     margin-top: 100px;
     width: 80%;
-    height: 500px;
+    height: 100vh;
     background-color: rgb(236, 234, 234) ;  
     margin-left: auto;
     margin-right: auto;
@@ -171,4 +172,26 @@ table td button{
 #appoint-button:hover{
     background-color: rgb(201, 127, 30);
 }
+#about-content{
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+#about-content-container{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 100vh;
+    background-color: white;
+}
 
+#about-content-container img{
+    width: 15px;
+    position: absolute;
+    top:108px;
+    left:88%;
+}

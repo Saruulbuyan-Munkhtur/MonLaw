@@ -15,6 +15,9 @@ var data={
     ]
 };
 
+var createEl1 = document.createElement('div');
+var createEl2 = document.createElement('div');
+
 function showTable(){
     var createElForTable = document.createElement('div');
     var getEl = document.getElementById("main-content");
@@ -52,14 +55,91 @@ function showTable(){
         };
     tableRow+="</table>";
     createElForTable.innerHTML = tableRow;
-    console.log(tableRow);
+    
     getEl.appendChild(createElForTable);
     
 };
 
 showTable();
-function view(){
+function view(x){
 
+    content1 = "";
+    content2= "";
+    
+    document.getElementById('about-content').style.display="block";
+    var getEl = document.getElementById('about-content-container') 
+    var datasContent= data.contents;
+    var datasDetail= data.details;
+   
+    for(var i in datasContent){
+        if(x == datasContent[i].id){
+        content1='\
+        <table>\
+            <tr>\
+                <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
+            </tr>\
+                <tr>\
+                    <td><b> Хэргийн ID: </b> '+ datasContent[i].id + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хэргийн нэр: </b> '+datasContent[i].name + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хэргийн төрөл: </b> '+datasContent[i].type + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хаана: </b> '+datasContent[i].where + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хугацаа: </b> '+datasContent[i].date + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Төлбөр: </b> '+datasContent[i].payment + '</td>\
+                </tr>\
+                <tr>\
+                <td><b> Төлөв: </b> '+datasContent[i].status + '</td>\
+            </tr>\
+            </table>';
+        }
+    }
+    for(var i in datasDetail){
+        if(x == datasDetail[i].id){  
+            //var con = `<div> ${datasContent[i].id} </div>`; 
+            content2='\
+            <table>\
+                <tr>\
+                    <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
+                </tr>\
+                <tr>\
+                    <td><b> Нэр: </b> '+ datasDetail[i].name + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хүйс: </b> '+ datasDetail[i].sex + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Гэрлэлт: </b> '+ datasDetail[i].marrital + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Жолооны үнэмлэхний дугаар: </b> '+ datasDetail[i].driverID + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Яаралтай үед холбоо барих хүний нэр: </b> '+ datasDetail[i].emergencyName + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Яаралтай үед холбоо барих хүний дугаар: </b> '+ datasDetail[i].emergencyPhone + '</td>\
+                </tr>\
+                <tr>\
+                    <td><b> Таны хэн болох: </b> '+ datasDetail[i].who + '</td>\
+                </tr>\
+            </table>\
+            ' ;
+        }
+    }
+    createEl1.innerHTML=content1;
+    console.log(content1);
+    createEl2.innerHTML = content2;
+    getEl.appendChild(createEl1);
+    getEl.appendChild(createEl2);
 }
 
 function edit(){
@@ -70,3 +150,6 @@ function remove(){
 
 }
 
+function closeIt(){
+    document.getElementById('about-content').style.display="none";
+}
