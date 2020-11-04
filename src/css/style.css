@@ -81,9 +81,9 @@ body {
   align-items: center;
 }
 
-.navbar__right > div > a {
-  margin-left: 20px;
-  margin-right: 20px;
+.navbar__right > div > div {
+  margin-left: 15px;
+  margin-right: 15px;
   text-decoration: none;
 }
 .navbar__right > div > a > i {
@@ -100,9 +100,9 @@ body {
 .navbar__right > div {
   position: relative;
 }
-
+/* Notifications */
 .notification__id {
-  display: block;
+  display: none;
   position: absolute;
   top: 42px;
   right: 0;
@@ -131,6 +131,13 @@ body {
   padding-right: 20px;
   color: rgb(216, 65, 65);
 }
+.notification__header > h5:hover {
+  cursor: pointer;
+}
+.notification__data > h4 {
+  font-size: 16px;
+  color: #455a64;
+}
 
 .notification__footer {
   width: 100%;
@@ -140,6 +147,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.notification__footer:hover {
+  background: #e7e8e9;
+  cursor: pointer;
 }
 .notification__footer > p {
   padding-left: 20px;
@@ -151,7 +162,7 @@ body {
   top: -19px;
   right: 16px;
   border: 10px solid;
-  border-color: transparent transparent #cc3d38 transparent;
+  border-color: transparent transparent #f5f6f7 transparent;
 }
 .notification__id > ul > li {
   border-bottom: 1px solid #f1f1f2;
@@ -178,27 +189,188 @@ body {
   border-radius: 50%;
 }
 .notification__id > ul > li:hover {
-  background: rgba(204, 61, 56, 0.5);
+  background: #e1e2e3;
   cursor: pointer;
 }
 .notification__id > ul > li > .notification__icon > img {
   border-radius: 50%;
 }
-.notification__id > ul > li > .notification__data > h4 {
-  color: #ffffff;
+/* Messages */
+.messages__id {
+  display: none;
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: #ffffff;
+  width: 400px;
+  height: auto;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.125),
+    -10px -10px 30px rgba(0, 0, 0, 0.125);
+  z-index: 10;
 }
-.notification__id > ul > li > .notification__data > p,
-span {
-  color: #ffffff;
-  font-size: 15px;
+.messages__header {
+  width: 100%;
+  height: 50px;
+  background: #f5f6f7;
+  color: #455a64;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.notification__id > ul > .show__all > h4 {
-  color: #ffffff;
-  font-weight: bold;
-  text-align: center;
+.messages__header > h4 {
+  padding-left: 20px;
 }
-.notification__id > ul > .show__all > h4:hover {
+.messages__header > h5 {
+  padding-right: 20px;
+  color: rgb(216, 65, 65);
+}
+.messages__header > h5:hover {
   cursor: pointer;
+}
+.messages__data > h4 {
+  font-size: 16px;
+  color: #455a64;
+}
+
+.messages__footer {
+  width: 100%;
+  height: 50px;
+  background: #f5f6f7;
+  color: #455a64;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.messages__footer:hover {
+  background: #e7e8e9;
+  cursor: pointer;
+}
+.messages__footer > p {
+  padding-left: 20px;
+}
+
+.messages__id:before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  right: 16px;
+  border: 10px solid;
+  border-color: transparent transparent #f5f6f7 transparent;
+}
+.messages__id > ul > li {
+  border-bottom: 1px solid #f1f1f2;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+.messages__id > ul > li > .messages__icon {
+  margin-right: 15px;
+  position: relative;
+}
+.messages__id > ul > li > .messages__icon > .messages__icon__status {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  width: 15px;
+  height: 15px;
+  background-color: limegreen;
+  border: 1.5px solid #cc3d38;
+  border-radius: 50%;
+}
+.messages__id > ul > li:hover {
+  background: #e1e2e3;
+  cursor: pointer;
+}
+.messages__id > ul > li > .messages__icon > img {
+  border-radius: 50%;
+}
+/* Profile */
+.profile__id {
+  display: none;
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: #ffffff;
+  width: 300px;
+  height: auto;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.125),
+    -10px -10px 30px rgba(0, 0, 0, 0.125);
+  z-index: 10;
+}
+.profile__header {
+  width: 100%;
+  height: 100px;
+  background-image: url("http://ultimatepro-admin-templates.multipurposethemes.com/images/user-info.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #455a64;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile__footer {
+  width: 100%;
+  height: 70px;
+  background: #f5f6f7;
+  color: #455a64;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__footer > button {
+  width: 80%;
+  padding: 10px 50px;
+  background: #cc3d38;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+}
+.profile__footer > button:hover {
+  cursor: pointer;
+  background: rgb(216, 65, 65, 0.8);
+}
+
+.profile__id:before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  right: 16px;
+  border: 10px solid;
+  border-color: transparent transparent #f5f6f7 transparent;
+}
+.profile__id > ul > li {
+  border-bottom: 1px solid #f1f1f2;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+.profile__id > ul > li > .profile__icon {
+  margin-right: 15px;
+  position: relative;
+}
+.profile__id > ul > li > .profile__icon > .profile__icon__status {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  width: 15px;
+  height: 15px;
+  background-color: limegreen;
+  border: 1.5px solid #f6f7f8;
+  border-radius: 50%;
+}
+.profile__id > ul > li:hover {
+  background: #e1e2e3;
+  cursor: pointer;
+}
+.profile__id > ul > li > .profile__icon > img {
+  border-radius: 50%;
 }
 main {
   background: #f3f4f6;

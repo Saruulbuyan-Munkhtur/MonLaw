@@ -1,3 +1,4 @@
+// Charts
 var options = {
   series: [
     {
@@ -57,3 +58,9 @@ var options = {
 
 var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
 apexChart.render();
+// Top Bar Menu dropdown windows
+
+function viewToggle(e) {
+  console.log(e);
+  console.log(e.classList.value);
+}
