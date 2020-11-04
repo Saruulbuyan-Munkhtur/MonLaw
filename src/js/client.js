@@ -20,11 +20,16 @@ var data={
         {id : "4", name: "Ж.Хролд", phone : 9610000, email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'}
     ],
     details: [
-        {id : "1", birthday: "1999/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "1", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "2", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "3", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "4", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
     ]
 };
+var createEl1 = document.createElement('div');
+var createEl2 = document.createElement('div');
+var createEl3_forInput = document.createElement('div');
+var createEl4_forInput = document.createElement('div');
 
 function showTable(){
     var createEl = document.createElement('div');
@@ -54,9 +59,9 @@ function showTable(){
                 <td>'+ datas[i].address + '</td>\
                 <td>'+ datas[i].company + '</td>\
                 <td>'+ datas[i].title + '</td>\
-                <td><button type="button" id="view-button" onclick="view()">Харах</button>\
+                <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
                 </td>\
-                <td><button type="button" id="edit-button" onclick="edit()">Өөрчлөх</button>\
+                <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
                 </td>\
                 <td><button type="button" id="appoint-button" onclick="hearingDate()">Цаг товлох</button>\
                 </td>\
@@ -70,24 +75,28 @@ function showTable(){
 };
 showTable();
 
-function view(){
+function view(x){
+    
+    content1 = "";
+    content2= "";
+
     document.getElementById('view-background').style.display="block";
-    var createEl = document.createElement('div');
+   
     var getEl = document.getElementById('view-client') 
     
+   
     var datasContent= data.contents;
     var datasDetail= data.details;
-    var datas = datasDetail + datasContent;
-    for(var i in datas){
-        if(datasContent[i].id == datasDetail[i].id){
+   
+    for(var i in datasContent){
+        if(x == datasContent[i].id){
         content='\
         <table>\
             <tr>\
                 <th>Ерөнхий мэдээлэл</th>\
-            </tr>';
-            content+= '\
+            </tr>\
                 <tr>\
-                    <td>'+ "Овог нэр: "+ datasContent[i].name + '</td>\
+                    <td> Овог нэр: <input value="'+ datasContent[i].name + '"></td>\
                 </tr>\
                 <tr>\
                     <td>'+ "Утас: "+datasContent[i].phone + '</td>\
@@ -103,42 +112,91 @@ function view(){
                 </tr>\
                 <tr>\
                     <td>'+ "Албан тушаал: "+datasContent[i].title + '</td>\
-                </tr>';
-            
-            '\<tr>\
-                <th>Нарийвчилсан мэдээлэл</th>\
-            </tr>';
-            content+= '\
-                <tr>\
-                    <td>'+ datasDetail[i].birthday + '</td>\
                 </tr>\
-                <tr>\
-                    <td>'+ datasDetail[i].sex + '</td>\
-                </tr>\
-                <tr>\
-                    <td>'+ datasDetail[i].marrital + '</td>\
-                </tr>\
-                <tr>\
-                    <td>'+ datasDetail[i].driverID + '</td>\
-                </tr>\
-                <tr>\
-                    <td>'+ datasDetail[i].emergencyName + '</td>\
-                </tr>\
-                <tr>\
-                    <td>'+ datasDetail[i].emergencyPhone + '</td>\
-                </tr>\
-                <tr>\
-                    <td>'+ datasDetail[i].who + '</td>\
-                </tr>';
-            content+="</table>"
-            createEl.innerHTML = content;
-            getEl.appendChild(createEl);
+            </table>';
         }
         
     }
-
+    for(var i in datasDetail){
+        if(x == datasDetail[i].id){  
+            //var con = `<div> ${datasContent[i].id} </div>`; 
+            content2='\
+            <table>\
+                <tr>\
+                    <th>Нарийвчилсан мэдээлэл</th>\
+                </tr>\
+                <tr>\
+                    <td><b>Төрсөн огноо: </b> '+ datasDetail[i].birthday + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Хүйс" + datasDetail[i].sex + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Гэрлэлт" + datasDetail[i].marrital + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Жолооны үнэмлэхний дугаар: " + datasDetail[i].driverID + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Яаралтай үед холбоо барих хүний нэр: " + datasDetail[i].emergencyName + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Яаралтай үед холбоо барих хүний дугаар: " + datasDetail[i].emergencyPhone + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Таны хэн болох: " + datasDetail[i].who + '</td>\
+                </tr>\
+            </table>\
+            ' ;
+        }
+    
+    }
+    createEl1.innerHTML=content;
+    createEl2.innerHTML = content2;
+    getEl.appendChild(createEl1);
+    getEl.appendChild(createEl2);
 }
-function close(){
-    document.getElementById("view-background").style.display = "none";
+function edit(x){
+    content = "";
+    content2= "";
+    document.getElementById('view-background').style.display="block";
+    var getEl = document.getElementById('view-client') 
+    var datasContent= data.contents;
+    var datasDetail= data.details;
+    for(var i in datasContent){
+        if(x == datasContent[i].id){
+        content='\
+        <table>\
+            <tr>\
+                <th>Ерөнхий мэдээлэл</th>\
+            </tr>\
+                <tr>\
+                <td><b> Овог нэр: </b><input value="'+ datasContent[i].name + '"></td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Утас: "+datasContent[i].phone + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "И-мэйл: "+datasContent[i].email + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Хаяг: "+datasContent[i].address + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Компани: "+datasContent[i].company + '</td>\
+                </tr>\
+                <tr>\
+                    <td>'+ "Албан тушаал: "+datasContent[i].title + '</td>\
+                </tr>\
+            </table>';
+        }
+        
+    }
+}
+
+function closeIt(){
+    document.getElementById('view-background').style.display="none";
+    createEl1.innerHTML= "";
+    createEl2.innerHTML= "";
 }
  
