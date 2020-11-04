@@ -47,10 +47,10 @@ body{
 }
 
 .form-outer .field{
-    
     height: 50px;
     width: 100%;
     margin: 45px 0;
+    
 }
 
 .form-outer .pages .field .label {
@@ -65,7 +65,16 @@ body{
     padding: 15px;
     font-size: 1em;
 }
-
+/*
+.field textarea{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 1em;
+}
+*/
 .form-outer .pages .field button{
     width: 100%;
     border-radius: 20px;
@@ -96,59 +105,83 @@ form .pages select{
 }
 
 .form-outer{
-    /* overflow: hidden; IMPORTANT!!!*/
+    /* verflow: hidden; IMPORTANT!!!*/
 }
 
-.container .multi-step{
-    display: flex;
-    margin: 40px 0;
-}
 
-.container .multi-step .step{
-    text-align: center;
+.desc textarea{
+    height: 200px;
     width: 100%;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: -20px;
+    padding: 20px;
+    border-radius: 20px;
+    border:1px solid lightgray;
 }
 
-.container .multi-step .step p {
-    font-size: 18px;
-    font-weight: 500;
-    color: #000;
-    margin-bottom: 8px;
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+    padding-left: 0px
 }
 
-.container .step .bullet {
-  position: relative;
-  width: 25px;
-  height: 25px;
-  border: 1px solid lightblue;
-  border-radius: 50%;
-  font-size: 1em;
-  display: inline-block;
-  background: lightblue;  
-} 
-
-.step .check {
-    display: none;
+#progressbar .active {
+    color: green;
 }
 
-.multi-step .step .bullet:before {
-    position: absolute;
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar .step0:before {
+    content: ""
+}
+
+#progressbar li:before {
+    width: 40px;
+    height: 40px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    margin: auto;
+    padding: 2px
+}
+
+#progressbar li:after {
     content: '';
-    height: 4px;
-    width: 130px;
-    background-color: lightgrey;
-    margin-top: 9px;
-    margin-left: 20px;
-
-}
-.multi-step .step:last-child .bullet:before {
-    display: none;
+    width: 100%;
+    height: 10px;
+    background: #E0E0E0;
+    position: absolute;
+    left: 0;
+    top: 17px;
+    
 }
 
-.multi-step .active .bullet {
-    background-color: green;
-    border: green;
-    color:white;
+#progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
 }
 
+#progressbar li:first-child:after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
 
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: orange;
+}
+
+span {
+    font-size: 1.8em;
+}
