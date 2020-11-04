@@ -1,4 +1,4 @@
-<<<<<<< HEAD:client.js
+
 function registrationForm(){
     document.getElementById("form-background").style.display = "block";
 }
@@ -142,11 +142,3 @@ function close(){
     document.getElementById("view-background").style.display = "none";
 }
  
-=======
-function registrationForm(){
-    document.getElementById("form-background").style.display = "block";
-}
-data={
-    
-}
->>>>>>> caf7b71fa36baf975c8a15f65fe0aaf346ffd332:src/js/client.js
