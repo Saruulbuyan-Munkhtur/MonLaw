@@ -58,9 +58,35 @@ var options = {
 
 var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
 apexChart.render();
-// Top Bar Menu dropdown windows
 
+
+// Top Bar Menu dropdown windows
 function viewToggle(e) {
   console.log(e);
   console.log(e.classList.value);
+  let select = e.classList.value;
+  var selectedNotific = document.getElementsByClassName(`notification__id`);
+  var selectedMessage = document.getElementsByClassName(`messages__id`);
+  var selectedProfile = document.getElementsByClassName(`profile__id`);
+  switch (select) {
+    case "notification":
+      selectedNotific[0].classList.toggle("show");
+      selectedMessage[0].classList.remove("show");
+      selectedProfile[0].classList.remove("show");
+      break;
+    case "messages":
+      selectedMessage[0].classList.toggle("show");
+      selectedNotific[0].classList.remove("show");
+      selectedProfile[0].classList.remove("show");
+      break;
+    case "profile":
+      selectedProfile[0].classList.toggle("show");
+      selectedMessage[0].classList.remove("show");
+      selectedNotific[0].classList.remove("show");
+      break;
+
+    default:
+      break;
+  }
+
 }
