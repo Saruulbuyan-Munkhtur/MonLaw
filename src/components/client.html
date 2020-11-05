@@ -13,19 +13,19 @@
         <button class="export">Файл үүсгэх</button>
         <div class="filter">
             <form>
-                <input id="name-filter" placeholder="Нэрээр шүүх"  oninput="nameInput()"></input>
-                <input id="phone-filter" placeholder="Утсаар хайх" oninput="phoneInput()"></input>
-                <input id="company-filter" placeholder="Компаниар шүүх" oninput="companyInput()"></input>
+                <input id="name-filter" placeholder="Нэрээр шүүх"  oninput="nameFilter()"></input>
+                <input id="phone-filter" placeholder="Утсаар хайх" oninput="phoneFiltert()"></input>
+                <input id="company-filter" placeholder="Компаниар шүүх" oninput="companyFilter()"></input>
             </form>    
         </div>
         <p></p>
-        <div class="case"> Хэргүүд
+        <div class="case"> Хэрэглэгчид
             <hr class="case-text">              
-            <form class="show">
+            <form class="show-entries" onclick="selectedEntries()">
                 <label for="entries">Харуулах</label>
                 <select name="entries" id="entries">
+                    <option value="3">3</option>
                     <option value="10">10</option>
-                    <option value="20">20</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
                     <option value="all">Бүгд</option>
@@ -85,10 +85,8 @@
         <div id="view-background" >
             <div id="view-client">
                 <img src="../../assets/closeicon.png" onclick="closeIt()">
-            
                 <div id="view-client-edit">
                     <img src="../../assets/closeicon.png" onclick="closeIt()">
-                    <button id="save" onclick="saveIt()">Хадгалах</button>
                 </div>
             </div>
         </div>

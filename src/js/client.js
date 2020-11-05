@@ -14,16 +14,36 @@ function registrationForm(){
 // database().ref('generalInfo').once('value',showForm);
 var data={
     contents: [
-        {id : "1", name : "Г.Болорчимэг", phone : 1009990, email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "2", name: "Г.Ганболд", phone : 9910000, email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "3", name : "Э.Рхрл", phone : 8810000, email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "4", name: "Ж.Хролд", phone : 9610000, email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'}
+        {id : "1", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "2", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "3", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "4", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
+        {id : "5", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "6", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "7", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "8", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
+        {id : "9", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "10", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "11", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "12", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
+        {id : "13", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "14", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "15", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "16", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'}
     ],
     details: [
         {id : "1", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "2", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "3", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "4", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "5", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "6", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "7", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "8", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "9", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "10", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "11", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "12", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"}
     ]
 };
 var createEl1 = document.createElement('div');
@@ -48,7 +68,7 @@ function showTable(mainData){
                 <th>Гэрийн хаяг</th>\
                 <th>Компани</th>\
                 <th>Албан тушаал</th>\
-                <th colspan="3" id="action">Үйлдэл</th>\
+                <th colspan="3"id="action">Үйлдэл</th>\
             </tr>';
 
             for( var i in datas){
@@ -216,7 +236,9 @@ function edit(x){
                 <tr>\
                     <td><b> Таны хэн болох: </b> <input value="'+ datasDetail[i].who + '" id="emergencyWho"></td>\
                 </tr>\
-            </table>' ;
+            </table>\
+            <button id="save" onclick="saveIt()">Хадгалах</button>\
+            ' ;
         }
     }
     createEl3_forEdit.innerHTML =content;
@@ -254,25 +276,36 @@ function closeIt(){
     createEl3_forEdit.innerHTML= "";
     createEl4_forEdit.innerHTML= "";
 }
-function nameInput(){
+function nameFilter(){
     var inputName = document.getElementById("name-filter");
     var newData = data.contents.filter(n => n.name.includes(inputName.value));
     showTable(newData);
 }
-function phoneInput(){
+function phoneFilter(){
     var inputPhone = document.getElementById("phone-filter");
-    var inputPhoneToString = parseInt(inputPhone.value);
-    var newData = data.contents.filter(n => n.phone.includes(inputPhoneToString));
+    var newData = data.contents.filter(n => n.phone.includes(inputPhone.value));
     showTable(newData);
-
-    
 }
-function companyInput(){
+function companyFilter(){
     var inputCompany = document.getElementById("company-filter");
     var newData = data.contents.filter(n => n.company.includes(inputCompany.value));
     showTable(newData);
 }
+function selectedEntries(){
+    let entries = document.getElementById("entries");
+    for(var i in data.contents){
+        for (var j=0; j<entries.value; j++){
+            console.log(j);
+            console.log(i.name);
+        }
+        
 
+    }
+    let showSelectedEntries = data.contents.filter(n => n.id.includes(entries.value));
+    console.log(showSelectedEntries);
+    showTable(showSelectedEntries);
+
+}
 
 
  
