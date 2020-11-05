@@ -2,9 +2,9 @@
   "name": "monlaw",
   "version": "1.0.0",
   "description": "![Nest Academy Logo](https://media-exp1.licdn.com/dms/image/C560BAQFYUTXIF0qGdA/company-logo_200_200/0?e=2159024400&v=beta&t=hcPco5fA6y2rHSYySLRqax0XUvWTUSB91U5_Rnw2tuA)   \r # Nest Team 2 Group Project",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Saruulbuyan-Munkhtur/MonLaw#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-sass": "^5.0.0"
   }
 }
