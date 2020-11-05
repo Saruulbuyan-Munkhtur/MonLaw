@@ -9,7 +9,7 @@ body{
 .main-content-container{
     position: relative;
     margin-top: 100px;
-    width: 80%;
+    width: 90%;
     height: 100vh;
     background-color: rgb(236, 234, 234) ;  
     margin-left: auto;
@@ -26,7 +26,7 @@ body{
     height: 100%;
     margin: 0%;
     padding: 0%;
-    width: 14.3%;
+    width: 10%;
     outline-style: none;
     flex-wrap: wrap;
     transition: background-color 0.4s;
@@ -119,21 +119,27 @@ body{
 }
 
 table th{
-    border-collapse: collapse;
+    
+    
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(209, 207, 207);
+    background-color: rgb(194, 194, 194);;
     font-size: 14px;
     height: 25px;
+
+}
+#about-content-container th {
+    background-color: green;
 }
 table{
+    margin-top: 5px;
+    border-spacing: 0;
     width: 100%;
     text-align: center;
 }
 table td{
-    border-bottom: 0.5px solid rgb(194, 194, 194);
+   
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
-    border: 0.5 solid grey;
     height: 25px;
 
 }
@@ -145,10 +151,15 @@ table td button{
     border: none;
     border-radius: 2px;
 }
-
+table tr:nth-child(2){
+    margin-top: 10px;
+}
 
 #main-content{
-    margin-top: 20px;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     
 }
 #view-button{
@@ -184,7 +195,7 @@ table td button{
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 60%;
     height: 100vh;
     background-color: white;
 }

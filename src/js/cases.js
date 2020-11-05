@@ -26,13 +26,14 @@ function showTable(){
     tableRow='\
         <table>\
             <tr>\
-                <th>Хэргийн ID</th>\
+                <th>ID</th>\
                 <th>Хэргийн нэр</th>\
                 <th>Хэргийн төрөл</th>\
                 <th>Хаана</th>\
                 <th>Хугацаа</th>\
                 <th>Төлбөр</th>\
                 <th>Төлөв</th>\
+                <th colspan="3">Үйлдэл</th>\
             </tr>';
     
     for( var i in datas){
