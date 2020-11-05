@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="../css/invoice.css">
+</head>
+<body>
+    <div class="invoice-main-content-container">
+      <div class="header-buttons">
+        <button id="download-invoice">Download</button>
+        <button id="print-invoice">Print</button>
+      </div>
+      <div class="invoice-header">
+        <h1>Invoice</h1>
+      </div>
+        <p>Click the names to see more data.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Service Type</th>
+              <th>Sku</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Tax </th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Matman</td>
+              <td data-column="Price">1,000,000</td>
+              <td data-column="Qty">2</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+            <tr>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Nagy</td>
+              <td data-column="Price">200,000</td>
+              <td data-column="Qty">1</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+            <tr>
+              <td data-column="Service Type">Legal fees</td>
+              <td data-column="Sku">Biro</td>
+              <td data-column="Price">100,000</td>
+              <td data-column="Qty">3</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+            <tr>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Mastah</td>
+              <td data-column="Price">50,000</td>
+              <td data-column="Qty">1</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+            <tr>
+              <td data-column="Service Type">Pagers</td>
+              <td data-column="Sku">Nagy</td>
+              <td data-column="Price">10,000</td>
+              <td data-column="Qty">4</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+            <tr>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Matman</td>
+              <td data-column="Price">1,000,000</td>
+              <td data-column="Qty">2</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+            <tr>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Matman</td>
+              <td data-column="Price">1,000,000</td>
+              <td data-column="Qty">2</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <script src="../js/invoice.js"></script>
+</body>
+</html>
