@@ -4,127 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
-    <link rel="stylesheet" href="../css/invoice.scss">
+    <link rel="stylesheet" href="../css/invoice.css">
 </head>
 <body>
     <div class="invoice-main-content-container">
-        <div class="header-buttons">
-            <button id="download-invoice">Download</button>
-            <button id="print-invoice">Print</button>
-        </div>
+      <div class="header-buttons">
+        <button id="download-invoice">Download</button>
+        <button id="print-invoice">Print</button>
+      </div>
+      <div class="invoice-header">
+        <h1>Invoice</h1>
+      </div>
         <p>Click the names to see more data.</p>
         <table>
           <thead>
-          <tr class="table-headers">
-            <th>Name</th>
-            <th>Number</th>
-            <th>Market rate</th>
-            <th>Weight</th>
-            <th>Value</th>
-          </tr>
+            <tr>
+              <th>Service Type</th>
+              <th>Sku</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Tax </th>
+              <th>Subtotal</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td>PlayCo Group Universal Flex</td>
-              <th class="mobile-header">Number</th><td>2489</td>
-              <th class="mobile-header">Market rate</th><td>€12.35</td>
-              <th class="mobile-header">Weight</th><td>5%</td>
-              <th class="mobile-header">Value</th><td>€1,536.96</td>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Matman</td>
+              <td data-column="Price">1,000,000</td>
+              <td data-column="Qty">2</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
             <tr>
-              <td>House of Dedgeny EUR Flex</td>
-              <th class="mobile-header">Number</th><td>5478</td>
-              <th class="mobile-header">Market rate</th><td>€42.68	</td>
-              <th class="mobile-header">Weight</th><td>2%</td>
-              <th class="mobile-header">Value</th><td>€4,676.02</td>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Nagy</td>
+              <td data-column="Price">200,000</td>
+              <td data-column="Qty">1</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
             <tr>
-              <td>PlayCo Group Local</td>
-              <th class="mobile-header">Number</th><td>123</td>
-              <th class="mobile-header">Market rate</th><td>€147.36</td>
-              <th class="mobile-header">Weight</th><td>3%</td>
-              <th class="mobile-header">Value</th><td>€543.76</td>
+              <td data-column="Service Type">Legal fees</td>
+              <td data-column="Sku">Biro</td>
+              <td data-column="Price">100,000</td>
+              <td data-column="Qty">3</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
             <tr>
-              <td>PlayCo Group Low</td>
-              <th class="mobile-header">Number</th><td>5477</td>
-              <th class="mobile-header">Market rate</th><td>€147.00</td>
-              <th class="mobile-header">Weight</th><td>10%</td>
-              <th class="mobile-header">Value</th><td>€80,511.90</td>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Mastah</td>
+              <td data-column="Price">50,000</td>
+              <td data-column="Qty">1</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
             <tr>
-              <td>House of Dedgeny High</td>
-              <th class="mobile-header">Number</th><td>5899</td>
-              <th class="mobile-header">Market rate</th><td>€ 288.00</td>
-              <th class="mobile-header">Weight</th><td>4%</td>
-              <th class="mobile-header">Value</th><td>€67,956.48</td>
+              <td data-column="Service Type">Pagers</td>
+              <td data-column="Sku">Nagy</td>
+              <td data-column="Price">10,000</td>
+              <td data-column="Qty">4</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
             <tr>
-              <td>House of Dedgeny USD Med</td>
-              <th class="mobile-header">Number</th><td>11477</td>
-              <th class="mobile-header">Market rate</th><td>€18.00</td>
-              <th class="mobile-header">Weight</th><td>5%</td>
-              <th class="mobile-header">Value</th><td>€10,329.30</td>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Matman</td>
+              <td data-column="Price">1,000,000</td>
+              <td data-column="Qty">2</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
             <tr>
-              <td>Sterck Inc. Med</td>
-              <th class="mobile-header">Number</th><td>1476</td>
-              <th class="mobile-header">Market rate</th><td>€187.00</td>
-              <th class="mobile-header">Weight</th><td>10%</td>
-              <th class="mobile-header">Value</th><td>€27,601.20</td>
-            </tr>
-            <tr>
-              <td>PlayCo Group Universal High</td>
-              <th class="mobile-header">Number</th><td>6547</td>
-              <th class="mobile-header">Market rate</th><td>€782.00</td>
-              <th class="mobile-header">Weight</th><td>12%</td>
-              <th class="mobile-header">Value</th><td>€614,370.48</td>
-            </tr>
-            <tr>
-              <td>PlayCo Group Universal Low</td>
-              <th class="mobile-header">Number</th><td>1476</td>
-              <th class="mobile-header">Market rate</th><td>€187.00</td>
-              <th class="mobile-header">Weight</th><td>10%</td>
-              <th class="mobile-header">Value</th><td>€27,601.20</td>
-            </tr>
-            <tr>
-              <td>PlayCo Group Universal High</td>
-              <th class="mobile-header">Number</th><td>1471</td>
-              <th class="mobile-header">Market rate</th><td>€148.00</td>
-              <th class="mobile-header">Weight</th><td>18%</td>
-              <th class="mobile-header">Value</th><td>€39,187.44</td>
-            </tr>
-            <tr>
-              <td>Sterck Inc. Low</td>
-              <th class="mobile-header">Number</th><td>1978</td>
-              <th class="mobile-header">Market rate</th><td>€68.23</td>
-              <th class="mobile-header">Weight</th><td>11%</td>
-              <th class="mobile-header">Value</th><td>€14,845.48</td>
-            </tr>
-            <tr>
-              <td>Sterck Inc. Universal High</td>
-              <th class="mobile-header">Number</th><td>6512</td>
-              <th class="mobile-header">Market rate</th><td>€642.02</td>
-              <th class="mobile-header">Weight</th><td>5%</td>
-              <th class="mobile-header">Value</th><td>€209,041.71</td>
-            </tr>
-            <tr>
-              <td>Sterck Inc. Flex</td>
-              <th class="mobile-header">Number</th><td>5423</td>
-              <th class="mobile-header">Market rate</th><td>€78.96</td>
-              <th class="mobile-header">Weight</th><td>7%</td>
-              <th class="mobile-header">Value</th><td>€29,974.01</td>
-            </tr>
-            <tr>
-              <td>PlayCo Group Universal Med</td>
-              <th class="mobile-header">Number</th><td>7812</td>
-              <th class="mobile-header">Market rate</th><td>€54.86</td>
-              <th class="mobile-header">Weight</th><td>8%</td>
-              <th class="mobile-header">Value</th><td>€34,285.31</td>
-            </tr>
-            <tr class='total'>
-              <th>Total</th>
-              <td class="total-val" colspan="4">€1,134,860.04</td>
+              <td data-column="Service Type">Audit</td>
+              <td data-column="Sku">Matman</td>
+              <td data-column="Price">1,000,000</td>
+              <td data-column="Qty">2</td>
+              <td data-column="Tax">100,000</td>
+              <td data-column="Subtotal">2,100,000</td
             </tr>
           </tbody>
         </table>
