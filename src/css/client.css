@@ -24,24 +24,20 @@
     z-index: 2;
     cursor: pointer;
     top:0;
-
-    
-}
-#form {
-    width: 60%;
-    background-color: white;
-    position: absolute;
-    top:15%;
-    left:15%;
-    text-align: center;
-    border-radius: 2px;
-    
 }
 .add-new{
-    background-color: #1cc88a;
+    background-image:linear-gradient(to right, #01dbdf 0%, #01dbdf 21%,  #016d6f 100%);
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
 }
 .export{
-    background-color: #fe9365;
+    background-image: linear-gradient(to right, #fe909d 0%, #fe203a 21%, #fe203a 100%);
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
 }
 .filter{
     display: flex;
@@ -49,7 +45,6 @@
     border:none; 
     padding-left: 20px; 
 }
-
 .filter input{
     border: none;
     height: 20px;
@@ -62,33 +57,41 @@
 }
 .case{
     padding: 35px;
-    padding-right: 0%;    background-color: white;
+    padding-right: 0%;    
+    background-color: white;
     font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     color: #5a5c69;
 }
 hr.case-text{
-    border-top: solid 0.5px gray;
+    border-top: inset 0.5px gray;
+    
 }
 .show-entries{
     font-size: 12px;
 }
-table{
+#data-content table{
     width: 100%;
     text-align: center;
     border-collapse: collapse
 }
-table th{
+#data-content table th{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(209, 207, 207);
+    background-color: white;
     font-size: 14px;
     height: 25px;
 }
-table td{
+#sortName{
+    background-image:url("../../assets/sorticon.png");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    right: 40px;
+}
+#data-content table td{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     height: 25px;
 }
-table td button{
+#data-content table td button{
     color:white;
     width: 100%;
     height: 25px;
@@ -98,9 +101,16 @@ table td button{
     transition: 0.6s;
     border: 3px solid white;
 }
+#data-content tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+#data-content tr:hover {
+    background-color: #ddd;
+}
 #view-button{
     background-color:rgb(53, 158, 53);
     outline: none;
+    cursor: pointer;
 }
 #view-button:hover{
     border: 3px solid rgb(53, 158, 53);
@@ -111,6 +121,7 @@ table td button{
 #edit-button{
     background-color: rgb(109, 109, 238);
     outline: none;
+    cursor: pointer;
 }
 #edit-button:hover{
     border: 3px solid rgb(109, 109, 238);
@@ -119,6 +130,7 @@ table td button{
 }
 #appoint-button{
     background-color: orange;
+    cursor: pointer;
 }
 #appoint-button:hover{
     border: 3px solid orange;
@@ -127,9 +139,9 @@ table td button{
 }
 #view-client{
     width: 50%;
-    height: 500px;
+    height: 470px;
     background-color:white;
-    top:10%;
+    top:15%;
     text-align: center;
     border-radius: 2px;
     margin-left:auto;
@@ -180,6 +192,7 @@ table td button{
     background-color: rgb(109, 109, 238);
     color:white;
     border: none;
+    cursor: pointer;
 }
 #view-client-edit th{
     background-color:  rgb(109, 109, 238) ;
