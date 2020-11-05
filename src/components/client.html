@@ -13,13 +13,10 @@
         <button class="export">Файл үүсгэх</button>
         <div class="filter">
             <form>
-                <input id="name-filter" value="Нэрээр шүүх"></input>
-                <input id="phone-filter" value="Утсаар шүүх">
-                <input id="company-filter" value="Компаниар шүүх">
+                <input id="name-filter" placeholder="Нэрээр шүүх"  oninput="nameInput()"></input>
+                <input id="phone-filter" placeholder="Утсаар хайх" oninput="phoneInput()"></input>
+                <input id="company-filter" placeholder="Компаниар шүүх" oninput="companyInput()"></input>
             </form>    
-            <span class="search">
-                <input type="text">
-            </span>
         </div>
         <p></p>
         <div class="case"> Хэргүүд
@@ -88,10 +85,11 @@
         <div id="view-background" >
             <div id="view-client">
                 <img src="../../assets/closeicon.png" onclick="closeIt()">
-            </div>
-            <div id="view-client-edit">
-                <img src="../../assets/closeicon.png" onclick="closeIt()">
-                <button id="save" onclick="saveIt()">Хадгалах</button>
+            
+                <div id="view-client-edit">
+                    <img src="../../assets/closeicon.png" onclick="closeIt()">
+                    <button id="save" onclick="saveIt()">Хадгалах</button>
+                </div>
             </div>
         </div>
         

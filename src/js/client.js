@@ -31,11 +31,13 @@ var createEl2 = document.createElement('div');
 var createEl3_forEdit = document.createElement('div');
 var createEl4_forEdit = document.createElement('div');
 
-function showTable(){
+function showTable(mainData){
     var createEl = document.createElement('div');
     var getEl = document.getElementById("data-content");
     var tableRows= "";
-    var datas= data.contents;
+    var datas=mainData;
+   getEl.innerHTML="";
+    console.log(mainData);
     content='\
         <table>\
             <tr>\
@@ -46,12 +48,12 @@ function showTable(){
                 <th>Гэрийн хаяг</th>\
                 <th>Компани</th>\
                 <th>Албан тушаал</th>\
-                <th>Үйлдэл</th>\
+                <th colspan="3" id="action">Үйлдэл</th>\
             </tr>';
 
             for( var i in datas){
             content+= '\
-            <tr>\
+            <tr id="tableRow">\
                 <td>'+ datas[i].id + '</td>\
                 <td>'+ datas[i].name + '</td>\
                 <td>'+ datas[i].phone + '</td>\
@@ -73,7 +75,7 @@ function showTable(){
     getEl.appendChild(createEl);
     
 };
-showTable();
+showTable(data.contents);
 
 function view(x){
     
@@ -90,7 +92,7 @@ function view(x){
         content='\
         <table>\
             <tr>\
-                <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
+                <th id="table-radius">ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
             </tr>\
                 <tr>\
                     <td><b> Овог нэр: </b> '+ datasContent[i].name + '</td>\
@@ -223,7 +225,7 @@ function edit(x){
     getEl.appendChild(createEl4_forEdit);
     
 }
-function saveIt(content){
+function saveIt(x){
     var getEl = document.getElementById('view-client-edit');
     let newName = document.getElementById('name').value;
     let newPhone = document.getElementById('phone').value;
@@ -238,23 +240,39 @@ function saveIt(content){
     let newEmergencyname = document.getElementById('emergencyName').value;
     let newEmergencyphone = document.getElementById('emergencyPhone').value;
     let newEmergencywho = document.getElementById('emergencyWho').value;
-    let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
+    let newContent1 = { id: 1, name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
     let newContent2 = { birthday: newBirthday, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
-
-    data.contents.update(content, newContent1);
-    data.details.update(content, newContent2);
     
-}
-function update(content, newContent1) {
-    let i = app.controller.product.indexOf(productId);
-    data.c[i] = product;
-}
-add: function (product) {
-    app.data.products.push(product);
+    let i = data.contents.indexOf(x);
+    data.contents[i] = newContent1;
+    view(newContent1)
 }
 function closeIt(){
     document.getElementById('view-background').style.display="none";
     createEl1.innerHTML= "";
     createEl2.innerHTML= "";
+    createEl3_forEdit.innerHTML= "";
+    createEl4_forEdit.innerHTML= "";
 }
+function nameInput(){
+    var inputName = document.getElementById("name-filter");
+    var newData = data.contents.filter(n => n.name.includes(inputName.value));
+    showTable(newData);
+}
+function phoneInput(){
+    var inputPhone = document.getElementById("phone-filter");
+    var inputPhoneToString = parseInt(inputPhone.value);
+    var newData = data.contents.filter(n => n.phone.includes(inputPhoneToString));
+    showTable(newData);
+
+    
+}
+function companyInput(){
+    var inputCompany = document.getElementById("company-filter");
+    var newData = data.contents.filter(n => n.company.includes(inputCompany.value));
+    showTable(newData);
+}
+
+
+
  
