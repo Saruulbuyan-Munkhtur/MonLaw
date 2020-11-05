@@ -62,13 +62,13 @@ function showTable(mainData){
         <table>\
             <tr>\
                 <th>№</th>\
-                <th>Овог нэр</th>\
+                <th id="sortName" onclick="sortByName()">Овог нэр</th>\
                 <th>Утас</th>\
                 <th>И-мэйл</th>\
                 <th>Гэрийн хаяг</th>\
                 <th>Компани</th>\
                 <th>Албан тушаал</th>\
-                <th colspan="3"id="action">Үйлдэл</th>\
+                <th colspan="3" id="action">Үйлдэл</th>\
             </tr>';
 
             for( var i in datas){
@@ -95,13 +95,11 @@ function showTable(mainData){
     getEl.appendChild(createEl);
     
 };
-showTable(data.contents);
+    showTable(data.contents);
 
 function view(x){
-    
     content1 = "";
-    content2= "";
-
+    content2 = "";
     document.getElementById('view-background').style.display="block";
     var getEl = document.getElementById('view-client') 
     var datasContent= data.contents;
@@ -109,7 +107,7 @@ function view(x){
    
     for(var i in datasContent){
         if(x == datasContent[i].id){
-        content='\
+        content1='\
         <table>\
             <tr>\
                 <th id="table-radius">ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
@@ -168,7 +166,7 @@ function view(x){
             ' ;
         }
     }
-    createEl1.innerHTML=content;
+    createEl1.innerHTML = content1;
     createEl2.innerHTML = content2;
     getEl.appendChild(createEl1);
     getEl.appendChild(createEl2);
@@ -292,20 +290,35 @@ function companyFilter(){
     showTable(newData);
 }
 function selectedEntries(){
-    let entries = document.getElementById("entries");
+    let entriesEl = document.getElementById("entries");
     for(var i in data.contents){
-        for (var j=0; j<entries.value; j++){
-            console.log(j);
-            console.log(i.name);
-        }
+        k=data.contents[i].id;
         
-
+        if(k===entriesEl.value)
+        console.log(k);
+        console.log(entries.value)
+        showSelectedEntries = data.contents.slice(0,entriesEl.value);
     }
-    let showSelectedEntries = data.contents.filter(n => n.id.includes(entries.value));
-    console.log(showSelectedEntries);
     showTable(showSelectedEntries);
-
 }
 
-
+function sortByName(){
+    let switching = true;
+    while(switching){
+        for(var i in data.contents){
+            let shouldSwitch = false;
+            if (data.contents[i].name > name[i + 1]) {
+                shouldSwitch = true;
+                
+            break;
+            }
+            if (shouldSwitch) {
+                let switchedName = data.contents[i].name.parentNode.insertBefore(data.contents[i+1].name, data.contents[i].name);
+                switching = true;
+                console.log(switchedName);
+            }
+        }
+    }
+    showTable(switchedName);
+}
  
