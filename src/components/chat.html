@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/chat.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
     <title>chat</title>
   </head>
   <body>
@@ -36,15 +42,26 @@
             </div>
           </div>
           <div class="chat__left__footer">
-            <input type="text" id="inputMsg" />
-            <input type="file" id="inputFile" />
-            <button>File</button>
-            <button>Send</button>
+            <input type="text" id="inputMsg" placeholder="Type message ..." />
+            <div class="btn__group">
+              <div>
+                <i class="fa fa-paperclip fa-1.5x"></i>
+              </div>
+              <div>
+                <i class="fa fa-smile-o fa-1.5x"></i>
+              </div>
+              <div>
+                <i class="fa fa-paper-plane fa-1.5x"></i>
+              </div>
+            </div>
           </div>
         </div>
         <div class="chat__right">
           <div class="chat__right__header">
-            <h4>search</h4>
+            <div class="chat__search">
+              <i class="fa fa-search"></i>
+              <input type="text" id="searchUser" placeholder="Search" />
+            </div>
           </div>
           <div class="chat__right__content">
             <h4>userlist</h4>

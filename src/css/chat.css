@@ -13,10 +13,8 @@ body {
   place-items: center;
 }
 .container {
-  min-width: 800px;
-  max-width: 900px;
-  max-height: 500px;
-  height: 95vh;
+  width: 80%;
+  height: 60vh;
   background: #ffffff;
   border: 1px solid gray;
 }
@@ -29,6 +27,7 @@ body {
 
 .chat__left {
   border: 1px solid tomato;
+  width: 70%;
 }
 .chat__left__header {
   height: 10%;
@@ -93,15 +92,15 @@ body {
   justify-items: start;
 }
 .you__message .chat__message__text {
-  background: #0048aa;
+  background: #3e8ff7;
   color: #eee;
-  border: 1px solid #0048aa;
+  border: 1px solid #3e8ff7;
   border-radius: 14px 14px 0 14px;
 }
 .other__message .chat__message__text {
-  background: #eee;
+  background: #efefef;
   color: #111;
-  border: 1px solid #eee;
+  border: 1px solid #efefef;
   border-radius: 14px 14px 14px 0;
 }
 .chat__left__footer {
@@ -111,7 +110,31 @@ body {
   display: flex;
   align-items: center;
 }
+.chat__left__footer > input {
+  padding: 10px;
+  border: 1px solid #d2d6e0;
+  width: 85%;
+  height: 40px;
+}
 
+.btn__group {
+  border: 1px solid #d2d6e0;
+  border-left-color: white;
+  width: 15%;
+  height: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.btn__group > div > i {
+  color: #929daf;
+  transition: color 0.5s;
+}
+.btn__group > div > i:hover {
+  color: #495057;
+  cursor: pointer;
+}
 .chat__right {
-  border: 1px solid tomato;
+  width: 20%;
+  border: 1px solid teal;
 }
