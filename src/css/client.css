@@ -1,173 +1,374 @@
-
 .background{
-    background-color: rgb(236, 234, 234);
-    margin: 5%;
-    padding: 1%;
-    height: 100%;
-    
-}
-.add-new, .export{
-    width: 7%;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: white;
-    border-radius: 3px;
-    border: none;
-    position: relative;
-    left: 85%;
-}
-#view-background{
-    position: absolute;
-    width: 100%;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.4);
-    display: none;
-    z-index: 2;
-    cursor: pointer;
-    top:0;
+    width: 100%;
+    position: absolute;
+    margin-top: 3%;
 }
-.add-new{
-    background-image:linear-gradient(to right, #01dbdf 0%, #01dbdf 21%,  #016d6f 100%);
-    outline: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 15px;
-}
-.export{
-    background-image: linear-gradient(to right, #fe909d 0%, #fe203a 21%, #fe203a 100%);
-    outline: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 15px;
-}
+
+/* ******************************Filter****************************** */
+
 .filter{
+    width: 100%;
+    height: 40px;
+    border: none; 
     display: flex;
-    gap: 30px;
-    border:none; 
-    padding-left: 20px; 
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: space-between;
+}
+#filter-container{
+    display: flex;
+}
+#filterIcon{
+    margin-left: 10px;
+    margin-right: 20px;
 }
 .filter input{
-    border: none;
     height: 20px;
     color: grey;
-    background-image:url("../../assets/‎filtericon.png");
-    background-repeat: no-repeat;
-    background-size: 15px;
-    padding-left: 20px;
     background-position:3px;
+    margin-right: 20px;
+    border: 0.5px solid gray;
+}
+#client-file-icons{
+   display: block;
+   justify-content: end;
+   
+}
+#client-file-icons #add-table i{
+    font-size: 30px;
+    color: orange;
+    position: relative;
+}
+#add-table{
+    display: flex;
+    padding-bottom: 10px;
+    padding-right: 5px;
+}
+#tooltip-item-add, #tooltip-item-export{
+    width: 300px;
+}
+#tooltip-item-text-add{
+    visibility: hidden;   
+    width: 150px;
+    background-color: white;
+    color: black ;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    right: 95px;
+    border: 1px solid orange;
+    
+}
+#tooltip-item-add #tooltip-item-text-add::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -6px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent orange transparent transparent;
+}
+#add-table #tooltip-item-add .fa:hover #tooltip-item-text-add{
+    cursor: pointer;
+    visibility: visible;
+}
+#export{
+    display: flex;
+}
+#client-file-icons #export i{
+    font-size: 27px;
+    color: green;
+}
+#tooltip-item-text-export{
+    /* visibility: hidden;    */
+    width: 150px;
+    background-color: white;
+    color: black ;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    right: 95px;
+    border: 1px solid green;
+    
+}
+#tooltip-item-export #tooltip-item-text-export::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -6px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent green transparent transparent;
+}
+#export i:hover #tooltip-item-text-export{
+    cursor: pointer;
+    visibility: visible;
+}
+
+/* ******************************Case****************************** */
+
+#case-container{
+    margin: 40px;
 }
 .case{
-    padding: 35px;
-    padding-right: 0%;    
     background-color: white;
     font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     color: #5a5c69;
+    position: relative;
+    font-size: 20px;
 }
 hr.case-text{
     border-top: inset 0.5px gray;
-    
 }
 .show-entries{
-    font-size: 12px;
+    font-size: 16px;
+    display: flex;
+    border-color:#0bb2d4;
+}
+#entries{
+    margin-left:5px;
+    margin-right:5px;
+}
+
+#data-container{
+    margin-left: 40px;
+    margin-right: 40px;
+    border:1px solid #0bb2d4;
 }
 #data-content table{
     width: 100%;
-    text-align: center;
-    border-collapse: collapse
+    text-align: left;
+    border-collapse: collapse;
+    background-color: white;
 }
 #data-content table th{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-    font-size: 14px;
-    height: 25px;
-}
-#sortName{
-    background-image:url("../../assets/sorticon.png");
-    background-repeat: no-repeat;
-    background-size: 15px;
-    right: 40px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    background-color:#0bb2d4;
+    font-size: 16px;
+    height: 40px;
+    color:white;
+    padding-left: 5px;
 }
 #data-content table td{
-    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 10px;
+}
+#data-content table th:after{
+    font-family: "FontAwesome";
+    content: "\f0dc";
+    content: "\f161";
+    content: "\f160";
+    opacity: 0.5;
+    margin-left: 5px;
+}
+#data-content table th:hover{
+   cursor: pointer;
+}
+#data-content table td{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 13px;
     height: 25px;
 }
 #data-content table td button{
     color:white;
     width: 100%;
-    height: 25px;
+    height: 30px;
     font-size: 10px;
     border: none;
     border-radius: 3px;
     transition: 0.6s;
     border: 3px solid white;
 }
-#data-content tr:nth-child(even) {
+/* #data-content tr:nth-child(even) {
     background-color: #f2f2f2;
-}
+} */
 #data-content tr:hover {
     background-color: #ddd;
 }
-#view-button{
-    background-color:rgb(53, 158, 53);
-    outline: none;
+#tableRow .fa{
+    font-size: 18px;
+}
+
+.fa-file-o{
+    color:rgb(53, 158, 53);
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+.fa-file-o:hover #view-tooltip{
+    visibility: visible;
+}
+
+#view-tooltip{
+    visibility: hidden;
+    width: 110px;
+    height: 20px;
+    background-color: #D30A50;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+
+}
+.fa-pencil-square-o{
+    color: red;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+#edit-tooltip{
+    visibility: hidden;
+    width: 110px;
+    height: 20px;
+    background-color: #D30A50;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+
+}
+.fa-pencil-square-o:hover #edit-tooltip{
+    visibility: visible;
+}
+.fa-calendar-plus-o{
+    color: blue;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+#appoint-tooltip{
+    visibility: hidden;
+    width: 110px;
+    height: 20px;
+    background-color: #D30A50;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+
+}
+.fa-calendar-plus-o:hover #appoint-tooltip{
+    visibility: visible;
+}
+/* ******************************Pagination****************************** */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-right: 35px;
+    margin-left: 35px;
+}
+#page{
+    width: 10%;
+    border-color:red;
+}
+
+#pagination{
+    display: flex;
+}  
+#pagination:hover{
     cursor: pointer;
 }
-#view-button:hover{
-    border: 3px solid rgb(53, 158, 53);
-    color:black;
-    background-color: white;
-    outline: none;
+#pagination span{
+    color: black;
+    display: flex;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid gray;
 }
-#edit-button{
-    background-color: rgb(109, 109, 238);
-    outline: none;
+#pagination-span{
+    margin: 6px;
+}
+#pagination #btn-pages{
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    border: 0px;
+}
+#pagination .pagination-span:hover{
+background-color: #0bb2d4;
+color: white;
+}
+
+#pagination #btn-pages:hover:not(.active) {
+    background-color: #ddd;
+}
+
+#pagination #btn-pages:first-child {
+border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+}
+
+#pagination #btn-pages:last-child {
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+}
+
+
+/* ******************************View Form, Edit form****************************** */
+
+#view-background{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
     cursor: pointer;
+    top:0;
+    overflow: scroll;
+    align-items: center;
+    justify-content: center;
 }
-#edit-button:hover{
-    border: 3px solid rgb(109, 109, 238);
-    color:black;
-    background-color: white;
-}
-#appoint-button{
-    background-color: orange;
-    cursor: pointer;
-}
-#appoint-button:hover{
-    border: 3px solid orange;
-    color:black;
-    background-color: white;
-}
+
 #view-client{
     width: 50%;
-    height: 470px;
+    height: 500px;
     background-color:white;
-    top:15%;
-    text-align: center;
-    border-radius: 2px;
-    margin-left:auto;
-    margin-right:auto;
-}
-#view-client img{
-    width: 15px;
-    position: absolute;
-    top:9px;
-    left:73%;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
 }
 #view-client table, #view-client-edit table{
     width: 90%;
-    text-align: left;
+    text-align:left ;
     position: relative;
     top: 30px;
     left: 5%;
     color:rgb(51, 51, 51);
+    font-family: Arial, Helvetica, sans-serif;
+    
 }  
 #view-client th{
     background-color:rgb(53, 158, 53);
     color:white;
     border-top: none;
+    padding-left: 3%;
 }
-#view-client th, td{
+#view-client tr{
+    height: 27px;
+}
+#view-client th, #view-client td{
     border: none;
+    padding-left: 3%;
 }
 #view-client tr:nth-child(even), #view-client-edit tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -175,24 +376,39 @@ hr.case-text{
 #view-client tr:hover, #view-client-edit tr:hover {
     background-color: #ddd;
 }
-#view-client-edit{
-    width: 100%;
-    background-color: rgb(255, 254, 254);
-    
+.closeIcon{
+    width: 10%;
+    z-index: 2;
+    position: relative;
+    left: 88%;
 }
-#view-client-edit img{
+.closeIcon img{
     width: 15px;
     position: absolute;
     top:9px;
     left:73%;
 }
-#view-client-edit button{
-    position: absolute;
-    top: 450px;
+#view-client-edit{
+    position: relative; 
+    width: 100%;
+    background-color: rgb(255, 254, 254);
+}
+#detailInformation{
+    position: relative;
+}
+#view-background #save{
     background-color: rgb(109, 109, 238);
     color:white;
     border: none;
     cursor: pointer;
+    outline: none;
+    position: absolute;
+    top:470px;
+    left: 250px;
+    width: 70px;
+    height: 25px;
+    border-radius: 3px;
+
 }
 #view-client-edit th{
     background-color:  rgb(109, 109, 238) ;

@@ -1,7 +1,4 @@
 
-function registrationForm(){
-    document.getElementById("form-background").style.display = "block";
-}
 // var firebaseConfig={
 //     paiKey: 'AIzaSyCqm2OMg4f1gbjSfl5DGlVF3Plpeb4N2i0', //webAPI key
 //     autoDomain:'bobo-b4e12.firebaseapp.com',                                     //
@@ -14,22 +11,22 @@ function registrationForm(){
 // database().ref('generalInfo').once('value',showForm);
 var data={
     contents: [
-        {id : "1", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "2", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "3", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "4", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
-        {id : "5", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "6", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "7", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "8", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
-        {id : "9", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "10", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "11", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "12", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
-        {id : "13", name : "Г.Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "14", name: "Г.Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "15", name : "Э.Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "16", name: "Ж.Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'}
+        {id : "1", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "2", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "3", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "4", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
+        {id : "5", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "6", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "7", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "8", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
+        {id : "9", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "10", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "11", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "12", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
+        {id : "13", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
+        {id : "14", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
+        {id : "15", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
+        {id : "16", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'}
     ],
     details: [
         {id : "1", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
@@ -43,31 +40,39 @@ var data={
         {id : "9", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "10", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
         {id : "11", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "12", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"}
+        {id : "12", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "13", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "14", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "15", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "16", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"}
     ]
 };
 var createEl1 = document.createElement('div');
 var createEl2 = document.createElement('div');
 var createEl3_forEdit = document.createElement('div');
 var createEl4_forEdit = document.createElement('div');
+//Page iin haruulah utga songoh
+var current_page = 1;
+var records_per_page = 2;
+var entriesNumber = document.getElementById("entries"); 
 
 function showTable(mainData){
     var createEl = document.createElement('div');
     var getEl = document.getElementById("data-content");
     var tableRows= "";
     var datas=mainData;
-   getEl.innerHTML="";
-    console.log(mainData);
+    getEl.innerHTML="";
+    // console.log(mainData);
     content='\
-        <table>\
+        <table id="firstTable">\
             <tr>\
                 <th>№</th>\
-                <th id="sortName" onclick="sortByName()">Овог нэр</th>\
-                <th>Утас</th>\
+                <th id="sortName">Овог нэр</th>\
+                <th id="sortPhone">Утас</th>\
                 <th>И-мэйл</th>\
-                <th>Гэрийн хаяг</th>\
-                <th>Компани</th>\
-                <th>Албан тушаал</th>\
+                <th id="sortAddress">Гэрийн хаяг</th>\
+                <th id="sortCompany">Компани</th>\
+                <th id="sortTitle">Албан тушаал</th>\
                 <th colspan="3" id="action">Үйлдэл</th>\
             </tr>';
 
@@ -81,11 +86,11 @@ function showTable(mainData){
                 <td>'+ datas[i].address + '</td>\
                 <td>'+ datas[i].company + '</td>\
                 <td>'+ datas[i].title + '</td>\
-                <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+                <td><i class="fa fa-file-o" onclick="view('+datas[i].id+')"><span id = "view-tooltip">Харах</span></i>\
                 </td>\
-                <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+                <td><i class="fa fa-pencil-square-o" onclick="edit('+datas[i].id+')"><span id = "edit-tooltip">Өөрчлөх</span></i>\
                 </td>\
-                <td><button type="button" id="appoint-button" onclick="hearingDate()">Цаг товлох</button>\
+                <td><i class="fa fa-calendar-plus-o" onclick="hearingDate()"><span id = "appoint-tooltip">Цаг товлох </span></i>\
                 </td>\
             </tr>';
             }
@@ -100,7 +105,7 @@ function showTable(mainData){
 function view(x){
     content1 = "";
     content2 = "";
-    document.getElementById('view-background').style.display="block";
+    document.getElementById('view-background').style.display="flex";
     var getEl = document.getElementById('view-client') 
     var datasContent= data.contents;
     var datasDetail= data.details;
@@ -162,8 +167,7 @@ function view(x){
                 <tr>\
                     <td><b> Таны хэн болох: </b> '+ datasDetail[i].who + '</td>\
                 </tr>\
-            </table>\
-            ' ;
+            </table>' ;
         }
     }
     createEl1.innerHTML = content1;
@@ -174,7 +178,7 @@ function view(x){
 function edit(x){
     content = "";
     content2= "";
-    document.getElementById('view-background').style.display="block";
+    document.getElementById('view-background').style.display="flex";
     var getEl = document.getElementById('view-client-edit') 
     var datasContent= data.contents;
     var datasDetail= data.details;
@@ -209,7 +213,7 @@ function edit(x){
     for(var i in datasDetail){
         if(x == datasDetail[i].id){  
         content2='\
-            <table>\
+            <table >\
                 <tr>\
                     <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                 </tr>\
@@ -235,8 +239,9 @@ function edit(x){
                     <td><b> Таны хэн болох: </b> <input value="'+ datasDetail[i].who + '" id="emergencyWho"></td>\
                 </tr>\
             </table>\
-            <button id="save" onclick="saveIt()">Хадгалах</button>\
+                <button id="save" onclick="saveIt()">Хадгалах</button>\
             ' ;
+
         }
     }
     createEl3_forEdit.innerHTML =content;
@@ -276,8 +281,20 @@ function closeIt(){
 }
 function nameFilter(){
     var inputName = document.getElementById("name-filter");
-    var newData = data.contents.filter(n => n.name.includes(inputName.value));
+    var newData = data.contents.filter(n => n.name.toLowerCase().includes(inputName.value));
     showTable(newData);
+    var language = "фцужэнгшүзкъйыбөахролдпячёсмитьвю";
+    for(j in inputName){
+        for(i in language){
+          
+        }
+        }
+        if(inputName[j] != language[i]){
+                // console.log(language[i]);
+                // console.log(inputName.value);
+                // alert('Та Монгол хэлийг сонгоно уу')
+    }
+        
 }
 function phoneFilter(){
     var inputPhone = document.getElementById("phone-filter");
@@ -286,22 +303,42 @@ function phoneFilter(){
 }
 function companyFilter(){
     var inputCompany = document.getElementById("company-filter");
-    var newData = data.contents.filter(n => n.company.includes(inputCompany.value));
+    var newData = data.contents.filter(n => n.company.toLowerCase().includes(inputCompany.value));
     showTable(newData);
 }
 function selectedEntries(){
-    let entriesEl = document.getElementById("entries");
+    var i = 0;
+    var paginationQuery = document.getElementById("btn-pages");
     for(var i in data.contents){
-        k=data.contents[i].id;
-        
-        if(k===entriesEl.value)
-        console.log(k);
-        console.log(entries.value)
-        showSelectedEntries = data.contents.slice(0,entriesEl.value);
+        k = data.contents[i].id;
+        if(k >= entriesNumber.value){
+            showSelectedEntries = data.contents.slice(0,entriesNumber.value);
+        }
     }
     showTable(showSelectedEntries);
-}
 
+//**************Pagination Show heseg******************
+
+    var pageCount = numPages(data.contents.length, entriesNumber.value);
+    paginationQuery.innerHTML = "";
+    paginationSpan = document.getElementsByClassName("pagination-span");
+    for (var j= 0; j<pageCount; j++){
+        paginationQuery.innerHTML += '\
+            <span class="pagination-span" onclick="activeBtn()">\
+                <div>' + (j+1) + '</div>\
+            </span>';
+    }
+        var newEntriesNumber = console.log(paginationSpan.addEventListener('click',(){
+
+        }).value) * entriesNumber.value;
+        
+        var startEntries = ((this.value-1) * entriesNumber.value) + 1; 
+console.log("enters " + startEntries.value);
+        showSelectedEntries = data.contents.slice(startEntries.value ,newEntriesNumber.value);
+        showTable(showSelectedEntries);
+    
+}
+    
 function sortByName(){
     let switching = true;
     while(switching){
@@ -315,10 +352,114 @@ function sortByName(){
             if (shouldSwitch) {
                 let switchedName = data.contents[i].name.parentNode.insertBefore(data.contents[i+1].name, data.contents[i].name);
                 switching = true;
-                console.log(switchedName);
+                // console.log(switchedName);
             }
         }
     }
     showTable(switchedName);
+    
 }
- 
+
+function exportFile(filename = ''){
+    // console.log("Started");
+    var tableSelect = document.getElementById("firstTable");
+    // console.log(tableSelect);
+
+        var downloadurl;
+        var dataFileType = 'application/vnd.ms-excel';
+        
+        var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
+        // Specify file name
+        filename = filename?filename+'.xls':'export_excel_data.xls';
+        // Create download link element
+        downloadurl = document.createElement("a");
+        document.body.appendChild(downloadurl);
+        
+        if(navigator.msSaveOrOpenBlob){
+            var blob = new Blob(['\ufeff', tableHTMLData], {
+                type: dataFileType
+            });
+            navigator.msSaveOrOpenBlob( blob, filename);
+        }
+        else{
+            // Create a link to the file
+            downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
+            // Setting the file name
+            downloadurl.download = filename;
+            
+            //triggering the function
+            downloadurl.click();
+        }
+}
+
+// function paginationLi(pageNumber){
+//     // let paginationNumber = document.getElementsByClassName("pagination");
+//     // let entriesNumber = document.getElementById("entries"); 
+//     // let totalClient= "";
+//     for(var i in data.contents)
+//         totalClient = totalClient + data.contents[i];
+
+// }
+
+// console.log(entriesNumber.value);
+
+function changePage(page){
+    console.log("ernter: " + entriesNumber.value);
+    var btn_next = document.getElementById("btn-next");
+    var btn_prev = document.getElementById("btn-prev");
+    var page_span = document.getElementById("page");
+    // Validate page
+    if (page < 1) 
+        page = 1;
+    if (page > numPages()) 
+        page = numPages();
+    page_span.innerHTML = showTable(data.contents).id.value + " / " + data.contents.value + " бичилт" + " / " + current_page.value + " / " + numPages.value + "хуудас";
+
+    if (page == 1) {
+        btn_prev.style.visibility = "hidden";
+    } 
+    else {
+        btn_prev.style.visibility = "visible";
+    }
+
+    if (page == numPages()) {
+        btn_next.style.visibility = "hidden";
+    } 
+    else {
+        btn_next.style.visibility = "visible";
+    }
+}
+function prevPage(){
+    if (current_page > 1) {
+        current_page--;
+        changePage(current_page);
+    }
+}
+
+function nextPage(){
+    if (current_page < numPages()) {
+        current_page++;
+        changePage(current_page);
+    }
+}
+// function createPagination(pageCount){
+//     var btn_next = document.getElementById("btn-next");
+//     var btn_prev = document.getElementById("btn-prev");
+//     var paginationQuery = document.getElementById("btn-pages");
+//     var page_span = document.getElementById("page");
+
+//     paginationQuery.innerHTML = "";
+    
+//     for(var i in pageCount){
+//         // console.log(pageCount);
+//         // console.log("k " + paginationQuery[i].innerHTML);
+        
+//     }
+// }
+
+function numPages(totalLength, pageView){
+    return Math.ceil(totalLength/pageView);
+}
+window.onload = function() {
+    changePage(numPages(1).value);
+};
