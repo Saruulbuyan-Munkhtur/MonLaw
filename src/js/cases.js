@@ -1,16 +1,16 @@
 
 var data={
     contents: [
-        {id : "1", name : "Гар утасны хулгай", type  : "Дээрэм", where : "Худ 11-р хороо", date : "2020.02.20", payment : "2000$", status : "Active"},
-        {id : "2", name : "Гар хулгай", type  : "Дээрэм", where : "Худ 3-р хороо", date : "2040.02.20", payment : "199$", status : "Ongoing"},
-        {id : "3", name : "утасны хулгай", type  : "Дээрэм", where : "Худ 2-р хороо", date : "2010.02.20", payment : "2333$", status : "Closed"},
-        {id : "4", name : "Гар утасны", type  : "Дээрэм", where : "Худ 4-р хороо", date : "2000.02.20", payment : "1122$", status : "Ongoing"},
+        {id : "0001", name : "Гар утасны хулгай", type  : "Дээрэм", where : "Худ 11-р хороо", date : "2020.02.20", payment : "2000$", paymentStatus : "Төлөгдсөн", status : "Closed"},
+        {id : "0002", name : "Гар хулгай", type  : "Дээрэм", where : "Худ 3-р хороо", date : "2040.02.20", payment : "199$",  paymentStatus : "Төлөгдөөгүй", status : "Ongoing"},
+        {id : "0003", name : "утасны хулгай", type  : "Дээрэм", where : "Худ 2-р хороо", date : "2010.02.20", payment : "2333$",  paymentStatus : "Төлөгдсөн", status : "Closed"},
+        {id : "0004", name : "Гар утасны", type  : "Дээрэм", where : "Худ 4-р хороо", date : "2000.02.20", payment : "1122$", paymentStatus : "Төлөгдөөгүй", status : "Ongoing"},
         ],
     details: [
-        {id : "1", name: "Баясгаланбаатар", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "2", name: "Баатар", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "3", name: "Баясгалан", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "41111", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "4", name: "Галбаатар", sex: "Эрэгтэй", marrital: "Гэрлээгүй", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "0001", name: "Баясгаланбаатар", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "0002", name: "Баатар", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "0003", name: "Баясгалан", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "41111", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
+        {id : "0004", name: "Галбаатар", sex: "Эрэгтэй", marrital: "Гэрлээгүй", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
            
     ]
 };
@@ -32,6 +32,7 @@ function showTable(){
                 <th>Хаана</th>\
                 <th>Хугацаа</th>\
                 <th>Төлбөр</th>\
+                <th>Төлбөр төлөлт</th>\
                 <th>Төлөв</th>\
                 <th colspan="3">Үйлдэл</th>\
             </tr>';
@@ -45,6 +46,7 @@ function showTable(){
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
             <td>'+ datas[i].payment + '</td>\
+            <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
             <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
             </td>\
@@ -98,6 +100,9 @@ function view(x){
                     <td><b> Төлбөр: </b> '+datasContent[i].payment + '</td>\
                 </tr>\
                 <tr>\
+                <td><b> Төлбөр төлөлт: </b> '+datasContent[i].paymentStatus + '</td>\
+                </tr>\
+                <tr>\
                 <td><b> Төлөв: </b> '+datasContent[i].status + '</td>\
             </tr>\
             </table>';
@@ -141,6 +146,144 @@ function view(x){
     createEl2.innerHTML = content2;
     getEl.appendChild(createEl1);
     getEl.appendChild(createEl2);
+}
+
+function sortByActive(){
+    var sortEl = document.getElementById("main-content");
+    sortEl.innerHTML = "";
+    var createElForTable = document.createElement('div');
+    var tableRow = "";
+    var datas= data.contents;
+    tableRow='\
+        <table>\
+            <tr>\
+                <th>ID</th>\
+                <th>Хэргийн нэр</th>\
+                <th>Хэргийн төрөл</th>\
+                <th>Хаана</th>\
+                <th>Хугацаа</th>\
+                <th>Төлбөр</th>\
+                <th>Төлбөр төлөлт</th>\
+                <th>Төлөв</th>\
+                <th colspan="3">Үйлдэл</th>\
+            </tr>';
+    
+    for( var i in datas){
+        if(datas[i].status == "Ongoing"){
+        tableRow+= '\
+        <tr>\
+            <td>'+ datas[i].id + '</td>\
+            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].type + '</td>\
+            <td>'+ datas[i].where + '</td>\
+            <td>'+ datas[i].date + '</td>\
+            <td>'+ datas[i].payment + '</td>\
+            <td>'+ datas[i].paymentStatus + '</td>\
+            <td>'+ datas[i].status + '</td>\
+            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            </td>\
+            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            </td>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            </td>\
+        </tr>';
+        };
+    }
+    tableRow+="</table>";
+    createElForTable.innerHTML = tableRow;
+    sortEl.appendChild(createElForTable);
+
+}
+
+function sortByClosed(){
+    var sortEl = document.getElementById("main-content");
+    sortEl.innerHTML = "";
+    var createElForTable = document.createElement('div');
+    var tableRow = "";
+    var datas= data.contents;
+    tableRow='\
+        <table>\
+            <tr>\
+                <th>ID</th>\
+                <th>Хэргийн нэр</th>\
+                <th>Хэргийн төрөл</th>\
+                <th>Хаана</th>\
+                <th>Хугацаа</th>\
+                <th>Төлбөр</th>\
+                <th>Төлбөр төлөлт</th>\
+                <th>Төлөв</th>\
+                <th colspan="3">Үйлдэл</th>\
+            </tr>';
+    
+    for( var i in datas){
+        if(datas[i].status == "Closed"){
+        tableRow+= '\
+        <tr>\
+            <td>'+ datas[i].id + '</td>\
+            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].type + '</td>\
+            <td>'+ datas[i].where + '</td>\
+            <td>'+ datas[i].date + '</td>\
+            <td>'+ datas[i].payment + '</td>\
+            <td>'+ datas[i].paymentStatus + '</td>\
+            <td>'+ datas[i].status + '</td>\
+            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            </td>\
+            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            </td>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            </td>\
+        </tr>';
+        };
+    }
+    tableRow+="</table>";
+    createElForTable.innerHTML = tableRow;
+    sortEl.appendChild(createElForTable);
+
+}
+function sortAll(){
+
+    var sortEl = document.getElementById("main-content");
+    sortEl.innerHTML = "";
+    var createElForTable = document.createElement('div');
+    var tableRow = "";
+    var datas= data.contents;
+    tableRow='\
+        <table>\
+            <tr>\
+                <th>ID</th>\
+                <th>Хэргийн нэр</th>\
+                <th>Хэргийн төрөл</th>\
+                <th>Хаана</th>\
+                <th>Хугацаа</th>\
+                <th>Төлбөр</th>\
+                <th>Төлбөр төлөлт</th>\
+                <th>Төлөв</th>\
+                <th colspan="3">Үйлдэл</th>\
+            </tr>';
+    
+    for( var i in datas){
+        tableRow+= '\
+        <tr>\
+            <td>'+ datas[i].id + '</td>\
+            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].type + '</td>\
+            <td>'+ datas[i].where + '</td>\
+            <td>'+ datas[i].date + '</td>\
+            <td>'+ datas[i].payment + '</td>\
+            <td>'+ datas[i].paymentStatus + '</td>\
+            <td>'+ datas[i].status + '</td>\
+            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            </td>\
+            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            </td>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            </td>\
+        </tr>';
+        };
+    tableRow+="</table>";
+    createElForTable.innerHTML = tableRow;
+    sortEl.appendChild(createElForTable);
 }
 
 function edit(){
