@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Saruulbuyan-Munkhtur/MonLaw#readme",
   "dependencies": {
+    "@fullcalendar/core": "^5.3.1",
+    "@fullcalendar/daygrid": "^5.3.2",
     "express": "^4.17.1",
     "node-sass": "^5.0.0"
   }
