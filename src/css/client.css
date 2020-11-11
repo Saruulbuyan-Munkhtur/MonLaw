@@ -277,11 +277,6 @@ hr.case-text{
     margin-right: 35px;
     margin-left: 35px;
 }
-#page{
-    width: 10%;
-    border-color:red;
-}
-
 #pagination{
     display: flex;
 }  
@@ -293,7 +288,7 @@ hr.case-text{
     display: flex;
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid gray;
+    border: 1px solid  #0bb2d4;
 }
 #pagination-span{
     margin: 6px;
@@ -305,22 +300,28 @@ hr.case-text{
     border: 0px;
 }
 #pagination .pagination-span:hover{
-background-color: #0bb2d4;
-color: white;
+    background-color: #0bb2d4;
+    color: white;
 }
-
-#pagination #btn-pages:hover:not(.active) {
-    background-color: #ddd;
+#pagination .pagination-span:active{
+    background-color: #0bb2d4;
+    color: white;
+}
+#pagination #btn-prv:hover, #btn-next:hover{
+    color: #0bb2d4;
+}
+#pagination #btn-pages:active {
+    background-color: #0bb2d4;
 }
 
 #pagination #btn-pages:first-child {
-border-top-left-radius: 5px;
-border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #pagination #btn-pages:last-child {
-border-top-right-radius: 5px;
-border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 

@@ -55,6 +55,11 @@ var createEl4_forEdit = document.createElement('div');
 var current_page = 1;
 var records_per_page = 2;
 var entriesNumber = document.getElementById("entries"); 
+var prevClick = document.getElementById("btn-prv");
+var start = 0;
+var preBtn = document.getElementById("btn-prv");
+var nextBtn = document.getElementById("btn-next");
+
 
 function showTable(mainData){
     var createEl = document.createElement('div');
@@ -62,25 +67,24 @@ function showTable(mainData){
     var tableRows= "";
     var datas=mainData;
     getEl.innerHTML="";
-    // console.log(mainData);
     content='\
         <table id="firstTable">\
             <tr>\
                 <th>№</th>\
-                <th id="sortName">Овог нэр</th>\
-                <th id="sortPhone">Утас</th>\
+                <th id="headName" onclick="sortByName(0)">Овог нэр</th>\
+                <th>Утас</th>\
                 <th>И-мэйл</th>\
-                <th id="sortAddress">Гэрийн хаяг</th>\
-                <th id="sortCompany">Компани</th>\
-                <th id="sortTitle">Албан тушаал</th>\
+                <th>Гэрийн хаяг</th>\
+                <th>Компани</th>\
+                <th>Албан тушаал</th>\
                 <th colspan="3" id="action">Үйлдэл</th>\
             </tr>';
 
             for( var i in datas){
             content+= '\
             <tr id="tableRow">\
-                <td>'+ datas[i].id + '</td>\
-                <td>'+ datas[i].name + '</td>\
+                <td id="startElements">'+ datas[i].id + '</td>\
+                <td id="nameEl" >'+ datas[i].name + '</td>\
                 <td>'+ datas[i].phone + '</td>\
                 <td>'+ datas[i].email + '</td>\
                 <td>'+ datas[i].address + '</td>\
@@ -101,7 +105,7 @@ function showTable(mainData){
     
 };
     showTable(data.contents);
-
+    
 function view(x){
     content1 = "";
     content2 = "";
@@ -306,59 +310,116 @@ function companyFilter(){
     var newData = data.contents.filter(n => n.company.toLowerCase().includes(inputCompany.value));
     showTable(newData);
 }
+
 function selectedEntries(){
     var i = 0;
     var paginationQuery = document.getElementById("btn-pages");
     for(var i in data.contents){
         k = data.contents[i].id;
-        if(k >= entriesNumber.value){
+        if(k >= entriesNumber.value)
             showSelectedEntries = data.contents.slice(0,entriesNumber.value);
-        }
     }
     showTable(showSelectedEntries);
 
 //**************Pagination Show heseg******************
 
     var pageCount = numPages(data.contents.length, entriesNumber.value);
+    var j = 0;
     paginationQuery.innerHTML = "";
-    paginationSpan = document.getElementsByClassName("pagination-span");
-    for (var j= 0; j<pageCount; j++){
+    for ( j =0; j<pageCount; j++){
         paginationQuery.innerHTML += '\
-            <span class="pagination-span" onclick="activeBtn()">\
+            <span class="pagination-span onclick=activeBtn("K")>\
                 <div>' + (j+1) + '</div>\
             </span>';
     }
-        var newEntriesNumber = console.log(paginationSpan.addEventListener('click',(){
+    var pageClick=document.getElementsByClassName('pagination-span');
+    for(j=0; j<pageCount; j++) {
+        pageClick[j].addEventListener('click', function(ev){
+            var end = parseInt(ev.target.innerText) * (entriesNumber.value);
+            start = end-entriesNumber.value;
+            var showActiveTable = data.contents.slice(start, end);
+        showTable(showActiveTable); 
 
-        }).value) * entriesNumber.value;
-        
-        var startEntries = ((this.value-1) * entriesNumber.value) + 1; 
-console.log("enters " + startEntries.value);
-        showSelectedEntries = data.contents.slice(startEntries.value ,newEntriesNumber.value);
-        showTable(showSelectedEntries);
+        });    
+    }
+}
+
+function prevClicked(){
+    var startEls = parseInt(document.getElementById("startElements").innerText);
+    var startEl = startEls - 1;
+    var start = startEl - parseInt(entriesNumber.value);
+    if (start < 0)
+        start = 0;
+    let preStart = start;
+    let preEnd = start + (parseInt(entriesNumber.value));
+    let preShow = data.contents.slice(preStart, preEnd);
+    showTable(preShow);
     
 }
-    
-function sortByName(){
+
+function nextClicked(){
+    let startEls = parseInt(document.getElementById("startElements").innerText);
+    let start = startEls + parseInt(entriesNumber.value);
+    let endEl = start-1 
+    + parseInt(entriesNumber.value);
+    if (endEl > data.contents.length)
+        endEl = data.contents.length;
+    var nextStart = endEl-1;
+    var nextEnd = endEl;
+    var nextShow = data.contents.slice(nextStart, nextEnd);
+
+    showTable(nextShow);
+}
+
+function sortByName(n){
+    let table = document.getElementById("firstTable");
+    console.log(table.innerText);
     let switching = true;
+    var dir;
+    dir = "asc";
+    let switchCount = 0;
+    var shouldSwitch;
+            
     while(switching){
-        for(var i in data.contents){
-            let shouldSwitch = false;
-            if (data.contents[i].name > name[i + 1]) {
-                shouldSwitch = true;
-                
-            break;
+        switching = false
+        rows = table.rows;
+        for(var i = 1; i<rows.length; i++){
+            shouldSwitch = false;
+        // console.log(rows[i].innerText);
+
+            rowFrst = rows[i].getElementsByTagName("TD")[n];
+            rowNxt = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc"){
+                if (rowFrst.innerHTML.toLowerCase() > rowNxt.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
             }
-            if (shouldSwitch) {
-                let switchedName = data.contents[i].name.parentNode.insertBefore(data.contents[i+1].name, data.contents[i].name);
-                switching = true;
-                // console.log(switchedName);
+            else if (dir == "desc"){
+                if (rowFrst.innerHTML.toLowerCase() < rowNxt.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
             }
         }
-    }
-    showTable(switchedName);
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+            switching = true;
+            switchCount ++;
+            }
+        else {
+            if (switchCount == 0 && dir == "asc"){
+                dir = "desc";
+                switching = true;
+            }
+        }
+        
+    }  
     
 }
+    
+    
+
 
 function exportFile(filename = ''){
     // console.log("Started");
@@ -391,71 +452,6 @@ function exportFile(filename = ''){
             downloadurl.click();
         }
 }
-
-// function paginationLi(pageNumber){
-//     // let paginationNumber = document.getElementsByClassName("pagination");
-//     // let entriesNumber = document.getElementById("entries"); 
-//     // let totalClient= "";
-//     for(var i in data.contents)
-//         totalClient = totalClient + data.contents[i];
-
-// }
-
-// console.log(entriesNumber.value);
-
-function changePage(page){
-    console.log("ernter: " + entriesNumber.value);
-    var btn_next = document.getElementById("btn-next");
-    var btn_prev = document.getElementById("btn-prev");
-    var page_span = document.getElementById("page");
-    // Validate page
-    if (page < 1) 
-        page = 1;
-    if (page > numPages()) 
-        page = numPages();
-    page_span.innerHTML = showTable(data.contents).id.value + " / " + data.contents.value + " бичилт" + " / " + current_page.value + " / " + numPages.value + "хуудас";
-
-    if (page == 1) {
-        btn_prev.style.visibility = "hidden";
-    } 
-    else {
-        btn_prev.style.visibility = "visible";
-    }
-
-    if (page == numPages()) {
-        btn_next.style.visibility = "hidden";
-    } 
-    else {
-        btn_next.style.visibility = "visible";
-    }
-}
-function prevPage(){
-    if (current_page > 1) {
-        current_page--;
-        changePage(current_page);
-    }
-}
-
-function nextPage(){
-    if (current_page < numPages()) {
-        current_page++;
-        changePage(current_page);
-    }
-}
-// function createPagination(pageCount){
-//     var btn_next = document.getElementById("btn-next");
-//     var btn_prev = document.getElementById("btn-prev");
-//     var paginationQuery = document.getElementById("btn-pages");
-//     var page_span = document.getElementById("page");
-
-//     paginationQuery.innerHTML = "";
-    
-//     for(var i in pageCount){
-//         // console.log(pageCount);
-//         // console.log("k " + paginationQuery[i].innerHTML);
-        
-//     }
-// }
 
 function numPages(totalLength, pageView){
     return Math.ceil(totalLength/pageView);
