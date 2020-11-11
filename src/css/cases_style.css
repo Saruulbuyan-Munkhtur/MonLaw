@@ -16,13 +16,18 @@ body{
     margin-right: auto;
 }
 .header-buttons{
-    height: 30px;
+    height: 40px;
     display: flex;
-    
+    padding-top: 10px;
 }
 .header-buttons button{
+    
+    color: #3b5999;
+    border-bottom: 0.3px solid #3b5999;;
     border-style: none;
-    background-color: tomato;
+    border-top: 0.3px solid #3b5999;
+    border-bottom: 0.3px solid #3b5999;
+    background-color: white;
     height: 100%;
     margin: 0%;
     padding: 0%;
@@ -32,19 +37,36 @@ body{
     transition: background-color 0.4s;
     
 }
-.header-buttons button:hover{
 
-    background-color: lightsalmon;
+#header-button-fourth{
+    border-right: 0.3px solid #3b5999;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+#header-button-fifth{
+    width: 12%;
+    border-left: 0.3px solid #3b5999;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin-left: 20%;
+}
+.header-buttons button:hover{
+    color: white;
+    background-color: #3b5999;
     
 }
 
 #header-button-first{
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+    border-left: 0.3px solid #3b5999;
+    margin-left: 3%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
+
 #header-button-last{
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+    border-right: 0.3px solid #3b5999;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 .cat-names{
     
@@ -87,12 +109,12 @@ body{
 }
 #contents-first-button{
     margin-left: 5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 #contents-last-button{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 .contents{
     display: flex;
@@ -205,4 +227,32 @@ table tr:nth-child(2){
     position: absolute;
     top:108px;
     left:88%;
+}
+
+table tr{
+    margin-top: 10px;
+}
+table tr:first-child th:first-child{
+    width: 5%;
+}
+table tr:first-child th:nth-child(2){
+    width: 15.5%;
+}
+table tr:first-child th:nth-child(3){
+    width: 12.5%;
+}
+table tr:first-child th:nth-child(4){
+    width: 12.5%;
+}
+table tr:first-child th:nth-child(5){
+    width: 12.5%;
+}
+table tr:first-child th:nth-child(6){
+    width: 8%;
+}
+table tr:first-child th:nth-child(7){
+    width: 12%;
+}
+table tr:first-child th:nth-child(8){
+    width: 8%;
 }

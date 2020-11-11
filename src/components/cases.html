@@ -10,17 +10,16 @@
     <div class="main-content-container">
         <div class="header-buttons">
 
-
-            <button id="header-button-first">ХЭРГҮҮД</button>
+            <button onclick="sortAll()" id="header-button-first">ХЭРГҮҮД</button>
             <button>ШИНЭЭР НЭМЭХ</button>
             <button>FILE татах</button>
-            <button>МИНИЙ ХЭРГҮҮД</button>
+            <button id="header-button-fourth">МИНИЙ ХЭРГҮҮД</button>
+            <button id="header-button-fifth" onclick="sortMyWorks()">ТӨЛБӨР</button>
+            <button onclick="sortByActive()">ИДЭВХИТЭЙ</button>
+            <button id="header-button-last" onclick="sortByClosed()">ШИЙДЭГДСЭН</button>
 
-            <button id="header-button-fifth">МИНИЙ АЖИЛЖ БУЙ</button>
-            <button>ИДЭВХИТЭЙ</button>
-            <button id="header-button-last">ШИИДЭГДСЭН</button>
         </div>
-        <div style="background-color: ;" id="main-content"></div> 
+        <div id="main-content"></div> 
     </div>
     <div id="about-content">
         <div id="about-content-container">
