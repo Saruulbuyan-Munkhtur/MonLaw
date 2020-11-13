@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body{
-    background: yellow;
+    background: grey;
 }
 
  #background {
@@ -47,10 +47,9 @@ body{
 }
 
 .form-outer .field{
-    height: 50px;
+    height: auto;
     width: 100%;
-    margin: 45px 0;
-    
+    margin: 25px 0;   
 }
 
 .form-outer .pages .field .label {
@@ -60,10 +59,11 @@ body{
 .form-outer .pages .field input{
     height: 100%;
     width: 100%;
-    border: 1px solid lightgray;
+    border: 1px solid lightgrey;
     border-radius: 20px;
     padding: 15px;
     font-size: 1em;
+    outline: none;
 }
 /*
 .field textarea{
@@ -83,6 +83,8 @@ body{
     background-color: lightblue;
     font-size: 1em;
     cursor: pointer;
+    outline: none;
+    margin: 10px;
 }
 
 .form-outer .pages .field button:hover {
@@ -105,7 +107,7 @@ form .pages select{
 }
 
 .form-outer{
-    /* verflow: hidden; IMPORTANT!!!*/
+      /* overflow: hidden; IMPORTANT!!! */
 }
 
 
@@ -185,3 +187,41 @@ form .pages select{
 span {
     font-size: 1.8em;
 }
+
+
+ .form-outer .pages .error input{
+    border-color: red;
+}
+
+.form-outer .pages .success input{
+    border-color: green;
+}
+
+.form-outer .field small{
+    color: red;
+    font-size: 1em;
+    position: relative;
+    display: flex;
+    padding-left: 2%;
+}
+
+.form-outer .field .error select{
+    border-color: red;
+}
+
+.form-outer .pages button #fileSubmit {
+    
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    background-color: lightblue;
+    font-size: 1em;
+    cursor: pointer;
+    outline: none;
+    margin: 10px;
+}
+
+.form-outer .field #file {
+   border:  none;
+}
+
