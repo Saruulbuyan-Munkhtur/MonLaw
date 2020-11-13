@@ -11,6 +11,7 @@
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous"
+    
   />
 </head>
 <body>
@@ -28,32 +29,23 @@
                     </form> 
                 </div>  
             </div>
-            
-            <div id = "client-file-icons">
-                <div id="add-table">
-                    <div id = "addtable-icon-container">
-                        <i class = "fa fa-plus-square"></i>
-                    </div>
-                    <div id="tooltip-item-add">
-                        <span id="tooltip-item-text-add">
-                            Хэрэглэгч нэмэх
-                        </span>
-                    </div>
+            <div class="dropdown-client-file">
+                <div class= "dropdownBarIcon">
+                    <i class="fa fa-bars"></i>
                 </div>
-                <div id="export">
-                    <div id = "export-icon-container">
-                        <i class = "fa fa-file-excel-o" onclick = "exportFile('client-table')"></i> 
-                    </div>
-                    <div id="tooltip-item-export">
-                        <div id="tooltip-item-text-export">
-                            Файл үүсгэх
-                        </div>
+            
+                <div class="dropdown-content">
+                    <div id="dropdownBorderTri"></div>
+                    <div class="dropdownIcon">
+                        <div> <i class = "fa fa-plus-square-o">&nbsp;&nbsp;&nbsp;&nbsp;Хэрэглэгч  нэмэх</i></div>
+                        <div> <i class = "fa fa-file-excel-o" onclick = "exportFileExl('client-table')">&nbsp;&nbsp;&nbsp;&nbsp;Файл үүсгэх</i></div>
                     </div>
                 </div>
             </div>
-            
+          
         </div>
         <p></p>
+    <div id = "body-content">
         <div id = "case-container">
             <div class="case"> Хэрэглэгчид
                 <hr class="case-text">              
@@ -89,17 +81,27 @@
         </div>
         
     </div>
+    </div>
+        
     <div id="view-background" >
-        <div id="view-client">
+        <div id = "view-client-container">
             <div class="closeIcon">
-                <img src="../../assets/closeicon.png" onclick="closeIt()">
+                    <img src="../../assets/closeicon.png" onclick="closeIt()">
             </div>
-            <div>
-                <div id="view-client-edit">
+            <div id = "view-client-table-border">
+                <div id="view-client">
+                    
+                    <div >
+                        <div id="view-client-edit">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+      
+        
     </div>
     <script src="../js/client.js"></script>
+       
 </body>
 </html>

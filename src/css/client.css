@@ -9,7 +9,7 @@
 
 .filter{
     width: 100%;
-    height: 40px;
+    height: 80px;
     border: none; 
     display: flex;
     margin-left: 40px;
@@ -30,88 +30,79 @@
     margin-right: 20px;
     border: 0.5px solid gray;
 }
-#client-file-icons{
-   display: block;
-   justify-content: end;
-   
-}
-#client-file-icons #add-table i{
+
+
+.dropdownBarIcon{
     font-size: 30px;
-    color: orange;
+    cursor: pointer;
+    color: #0bb2d4;
+    position: absolute;
+    right: 0%;
+}
+#dropdownBorderTri{
+    width: fit-content;
+    content: " ";
     position: relative;
+    left: 88%;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #007cba transparent;
 }
-#add-table{
-    display: flex;
-    padding-bottom: 10px;
-    padding-right: 5px;
-}
-#tooltip-item-add, #tooltip-item-export{
-    width: 300px;
-}
-#tooltip-item-text-add{
-    visibility: hidden;   
-    width: 150px;
-    background-color: white;
-    color: black ;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
+.dropdown-client-file{
     position: absolute;
-    right: 95px;
-    border: 1px solid orange;
+    right: 3%;
+    width: auto;
+    height: 60px;
     
 }
-#tooltip-item-add #tooltip-item-text-add::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -6px;
-    border-width: 7px;
-    border-style: solid;
-    border-color: transparent orange transparent transparent;
-}
-#add-table #tooltip-item-add .fa:hover #tooltip-item-text-add{
+.dropdown-client-file .dropdown-content {
+    display: none; 
+    position: relative;
+    top: 60%;
+    right:6%;
+    width: 110%;
+    color:rgb(105, 102, 102);
+    border-radius: 4px;
+    z-index: 1;
+    box-shadow:  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+} 
+.dropdown-content .fa-plus-square-o{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-weight: 550;
     cursor: pointer;
-    visibility: visible;
 }
-#export{
-    display: flex;
+.dropdown-content .fa-plus-square-o:hover{
+    color: #0bb2d4;     
 }
-#client-file-icons #export i{
-    font-size: 27px;
-    color: green;
-}
-#tooltip-item-text-export{
-    /* visibility: hidden;    */
-    width: 150px;
-    background-color: white;
-    color: black ;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    right: 95px;
-    border: 1px solid green;
-    
-}
-#tooltip-item-export #tooltip-item-text-export::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -6px;
-    border-width: 7px;
-    border-style: solid;
-    border-color: transparent green transparent transparent;
-}
-#export i:hover #tooltip-item-text-export{
+.dropdown-content .fa-file-excel-o{
+    font-weight: 550;
     cursor: pointer;
-    visibility: visible;
+}
+.dropdown-content .fa-file-excel-o:hover{
+    color: #0bb2d4;  
+}
+.dropdown-client-file:hover .dropdown-content{
+    display: block;
+}
+.dropdownIcon{
+    border: 1px solid #0bb2d4;
+    border-radius: 4px;
+    height: 60px;
+    padding-left: 5%;
+    padding-top: 3%;
+    margin: 0px;
 }
 
 /* ******************************Case****************************** */
-
+#body-content{
+    padding-bottom: 40px;
+}
 #case-container{
     margin: 40px;
 }
@@ -192,7 +183,6 @@ hr.case-text{
 #tableRow .fa{
     font-size: 18px;
 }
-
 .fa-file-o{
     color:rgb(53, 158, 53);
     cursor: pointer;
@@ -323,7 +313,9 @@ hr.case-text{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-
+.active{
+    background-color: #0bb2d4;
+}
 
 /* ******************************View Form, Edit form****************************** */
 
@@ -338,10 +330,12 @@ hr.case-text{
     overflow: scroll;
     align-items: center;
     justify-content: center;
+    /* padding-left:20%;
+    padding-top: 7%; */
 }
 
 #view-client{
-    width: 50%;
+    width: 100%;
     height: 500px;
     background-color:white;
     border-radius: 3px;
@@ -349,30 +343,44 @@ hr.case-text{
     justify-content: center;
 }
 #view-client table, #view-client-edit table{
-    width: 90%;
-    text-align:left ;
+    text-align:left;
     position: relative;
-    top: 30px;
-    left: 5%;
     color:rgb(51, 51, 51);
     font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
     
-}  
+} 
+#view-client-container{
+    background-color: white;
+    width: 50%;
+    padding-bottom: 2%; 
+    padding-left: 2%;
+
+}
+#view-client-table-border{
+    border-collapse: collapse;
+    border:1px solid green;
+    width: 95%;
+    position: relative;
+    margin-top:4%;
+} 
 #view-client th{
     background-color:rgb(53, 158, 53);
     color:white;
     border-top: none;
-    padding-left: 3%;
+    padding-left: 0px;
+    margin-left: 0px;
+    
 }
 #view-client tr{
-    height: 27px;
+    height: 30px;
 }
 #view-client th, #view-client td{
     border: none;
-    padding-left: 3%;
+    padding-left: 4%;
 }
 #view-client tr:nth-child(even), #view-client-edit tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
 }
 #view-client tr:hover, #view-client-edit tr:hover {
     background-color: #ddd;
@@ -405,7 +413,7 @@ hr.case-text{
     outline: none;
     position: absolute;
     top:470px;
-    left: 250px;
+    left: 350px;
     width: 70px;
     height: 25px;
     border-radius: 3px;
@@ -416,3 +424,7 @@ hr.case-text{
     color: white;
     box-shadow: 50px 50px 80px 5px rgb(143, 123, 231) inset;
 }
+#view-client-edit input{
+    border: 1px solid rgb(180, 179, 179);
+}
+

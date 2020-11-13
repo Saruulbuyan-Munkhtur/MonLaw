@@ -274,13 +274,8 @@ function saveIt(x){
     
     let i = data.contents.indexOf(x);
     data.contents[i] = newContent1;
-    view(newContent1);
-    // clientSaveMessage();
-    closeIt();
+    view(newContent1)
 }
-// clientSaveMessage(){
-
-// }
 function closeIt(){
     document.getElementById('view-background').style.display="none";
     createEl1.innerHTML= "";
@@ -316,7 +311,7 @@ function companyFilter(){
     showTable(newData);
 }
 
-function selectedEntries(pageCount){
+function selectedEntries(){
     var i = 0;
     var paginationQuery = document.getElementById("btn-pages");
     for(var i in data.contents){
@@ -329,52 +324,28 @@ function selectedEntries(pageCount){
 //**************Pagination Show heseg******************
 
     var pageCount = numPages(data.contents.length, entriesNumber.value);
-    paginationQuery.innerHTML = ""; 
-    paginationQuery.innerHTML +='\
-        <span class="pagination-span active">\
-            <div>' + 1 + '</div>\
-        </span>';
-    
-    for ( j =1; j<pageCount; j++){
-        
+    var j = 0;
+    paginationQuery.innerHTML = "";
+    for ( j =0; j<pageCount; j++){
         paginationQuery.innerHTML += '\
-            <span class="pagination-span">\
+            <span class="pagination-span onclick=activeBtn("K")>\
                 <div>' + (j+1) + '</div>\
             </span>';
     }
     var pageClick=document.getElementsByClassName('pagination-span');
-    
     for(j=0; j<pageCount; j++) {
         pageClick[j].addEventListener('click', function(ev){
-            var currentActivePage = document.getElementsByClassName("active");
-            currentActivePage[0].className = currentActivePage[0].className.replace(" active", "");
-            this.className += " active";
             var end = parseInt(ev.target.innerText) * (entriesNumber.value);
             start = end-entriesNumber.value;
             var showActiveTable = data.contents.slice(start, end);
-            
         showTable(showActiveTable); 
-        });  
-       
-        // for (var i in pageClick.length){
-        //     if (pageClick[i] === preEnd / parseInt(entriesNumber.value)
-    
-        
+
+        });    
     }
 }
+
 function prevClicked(){
-    selectedEntries(pageCount);
-    console.log("ff"+ pageCount);
-    for (var i in selectedEntries(pageCount)){
-        
-    }
-//   if (pageCount[j] === prevClicked(preEnd)/parseInt(entriesNumber.value)){
-                
-//             }
-    // var currentActivePage = document.getElementsByClassName("active");
-    // currentActivePage[0].className = currentActivePage[0].className.replace(" active", "");
-    // this.className += " active";
-    var startEls = parseInt(document.getElementById("startElements").value);
+    var startEls = parseInt(document.getElementById("startElements").innerText);
     var startEl = startEls - 1;
     var start = startEl - parseInt(entriesNumber.value);
     if (start < 0)
@@ -390,6 +361,7 @@ function nextClicked(){
     let startEls = parseInt(document.getElementById("startElements").innerText);
     let start = startEls + parseInt(entriesNumber.value);
     let endEl = start-1 
+    + parseInt(entriesNumber.value);
     if (endEl > data.contents.length)
         endEl = data.contents.length;
     var nextStart = endEl-1;
