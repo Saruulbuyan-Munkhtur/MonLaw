@@ -5,13 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client's register form</title>
     <link rel="stylesheet" href="multistep-form.css">
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
- 
+   
+   
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
     <div id="background">
@@ -24,6 +20,7 @@
                         <li class="step0" id="step2"><span>2</span></li>
                         <li class="step0" id="step3"><span>3</span></li>
                         <li class="step0" id="step4"><span>4</span></li>
+                        <li class="step0" id="step5"><span>5</span></li>
                     </ul>
                     <!--
                     <div class="icons">
@@ -188,23 +185,57 @@
                             </div>
                             <div class="field">
                                 <div class="label">Хэрэг хүлээж авсан өдөр</div>
-                                <input type="text" id="startDate"></input>
+                                <input type="date" id="startDate"></input>
                                 <small></small>
                             </div>
                             <div class="field">
                                 <div class="label">Хэрэг шийдвэрлэгдэх өдөр</div>
-                                <input type="text" id="endDate"></input>
-                                <small></small>
-                            </div>
-                            <div class="field">
-                                <div class="label">Төлбөр</div>
-                                <input type="text" id="bills"></input>
+                                <input type="date" id="endDate"></input>
                                 <small></small>
                             </div>
                             <div class="field btn">
                                 <button type="button" class="prev prev3">Өмнөх</button>
-                                <button type="button" class="next next3" onclick="form_validation3()">Дуусгах</button>
+                                <button type="button" class="next next3" onclick="form_validation3()">Дараагийнх</button>
                             </div>
+                        </section>
+                           
+                        <section class="pages">
+                            <div class="title">Төлбөрийн мэдээлэл:</div>
+                            <div class="field">
+                                <select id="serviceType">
+                                    <option value="1">Хуулийн зөвлөгөө</option>
+                                    <option value="2">Хуулийн №</option>
+                                    <option value="3"> Хуулийн -</option>
+                                    <option value="4"> Хуулийн "</option>
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Төлбөрийн мэдээлэл</div>
+                                <input type="text" id="billInfo"></input>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Нийт төлөх дүн</div>
+                                <input type="text" id="totalFee"></input>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Төлбөр төлсөн эсэх</div>
+                                <select id="paidOrNot">
+                                    <option value="yes">Төлсөн </option>
+                                    <option value="no">Төлөөгүй</option>
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="field btn">
+                                <button type="button" class="prev prev4">Өмнөх</button>
+                                <button type="button" class="next next4" onclick="form_validation4()">Дуусгах</button>
+                            </div>
+                        </section>
+                      
+                        <section class="pages">
+                            
                         </section>
                     </form>
                 </div>
@@ -212,6 +243,7 @@
         </div>
     </div>
    <script src="multistep-form.js"></script>
+   <!-- <script src="bill.js"></script> -->
      <!--<script src="multi-step1.js"></script>-->
 </body>
 </html>

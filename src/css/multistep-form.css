@@ -39,6 +39,7 @@ body{
 
 .form-outer form .pages{
     width: 25%;
+   position: relative;
 }
 
 .form-outer .pages .title{
@@ -107,7 +108,7 @@ form .pages select{
 }
 
 .form-outer{
-      /* overflow: hidden; IMPORTANT!!! */
+       overflow: hidden; /*IMPORTANT!!! */
 }
 
 
@@ -224,4 +225,6 @@ span {
 .form-outer .field #file {
    border:  none;
 }
+
+/* success modal */
 

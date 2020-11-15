@@ -1,9 +1,7 @@
-const nextBtn = document.getElementsByClassName('next');
-const pages = document.getElementsByClassName('pages');
-
-
 // --- Form validation STEP1 ---
 var userData ={};
+var userInformation = { cases : [],
+                        bills : []};
 
 const lastName = document.getElementById('lastName');
 const firstName = document.getElementById('firstName');
@@ -81,7 +79,6 @@ formArr3.push(caseFile);
 formArr3.push(caseInfo);
 formArr3.push(startDate);
 formArr3.push(endDate);
-formArr3.push(bills);
 
 // var keys = ["caseId",
 //             "caseName",
@@ -99,24 +96,52 @@ let step3Id = [caseId.id,
                caseFile.id,
                caseInfo.id,
                startDate.id,
-               endDate.id,
-               bills.id ];
+               endDate.id];
 
 // form3 end 
 
+// --- Form validation STEP4 ---
+
+const serviceType = document.getElementById('serviceType');
+const billInfo = document.getElementById('billInfo');
+const totalFee = document.getElementById('totalFee');
+const paidOrNot = document.getElementById('paidOrNot');
+
+const formArr4 = [];
+formArr4.push(serviceType);
+formArr4.push(billInfo);
+formArr4.push(totalFee);
+formArr4.push(paidOrNot);
+
+let step4Id = [serviceType.id,
+               billInfo.id,
+               totalFee.id,
+               paidOrNot.id];
+
+               
+               
+// form4 end 
 // --- BUTTONS --- 
+
+const nextBtn = document.getElementsByClassName('next');
+const pages = document.getElementsByClassName('pages');
 
 nextBtn[0].addEventListener('click', function(){
    if(form_validation1()){
       pages[0].style.display = 'none';
       document.getElementById('step2').classList.add('active');
       //console.log(lastName.id);
+      step1 = convertToObject(formArr1, step1Id);
+      userInformation = { ...step1,
+                          ...userInformation};                   // --- !!!IMPORTANT!!! ---
       console.log('step1');
-      console.log(convertToObject(formArr1, step1Id));
+      console.log(step1);
+      console.log('userinformation1');
+      console.log(userInformation);    
+      
    }else{
       pages[0].style.display = 'block';
       document.getElementById('step1').classList.add('active');
-      
    }   
 });
 
@@ -124,8 +149,14 @@ nextBtn[1].addEventListener('click', function(){
    if(form_validation2()){
       pages[1].style.display = 'none';
       document.getElementById('step3').classList.add('active');
+      step2 = convertToObject(formArr2, step2Id);
+      userInformation = {  ...step2,
+                           ...userInformation};
       console.log('step2');
-      console.log(convertToObject(formArr2, step2Id));
+      console.log(step2);
+      console.log('userinformation2');
+      console.log(userInformation);
+      
    }else{
       pages[1].style.display = 'block';
       document.getElementById('step2').classList.add('active');
@@ -136,12 +167,37 @@ nextBtn[2].addEventListener('click', function(){
    if(form_validation3()){
       pages[2].style.display = 'none';
       document.getElementById('step4').classList.add('active');
+      step3 = convertToObject(formArr3, step3Id);
+      userInformation.cases.push(step3);
       console.log('step3');
-      console.log(convertToObject(formArr3, step3Id));
+      console.log(step3);
+      console.log('userinformation3');
+      console.log(userInformation);
+      
    }else{
       pages[2].style.display = 'block';
       document.getElementById('step3').classList.add('active');
    }   
+});
+
+nextBtn[3].addEventListener('click', function(){
+   if(form_validation4()){
+      pages[3].style.display = 'none';
+      document.getElementById('step5').classList.add('active');
+      step4 = convertToObject(formArr4, step4Id);
+      userInformation.bills.push(step4);
+      console.log('step4');
+      console.log(step4);
+      console.log('userinformation4');
+      console.log(userInformation);
+      // userInformation = {     ...step1,
+      //                         ...step2,                   --- !!!hudlaa jishee haha!!! ---
+      //                         cases : [],
+      //                         bills : []};
+      }else{
+         pages[3].style.display = 'block';
+         document.getElementById('step4').classList.add('active');
+      }   
 });
 
 const prevBtn =  document.getElementsByClassName('prev');
@@ -154,6 +210,11 @@ prevBtn[0].addEventListener('click', function(){
 prevBtn[1].addEventListener('click', function(){
    pages[1].style.display = 'block';
    document.getElementById('step3').classList.remove('active');
+});
+
+prevBtn[2].addEventListener('click', function(){
+   pages[2].style.display = 'block';
+   document.getElementById('step4').classList.remove('active');
 });
 
 // --- FORM VALIDATIONS ---
@@ -189,7 +250,7 @@ function form_validation1 (){
 
    if(formArr1[4].value.match(numbers)){
       showSuccess(formArr1[4]);
-   }else{
+   } else{
       showError(formArr1[4], errMessages = 'Утасны дугаараа тоогоор оруулна уу');
       return false;
    }
@@ -239,6 +300,23 @@ function form_validation3(){
    return true;
 }
 
+function form_validation4(){
+   let errMessages = ["үйлчилгээгээ сонгоно уу",
+                     "bills",
+                     "total fee",
+                     "paid or not"];
+
+   for(let i in formArr4){
+      if(formArr4[i].value == '' || formArr4[i].value == null){
+         showError(formArr4[i], errMessages[i]);
+         return false;
+      }else{
+         showSuccess(formArr4[i]); 
+      }
+   }
+   return true;
+}
+
 function showError(input, message){
    let field = input.parentElement;   
    let error = field.querySelector('small');
@@ -255,7 +333,7 @@ function showSuccess(input){
    error.innerText = ''; 
 }
 
-// --- Put value inside the text field ---
+// convert from array to object
 
 //formArr11 = [["user", "user1"], ["number", "number"]];
 
@@ -273,22 +351,31 @@ function convertToObject(formArr,keysId){
 }
 
 //DESTRUCTINGs
-let userSave = {cases:[]};
-const userInfo = {id: "0001",name: 'Dashka', age: "19", color: "gray"};
-const userDetails = {song: "BSB", actor: "Jackie Chan"};
-const userCase = {caseName: "Case1", caseProblem:"bla bla"};
-const userCase1 = {caseName: "Case2", caseProblem:"bla bla,"};
+//                                         --- EXAMPLE ---
+// let userSave = { users:[],
+//                  cases:[]};
+// const userInfo = {id: "0001",name: 'Dashka', age: "19", color: "gray"};
+// const userDetails = {song: "BSB", actor: "Jackie Chan"};
+// const userCase = {caseName: "Case1", caseProblem:"bla bla"};
+// const userCase1 = {caseName: "Case2", caseProblem:"bla bla,"};
 
-userSave.cases.push(userCase);
-userSave = {
-   ...userInfo,
-   ...userDetails,
-   cases: userSave.cases,
-};
-userSave.cases.push(userCase1);
+// userSave.cases.push(userCase);
+// userSave = {
+//    ...step1,
+//    .. step2,
+//    cases: userSave.cases,
+// };
+// userSave.cases.push(userCase1);
+// userSave.users.push(userDetails);
+// userSave.users.push(userInfo);
 
-console.log(userInfo);
-console.log(userDetails);
-console.log(userCase);
-console.log(userSave);
+// // userSave.push(userCase); --> this is not gonna work cuz push is array's function 
+// // console.log(userInfo);
+// // console.log(userDetails);
+// // console.log(userCase);
+// console.log(userSave);
+//                                           --- EXAMPLE END ---
 
+
+
+                             
