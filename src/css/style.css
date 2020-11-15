@@ -1,3 +1,8 @@
+:root {
+  --light-background: #fefefe;
+  --light-color: #277ceb;
+  --light-second-color: #455a64;
+}
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +10,12 @@
   list-style: none;
 }
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .text-primary-p {
   color: #a5aaad;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 700;
 }
 .font-bold {
@@ -19,7 +24,7 @@ body {
 .text-title {
   color: #2e4a66;
 }
-.text-light {
+.text-lightblue {
   color: #469cac;
 }
 .text-red {
@@ -104,6 +109,7 @@ body {
 .navbar__right > div {
   position: relative;
 }
+
 /* Notifications */
 .notification__id {
   display: none;
@@ -413,8 +419,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 70px;
-  padding: 25px;
+  padding: 10px 30px;
   background: #ffffff;
   box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
 }
@@ -533,13 +538,27 @@ main {
 }
 
 #sidebar {
-  background: #020509;
+  background: #277ceb;
   grid-area: sidebar;
   overflow: auto;
-  padding: 20px;
+  padding: 20px 0 20px 20px;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+/* Sidebar Menu */
+.sidebar__link:hover {
+  width: 100%;
+  background-color: #f3f4f6;
+  color: var(--light-color);
+  cursor: pointer;
+}
+
+.sidebar__link >a:hover {
+  width: 100%;
+  background-color: #f3f4f6;
+  color: var(--light-color);
+}
+
 .sidebar__img {
   display: flex;
   align-items: center;
@@ -561,11 +580,10 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #f3f4f6;
   margin-bottom: 30px;
 }
 .sidebar__menu > h2 {
-  color: #3ea175;
+  color: #f8f8f8;
   font-size: 16px;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -573,20 +591,21 @@ main {
   font-weight: 700;
 }
 .sidebar__link {
-  color: #f3f4f6;
+  color: #1d1f24;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: 10px 0 0 10px;
 }
 .active_menu_link {
-  background: rgba(62, 161, 117, 0.3);
-  color: #3ea175;
+  width: 100%;
+  background-color: #f3f4f6;
+  color
 }
 .active_menu_link a {
-  color: #3ea175 !important;
+  color: var(--light-color) !important;
 }
 .sidebar__link > a {
   text-decoration: none;
-  color: #a5aaad;
+  color: #1d1f24;
   font-weight: 700;
 }
 .sidebar__link > i {
