@@ -13,24 +13,25 @@
     />
   </head>
   <body>
+    <!-- Start of Main container -->
     <div class="container">
       <nav class="navbar">
         <div class="nav_icon" onclick="toggleSidebar()">
           <i class="fa fa-bars"></i>
         </div>
         <div class="navbar__left">
-          <a class="active_link" href="#">Mиний самбар</a>
+          <!-- <a class="active_link" href="#">Mиний самбар</a> -->
           <!-- <a class="active_link" href="#">Admin</a> -->
         </div>
         <div class="navbar__right">
           <div class="notification" onclick="viewToggle(this)">
             <div>
-              <i class="fa fa-envelope"></i>
+              <i class="fa fa-bell"></i>
             </div>
             <div class="notification__id">
               <div class="notification__header">
-                <h4>Notifications</h4>
-                <h5>Clear All</h5>
+                <h4>Мэдэгдэл</h4>
+                <h5>Бүгдийг арилгах</h5>
               </div>
               <ul class="notification__ul">
                 <li>
@@ -58,19 +59,19 @@
                   </div>
                 </li>
                 <div class="notification__footer">
-                  <p>View All</p>
+                  <p>Бүгдийг харах</p>
                 </div>
               </ul>
             </div>
           </div>
           <div class="messages" onclick="viewToggle(this)">
             <div>
-              <i class="fa fa-bell"></i>
+              <i class="fa fa-envelope"></i>
             </div>
             <div class="messages__id">
               <div class="messages__header">
-                <h4>Messages</h4>
-                <h5>Clear All</h5>
+                <h4>Мессеж</h4>
+                <h5>Бүгдийг арилгах</h5>
               </div>
               <ul class="messages__ul">
                 <li>
@@ -94,7 +95,7 @@
                   </div>
                 </li>
                 <div class="messages__footer">
-                  <p>See All Messages</p>
+                  <p>Бүх мессеж харах</p>
                 </div>
               </ul>
             </div>
@@ -114,7 +115,7 @@
               <ul class="profile__ul">
                 <li>
                   <i class="fa fa-user"></i>
-                  <h5>My Profile</h5>
+                  <h5>Миний профайл</h5>
                 </li>
                 <li>
                   <i class="fa fa-user"></i>
@@ -133,7 +134,7 @@
                   <h5>My Profile</h5>
                 </li>
                 <div class="profile__footer">
-                  <button>View Profile</button>
+                  <button>Профайл харах</button>
                 </div>
               </ul>
             </div>
@@ -146,8 +147,8 @@
           <div class="main__title">
             <img src="../assets/lawyers.svg" alt="Hello" />
             <div class="main__greeting">
-              <h1>Hello Lawyers</h1>
-              <p>Welcome to your admin dashboard</p>
+              <h2>Сайн байна уу - Хэрэглэгч</h2>
+              <p>Тавтай морил - таны самбар</p>
             </div>
           </div>
           <div class="main__cards">
@@ -229,66 +230,74 @@
           </div>
         </div>
       </main>
-      <div id="sidebar">
+      <aside id="sidebar">
         <div class="sidebar__title">
           <div class="sidebar__img">
             <img src="../assets/logoML.png" alt="Logo" />
-            <h1>MonLaw</h1>
+            <h1>МОН-ХУУЛЬ</h1>
           </div>
           <i class="fa fa-times" id="sidebarIcon" onclick="closeSidebar()"></i>
         </div>
         <div class="sidebar__menu">
           <div class="sidebar__link active_menu_link">
             <i class="fa fa-home"></i>
-            <a href="#">Dashboard</a>
+            <a href="#">Самбар</a>
           </div>
-          <h2>MNG</h2>
+          <h2>Мэдээлэл</h2>
           <div class="sidebar__link">
             <i class="fa fa-user-secret"></i>
-            <a href="#">Admin</a>
+            <a href="#">Админ</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-building-o"></i>
-            <a href="#">Company</a>
+            <a href="#">Компани</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-wrench"></i>
-            <a href="#">Cases</a>
+            <a href="#">Хэргүүд</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-handshake-o"></i>
-            <a href="#">Contract</a>
+            <a href="#">Хэрэглэгчид</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-question"></i>;' 456+mnbbb vvvvvz'
-            <a href="#">Requests</a>
+            <i class="fa fa-question"></i>
+            <a href="#">Хүсэлтүүд</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-sign-out"></i>
-            <a href="#">Company Policy</a>
+            <i class="fa fa-project-diagram"></i>
+            <a href="#">Дотоод журам</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-calendar-check-o"></i>
-            <a href="#">Special Days</a>
+            <i class="fa fa-file-upload"></i>
+            <a href="#">Дотоод файл</a>
           </div>
 
-          <h2>PAYROLL</h2>
+          <h2>Санхүү</h2>
           <div class="sidebar__link">
             <i class="fa fa-money"></i>
-            <a href="#">Payroll</a>
+            <a href="#">Цалин</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-briefcase"></i>
-            <a href="#">Paygrade</a>
+            <a href="#">Нэхэмжлэх</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-power-off"></i>
             <a href="#">Log out</a>
           </div>
         </div>
-      </div>
+      </aside>
     </div>
-    <!-- We Will use apex charts cdn -->
+    <!-- End of Main container -->
+    <!-- We Will use apex charts cdn and JS link -->
+    <!-- FIrebase setting script -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+    <script src="./js/firebase.js"></script>
+    <!-- FIrebase setting script -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="./js/app.js"></script>
   </body>
