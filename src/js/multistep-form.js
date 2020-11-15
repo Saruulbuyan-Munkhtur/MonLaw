@@ -216,6 +216,15 @@ prevBtn[2].addEventListener('click', function(){
    pages[2].style.display = 'block';
    document.getElementById('step4').classList.remove('active');
 });
+// --- success modal ---
+document.getElementById("open-popup-btn").addEventListener("click",function(){
+   document.getElementsByClassName("popup")[0].classList.add("active");
+});
+
+document.getElementById("dismiss-popup-btn").addEventListener("click",function(){
+document.getElementsByClassName("popup")[0].classList.remove("active");
+});
+//  --- success modal end ---
 
 // --- FORM VALIDATIONS ---
 

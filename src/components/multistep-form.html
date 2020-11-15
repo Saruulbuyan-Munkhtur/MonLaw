@@ -20,7 +20,7 @@
                         <li class="step0" id="step2"><span>2</span></li>
                         <li class="step0" id="step3"><span>3</span></li>
                         <li class="step0" id="step4"><span>4</span></li>
-                        <li class="step0" id="step5"><span>5</span></li>
+                        <li class="step0" id="step5" style="display:none;"><span>5</span></li>
                     </ul>
                     <!--
                     <div class="icons">
@@ -230,12 +230,26 @@
                             </div>
                             <div class="field btn">
                                 <button type="button" class="prev prev4">Өмнөх</button>
-                                <button type="button" class="next next4" onclick="form_validation4()">Дуусгах</button>
+                                <button type="button" class="next next4" id="open-popup-btn" onclick="form_validation4()">Дуусгах</button>
                             </div>
                         </section>
                       
                         <section class="pages">
-                            
+                            <div class="popup center active">
+                                <div class="icon">
+                                  <i class="fa fa-check"></i>
+                                </div>
+                                <div class="title">
+                                  Таны мэдээлэл амжилттай хадгалагдлаа
+                                </div>
+                                <div class="description">
+                                </div>
+                                <div class="dismiss-btn">
+                                  <button id="dismiss-popup-btn">
+                                    Гарах
+                                  </button>
+                                </div>
+                              </div>
                         </section>
                     </form>
                 </div>
@@ -243,7 +257,15 @@
         </div>
     </div>
    <script src="multistep-form.js"></script>
-   <!-- <script src="bill.js"></script> -->
      <!--<script src="multi-step1.js"></script>-->
-</body>
+     <!-- <script>
+        document.getElementById("open-popup-btn").addEventListener("click",function(){
+        document.getElementsByClassName("popup")[0].classList.add("active");
+});
+
+document.getElementById("dismiss-popup-btn").addEventListener("click",function(){
+document.getElementsByClassName("popup")[0].classList.remove("active");
+});
+    </script>
+</body> -->
 </html>
