@@ -4,12 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/chat.css" />
-
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-ui-auth.js"></script>
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -25,87 +19,8 @@
           <div class="chat__left__header">
             <h3>Chat Message</h3>
           </div>
-          <div class="chat__left__content">
-            <div class="chat__message you__message">
-              <div class="chat__content">
-                <img width="50" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Quisquam nulla eius a ab cumque exercitationem, assumenda
-                  repellat deserunt temporibus enim?
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message other__message">
-              <div class="chat__content">
-                <img width="40" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  <p>Ok</p>
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message you__message">
-              <div class="chat__content">
-                <img width="50" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Quisquam nulla eius a ab cumque exercitationem, assumenda
-                  repellat deserunt temporibus enim?
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message other__message">
-              <div class="chat__content">
-                <img width="40" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  <p>Ok</p>
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message you__message">
-              <div class="chat__content">
-                <img width="50" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Quisquam nulla eius a ab cumque exercitationem, assumenda
-                  repellat deserunt temporibus enim?
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message other__message">
-              <div class="chat__content">
-                <img width="40" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  <p>Ok</p>
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message you__message">
-              <div class="chat__content">
-                <img width="50" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Quisquam nulla eius a ab cumque exercitationem, assumenda
-                  repellat deserunt temporibus enim?
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
-            <div class="chat__message other__message">
-              <div class="chat__content">
-                <img width="40" src="../../assets/user1.jpg" alt="" />
-                <div class="chat__message__text">
-                  <p>Ok</p>
-                </div>
-                <div class="chat__message__time">20:56 PM</div>
-              </div>
-            </div>
+          <div class="chat__left__content" id="contentMessage">
+            <!-- chat messages -->
           </div>
           <div class="chat__left__footer">
             <input type="text" id="inputMsg" placeholder="Type message ..." />
@@ -197,21 +112,57 @@
         </div>
       </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
+    <script src="../js/firebase.js"></script>
     <script>
-    var firebaseConfig = {
-            apiKey: "AIzaSyDkvXH4PuJsSfY23aEqb2yjQw6LnOvTBJg",     // apiKey: "API_KEY",
-            authDomain: "monlaw-3dae3.firebaseapp.com",            // authDomain: "PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://monlaw-3dae3.firebaseio.com",    // databaseURL: "https://PROJECT_ID.firebaseio.com",
-            projectId: "monlaw-3dae3"                              //    projectId: "PROJECT_ID",
-        };
-      
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-       
-        firebase.auth().onAuthStateChanged(function(user) {
-            checkLogin();  
+
+        // firebase.auth().onAuthStateChanged(function(user) {
+        //     checkLogin();  
+        // });
+        var messagesContent = document.getElementById('contentMessage');
+        var messagesData = [];
+        var me = 'zaya';
+        var messagesRef = firebase.database().ref("messages/");
+          messagesRef.on('value', function(snapshot) {
+            messagesData = snapshot.val();
+          // console.log(messagesData);
+          viewMessage();
+          });
+        messagesRef.push(function(){
+          
         });
+        function viewMessage(){
+          console.log(messagesData);
+           
+              for (const message of messagesData){
+                var htmlContent = 
+                        `<div class="chat__message ${message.sender === me ? "you__message" : "other__message" }">
+                          <div class="chat__content">
+                            <img width="50" src="../../assets/user1.jpg" alt="" />
+                            <div class="chat__message__text">
+                            ${message.message}
+                            </div>
+                            <div class="chat__message__time">20:56 PM</div>
+                          </div>
+                        </div>`;
+                messagesContent.insertAdjacentHTML('beforeend', htmlContent);
+                console.log('message');
+                console.log(message);
+              }
+        } 
+        
+        // <div class="chat__message other__message">
+        //       <div class="chat__content">
+        //         <img width="40" src="../../assets/user1.jpg" alt="" />
+        //         <div class="chat__message__text">
+        //           <p>Ok</p>
+        //         </div>
+        //         <div class="chat__message__time">20:56 PM</div>
+        //       </div>
+        //     </div>
     </script>
   </body>
 </html>
-<!--  -->
+

@@ -5,10 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/monlaw_login2.css"/>
-  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-ui-auth.js"></script> 
+  
   <title>login</title>
 </head>
 
@@ -114,18 +111,12 @@
       }
     }
   </script> -->
-  <script>
-    var firebaseConfig = {
-            apiKey: "AIzaSyDkvXH4PuJsSfY23aEqb2yjQw6LnOvTBJg",     // apiKey: "API_KEY",
-            authDomain: "monlaw-3dae3.firebaseapp.com",            // authDomain: "PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://monlaw-3dae3.firebaseio.com",    // databaseURL: "https://PROJECT_ID.firebaseio.com",
-            projectId: "monlaw-3dae3"                              //    projectId: "PROJECT_ID",
-        };
-      
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-     
 
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
+  <script src="../js/firebase.js"></script>
+  <script>
         function login(){
             var email = document.getElementById('eror').value;
             var pass = document.getElementById('permitt').value;
