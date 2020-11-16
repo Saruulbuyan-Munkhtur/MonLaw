@@ -59,6 +59,13 @@ var options = {
 var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
 apexChart.render();
 
+window.onclick = function () {
+  console.log("window");
+  var dropdowns = document.getElementsByClassName("dropdown_expand");
+  for (const i in dropdowns) {
+    dropdowns[i].classList.remove("dropdown_expand");
+  }
+}
 
 // Top Bar Menu dropdown windows
 function viewToggle(e) {
@@ -70,19 +77,19 @@ function viewToggle(e) {
   var selectedProfile = document.getElementsByClassName(`profile__id`);
   switch (select) {
     case "notification":
-      selectedNotific[0].classList.toggle("show");
-      selectedMessage[0].classList.remove("show");
-      selectedProfile[0].classList.remove("show");
+      selectedNotific[0].classList.toggle("dropdown_expand");
+      selectedMessage[0].classList.remove("dropdown_expand");
+      selectedProfile[0].classList.remove("dropdown_expand");
       break;
     case "messages":
-      selectedMessage[0].classList.toggle("show");
-      selectedNotific[0].classList.remove("show");
-      selectedProfile[0].classList.remove("show");
+      selectedMessage[0].classList.toggle("dropdown_expand");
+      selectedNotific[0].classList.remove("dropdown_expand");
+      selectedProfile[0].classList.remove("dropdown_expand");
       break;
     case "profile":
-      selectedProfile[0].classList.toggle("show");
-      selectedMessage[0].classList.remove("show");
-      selectedNotific[0].classList.remove("show");
+      selectedProfile[0].classList.toggle("dropdown_expand");
+      selectedMessage[0].classList.remove("dropdown_expand");
+      selectedNotific[0].classList.remove("dropdown_expand");
       break;
 
     default:

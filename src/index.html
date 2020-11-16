@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monlaw Management System</title>
+    <title>МОН-ХУУЛЬ Систем</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
@@ -13,8 +13,9 @@
     />
   </head>
   <body>
-    <!-- Start of Main container -->
+    <!-- Start of Container -->
     <div class="container">
+      <!-- Start of Navbar -->
       <nav class="navbar">
         <div class="nav_icon" onclick="toggleSidebar()">
           <i class="fa fa-bars"></i>
@@ -26,7 +27,8 @@
         <div class="navbar__right">
           <div class="notification" onclick="viewToggle(this)">
             <div>
-              <i class="fa fa-bell"></i>
+              <i class="fa fa-bell" data-toggle="notification__id"></i>
+              <!-- <span class="navbar-badge">10</span> -->
             </div>
             <div class="notification__id">
               <div class="notification__header">
@@ -118,20 +120,12 @@
                   <h5>Миний профайл</h5>
                 </li>
                 <li>
-                  <i class="fa fa-user"></i>
-                  <h5>My Profile</h5>
+                  <i class="fa fa-cog"></i>
+                  <h5>Тохиргоо</h5>
                 </li>
                 <li>
-                  <i class="fa fa-user"></i>
-                  <h5>My Profile</h5>
-                </li>
-                <li>
-                  <i class="fa fa-user"></i>
-                  <h5>My Profile</h5>
-                </li>
-                <li>
-                  <i class="fa fa-user"></i>
-                  <h5>My Profile</h5>
+                  <i class="fa fa-power-off"></i>
+                  <h5>Гарах</h5>
                 </li>
                 <div class="profile__footer">
                   <button>Профайл харах</button>
@@ -141,7 +135,8 @@
           </div>
         </div>
       </nav>
-
+      <!-- End of Navbar -->
+      <!-- Start of Mainsection -->
       <main>
         <div class="main__container">
           <div class="main__title">
@@ -230,6 +225,8 @@
           </div>
         </div>
       </main>
+      <!-- End of Main section -->
+      <!-- Sidebar Menu -->
       <aside id="sidebar">
         <div class="sidebar__title">
           <div class="sidebar__img">
@@ -240,37 +237,38 @@
         </div>
         <div class="sidebar__menu">
           <div class="sidebar__link active_menu_link">
-            <i class="fa fa-home"></i>
-            <a href="#">Самбар</a>
+            <i class="fa fa-home active_blue"></i>
+            <a class="link active_blue" href="#">Самбар</a>
           </div>
           <h2>Мэдээлэл</h2>
           <div class="sidebar__link">
-            <i class="fa fa-user-secret"></i>
-            <a href="#">Админ</a>
+            <a class="link" href="#">
+              <i class="fa fa-user-secret"></i>Админ
+            </a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-building-o"></i>
-            <a href="#">Компани</a>
+            <a class="link" href="#">Компани</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-wrench"></i>
-            <a href="#">Хэргүүд</a>
+            <a class="link" href="#">Хэргүүд</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-handshake-o"></i>
-            <a href="#">Хэрэглэгчид</a>
+            <a class="link" href="./components/client.html">Хэрэглэгчид</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-question"></i>
-            <a href="#">Хүсэлтүүд</a>
+            <a class="link" href="#">Хүсэлтүүд</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-project-diagram"></i>
-            <a href="#">Дотоод журам</a>
+            <a class="link" href="#">Дотоод журам</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-file-upload"></i>
-            <a href="#">Дотоод файл</a>
+            <a class="link" href="#">Дотоод файл</a>
           </div>
 
           <h2>Санхүү</h2>
@@ -288,8 +286,10 @@
           </div>
         </div>
       </aside>
+      <!-- End of Sidebar Menu -->
     </div>
     <!-- End of Main container -->
+
     <!-- We Will use apex charts cdn and JS link -->
     <!-- FIrebase setting script -->
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
@@ -298,7 +298,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
     <script src="./js/firebase.js"></script>
     <!-- FIrebase setting script -->
+    <!-- Additional js libraries -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Additional js libraries -->
     <script src="./js/app.js"></script>
   </body>
 </html>
