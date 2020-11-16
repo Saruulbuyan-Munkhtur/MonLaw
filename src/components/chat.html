@@ -137,14 +137,6 @@
             var msg = document.getElementById('inputMsg').value;
             messagesRef.push({uid : "1234", name : 'azzayaab@gmail.com', sender : "zaya", message : msg, file : 'url'});
             document.getElementById('inputMsg').value = '';
-
-            //  audio togluulah
-            setTimeout(function(){
-              var audio = document.getElementById('audio').play();
-            },1000);
-              
-            // scroll hiih
-
        }
     
         function viewMessage(){
@@ -152,7 +144,6 @@
           console.log(messagesContent);
           messagesContent.innerHTML = '';
               for (const message of messagesData){
-              
                 var htmlContent = 
                         `<div class="chat__message ${message.sender === me ? "you__message" : "other__message" }">
                           <div class="chat__content">
@@ -165,8 +156,15 @@
                 // messagesContent.scrollTop = messagesContent.scrollHeight;
                 console.log('message');
                 console.log(message);
-                
               }
+              
+               // scroll hiih
+              messagesContent.scrollTop = messagesContent.scrollHeight;
+
+              //  audio togluulah
+              setTimeout(function(){
+              var audio = document.getElementById('audio').play();
+            },500);
         } 
     </script>
     <!-- // <div class="chat__message other__message">
