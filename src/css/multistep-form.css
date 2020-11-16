@@ -108,7 +108,7 @@ form .pages select{
 }
 
 .form-outer{
-      /* overflow: hidden; IMPORTANT!!! */
+      overflow: hidden; /* IMPORTANT!!! */
 }
 
 
