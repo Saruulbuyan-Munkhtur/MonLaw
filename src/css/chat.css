@@ -48,7 +48,7 @@ body {
   padding: 0 15px;
   background-color: #ffffff;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   overflow-y: scroll;
 }
 
