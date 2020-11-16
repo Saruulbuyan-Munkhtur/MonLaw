@@ -129,7 +129,7 @@
         var messagesRef = firebase.database().ref("messages/");
           messagesRef.on('value', function(snapshot) { 
               messagesData = Object.values(snapshot.val());
-              console.log(messagesData);
+              // console.log(messagesData);
               viewMessage();
           });
 
@@ -141,7 +141,7 @@
     
         function viewMessage(){
           // console.log(messagesData);
-          console.log(messagesContent);
+          // console.log(messagesContent);
           messagesContent.innerHTML = '';
               for (const message of messagesData){
                 var htmlContent = 
@@ -154,10 +154,10 @@
                         </div>`;
                 messagesContent.insertAdjacentHTML('beforeend', htmlContent);
                 // messagesContent.scrollTop = messagesContent.scrollHeight;
-                console.log('message');
-                console.log(message);
+                // console.log('message');
+                // console.log(message);
               }
-              
+
                // scroll hiih
               messagesContent.scrollTop = messagesContent.scrollHeight;
 
@@ -166,6 +166,40 @@
               var audio = document.getElementById('audio').play();
             },500);
         } 
+        var usersRef = firebase.database().ref("users/");
+        var currentUser;
+        firebase.auth().onAuthStateChanged(function(user){
+          if(user){
+            // console.log(user.displayName);
+            // console.log(user.email);
+            // console.log(user.emailVerified);
+            // console.log(user.uid);
+            // usersRef.push({uid : user.uid, name : "zaya", sender : 'zaya', email : user.email});
+            usersRef.once("value", function(snapshot){   
+              var users = Object.values(snapshot.val());
+              for (let u of users){
+                // console.log(u);
+                console.log(typeof user.email);
+                console.log(typeof u.email);
+                if(u.email.match(users.email)){
+                  currentUser = u;
+                  console.log("true");
+                  console.log(currentUser);
+                }else{
+                  currentUser = null;
+                  console.log("false");
+                }
+              }
+              // console.log(users);
+            });
+            // console.log(currentUser);
+            // console.log(usersRef);
+            
+          }else{
+            console.log("signOut");
+          }
+          
+        });
     </script>
     <!-- // <div class="chat__message other__message">
       //       <div class="chat__content">

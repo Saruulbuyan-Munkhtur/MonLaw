@@ -32,6 +32,7 @@ function signIn() {
             els.value.length <= 25
         ) {
             console.log("Login Successfully.");
+            login(els.value, ers.value);
             // End daraagiin huudas aa duudna
         } else {
             console.log("Length : " + els.value.length);
@@ -41,6 +42,7 @@ function signIn() {
                 1
             );
             console.log("Login UnSuccessfully.");
+            
         }
     }
 }
@@ -54,4 +56,19 @@ function showError(message, type) {
         password.innerText = message;
         password.classList.remove("hide");
     }
+}
+
+function login(email, pass){
+    console.log(email);
+    console.log(pass);
+
+    // var email = document.getElementById('eror').value;
+    // var pass = document.getElementById('permitt').value;
+
+    firebase.auth().signInWithEmailAndPassword(email, pass).then(function(){
+        window.location = "chat.html?v=" + Math.random();
+    }).catch(function (error){
+        alert(error.code + ':' + error.message);
+    });
+
 }
