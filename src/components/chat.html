@@ -32,7 +32,7 @@
                 <i class="fa fa-smile-o fa-1.5x"></i>
               </div>
               <div>
-                <i class="fa fa-paper-plane fa-1.5x"></i>
+                <i class="fa fa-paper-plane fa-1.5x" onclick="sendMessage()"></i>
               </div>
             </div>
           </div>
@@ -112,6 +112,8 @@
         </div>
       </div>
     </div>
+    <audio id="audio" src="../../assets/Messenger.m4r"></audio>
+
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script> 
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
@@ -125,44 +127,55 @@
         var messagesData = [];
         var me = 'zaya';
         var messagesRef = firebase.database().ref("messages/");
-          messagesRef.on('value', function(snapshot) {
-            messagesData = snapshot.val();
-          // console.log(messagesData);
-          viewMessage();
+          messagesRef.on('value', function(snapshot) { 
+              messagesData = Object.values(snapshot.val());
+              console.log(messagesData);
+              viewMessage();
           });
-        messagesRef.push(function(){
-          
-        });
+
+       function sendMessage(){
+            var msg = document.getElementById('inputMsg').value;
+            messagesRef.push({uid : "1234", name : 'azzayaab@gmail.com', sender : "zaya", message : msg, file : 'url'});
+            document.getElementById('inputMsg').value = '';
+       }
+    
         function viewMessage(){
-          console.log(messagesData);
-           
+          // console.log(messagesData);
+          console.log(messagesContent);
+          messagesContent.innerHTML = '';
               for (const message of messagesData){
                 var htmlContent = 
                         `<div class="chat__message ${message.sender === me ? "you__message" : "other__message" }">
                           <div class="chat__content">
                             <img width="50" src="../../assets/user1.jpg" alt="" />
-                            <div class="chat__message__text">
-                            ${message.message}
-                            </div>
+                            <div class="chat__message__text">${message.message}</div>
                             <div class="chat__message__time">20:56 PM</div>
                           </div>
                         </div>`;
                 messagesContent.insertAdjacentHTML('beforeend', htmlContent);
+                // messagesContent.scrollTop = messagesContent.scrollHeight;
                 console.log('message');
                 console.log(message);
               }
+              
+               // scroll hiih
+              messagesContent.scrollTop = messagesContent.scrollHeight;
+
+              //  audio togluulah
+              setTimeout(function(){
+              var audio = document.getElementById('audio').play();
+            },500);
         } 
-        
-        // <div class="chat__message other__message">
-        //       <div class="chat__content">
-        //         <img width="40" src="../../assets/user1.jpg" alt="" />
-        //         <div class="chat__message__text">
-        //           <p>Ok</p>
-        //         </div>
-        //         <div class="chat__message__time">20:56 PM</div>
-        //       </div>
-        //     </div>
     </script>
+    <!-- // <div class="chat__message other__message">
+      //       <div class="chat__content">
+      //         <img width="40" src="../../assets/user1.jpg" alt="" />
+      //         <div class="chat__message__text">
+      //           <p>Ok</p>
+      //         </div>
+      //         <div class="chat__message__time">20:56 PM</div>
+      //       </div>
+      //     </div> -->
   </body>
 </html>
 

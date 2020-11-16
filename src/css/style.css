@@ -1,7 +1,23 @@
 :root {
-  --light-background: #fefefe;
-  --light-color: #277ceb;
-  --light-second-color: #455a64;
+  --light-primary-color: #4834d4;
+  --success-color: #6ab04c;
+  --warning-color: #f0932b;
+  --danger-color: #eb4b4b;
+
+  --light-color: #212529;
+  --light-second-color: #727475;
+  --light-background-color: #ffffff;
+  --light-second-background-color: #f1f1f1;
+
+  --dark-color: #909090;
+  --dark-second-color: #f5f6fa;
+  --dark-background-color: #23242d;
+  --dark-second-background-color: #181818;
+
+  --main-bg-color: var(--light-background-color);
+  --second-bg-color: var(--light-second-background-color);
+  --main-color: var(--light-color);
+  --second-color: var(--light-second-color);
 }
 * {
   margin: 0;
@@ -11,6 +27,8 @@
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--main-bg-color);
+  color: var(--main-color);
 }
 
 .text-primary-p {
@@ -45,9 +63,10 @@ body {
     "sidebar nav nav nav"
     "sidebar main main main";
 }
-
+/* Navbar */
 .navbar {
-  background: #ffffff;
+  background: var(--main-bg-color);
+  color: var(--main-color);
   grid-area: nav;
   height: 60px;
   display: flex;
@@ -109,6 +128,18 @@ body {
 .navbar__right > div {
   position: relative;
 }
+
+.navbar-badge {
+  font-size: 0.5rem;
+  padding: 2px 4px;
+  position: absolute;
+  right: 5px;
+  top: -8px;
+  color: #fff;
+  background: var(--danger-color);
+  border-radius: 5px;
+}
+/* Navbar */
 
 /* Notifications */
 .notification__id {
@@ -195,7 +226,7 @@ body {
   width: 15px;
   height: 15px;
   background-color: limegreen;
-  border: 1.5px solid #cc3d38;
+  border: 1.5px solid #f1f2f3;
   border-radius: 50%;
 }
 .notification__id > ul > li:hover {
@@ -317,7 +348,7 @@ body {
   background-image: url("http://ultimatepro-admin-templates.multipurposethemes.com/images/user-info.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  color: #455a64;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -357,11 +388,11 @@ body {
 }
 .profile__id > ul > li {
   border-bottom: 1px solid #f1f1f2;
-  padding: 10px 20px;
+  padding: 20px 20px;
   display: flex;
   align-items: center;
 }
-.profile__id > ul > li > .profile__icon {
+.profile__id > ul > li > i {
   margin-right: 15px;
   position: relative;
 }
@@ -545,19 +576,6 @@ main {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-/* Sidebar Menu */
-.sidebar__link:hover {
-  width: 100%;
-  background-color: #f3f4f6;
-  color: var(--light-color);
-  cursor: pointer;
-}
-
-.sidebar__link >a:hover {
-  width: 100%;
-  background-color: #f3f4f6;
-  color: var(--light-color);
-}
 
 .sidebar__img {
   display: flex;
@@ -582,35 +600,68 @@ main {
   align-items: center;
   margin-bottom: 30px;
 }
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .sidebar__menu > h2 {
   color: #f8f8f8;
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 15px;
   margin-bottom: 5px;
   padding: 0 10px;
   font-weight: 700;
 }
 .sidebar__link {
-  color: #1d1f24;
-  padding: 10px;
-  border-radius: 10px 0 0 10px;
+  padding: 0;
+  margin: 5 15px;
+  border-radius: 15px 0 0 15px;
 }
 .active_menu_link {
   width: 100%;
   background-color: #f3f4f6;
-  color
 }
-.active_menu_link a {
-  color: var(--light-color) !important;
+
+/* Sidebar Menu */
+.sidebar__link:hover {
+  width: 100%;
+  background-color: #f3f4f6;
+  color: #1775f0;
+  cursor: pointer;
+}
+
+.active_blue {
+  color: #1775f0 !important;
+}
+.link {
+  margin: 0;
+  color: #f0f1f2;
+  display: block;
+  width: 100%;
+}
+.link i {
+  margin: 5px 15px;
+  color: #f0f1f2;
+  display: block;
+  width: 100%;
+}
+.link:hover {
+  color: #1775f0;
 }
 .sidebar__link > a {
   text-decoration: none;
-  color: #1d1f24;
+  margin-left: 10px;
+  color: #f0f1f2;
   font-weight: 700;
 }
 .sidebar__link > i {
-  margin-right: 10px;
-  font-size: 18px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 5px 10px;
+  font-size: 20px;
+  color: #f0f1f2;
 }
 .sidebar__logout {
   margin-top: 20px;
@@ -622,6 +673,6 @@ main {
   margin-right: 10px;
   font-size: 18px;
 }
-.show {
+.dropdown_expand {
   display: block;
 }
