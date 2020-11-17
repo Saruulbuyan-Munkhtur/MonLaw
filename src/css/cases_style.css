@@ -316,14 +316,18 @@ th img{
     margin-right: 5px;
     margin-top: 1px;
 }
-.save-button button{
+#save-button{
+    width: 20%;
+    height: 30px;
+    margin-top: 4%;
+    margin-left: 35%;
     outline-style: none;
     border: 0.3px solid #3b5999;
     color: white;
     background-color: #3b5999;
     transition: background-color 0.4s;
 }
-.save-button:hover{
+#save-button:hover{
     background-color:white;
     color:  #3b5999;
 }
