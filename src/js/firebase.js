@@ -1,4 +1,4 @@
-var firebaseConfig = {
+var Config = {
     apiKey: "AIzaSyDkvXH4PuJsSfY23aEqb2yjQw6LnOvTBJg",
     authDomain: "monlaw-3dae3.firebaseapp.com",
     databaseURL: "https://monlaw-3dae3.firebaseio.com",
@@ -9,4 +9,4 @@ var firebaseConfig = {
     measurementId: "G-9NYYG32YRB"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(Config);

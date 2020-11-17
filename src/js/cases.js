@@ -1,14 +1,11 @@
-var firebaseConfig={
-    paiKey: 'AIzaSyCqm2OMg4f1gbjSfl5DGlVF3Plpeb4N2i0', //webAPI key
-    autoDomain:'bobo-b4e12.firebaseapp.com',                                     //
-    dataBaseURL: 'https://bobo-b4e12.web.app',         //url
-    projectID: 'bobo-b4e12'                            //project ID
-};
-//initialize
-firebase.initializeApp(firebaseConfig);
-var database=firebase.database;
-database().ref('generalInfo').once('value',showForm);
-console.log(showForm);
+var data = {};
+var postElement = {};
+var testing = firebase.database().ref('clients/').once('value').then(function(snapshot) {
+    data = snapshot.val().data; 
+    console.log(data);
+    showTable();
+  });
+  
 // var data={
 //     contents: [
 //         {id : "0001", name : "Гар утасны хулгай", type  : "Дээрэм", where : "Худ 11-р хороо", date : "2020.02.20", payment : "2000$", paymentStatus : "Төлөгдсөн", status : "Closed"},
@@ -53,7 +50,7 @@ function showTable(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].nameCase + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -75,7 +72,8 @@ function showTable(){
     
 };
 
-showTable();
+
+
 function view(x){
 
     content1 = "";
@@ -85,7 +83,7 @@ function view(x){
     var getEl = document.getElementById('about-content-container') 
     var datasContent= data.contents;
     var datasDetail= data.details;
-   getEl.innerHTML="";
+    getEl.innerHTML="";
     for(var i in datasContent){
         if(x == datasContent[i].id){
         content1='\
@@ -98,7 +96,7 @@ function view(x){
                     <td><b> Хэргийн ID: </b> '+ datasContent[i].id + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хэргийн нэр: </b> '+datasContent[i].name + '</td>\
+                    <td><b> Хэргийн нэр: </b> '+datasContent[i].nameCase + '</td>\
                 </tr>\
                 <tr>\
                     <td><b> Хэргийн төрөл: </b> '+datasContent[i].type + '</td>\
@@ -185,7 +183,7 @@ function sortByActive(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].nameCase + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -232,7 +230,7 @@ function sortByClosed(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].nameCase + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -278,7 +276,7 @@ function sortAll(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].nameCase + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -323,7 +321,7 @@ function sortMyWorks(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].name + '</td>\
+            <td>'+ datas[i].nameCase + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -396,7 +394,7 @@ function edit(x){
                     <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Хэргийн нэр: </b> <input value="'+datasContent[i].name + '" id="name"></td>\
+                    <td><b> Хэргийн нэр: </b> <input value="'+datasContent[i].nameCase + '" id="name"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Хэргийн төрөл: </b><input value="'+datasContent[i].type + '" id="phone"></td>\
