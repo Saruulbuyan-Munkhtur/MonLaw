@@ -34,11 +34,11 @@ body{
 
 .form-outer form {
     display: flex;
-    width: 400%;
+    width: 500%;
 }
 
 .form-outer form .pages{
-    width: 25%;
+    width: 20%;
    position: relative;
 }
 

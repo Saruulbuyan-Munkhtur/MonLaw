@@ -153,7 +153,6 @@
                           </div>
                         </div>`;
                 messagesContent.insertAdjacentHTML('beforeend', htmlContent);
-                // messagesContent.scrollTop = messagesContent.scrollHeight;
                 // console.log('message');
                 // console.log(message);
               }
@@ -162,10 +161,11 @@
               messagesContent.scrollTop = messagesContent.scrollHeight;
 
               //  audio togluulah
-              setTimeout(function(){
-              var audio = document.getElementById('audio').play();
-            },500);
+            //   setTimeout(function(){
+            //   var audio = document.getElementById('audio').play();
+            // },300);
         } 
+
         var usersRef = firebase.database().ref("users/");
         var currentUser;
         firebase.auth().onAuthStateChanged(function(user){
@@ -179,8 +179,8 @@
               var users = Object.values(snapshot.val());
               for (let u of users){
                 // console.log(u);
-                console.log(typeof user.email);
-                console.log(typeof u.email);
+                // console.log(typeof user.email);
+                // console.log(typeof u.email);
                 if(u.email.match(users.email)){
                   currentUser = u;
                   console.log("true");

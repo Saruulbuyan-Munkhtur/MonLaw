@@ -190,6 +190,7 @@ nextBtn[3].addEventListener('click', function(){
       console.log(step4);
       console.log('userinformation4');
       console.log(userInformation);
+      sendInformationData(userInformation);
       // userInformation = {     ...step1,
       //                         ...step2,                   --- !!!hudlaa jishee haha!!! ---
       //                         cases : [],
@@ -383,8 +384,25 @@ function convertToObject(formArr,keysId){
 // // console.log(userDetails);
 // // console.log(userCase);
 // console.log(userSave);
-//                                           --- EXAMPLE END ---
+//                                           --- EXAMPLE END ---                           
 
+     var user ;
 
+var informationRef = firebase.database().ref("informations/information");
+         
+informationRef.on('value', function(snapshot) { 
+   // informationRef = snapshot.val();  
+   // console.log(informationRef);
+   // clients ruu usreh yostoi 
+});
+// informationRef.push({ name : "azzaya"});
+// user = {age : 19};
+// user.print();
+user = document.getElementById('hehe');
+console.log(user);
+user.innerHTML = 'hoho';
 
-                             
+function sendInformationData(data){
+   informationRef.push(data);
+   console.log(data);
+}
