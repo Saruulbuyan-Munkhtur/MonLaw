@@ -1,26 +1,10 @@
+const database = firebase.database();
 var data = {};
-var postElement = {};
-var testing = firebase.database().ref('clients/').once('value').then(function(snapshot) {
+database.ref('clients/').once('value').then(function(snapshot) {
     data = snapshot.val().data; 
-    console.log(data);
     showTable();
-  });
-  
-// var data={
-//     contents: [
-//         {id : "0001", name : "Гар утасны хулгай", type  : "Дээрэм", where : "Худ 11-р хороо", date : "2020.02.20", payment : "2000$", paymentStatus : "Төлөгдсөн", status : "Closed"},
-//         {id : "0002", name : "Гар хулгай", type  : "Дээрэм", where : "Худ 3-р хороо", date : "2040.02.20", payment : "199$",  paymentStatus : "Төлөгдөөгүй", status : "Ongoing"},
-//         {id : "0003", name : "утасны хулгай", type  : "Дээрэм", where : "Худ 2-р хороо", date : "2010.02.20", payment : "2333$",  paymentStatus : "Төлөгдсөн", status : "Closed"},
-//         {id : "0004", name : "Гар утасны", type  : "Дээрэм", where : "Худ 4-р хороо", date : "2000.02.20", payment : "1122$", paymentStatus : "Төлөгдөөгүй", status : "Ongoing"},
-//         ],
-//     details: [
-//         {id : "0001", name: "Баясгаланбаатар", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-//         {id : "0002", name: "Баатар", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-//         {id : "0003", name: "Баясгалан", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "41111", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-//         {id : "0004", name: "Галбаатар", sex: "Эрэгтэй", marrital: "Гэрлээгүй", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-           
-//     ]
-// };
+});
+
 
 var createEl1 = document.createElement('div');
 var createEl2 = document.createElement('div');
@@ -50,7 +34,7 @@ function showTable(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].nameCase + '</td>\
+            <td>'+ datas[i].caseName + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -76,16 +60,16 @@ function showTable(){
 
 function view(x){
 
-    content1 = "";
-    content2= "";
+    var content1 = "";
+    var content2 = "";
     
     document.getElementById('about-content').style.display="block";
-    var getEl = document.getElementById('about-content-container') 
+    var getEl = document.getElementById('about-content-container');
     var datasContent= data.contents;
     var datasDetail= data.details;
     getEl.innerHTML="";
     for(var i in datasContent){
-        if(x == datasContent[i].id){
+        if(x == i){
         content1='\
         <img src="../../assets/closeicon.png" onclick="closeIt()">\
         <table >\
@@ -96,8 +80,8 @@ function view(x){
                     <td><b> Хэргийн ID: </b> '+ datasContent[i].id + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хэргийн нэр: </b> '+datasContent[i].nameCase + '</td>\
-                </tr>\
+                <td><b> Хэргийн нэр: </b> '+datasContent[i].caseName + '</td>\
+            </tr>\
                 <tr>\
                     <td><b> Хэргийн төрөл: </b> '+datasContent[i].type + '</td>\
                 </tr>\
@@ -120,39 +104,40 @@ function view(x){
         }
     }
     for(var i in datasDetail){
-        if(x == datasDetail[i].id){  
-            //var con = `<div> ${datasContent[i].id} </div>`; 
+        if(x == i){  
             content2='\
-            <table>\
-                <tr>\
-                    <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
-                </tr>\
-                <tr>\
-                    <td><b> Нэр: </b> '+ datasDetail[i].name + '</td>\
-                </tr>\
-                <tr>\
-                    <td><b> Хүйс: </b> '+ datasDetail[i].sex + '</td>\
-                </tr>\
-                <tr>\
-                    <td><b> Гэрлэлт: </b> '+ datasDetail[i].marrital + '</td>\
-                </tr>\
-                <tr>\
-                    <td><b> Жолооны үнэмлэхний дугаар: </b> '+ datasDetail[i].driverID + '</td>\
-                </tr>\
-                <tr>\
-                    <td><b> Яаралтай үед холбоо барих хүний нэр: </b> '+ datasDetail[i].emergencyName + '</td>\
-                </tr>\
-                <tr>\
-                    <td><b> Яаралтай үед холбоо барих хүний дугаар: </b> '+ datasDetail[i].emergencyPhone + '</td>\
-                </tr>\
-                <tr>\
-                    <td><b> Таны хэн болох: </b> '+ datasDetail[i].who + '</td>\
-                </tr>\
-            </table>\
-            ' ;
+                <table>\
+                    <tr>\
+                        <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Нэр: </b> '+ datasDetail[i].name + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Хүйс: </b> '+ datasDetail[i].sex + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Гэрлэлт: </b> '+ datasDetail[i].marrital + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Жолооны үнэмлэхний дугаар: </b> '+ datasDetail[i].driverID + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Яаралтай үед холбоо барих хүний нэр: </b> '+ datasDetail[i].emergencyName + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Яаралтай үед холбоо барих хүний дугаар: </b> '+ datasDetail[i].emergencyPhone + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td><b> Таны хэн болох: </b> '+ datasDetail[i].who + '</td>\
+                    </tr>\
+                </table>\
+                ' ;
         }
     }
-    createEl1.innerHTML=content1;
+    
+    console.log(content2);
+    createEl1.innerHTML= content1;
     createEl2.innerHTML = content2;
     getEl.appendChild(createEl1);
     getEl.appendChild(createEl2);
@@ -183,7 +168,7 @@ function sortByActive(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].nameCase + '</td>\
+            <td>'+ datas[i].caseName + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -230,7 +215,7 @@ function sortByClosed(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].nameCase + '</td>\
+            <td>'+ datas[i].caseName + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -276,7 +261,7 @@ function sortAll(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].nameCase + '</td>\
+            <td>'+ datas[i].caseName + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -321,7 +306,7 @@ function sortMyWorks(){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].nameCase + '</td>\
+            <td>'+ datas[i].caseName + '</td>\
             <td>'+ datas[i].type + '</td>\
             <td>'+ datas[i].where + '</td>\
             <td>'+ datas[i].date + '</td>\
@@ -375,8 +360,8 @@ function exportFileExl(filename = ''){
 }
 
 function edit(x){
-    content = "";
-    content2= "";
+    var content3 = "";
+    var content4= "";
 
     document.getElementById('about-content').style.display="block";
     var getEl = document.getElementById('about-content-container');
@@ -386,15 +371,18 @@ function edit(x){
 
 
     for(var i in datasContent){
-        if(x == datasContent[i].id){
-        content='\
+        if(x == i){
+        content3='\
             <img src="../../assets/closeicon.png" onclick="closeIt()">\
             <table>\
                 <tr>\
                     <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Хэргийн нэр: </b> <input value="'+datasContent[i].nameCase + '" id="name"></td>\
+                <td><b> Хэргийн ID: </b> <input value="'+datasContent[i].id + '" id="caseId"></td>\
+                </tr>\
+                <tr>\
+                    <td><b> Хэргийн нэр: </b> <input value="'+datasContent[i].caseName + '" id="name"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Хэргийн төрөл: </b><input value="'+datasContent[i].type + '" id="phone"></td>\
@@ -412,20 +400,20 @@ function edit(x){
                     <td><b> Төлбөр төлөлт: </b><input value="'+datasContent[i].paymentStatus + '" id="title"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Төлөв: </b><input value="'+datasContent[i].status + '" id="title"></td>\
+                    <td><b> Төлөв: </b><input value="'+datasContent[i].status + '" id="caseStatus"></td>\
                 </tr>\
             </table>';
         }
     }
     for(var i in datasDetail){
-        if(x == datasDetail[i].id){  
-        content2='\
+        if(x == i){  
+        content4='\
             <table >\
                 <tr>\
                     <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Төрсөн огноо: </b> <input value="'+ datasDetail[i].birthday + '" id="birthDay"></td>\
+                    <td><b> Нэр: </b> <input value="'+ datasDetail[i].name + '" id="birthDay"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Хүйс: </b> <input value="'+ datasDetail[i].sex + '" id="sex"></td>\
@@ -446,13 +434,14 @@ function edit(x){
                     <td><b> Таны хэн болох: </b> <input value="'+ datasDetail[i].who + '" id="emergencyWho"></td>\
                 </tr>\
             </table>\
-                <button id="save-button" onclick="saveIt()">Хадгалах</button>\
+                <button id="save-button" onclick="saveIt('+ i +')">Хадгалах</button>\
             ' ;
 
         }
     }
-    createEl3.innerHTML =content;
-    createEl4.innerHTML =content2;
+    createEl3.innerHTML =content3;
+    createEl4.innerHTML =content4;
+    
     getEl.appendChild(createEl3);
     getEl.appendChild(createEl4);
     
@@ -461,4 +450,43 @@ function edit(x){
 
 function closeIt(){
     document.getElementById('about-content').style.display="none";
+}
+
+function saveIt(idOfCase){
+    //deer bga saveIt in idOfCase n saveIt in onclick deer damjuulj bui  [i] utga shvv. onclick deere saveIt('+i+') nemeerei
+    // Ene 1 mur Boloroo egchin codond ajillaxgvi
+    var newId = document.getElementById('caseId').value;
+
+    var  newCaseName = document.getElementById('name').value;
+    var  newPhone = document.getElementById('phone').value;
+    var  newEmail = document.getElementById('email').value;
+    var  newAddress = document.getElementById('address').value;
+    var  newCompany = document.getElementById('company').value;
+    var newTitle = document.getElementById('title').value;
+
+    // Ene 1 mur Boloroo egchin codond ajillaxgvi
+    var newStatus = document.getElementById('caseStatus').value;
+
+    var newName = document.getElementById('birthDay').value;
+    var newSex = document.getElementById('sex').value;
+    var newMarital = document.getElementById('marritalSta').value;
+    var newDriverli = document.getElementById('driverLi').value;
+    var newEmergencyname = document.getElementById('emergencyName').value;
+    var newEmergencyphone = document.getElementById('emergencyPhone').value;
+    var newEmergencywho = document.getElementById('emergencyWho').value;
+
+    // Ene neg mur Boloroo egchin codond ajillaxgvi
+    var newContent1 = { id: newId, caseName: newCaseName, type: newPhone, where: newEmail, date: newAddress, payment: newCompany, paymentStatus: newTitle, status: newStatus };
+   
+    //ene code tanix deeer ajillana
+    //let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
+    var newContent2 = { birthday: newName, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
+    
+    database.ref('/clients/data/contents/' +idOfCase).set(newContent1);
+    database.ref('/clients/data/details/' +idOfCase).set(newContent2);
+
+    location.reload();
+
+
+
 }
