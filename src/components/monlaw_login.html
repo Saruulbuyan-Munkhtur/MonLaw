@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/monlaw_login2.css" />
+
+    <title>login</title>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="left">
+        <div class="small_box">
+          <div class="icon_image">
+            <img
+              src="../../assets/zurag20.png"
+              id="pic3"
+              width="40px"
+              height="40px"
+            />
+            <img
+              src="../../assets/zurag21.png"
+              id="pic1"
+              width="40px"
+              height="40px"
+            />
+            <img
+              src="../../assets/zurag22.png"
+              id="pic2"
+              width="40px"
+              height="40px"
+            />
+          </div>
+          <div class="aa">
+            <hr />
+            <div class="welcome">
+              <p>Нэвтрэх</p>
+            </div>
+            <hr />
+          </div>
+          <div class="form_user">
+            <input
+              id="eror"
+              type="text"
+              minlength="6"
+              maxlength="25"
+              placeholder="Нэвтрэх нэр"
+            />
+            <div class="false hide"></div>
+          </div>
+          <div class="form_password">
+            <input
+              id="permitt"
+              type="password"
+              minlength="6"
+              maxlength="16"
+              placeholder="Нууц үг"
+            />
+            <div class="false hide"></div>
+          </div>
+
+          <div id="forget">
+            <div id="idd"><button>Нууц үг мартсан</button></div>
+            <div class="towch" onclick="signIn()">
+              <button>Үргэлжүүлэх</button>
+            </div>
+            <div class="towch" id="aaaa">
+              <button type="button">
+                <a href="/create_register2.html">Бүртгүүлэх</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- right section -->
+      </div>
+      <div class="right">
+        <img src="../../assets/zurag16.jpeg" width="100%" height="700px" />
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/donwload.login.js"></script>
+  </body>
+</html>

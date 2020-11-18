@@ -12,22 +12,24 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body class="light">
     <!-- Start of Container -->
     <div class="container">
       <!-- Start of Navbar -->
       <nav class="navbar">
-        <div class="nav_icon" onclick="toggleSidebar()">
-          <i class="fa fa-bars"></i>
-        </div>
         <div class="navbar__left">
-          <!-- <a class="active_link" href="#">Mиний самбар</a> -->
-          <!-- <a class="active_link" href="#">Admin</a> -->
+          <i class="fa fa-bars" onclick="toggleSidebar()"></i>
         </div>
         <div class="navbar__right">
-          <div class="notification" onclick="viewToggle(this)">
+          <div>
+            <i class="fa fa-moon-o switchIcon" onclick="switchTheme()"></i>
+          </div>
+          <div class="notification">
             <div>
-              <i class="fa fa-bell" data-toggle="notification__id"></i>
+              <i
+                class="fa fa-bell dropdown-toggle"
+                data-toggle="notification__id"
+              ></i>
               <!-- <span class="navbar-badge">10</span> -->
             </div>
             <div class="notification__id">
@@ -66,9 +68,12 @@
               </ul>
             </div>
           </div>
-          <div class="messages" onclick="viewToggle(this)">
+          <div class="messages">
             <div>
-              <i class="fa fa-envelope"></i>
+              <i
+                class="fa fa-envelope dropdown-toggle"
+                data-toggle="messages__id"
+              ></i>
             </div>
             <div class="messages__id">
               <div class="messages__header">
@@ -102,9 +107,15 @@
               </ul>
             </div>
           </div>
-          <div class="profile" onclick="viewToggle(this)">
+          <div class="profile">
             <div>
-              <img width="30" src="../assets/judge.svg" alt="judge" />
+              <img
+                class="dropdown-toggle"
+                data-toggle="profile__id"
+                width="30"
+                src="../assets/judge.svg"
+                alt="judge"
+              />
             </div>
             <div class="profile__id">
               <div class="profile__header">
@@ -137,7 +148,7 @@
       </nav>
       <!-- End of Navbar -->
       <!-- Start of Mainsection -->
-      <main>
+      <section class="main">
         <div class="main__container">
           <div class="main__title">
             <img src="../assets/lawyers.svg" alt="Hello" />
@@ -188,46 +199,46 @@
             <div class="charts__left">
               <div class="charts__left__title">
                 <div>
-                  <h1>Daily Reports</h1>
-                  <p>MonLaw, Ulaanbaatar, MNG</p>
+                  <h1>Өдрийн Үзүүлэлт</h1>
+                  <p>Монгол - Улаанбаатар - *** ХХК</p>
                 </div>
                 <i class="fa fa-usd"></i>
               </div>
-              <div class="" id="apex1"></div>
+              <div class="dayReport" id="apex1"></div>
             </div>
             <div class="charts__right">
               <div class="charts__right__title">
                 <div>
-                  <h1>Stats Reports</h1>
-                  <p>MonLaw, Ulaanbaatar, MNG</p>
+                  <h1>Статистик</h1>
+                  <p>Монгол - Улаанбаатар - *** ХХК</p>
                 </div>
                 <i class="fa fa-usd"></i>
               </div>
               <div class="charts__right__cards">
                 <div class="card1">
-                  <h1>Income</h1>
+                  <h1>Орлого</h1>
                   <p>$75,300</p>
                 </div>
                 <div class="card2">
-                  <h1>Revenue</h1>
+                  <h1>Цэвэр ашиг</h1>
                   <p>$124,300</p>
                 </div>
                 <div class="card3">
-                  <h1>Users</h1>
+                  <h1>Нийт хэрэглэгчид</h1>
                   <p>5,920</p>
                 </div>
                 <div class="card4">
-                  <h1>Cases</h1>
+                  <h1>Нийт хэргүүд</h1>
                   <p>1881</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </section>
       <!-- End of Main section -->
       <!-- Sidebar Menu -->
-      <aside id="sidebar">
+      <aside id="sideBar" style="width: 17rem" class="sidebar">
         <div class="sidebar__title">
           <div class="sidebar__img">
             <img src="../assets/logoML.png" alt="Logo" />
@@ -235,56 +246,81 @@
           </div>
           <i class="fa fa-times" id="sidebarIcon" onclick="closeSidebar()"></i>
         </div>
-        <div class="sidebar__menu">
-          <div class="sidebar__link active_menu_link">
-            <i class="fa fa-home active_blue"></i>
-            <a class="link active_blue" href="#">Самбар</a>
-          </div>
-          <h2>Мэдээлэл</h2>
-          <div class="sidebar__link">
-            <a class="link" href="#">
-              <i class="fa fa-user-secret"></i>Админ
+        <ul class="sidebar__menu">
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link">
+              <i class="fa fa-home"></i>
+              <span>Үндсэн Самбар</span>
             </a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-building-o"></i>
-            <a class="link" href="#">Компани</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-wrench"></i>
-            <a class="link" href="#">Хэргүүд</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-handshake-o"></i>
-            <a class="link" href="./components/client.html">Хэрэглэгчид</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-question"></i>
-            <a class="link" href="#">Хүсэлтүүд</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-project-diagram"></i>
-            <a class="link" href="#">Дотоод журам</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-file-upload"></i>
-            <a class="link" href="#">Дотоод файл</a>
-          </div>
+          </li>
+          <!-- <h3>Мэдээлэл</h3> -->
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link active" href="#">
+              <i class="fa fa-user-secret"></i>
 
-          <h2>Санхүү</h2>
-          <div class="sidebar__link">
-            <i class="fa fa-money"></i>
-            <a href="#">Цалин</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-briefcase"></i>
-            <a href="#">Нэхэмжлэх</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-power-off"></i>
-            <a href="#">Log out</a>
-          </div>
-        </div>
+              <span> Миний самбар</span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-building-o"></i>
+              <span>Компани</span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-gavel"></i>
+              <span>Хэргүүд</span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="./components/client.html">
+              <i class="fa fa-users"></i>
+
+              <span> Хэрэглэгчид </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-question"></i>
+              <span> Хүсэлтүүд </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-tasks"></i>
+              <span> Дотоод журам </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-file"></i>
+              <span> Дотоод файл </span>
+            </a>
+          </li>
+          <!-- <h3>Санхүү</h3> -->
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-money"></i>
+              <span> Цалин </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-briefcase"></i>
+              <span> Нэхэмжлэх </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a
+              class="sidebar__menu__link"
+              href="./components/monlaw_login.html"
+            >
+              <i class="fa fa-power-off"></i>
+              <span>Log out</span>
+            </a>
+          </li>
+        </ul>
       </aside>
       <!-- End of Sidebar Menu -->
     </div>

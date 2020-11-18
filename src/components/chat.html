@@ -32,7 +32,10 @@
                 <i class="fa fa-smile-o fa-1.5x"></i>
               </div>
               <div>
-                <i class="fa fa-paper-plane fa-1.5x" onclick="sendMessage()"></i>
+                <i
+                  class="fa fa-paper-plane fa-1.5x"
+                  onclick="sendMessage()"
+                ></i>
               </div>
             </div>
           </div>
@@ -114,92 +117,99 @@
     </div>
     <audio id="audio" src="../../assets/Messenger.m4r"></audio>
 
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="../js/firebase.js"></script>
     <script>
+      // firebase.auth().onAuthStateChanged(function(user) {
+      //     checkLogin();
+      // });
 
-        // firebase.auth().onAuthStateChanged(function(user) {
-        //     checkLogin();  
-        // });
-        var messagesContent = document.getElementById('contentMessage');
-        var messagesData = [];
-        var me = 'zaya';
-        var messagesRef = firebase.database().ref("messages/");
-          messagesRef.on('value', function(snapshot) { 
-              messagesData = Object.values(snapshot.val());
-              // console.log(messagesData);
-              viewMessage();
-          });
+      var messagesContent = document.getElementById("contentMessage");
+      var messagesData = [];
+      var me = "zaya";
+      var messagesRef = firebase.database().ref("messages/");
+      messagesRef.on("value", function (snapshot) {
+        messagesData = Object.values(snapshot.val());
+        // console.log(messagesData);
+        viewMessage();
+      });
 
-       function sendMessage(){
-            var msg = document.getElementById('inputMsg').value;
-            messagesRef.push({uid : "1234", name : 'azzayaab@gmail.com', sender : "zaya", message : msg, file : 'url'});
-            document.getElementById('inputMsg').value = '';
-       }
-    
-        function viewMessage(){
-          // console.log(messagesData);
-          // console.log(messagesContent);
-          messagesContent.innerHTML = '';
-              for (const message of messagesData){
-                var htmlContent = 
-                        `<div class="chat__message ${message.sender === me ? "you__message" : "other__message" }">
+      function sendMessage() {
+        var msg = document.getElementById("inputMsg").value;
+        messagesRef.push({
+          uid: "1234",
+          name: "azzayaab@gmail.com",
+          sender: "zaya",
+          message: msg,
+          file: "url",
+        });
+        document.getElementById("inputMsg").value = "";
+      }
+
+      function viewMessage() {
+        // console.log(messagesData);
+        // console.log(messagesContent);
+        messagesContent.innerHTML = "";
+        for (const message of messagesData) {
+          var htmlContent = `<div class="chat__message ${
+            message.sender === me ? "you__message" : "other__message"
+          }">
                           <div class="chat__content">
                             <img width="50" src="../../assets/user1.jpg" alt="" />
-                            <div class="chat__message__text">${message.message}</div>
+                            <div class="chat__message__text">${
+                              message.message
+                            }</div>
                             <div class="chat__message__time">20:56 PM</div>
                           </div>
                         </div>`;
-                messagesContent.insertAdjacentHTML('beforeend', htmlContent);
-                // messagesContent.scrollTop = messagesContent.scrollHeight;
-                // console.log('message');
-                // console.log(message);
-              }
+          messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+          // messagesContent.scrollTop = messagesContent.scrollHeight;
+          // console.log('message');
+          // console.log(message);
+        }
 
-               // scroll hiih
-              messagesContent.scrollTop = messagesContent.scrollHeight;
+        // scroll hiih
+        messagesContent.scrollTop = messagesContent.scrollHeight;
 
-              //  audio togluulah
-              setTimeout(function(){
-              var audio = document.getElementById('audio').play();
-            },500);
-        } 
-        var usersRef = firebase.database().ref("users/");
-        var currentUser;
-        firebase.auth().onAuthStateChanged(function(user){
-          if(user){
-            // console.log(user.displayName);
-            // console.log(user.email);
-            // console.log(user.emailVerified);
-            // console.log(user.uid);
-            // usersRef.push({uid : user.uid, name : "zaya", sender : 'zaya', email : user.email});
-            usersRef.once("value", function(snapshot){   
-              var users = Object.values(snapshot.val());
-              for (let u of users){
-                // console.log(u);
-                console.log(typeof user.email);
-                console.log(typeof u.email);
-                if(u.email.match(users.email)){
-                  currentUser = u;
-                  console.log("true");
-                  console.log(currentUser);
-                }else{
-                  currentUser = null;
-                  console.log("false");
-                }
+        //  audio togluulah
+        setTimeout(function () {
+          var audio = document.getElementById("audio").play();
+        }, 500);
+      }
+      var usersRef = firebase.database().ref("users/");
+      var currentUser;
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          // console.log(user.displayName);
+          // console.log(user.email);
+          // console.log(user.emailVerified);
+          // console.log(user.uid);
+          // usersRef.push({uid : user.uid, name : "zaya", sender : 'zaya', email : user.email});
+          usersRef.once("value", function (snapshot) {
+            var users = Object.values(snapshot.val());
+            for (let u of users) {
+              // console.log(u);
+              console.log(typeof user.email);
+              console.log(typeof u.email);
+              if (u.email.match(users.email)) {
+                currentUser = u;
+                console.log("true");
+                console.log(currentUser);
+              } else {
+                currentUser = null;
+                console.log("false");
               }
-              // console.log(users);
-            });
-            // console.log(currentUser);
-            // console.log(usersRef);
-            
-          }else{
-            console.log("signOut");
-          }
-          
-        });
+            }
+            // console.log(users);
+          });
+          // console.log(currentUser);
+          // console.log(usersRef);
+        } else {
+          console.log("signOut");
+        }
+      });
     </script>
     <!-- // <div class="chat__message other__message">
       //       <div class="chat__content">
@@ -212,4 +222,3 @@
       //     </div> -->
   </body>
 </html>
-
