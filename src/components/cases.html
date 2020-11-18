@@ -10,12 +10,17 @@
 
 </head>
 <body>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/cases.js"></script>
+
     <div class="main-content-container">
         <div class="header-buttons">
 
             <button onclick="sortAll()" id="header-button-first">ХЭРГҮҮД</button>
             <button>ШИНЭЭР НЭМЭХ</button>
-            <button>FILE татах</button>
+            <button onclick="exportFileExl()">FILE татах</button>
             <button id="header-button-fourth">МИНИЙ ХЭРГҮҮД</button>
             <button id="header-button-fifth" onclick="sortMyWorks()">ТӨЛБӨР</button>
             <button onclick="sortByActive()">ИДЭВХИТЭЙ</button>
@@ -26,9 +31,11 @@
     </div>
     <div id="about-content">
         <div id="about-content-container">
-            <img src="../../assets/closeicon.png" onclick="closeIt()">
+            
         </div>
     </div>
-    <script src="../js/cases.js"></script>
+    
+    
+
 </body>
 </html>
