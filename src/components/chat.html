@@ -174,42 +174,104 @@
         messagesContent.scrollTop = messagesContent.scrollHeight;
 
         //  audio togluulah
-        setTimeout(function () {
-          var audio = document.getElementById("audio").play();
-        }, 500);
+        // setTimeout(function () {
+        //   var audio = document.getElementById("audio").play();
+        // }, 200);
       }
+
+//  get currently signed-in user 
       var usersRef = firebase.database().ref("users/");
+      var userLogInState;
       var currentUser;
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          // console.log(user.displayName);
-          // console.log(user.email);
-          // console.log(user.emailVerified);
-          // console.log(user.uid);
-          // usersRef.push({uid : user.uid, name : "zaya", sender : 'zaya', email : user.email});
-          usersRef.once("value", function (snapshot) {
-            var users = Object.values(snapshot.val());
-            for (let u of users) {
-              // console.log(u);
-              console.log(typeof user.email);
-              console.log(typeof u.email);
-              if (u.email.match(users.email)) {
-                currentUser = u;
-                console.log("true");
-                console.log(currentUser);
-              } else {
-                currentUser = null;
-                console.log("false");
-              }
-            }
-            // console.log(users);
-          });
-          // console.log(currentUser);
-          // console.log(usersRef);
-        } else {
-          console.log("signOut");
-        }
+      var onCheck = false;
+      firebase.auth().onAuthStateChanged(function(user){
+         if(user){
+          console.log("current user");
+          console.log(user.email);
+          currentUser = user;
+          setTimeout(updateLogin, 3000, true);
+          // userLogInState = true;
+          // console.log(userLogInState);
+         }else{
+          setTimeout(updateLogin, 3000, false);
+          console.log('no user did not sign in currently');
+          // get the user that logged out ...
+         }
       });
+
+      usersRef.on("value", function(snapshot){
+        var objects = snapshot.val();
+        userLogInState = objects;
+        onCheck = true;
+      });
+
+      function updateLogin(state){
+        console.log(state);
+        console.log(typeof state);
+        if(onCheck){
+          for(let i in userLogInState){
+            if(userLogInState[i].email === currentUser.email){
+              usersRef.child(i).update({"logIn" : state});
+              console.log('update successful');
+            }
+          }
+        }else{
+          console.log('update unsuccessful');
+        }
+      } 
+      
+
+
+      // usersRef.once("value", function(snapshot){
+      //  var objects = snapshot.val();
+      //   for (let i in objects){
+      //     // console.log(objects[i]);
+      //     if(objects[i].email === "ugtakhbayars@gmail.com"){
+      //       // usersRef.update({"-MMU6_AAaRJUxEnYffHe/logIn" : "hahah"});
+      //       usersRef.child(i).update({"logIn" : "true"});
+      //       // console.log(typeof i);
+      //     }
+      //   }
+      // });
+
+
+
+
+
+                                          // --- current user but might use it later ---
+      // var usersRef = firebase.database().ref("users/");
+      // var currentUser;
+      // firebase.auth().onAuthStateChanged(function (user) {
+      //   if (user) {
+      //     // console.log(user.displayName);
+      //     // console.log(user.email);
+      //     // console.log(user.emailVerified);
+      //     // console.log(user.uid);
+      //     // usersRef.push({uid : user.uid, name : "zaya", sender : 'zaya', email : user.email});
+      //     usersRef.once("value", function (snapshot) {
+      //       var users = Object.values(snapshot.val());
+      //       for (let u of users) {
+      //         // console.log(u);
+      //         console.log(typeof user.email);
+      //         console.log(typeof u.email);
+      //         if (u.email.match(users.email)) {
+      //           currentUser = u;
+      //           console.log("true");
+      //           console.log(currentUser);
+      //         } else {
+      //           currentUser = null;
+      //           console.log("false");
+      //         }
+      //       }
+      //       // console.log(users);
+      //     });
+      //     // console.log(currentUser);
+      //     // console.log(usersRef);
+      //   } else {
+      //     console.log("signOut");
+      //   }
+      // });
+                                          // --- current user but might use it later END ---
     </script>
     <!-- // <div class="chat__message other__message">
       //       <div class="chat__content">
