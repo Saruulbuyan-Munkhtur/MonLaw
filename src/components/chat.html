@@ -47,70 +47,8 @@
               <input type="text" id="searchUser" placeholder="Search" />
             </div>
           </div>
-          <div class="chat__right__list">
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__busy">Busy</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__online">Online</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__offline">Away</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__busy">Busy</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__online">Online</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__offline">Away</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__busy">Busy</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__online">Online</p>
-              </div>
-            </div>
-            <div class="chat__right__user">
-              <img src="../../assets/avatar1.png" alt="" />
-              <div>
-                <p>Adam Sandler</p>
-                <p class="chat__user__offline">Away</p>
-              </div>
-            </div>
+          <div id="userList" class="chat__right__list">
+            
           </div>
         </div>
       </div>
@@ -127,6 +65,8 @@
       // });
 
       var messagesContent = document.getElementById("contentMessage");
+      var userList = document.getElementById('userList');
+
       var messagesData = [];
       var me = "zaya";
       var messagesRef = firebase.database().ref("messages/");
@@ -184,6 +124,7 @@
       var userLogInState;
       var currentUser;
       var onCheck = false;
+
       firebase.auth().onAuthStateChanged(function(user){
          if(user){
           console.log("current user");
@@ -203,7 +144,23 @@
         var objects = snapshot.val();
         userLogInState = objects;
         onCheck = true;
+        updateUser();
       });
+
+      function updateUser(){
+        userList.innerHTML = '';
+       for (let i in userLogInState){
+        var userHTML = `
+        <div class="chat__right__user">
+          <img src="../../assets/avatar1.png" alt="" />
+          <div>
+            <p>${userLogInState[i].name}</p>
+            <p class="chat__user ${userLogInState[i].logIn ? "online" : "offline"}">${userLogInState[i].logIn? "Online" : "Offline"}</p>
+          </div>
+        </div>`;
+        userList.insertAdjacentHTML('beforeend', userHTML);
+       }
+      }
 
       function updateLogin(state){
         console.log(state);

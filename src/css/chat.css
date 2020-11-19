@@ -202,15 +202,16 @@ body {
   border-radius: 100%;
 }
 
-.chat__user__busy {
+.busy {
   color: #ff6568;
-  font-size: 14px;
 }
-.chat__user__online {
+.online {
   color: #5ccdcd;
-  font-size: 14px;
 }
-.chat__user__offline {
+.offline {
   color: #fab349;
+}
+.chat__user { 
   font-size: 14px;
+  padding-top: 5px;
 }
