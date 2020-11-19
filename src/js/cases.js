@@ -1,8 +1,10 @@
 const database = firebase.database();
 var data = {};
-database.ref('clients/').once('value').then(function(snapshot) {
+database.ref('clients/').on('value', function(snapshot) {
+
     data = snapshot.val().data; 
     showTable();
+
 });
 
 
@@ -12,8 +14,10 @@ var createEl3 = document.createElement('div');
 var createEl4 = document.createElement('div');
 
 function showTable(){
+
     var createElForTable = document.createElement('div');
     var getEl = document.getElementById("main-content");
+    getEl.innerHTML="";
     var tableRow = "";
     var datas= data.contents;
     tableRow='\
@@ -41,17 +45,17 @@ function showTable(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
             </td>\
         </tr>';
         };
     tableRow+="</table>";
-    createElForTable.innerHTML = tableRow;
     
+    createElForTable.innerHTML = tableRow;
     getEl.appendChild(createElForTable);
     
 };
@@ -67,6 +71,9 @@ function view(x){
     var getEl = document.getElementById('about-content-container');
     var datasContent= data.contents;
     var datasDetail= data.details;
+    
+    
+
     getEl.innerHTML="";
     for(var i in datasContent){
         if(x == i){
@@ -136,7 +143,7 @@ function view(x){
         }
     }
     
-    console.log(content2);
+    
     createEl1.innerHTML= content1;
     createEl2.innerHTML = content2;
     getEl.appendChild(createEl1);
@@ -175,11 +182,11 @@ function sortByActive(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
             </td>\
         </tr>';
         };
@@ -222,11 +229,11 @@ function sortByClosed(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
             </td>\
         </tr>';
         };
@@ -268,11 +275,11 @@ function sortAll(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
             </td>\
         </tr>';
         };
@@ -313,11 +320,11 @@ function sortMyWorks(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+datas[i].id+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +datas[i].id+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +datas[i].id+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
             </td>\
         </tr>';
         };
@@ -457,36 +464,37 @@ function saveIt(idOfCase){
     // Ene 1 mur Boloroo egchin codond ajillaxgvi
     var newId = document.getElementById('caseId').value;
 
-    var  newCaseName = document.getElementById('name').value;
-    var  newPhone = document.getElementById('phone').value;
-    var  newEmail = document.getElementById('email').value;
-    var  newAddress = document.getElementById('address').value;
-    var  newCompany = document.getElementById('company').value;
-    var newTitle = document.getElementById('title').value;
+    let  newCaseName = document.getElementById('name').value;
+    let  newPhone = document.getElementById('phone').value;
+    let  newEmail = document.getElementById('email').value;
+    let  newAddress = document.getElementById('address').value;
+    let  newCompany = document.getElementById('company').value;
+    let  newTitle = document.getElementById('title').value;
 
     // Ene 1 mur Boloroo egchin codond ajillaxgvi
-    var newStatus = document.getElementById('caseStatus').value;
+    let newStatus = document.getElementById('caseStatus').value;
 
-    var newName = document.getElementById('birthDay').value;
-    var newSex = document.getElementById('sex').value;
-    var newMarital = document.getElementById('marritalSta').value;
-    var newDriverli = document.getElementById('driverLi').value;
-    var newEmergencyname = document.getElementById('emergencyName').value;
-    var newEmergencyphone = document.getElementById('emergencyPhone').value;
-    var newEmergencywho = document.getElementById('emergencyWho').value;
+    let newName = document.getElementById('birthDay').value;
+    let newSex = document.getElementById('sex').value;
+    let newMarital = document.getElementById('marritalSta').value;
+    let newDriverli = document.getElementById('driverLi').value;
+    let newEmergencyname = document.getElementById('emergencyName').value;
+    let newEmergencyphone = document.getElementById('emergencyPhone').value;
+    let newEmergencywho = document.getElementById('emergencyWho').value;
 
     // Ene neg mur Boloroo egchin codond ajillaxgvi
-    var newContent1 = { id: newId, caseName: newCaseName, type: newPhone, where: newEmail, date: newAddress, payment: newCompany, paymentStatus: newTitle, status: newStatus };
+    let newContent1 = { id: newId, caseName: newCaseName, type: newPhone, where: newEmail, date: newAddress, payment: newCompany, paymentStatus: newTitle, status: newStatus };
    
     //ene code tanix deeer ajillana
     //let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
-    var newContent2 = { birthday: newName, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
+    let newContent2 = { name: newName, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
     
     database.ref('/clients/data/contents/' +idOfCase).set(newContent1);
     database.ref('/clients/data/details/' +idOfCase).set(newContent2);
 
-    location.reload();
-
-
+    document.getElementById('about-content').style.display="none";
+    var getEl = document.getElementById('about-content-container');
+    getEl.innerHTML="";
+    
 
 }

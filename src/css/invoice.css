@@ -1,8 +1,57 @@
-       
+.invoice-main-content-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	padding: 2%;
+	border: 0.3px solid rgb(142, 191, 255);
+	margin-top: 100px;
+}
+.header-buttons button {
+	width: 120px;
+	height: 30px;
+}
+.invoice-header {
+	
+	height: 50px;
+}
+.invoice-header span:nth-child(1){
+	font-size: 30px;
+}
+.invoice-header span:nth-child(2){
+	float: right;
+}
+.header-buttons button:nth-child(1){
+	color: white;
+	background-color: #17b3a3;
+    border: 0.3px solid #17b3a3;
+    outline-style: none;
+    transition: background-color 0.4s;
+}
+.header-buttons button:nth-child(1):hover{
+	color:#17b3a3;
+    background-color:  white;
+}
+.header-buttons button:nth-child(2){
+	margin-left: 10px;
+	color: white;
+	background-color:#faa700;
+    border: 0.3px solid #faa700;
+    outline-style: none;
+    transition: background-color 0.4s;
+}
+.header-buttons button:nth-child(2):hover{
+	color:#faa700;
+    background-color:  white;
+}
+
+
+
 table { 
-	width: 750px; 
+	
+	width: 100%; 
 	border-collapse: collapse; 
-	margin:50px auto;
+	margin-left: auto;
+	margin-right: auto;
 	}
 
 /* Zebra striping */
@@ -28,9 +77,11 @@ Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
+
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
+
 
 	table { 
 	  	width: 100%; 
