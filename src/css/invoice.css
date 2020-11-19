@@ -1,3 +1,6 @@
+*{
+	box-sizing: border-box;
+}
 .invoice-main-content-container {
 	margin-left: auto;
 	margin-right: auto;
@@ -6,18 +9,23 @@
 	border: 0.3px solid rgb(142, 191, 255);
 	margin-top: 100px;
 }
+button:hover{
+	cursor: pointer;
+}
 .header-buttons button {
 	width: 120px;
 	height: 30px;
 }
 .invoice-header {
-	
+	align-items: center;
 	height: 50px;
 }
 .invoice-header span:nth-child(1){
 	font-size: 30px;
 }
 .invoice-header span:nth-child(2){
+	margin-top: 8px;
+	font-size: 20px;
 	float: right;
 }
 .header-buttons button:nth-child(1){
@@ -43,13 +51,49 @@
 	color:#faa700;
     background-color:  white;
 }
-
-
-
+.name-content-container{
+	display: flex;
+	margin-top: 20px;
+	width: 100%;
+	height: 130px;
+	
+}
+.name-content-left{
+	width: 50%;
+	
+}
+.name-content-left span:nth-child(3){
+	color: #3b5999;
+	font-size: 25px;
+}
+.name-content-right{
+	
+	width: 50%;
+	text-align: end;
+	
+}
+.name-content-right span:nth-child(3){
+	color: #3b5999;
+	font-size: 25px;
+}
+.tableContent{
+	margin-top: 20px;
+}
+.name-content-bordered{
+	background-color: white;
+	color: #3b5999;
+	align-items: center;
+	border: 0.3px solid  black ;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	height: 30px;
+}
 table { 
 	
 	width: 100%; 
 	border-collapse: collapse; 
+	
 	margin-left: auto;
 	margin-right: auto;
 	}
@@ -60,7 +104,7 @@ tr:nth-of-type(odd) {
 	}
 
 th { 
-	background: #3498db; 
+	background:  #3b5999;; 
 	color: white; 
 	font-weight: bold; 
 	}
