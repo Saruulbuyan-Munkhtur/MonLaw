@@ -386,7 +386,8 @@ function convertToObject(formArr,keysId){
 // console.log(userSave);
 //                                           --- EXAMPLE END ---                           
 
-     var user ;
+
+//                                           --- Firebase ---
 
 var informationRef = firebase.database().ref("informations/information");
          
@@ -395,12 +396,6 @@ informationRef.on('value', function(snapshot) {
    // console.log(informationRef);
    // clients ruu usreh yostoi 
 });
-// informationRef.push({ name : "azzaya"});
-// user = {age : 19};
-// user.print();
-user = document.getElementById('hehe');
-console.log(user);
-user.innerHTML = 'hoho';
 
 function sendInformationData(data){
    informationRef.push(data);
