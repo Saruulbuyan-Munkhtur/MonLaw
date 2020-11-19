@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="../../src/css/task.css" />
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous"
+    />
+</head>
+
+<body>
+    <div class="task">
+        <div class="task-head">
+            <form>
+                <input id="task-filter" placeholder="filter by task name"></h3>
+                <input id="sort-task-status" placeholder="Sort by task status"></h3>
+            </form>
+            <div>
+                <button><i class="fa fa-plus" onclick="taskNew()"></i>&nbsp;&nbsp;&nbsp;&nbsp;Таск нэмэх
+                </button>
+            </div>
+        </div>
+        <div class="task-container">
+            <div class="task-open-col">
+                <div class="task-open">
+                    <p>Open</p>
+                </div>
+                <div class="task-open-add">
+                    
+                </div>
+            </div>
+            <div class="task-progress-col">
+                <div class="task-progress">
+                    <p>In Progress</p>
+                </div>
+                <div class="task-progress-add">
+                </div>
+            </div>
+            <div class="task-completed-col">
+                <div class="task-completed">
+                    <p>Completed</p>
+                </div>
+                <div class="task-completed-add">
+                </div>
+            </div>
+            <div class="task-add-container">
+                <div class="task-add-form">
+                    <form>
+                        <input placeholder="Ажлын нэр">
+                    </form>
+                    <span class="task-priority">
+                        <i class="fa fa-flag" onclick = "taskPriority()"></i>
+                        <div class="priority-group">
+                            <div class="task-priority-high">
+                                <i class="fa fa-flag">
+                                <span>Яаралтай</span></i>
+                            </div>
+                            <hr>
+                            <div class="task-priority-normal">
+                                <i class="fa fa-flag">
+                                <span>Хэвийн</span></i>
+                            </div>
+                            <hr>
+                            <div class="task-priority-low">
+                                <i class="fa fa-flag">
+                                <span>Яаралгүй</span></i>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="task-status">
+                        <i class="fa fa-check-square-o"></i>
+                    </span>
+                    <span class="task-start">
+                        <i class="fa fa-calendar-check-o "></i>
+                    </span>
+                    <span class="task-due">
+                        <i class="fa fa-calendar-times-o"></i>
+                    </span>
+                    <span class="task-delete">
+                        <i class="fa fa-trash-o "></i>
+                    </span>
+                    <button id="taskSave">Хадгалах</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/task.js"></script>
+</body>
+
+</html>

@@ -7,43 +7,42 @@ var data =[
             {priority: "Яаралтай", status: 2, taskName: "Task4", start:"20201119", due: "20201120"},
             {priority: "Яаралтай", status: 2, taskName: "Task5", start:"20201119", due: "20201120"},
             {priority: "Яаралтай", status: 3, taskName: "Task1", start:"20201119", due: "20201120"}
-          
 ]
 
 // var taskPri = document.getElementsByClassName("task-priority");
 // var taskPriHigh = document.getElementsByClassName("task-priority-high");
-// var taskPriorityStatus = document.getElementById("task-priority-status");
+var taskPriorityStatus = document.getElementsByClassName("priority-group");
+
 // taskPriorityStatus.addEventListener("click",function(e){
 //     console.log(e.target.parentNode.className);
-//     if(e.target.parentNode.className ==="btnGroup"){
+//     if(e.target.parentNode.className ==="priority-group"){
 //         if(e.target.innerText === "Яаралтай"){
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.add("textRed");
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.remove("textCyan");
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textRed");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
 //         }
 //         else if(e.target.innerText === "Хэвийн"){
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.add("textCyan");
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textBlue");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
 //         }
 //         else {
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.remove("textCyan");
-//             e.target.parentNode.parentNode.parentNode.parentNode.children[0].classList.add("textGreen");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
+//             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textGreen");
 //         }
 //     }
 // });
-// function taskPriority(){
-   
-//     taskPriorityStatus.style.display = "block";
+function taskPriority(){
     
-// }
-
-// function taskStatus(){
-//     var taskSta = document.getElementById("task-status");
-//     console.log(taskSta);
-//     taskSta.style.display = "block";
-// }
+    taskPriorityStatus.style.display = "block";
+    console.log("clicked");
+}
+function taskStatus(){
+    var taskSta = document.getElementById("task-status");
+    console.log(taskSta);
+    taskSta.style.display = "block";
+}
 createTask();
 function createTask(){
     var createOpen = document.getElementById("task-open-add");
@@ -80,6 +79,9 @@ function createTask(){
         else {
             createCompleted.insertAdjacentHTML("beforeend",createBox);
         }
-        console.log(createOpen);
     }
+}
+function taskNew(){
+    var addContainer = document.getElementsByClassName("task-add-container");
+    addContainer.style.display="block";
 }

@@ -5,18 +5,39 @@
 }
 .task{
     background-color: thistle;
+    padding-left: 10%;
 }
-.task-head{
+#sort-task-status{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.task-head {
     display: flex;
-    align-content: space-between;
+}
+.task-head i{
+    font-size: 20px;
+    cursor: pointer;
+    padding-left: 15px;
+}
+.task-head button{
+    width: 150px;
+    height: 40px;
+    box-shadow: 5px 7px 10px gray;
+    font-size: 16px;
+    background-color: #1877F2;
+    color:white;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+.task-head button:hover{
+    background-color: #105ec4;
 }
 h3 {
     color: black;
 }
 .task-container {
     margin-top: 20px;
-    margin-left: 15px;
-    margin-right: 15px;
     width: 2850px;
     display: flex;
     background-color: ghostwhite;
@@ -123,8 +144,6 @@ h3 {
     margin-right: 8px;
     height: 70px;
 }
-
-/* SUUDER */
 .task-completed:hover {
     box-shadow: gray 5px 5px 5px 5px;
 }
@@ -139,6 +158,91 @@ h3 {
     font-size: 26px;
     margin-top: 16px;
 }
-#new-task-board form{
-    width: 200px;
+
+.task-add-container{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    cursor: pointer;
+    top:0;
+    /* align-items: center;
+    justify-content: center; */
+}   
+.task-add-form{
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 2%;
+    height: 150px;
+    padding-top: 2%;
+    position: absolute;
+    left:35%;
+    top:300px;
+    
+    
+}
+
+.task-add-form form{
+    padding-bottom: 13%;
+}
+.task-add-form input{
+    width: 250px;
+    height: 30px;
+    outline: none;
+    padding-left: 6px;
+}
+.task-add-form i{
+    font-size: 20px;
+    cursor: pointer;
+}
+.task-status, .task-start, .task-due, .task-delete{
+    padding-left: 3%;
+    padding-right: 3%;
+    
+}
+#taskSave{
+    background-color: #1877F2;
+    color:white;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 70px;
+    height: 30px;
+}
+.priority-group{
+    width: 150px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 5px 10px 18px #1877F2;
+    position: absolute;
+    /* display: none; */
+}
+.task-priority-high:hover, .task-priority-normal:hover, .task-priority-low:hover{
+    background-color: rgb(216, 216, 216);
+}
+.textRed{
+    color: red;
+}
+.textBlue{
+    color: #1877F2;
+}
+.textGreen{
+    color: lightgreen;
+}
+.task-priority-high i{
+    color: red;
+}
+.task-priority-normal{
+    color: #1877F2;
+}
+.task-priority-low{
+    color:lightgreen;
+}
+.priority-group span{
+    color: rgb(63, 62, 62);
+}
+.task-delete{
+    color: red;
 }
