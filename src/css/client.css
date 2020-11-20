@@ -36,8 +36,6 @@
     border: 0.5px solid gray;
     box-shadow: 10px 10px 18px #888888;
 }
-
-
 .dropdownBarIcon{
     font-size: 30px;
     cursor: pointer;
@@ -48,24 +46,24 @@
 #dropdownBorderTri{
     width: fit-content;
     content: " ";
-    position: relative;
-    left: 88%;
-    border-width: 6px;
+    position: absolute;
+    left: 100%;
+    top:40%;
+    border-width: 8px;
     border-style: solid;
-    border-color: transparent transparent #007cba transparent;
+    border-color: transparent transparent  transparent #007cba;
 }
 .dropdown-client-file{
     position: absolute;
-    right: 3%;
+    right: 5%;
     width: auto;
     height: 60px;
-    
 }
-.dropdown-client-file .dropdown-content {
+.dropdown-content {
     display: none; 
     position: relative;
-    top: 60%;
-    right:6%;
+    bottom: 25%;
+    right:35%;
     width: 110%;
     color:rgb(105, 102, 102);
     border-radius: 4px;
@@ -79,9 +77,10 @@
 } 
 .dropdown-content .fa-plus-square-o{
     margin-top: 7px;
-    margin-bottom: 7px;
     font-weight: 550;
     cursor: pointer;
+    height: 30px;
+    
 }
 .dropdown-content .fa-plus-square-o:hover{
     color: #0bb2d4;     
@@ -99,10 +98,7 @@
 .dropdownIcon{
     border: 1px solid #0bb2d4;
     border-radius: 4px;
-    height: 60px;
-    padding-left: 5%;
-    padding-top: 3%;
-    margin: 0px;
+    height: 65px;
 }
 
 /* ******************************Case****************************** */

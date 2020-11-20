@@ -124,3 +124,6 @@ taskCalendar.addEventListener("click", function(){
 function taskClose(){
     taskAddContainer.style.display="none";
 }
+function taskSaveButton(){
+    taskAddContainer.style.display="none";
+}
