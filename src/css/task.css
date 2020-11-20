@@ -4,15 +4,13 @@
     box-sizing: border-box;
 }
 .task{
-    background-color: thistle;
-    padding-left: 10%;
-}
-#sort-task-status{
-    margin-left: 40px;
-    margin-right: 40px;
+    width: 100%;
+    margin:0px;
+    display: inline; 
 }
 .task-head {
-    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
 }
 .task-head i{
     font-size: 20px;
@@ -37,15 +35,14 @@ h3 {
     color: black;
 }
 .task-container {
-    margin-top: 20px;
-    width: 2850px;
+    margin-top: 40px;
+    width: 100%;
     display: flex;
-    background-color: ghostwhite;
     height: 800px;
+    gap: 50px;
 }
 .task-open-col {
     width: 350px;
-    background-color: whitesmoke;
 }
 .task-open{
     display: flex;
@@ -53,9 +50,8 @@ h3 {
 .task-open {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10px;
     border: 2px solid black;
-    background-color: white;
+    background-color: rgb(241, 234, 234);
     border-bottom-color: white;
     border-right-color: white;
     border-left-color: white;
@@ -64,6 +60,8 @@ h3 {
     border-radius: 10px;
     margin-right: 8px;
     height: 70px;
+    box-shadow: 5px 10px 15px #9b9c9c;
+    
 }
 .task-open:hover {
     box-shadow: gray 5px 5px 5px 5px;
@@ -76,33 +74,33 @@ h3 {
     margin-top: 16px;
 }
 #new-task-board{
-    margin-top: 20px;
+    padding-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10px;
+    padding-left: 30px;
     background-color: white;
     border-radius: 10px;
     margin-right: 8px;
     height: 100px;
+    box-shadow: 5px 10px 15px #9b9c9c;
+    
 }
-
-.task-progress-col {
-    width: 350px;
-    background-color: whitesmoke;
+#new-task-board:hover{
+    box-shadow: 8px 12px 50px #4b4a4a;
+}
+#board-task-icon{
+    margin-top: 20px;
     
 }
 
-.task-completed-col {
+.task-progress-col, .task-completed-col{
     width: 350px;
-    background-color: whitesmoke;
-    
 }
-
+ 
 .task-progress {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10px;
     border: 4px solid black;
-    background-color: white;
+    background-color: rgb(236, 241, 243);
     border-bottom-color: white;
     border-right-color: white;
     border-left-color: white;
@@ -111,6 +109,8 @@ h3 {
     border-radius: 10px;
     margin-right: 8px;
     height: 70px;
+    box-shadow: 5px 10px 15px #9b9c9c;
+    
 }
 
 .task-progress:hover {
@@ -132,9 +132,8 @@ h3 {
 .task-completed {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10px;
     border: 4px solid black;
-    background-color: white;
+    background-color: rgb(241, 247, 241);
     border-bottom-color: white;
     border-right-color: white;
     border-left-color: white;
@@ -143,6 +142,7 @@ h3 {
     border-radius: 10px;
     margin-right: 8px;
     height: 70px;
+    box-shadow: 5px 10px 15px #9b9c9c;
 }
 .task-completed:hover {
     box-shadow: gray 5px 5px 5px 5px;
@@ -159,7 +159,7 @@ h3 {
     margin-top: 16px;
 }
 
-.task-add-container{
+#task-add-container{
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -170,35 +170,27 @@ h3 {
     /* align-items: center;
     justify-content: center; */
 }   
-.task-add-form{
-    width: 350px;
-    background-color: white;
-    border-radius: 10px;
-    padding-left: 2%;
-    height: 150px;
-    padding-top: 2%;
-    position: absolute;
-    left:35%;
-    top:300px;
-}
-
-.task-add-form form{
-    padding-bottom: 13%;
-}
-.task-add-form input{
-    width: 250px;
-    height: 30px;
-    outline: none;
-    padding-left: 6px;
-}
-.task-add-form i{
-    font-size: 20px;
+.fa-times{
+    padding-left: 92%;
     cursor: pointer;
 }
-.task-status, .task-start, .task-due, .task-delete{
+.task-add-form{
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
     padding-left: 3%;
-    padding-right: 3%;
-    
+    height: 200px;
+    padding-top: 1%;
+    position: absolute;
+    left:30%;
+    top:300px;
+    box-shadow: 5px 10px 18px #cdcfd1;
+}
+#taskAddInput{
+    width: 350px;
+    height: 40px;
+    outline: none;
+    padding-left: 6px;
 }
 #taskSave{
     background-color: #1877F2;
@@ -210,15 +202,20 @@ h3 {
     height: 30px;
 }
 .priority-group{
-    width: 150px;
+    width: 200px;
+    height: 100px;
     background-color: white;
     border-radius: 3px;
-    box-shadow: 5px 10px 18px #1877F2;
+    box-shadow: 5px 10px 18px #cdcfd1;
     position: absolute;
-    /* display: none; */
+    display: none;
 }
 .task-priority-high:hover, .task-priority-normal:hover, .task-priority-low:hover{
     background-color: rgb(216, 216, 216);
+}
+.task-priority-high, .task-priority-normal, .task-priority-low{
+    padding-top: 0px;
+    height: 33px;
 }
 .textRed{
     color: red;
@@ -244,8 +241,41 @@ h3 {
 .task-delete{
     color: red;
 }
-.task-open-add{
-    width: 350px;
+.status-group{
+    width: 200px;
     height: 100px;
-    border: 1px solid red;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 5px 10px 18px #cdcfd1;
+    position: absolute;
+    /* margin-left: 30px; */
+    display: none;
+}
+.task-status-open:hover, .task-status-progress:hover, .task-status-completed:hover{
+    background-color: rgb(216, 216, 216);
+}
+.task-status-open, .task-status-progress, .task-status-completed{
+    padding-top: 0px;
+    height: 33px;
+}
+.task-status-open i{
+    color: red;
+}
+.task-status-progress i{
+    color: #1877F2;
+}
+.task-status-completed i{
+    color:lightgreen;
+}
+#task-startday, #task-dueday{
+    width: 100px;
+    position: absolute;
+    display: none;
+}
+#task-icons{
+    display: flex;
+    gap: 40px;
+    cursor: pointer;
+    margin-top: 20%;
+    font-size: 20px;
 }

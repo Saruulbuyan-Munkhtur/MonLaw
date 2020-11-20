@@ -8,46 +8,70 @@ var data =[
             {priority: "Яаралтай", status: 2, taskName: "Task5", start:"20201119", due: "20201120"},
             {priority: "Яаралтай", status: 3, taskName: "Task1", start:"20201119", due: "20201120"}
 ]
-
+var taskAddContainer = document.getElementById("task-add-container");
 var taskPri = document.getElementsByClassName("task-priority");
 var taskPriHigh = document.getElementsByClassName("task-priority-high");
-var taskPriorityStatus = document.getElementsByClassName("priority-group");
+var taskPriorityStatus = document.getElementsByClassName("priority-group")[0];
+var taskStatusEl = document.getElementsByClassName("status-group")[0];
 
-// taskPriorityStatus.addEventListener("click",function(e){
-//     console.log(e.target.parentNode.className);
-//     if(e.target.parentNode.className ==="priority-group"){
-//         if(e.target.innerText === "Яаралтай"){
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textRed");
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
-//         }
-//         else if(e.target.innerText === "Хэвийн"){
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textBlue");
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
-//         }
-//         else {
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
-//             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textGreen");
-//         }
-//     }
-// });
 function taskPriority(){
-    
     taskPriorityStatus.style.display = "block";
-    console.log("clicked");
 }
+
+taskPriorityStatus.addEventListener("click",function(e){
+    // console.log(e.target.parentNode.className);
+    if(e.target.parentNode.parentNode.className ==="priority-group"){
+        if(e.target.innerText === "Urgent"||e.target.parentNode.className ==="task-priority-high"){
+            e.target.parentNode.parentNode.parentNode.children[0].classList.add("textRed");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
+        }
+        else if(e.target.innerText === "Normal"||e.target.parentNode.className ==="task-priority-normal"){
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.add("textBlue");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
+        }
+        else {
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.add("textGreen");
+        }
+    }
+    taskPriorityStatus.style.display="none";
+});
+
 function taskStatus(){
-    var taskSta = document.getElementById("task-status");
-    console.log(taskSta);
-    taskSta.style.display = "block";
+    taskStatusEl.style.display = "block";
 }
+
+taskStatusEl.addEventListener("click",function(e){
+    // console.log(e.target.parentNode.className);
+    if(e.target.parentNode.parentNode.className ==="status-group"){
+        if(e.target.innerText === "Open"||e.target.parentNode.className==="task-status-open"){
+            e.target.parentNode.parentNode.parentNode.children[0].classList.add("textRed");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
+        }
+        else if(e.target.innerText === "In progress"||e.target.parentNode.className==="task-status-progress"){
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.add("textBlue");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
+        }
+        else {
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
+            e.target.parentNode.parentNode.parentNode.children[0].classList.add("textGreen");
+        }
+    }
+    taskStatusEl.style.display = "none";
+    console.log(taskStatusEl);
+});
+
 createTask();
 function createTask(){
-    var createOpen = document.getElementsByClassName("task-open-add");
-    var createProgress = document.getElementsByClassName("task-progress-add");
-    var createCompleted = document.getElementsByClassName("task-completed-add");
+    var createOpen = document.getElementById("task-open-add");
+    var createProgress = document.getElementById("task-progress-add");
+    var createCompleted = document.getElementById("task-completed-add");
     var divEl= document.createElement("div");
     var i = 0;
     var createBox;
@@ -59,7 +83,7 @@ function createTask(){
                         <input value = ${data[i].taskName} >  
                     </form>
                 </div>
-                <div id="task-icon">
+                <div id="board-task-icon">
                     <span class="task-priority">
                         ${data[i].priority}
                     </span>
@@ -82,7 +106,21 @@ function createTask(){
         }
     }
 }
-function taskNew(){
-    var addContainer = document.getElementsByClassName("task-add-container");
-    addContainer.style.display="block";
+
+function taskNewButton(){
+    taskAddContainer.style.display="block";
+}
+
+function taskStart(){
+    let taskCalendar = document.getElementById("task-startday");
+    taskCalendar.style.display = "block";
+}
+var taskStartDate;
+taskCalendar.addEventListener("click", function(){
+    console.log(taskCalendar.input.value);
+    taskStartDate = taskCalendar.input.value;
+    taskCalendar.style.display="none";
+});
+function taskClose(){
+    taskAddContainer.style.display="none";
 }
