@@ -365,9 +365,13 @@ function prevClicked(){
 }
 
 function nextClicked(){
+    var pageCount = numPages(data.contents.length, parseInt(entriesNumber.value));
+    pageClick[0].classList.remove("active");
+    pageClick[1].classList.add("active");
+    console.log(pageClick[2]);  
     
-    console.log(pageClick[0].innerText);
     
+
     let startEls = parseInt(document.getElementById("startElements").innerText);
     let start = startEls-1 + parseInt(entriesNumber.value);
     let endEl = start+parseInt(entriesNumber.value); 
