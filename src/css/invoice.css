@@ -55,31 +55,87 @@ button:hover{
 	display: flex;
 	margin-top: 20px;
 	width: 100%;
-	height: 130px;
+	height: 140px;
+	justify-content: space-between;
 	
 }
 .name-content-left{
-	width: 50%;
+	width: 40%;
 	
+}
+.footer-content{
+	margin-top: 20px;
+	text-align: right;
+}
+.footerButton{
+	text-align: right;
+}
+#SubmitPayment{
+	color: white;
+	background-color: #17b3a3;
+    border: 0.3px solid #17b3a3;
+    outline-style: none;
+	transition: background-color 0.4s;
+	height: 40px;
+	width: 100px;
+	
+}
+#SubmitPayment:hover{
+    color:#17b3a3;
+    background-color:  white;
+}
+.footer-content span:nth-child(1){
+	font-weight: bold;
+	font-size: 18px;
+}
+.footer-content span:nth-child(4){
+	font-size: 16px;
+}
+.footer-content span:nth-child(7){
+	font-size: 16px;
+}
+#total{
+	font-size: 22px;
+	font-weight: bold;
+}
+.name-content-left span{
+	margin-top: 400px;
 }
 .name-content-left span:nth-child(3){
 	color: #3b5999;
 	font-size: 25px;
 }
-.name-content-right{
-	
-	width: 50%;
-	text-align: end;
-	
+.name-content-left span:nth-child(5){
+	font-size: 15px;
+}
+
+.name-content-left span:nth-child(9){
+	font-size: 12px;
 }
 .name-content-right span:nth-child(3){
 	color: #3b5999;
 	font-size: 25px;
 }
-.tableContent{
+.name-content-right span:nth-child(5){
+	font-size: 15px;
+}
+
+.name-content-right span:nth-child(9){
+	font-size: 12px;
+}
+
+.name-content-right{
+	
+	width: 40%;
+	text-align: end;
+	
+}
+
+#tableContent{
 	margin-top: 20px;
 }
 .name-content-bordered{
+	margin-top: 20px;
 	background-color: white;
 	color: #3b5999;
 	align-items: center;
