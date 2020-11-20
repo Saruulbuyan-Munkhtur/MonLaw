@@ -74,24 +74,24 @@ function showTable(){
 function downloadPdf(){
 
     const element = document.getElementById("mainContentContainer");
-    html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element);
-    console.log(html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element));
+    html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element).save();
+    
 }
 
-function printIt(){
+// function printIt(){
 
-    // const element = document.getElementById("mainContentContainer");
-    // objFra.src = html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element);                  
+//     // const element = document.getElementById("mainContentContainer");
+//     // objFra.src = html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element);                  
 
-    // let objFra = document.createElement('iframe');     
-    // objFra.style.visibility = 'hidden';                
+//     // let objFra = document.createElement('iframe');     
+//     // objFra.style.visibility = 'hidden';                
    
-    // document.body.appendChild(objFra);  
-    // objFra.contentWindow.focus();
-    // objFra.contentWindow.print();      
+//     // document.body.appendChild(objFra);  
+//     // objFra.contentWindow.focus();
+//     // objFra.contentWindow.print();      
     
-}
-function sendInvoice(){
+// }
+// function sendInvoice(){
     
-}
+// }
 
