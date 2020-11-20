@@ -9,8 +9,8 @@ var data =[
             {priority: "Яаралтай", status: 3, taskName: "Task1", start:"20201119", due: "20201120"}
 ]
 
-// var taskPri = document.getElementsByClassName("task-priority");
-// var taskPriHigh = document.getElementsByClassName("task-priority-high");
+var taskPri = document.getElementsByClassName("task-priority");
+var taskPriHigh = document.getElementsByClassName("task-priority-high");
 var taskPriorityStatus = document.getElementsByClassName("priority-group");
 
 // taskPriorityStatus.addEventListener("click",function(e){
@@ -45,9 +45,10 @@ function taskStatus(){
 }
 createTask();
 function createTask(){
-    var createOpen = document.getElementById("task-open-add");
-    var createProgress = document.getElementById("task-progress-add");
-    var createCompleted = document.getElementById("task-completed-add");
+    var createOpen = document.getElementsByClassName("task-open-add");
+    var createProgress = document.getElementsByClassName("task-progress-add");
+    var createCompleted = document.getElementsByClassName("task-completed-add");
+    var divEl= document.createElement("div");
     var i = 0;
     var createBox;
     for(i in data){

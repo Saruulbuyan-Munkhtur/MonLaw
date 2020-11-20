@@ -180,8 +180,6 @@ h3 {
     position: absolute;
     left:35%;
     top:300px;
-    
-    
 }
 
 .task-add-form form{
@@ -245,4 +243,9 @@ h3 {
 }
 .task-delete{
     color: red;
+}
+.task-open-add{
+    width: 350px;
+    height: 100px;
+    border: 1px solid red;
 }

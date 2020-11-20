@@ -57,7 +57,6 @@ var records_per_page = 2;
 var entriesNumber = document.getElementById("entries"); 
 var prevClick = document.getElementById("btn-prv");
 var start = 0;
-var preBtn = document.getElementById("btn-prv");
 var nextBtn = document.getElementById("btn-next");
 
 
@@ -275,12 +274,9 @@ function saveIt(x){
     let i = data.contents.indexOf(x);
     data.contents[i] = newContent1;
     view(newContent1);
-    // clientSaveMessage();
     closeIt();
 }
-// clientSaveMessage(){
 
-// }
 function closeIt(){
     document.getElementById('view-background').style.display="none";
     createEl1.innerHTML= "";
@@ -315,20 +311,19 @@ function companyFilter(){
     var newData = data.contents.filter(n => n.company.toLowerCase().includes(inputCompany.value));
     showTable(newData);
 }
+var paginationQuery = document.getElementById("btn-pages");
+var pageClick=document.getElementsByClassName('pagination-span');
 
-function selectedEntries(pageCount){
+
+function selectedEntries(){
     var i = 0;
-    var paginationQuery = document.getElementById("btn-pages");
     for(var i in data.contents){
         k = data.contents[i].id;
-        if(k >= entriesNumber.value)
-            showSelectedEntries = data.contents.slice(0,entriesNumber.value);
+        if(k >= parseInt(entriesNumber.value))
+            showSelectedEntries = data.contents.slice(0,parseInt(entriesNumber.value));
     }
     showTable(showSelectedEntries);
-
-//**************Pagination Show heseg******************
-
-    var pageCount = numPages(data.contents.length, entriesNumber.value);
+    var pageCount = numPages(data.contents.length, parseInt(entriesNumber.value));
     paginationQuery.innerHTML = ""; 
     paginationQuery.innerHTML +='\
         <span class="pagination-span active">\
@@ -342,7 +337,6 @@ function selectedEntries(pageCount){
                 <div>' + (j+1) + '</div>\
             </span>';
     }
-    var pageClick=document.getElementsByClassName('pagination-span');
     
     for(j=0; j<pageCount; j++) {
         pageClick[j].addEventListener('click', function(ev){
@@ -355,26 +349,10 @@ function selectedEntries(pageCount){
             
         showTable(showActiveTable); 
         });  
-       
-        // for (var i in pageClick.length){
-        //     if (pageClick[i] === preEnd / parseInt(entriesNumber.value)
-    
-        
     }
 }
 function prevClicked(){
-    selectedEntries(pageCount);
-    console.log("ff"+ pageCount);
-    for (var i in selectedEntries(pageCount)){
-        
-    }
-//   if (pageCount[j] === prevClicked(preEnd)/parseInt(entriesNumber.value)){
-                
-//             }
-    // var currentActivePage = document.getElementsByClassName("active");
-    // currentActivePage[0].className = currentActivePage[0].className.replace(" active", "");
-    // this.className += " active";
-    var startEls = parseInt(document.getElementById("startElements").value);
+    var startEls = parseInt(document.getElementById("startElements").innerText);
     var startEl = startEls - 1;
     var start = startEl - parseInt(entriesNumber.value);
     if (start < 0)
@@ -387,12 +365,16 @@ function prevClicked(){
 }
 
 function nextClicked(){
+    
+    console.log(pageClick[0].innerText);
+    
     let startEls = parseInt(document.getElementById("startElements").innerText);
-    let start = startEls + parseInt(entriesNumber.value);
-    let endEl = start-1 
+    let start = startEls-1 + parseInt(entriesNumber.value);
+    let endEl = start+parseInt(entriesNumber.value); 
+    
     if (endEl > data.contents.length)
         endEl = data.contents.length;
-    var nextStart = endEl-1;
+    var nextStart = start;
     var nextEnd = endEl;
     var nextShow = data.contents.slice(nextStart, nextEnd);
 
@@ -479,6 +461,4 @@ function exportFileExl(filename = ''){
 function numPages(totalLength, pageView){
     return Math.ceil(totalLength/pageView);
 }
-window.onload = function() {
-    changePage(numPages(1).value);
-};
+
