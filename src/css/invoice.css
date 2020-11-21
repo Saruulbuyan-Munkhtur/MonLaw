@@ -745,10 +745,7 @@
   
   
   /* invoice css included */
-  
-  .main__container {
-	
- }
+ 
   
   .invoice-main-content-container {
 	  margin-left: 3%;
@@ -757,6 +754,9 @@
 	  padding: 2%;
 	  border: 0.3px solid rgb(142, 191, 255);
 	  margin-top: 50px;
+  }
+  thead>tr>th:nth-child(1){
+	  width: 2%;
   }
   button:hover{
 	  cursor: pointer;
@@ -920,6 +920,7 @@
 	  text-align: left; 
 	  font-size: 18px;
 	  }
+ 
   
   
   
