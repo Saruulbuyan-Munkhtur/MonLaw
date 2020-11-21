@@ -1,4 +1,5 @@
 :root {
+  
   --light-primary-color: #4834d4;
   --success-color: #6ab04c;
   --warning-color: #f0932b;
@@ -13,7 +14,11 @@
   --dark-color: #909090;
   --dark-second-color: #f5f6fa;
   --dark-background-color: #23242d;
+  /* --dark-background-color: #2a2c3a; */
   --dark-second-background-color: #181818;
+
+
+
 }
 .light {
   --main-bg-color: var(--light-background-color);
@@ -21,6 +26,8 @@
   --main-color: var(--light-color);
   --second-color: var(--light-second-color);
   --main-hover-color: var(--light-hover-color);
+
+
 }
 
 .dark {
@@ -732,3 +739,5 @@ body {
 }
 @media only screen and (max-width: 1200px) {
 }
+
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="../css/invoice.css">
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/html2pdf.bundle.min.js"></script>
+
+    <div class="invoice-main-content-container">
+      <div class="header-buttons">
+        <button id="download-invoice" onclick="downloadPdf()">Download</button>
+        <button id="print-invoice" onclick="printIt()">Print</button>
+        <hr>
+      </div>
+      <div id="mainContentContainer">
+        <div class="invoice-header">
+
+          <span>Invoice</span>
+          <span>2020.02.02</span>
+          <hr>
+        </div>
+        <div class="name-content-container">
+          <div class="name-content-left">
+            <span>Хаанаас</span>
+            <br>
+            <span>MonLaw</span>
+            <br>
+            <span >Direction: #504, Meru Tower, Jamiyan Gun Street 18-2, 14210  Sukhbaatar District, 1st Khoroo Ulaanbaatar, Mongolia  </span>
+            <br>
+            <span >Mail: Info@nest.edu.mnx</span>
+            <span >Phone: +976 7507-7500</span>
+          </div>
+          <div class="name-content-right">
+            <span>Хаана</span>
+            <br>
+            <span id="toWhere"></span>
+            <br>
+            <span id="toWhereDirection"></span>
+            <br>
+            <span id="toMail"></span>
+            <span id="toPhone"></span>
+          </div>
+        </div>
+        <hr>
+        <div class="name-content-bordered">
+          <span id="invoiceId"></span>
+          <span id="orderId"></span>
+          <span id="paymentDue"></span>
+          <span id="accountNumber"></span>
+        </div>
+        <div id="tableContent">
+        </div>   
+        <div class="footer-content">
+          <span id="paymentDues"></span>
+          <br>
+          <br>
+          <span id="totalAmount"></span>
+          <br>
+          <br>
+          <span id="tax"></span>
+          <br>
+          <span id="total"></span>
+          <br>
+          <br>
+        </div>
+      </div>
+      <div class="footerButton">
+        <button id="SubmitPayment" onclick="sendInvoice()">Send Invoice</button>
+      </div>
+    </div>
+    <script src="../js/invoice.js"></script>
+
+</body>
+</html>

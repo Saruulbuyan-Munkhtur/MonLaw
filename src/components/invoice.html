@@ -1,79 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>МОН-ХУУЛЬ Систем</title>
+    
     <link rel="stylesheet" href="../css/invoice.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="light">
+   
+    <!-- Start of Container -->
+    <div class="container">
+      <!-- Start of Navbar -->
+      <nav class="navbar">
+        <div class="navbar__left">
+          <i class="fa fa-bars" onclick="toggleSidebar()"></i>
+        </div>
+        <div class="navbar__right">
+          <div>
+            <i class="fa fa-moon-o switchIcon" onclick="switchTheme()"></i>
+          </div>
+          <div class="notification">
+            <div>
+              <i
+                class="fa fa-bell dropdown-toggle"
+                data-toggle="notification__id"
+              ></i>
+              <!-- <span class="navbar-badge">10</span> -->
+            </div>
+            <div class="notification__id">
+              <div class="notification__header">
+                <h4>Мэдэгдэл</h4>
+                <h5>Бүгдийг арилгах</h5>
+              </div>
+              <ul class="notification__ul">
+                <li>
+                  <div class="notification__icon">
+                    <img width="50" src="../../assets/avatar1.png" alt="" />
+                    <span class="notification__icon__status"></span>
+                  </div>
+                  <div class="notification__data">
+                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <p>Emily : <span>58m</span></p>
+                  </div>
+                </li>
+                <li>
+                  <div class="notification__icon">
+                    <img width="50" src="../../assets/avatar2.png" alt="" />
+                    <span class="notification__icon__status"></span>
+                  </div>
+                  <div class="notification__data">
+                    <h4 class="notification__title">
+                      Lorem ipsum dolor sit amet.
+                    </h4>
+                    <p class="notification__content">
+                      Emily : <span>58m</span>
+                    </p>
+                  </div>
+                </li>
+                <div class="notification__footer">
+                  <p>Бүгдийг харах</p>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="messages">
+            <div>
+              <i 
+                class="fa fa-envelope dropdown-toggle"
+                data-toggle="messages__id"
+              ></i>
+            </div>
+            <div class="messages__id">
+              <div class="messages__header">
+                <h4>Мессеж</h4>
+                <h5>Бүгдийг арилгах</h5>
+              </div>
+              <ul class="messages__ul">
+                <li>
+                  <div class="messages__icon">
+                    <img width="50" src="../../assets/avatar1.png" alt="" />
+                    <span class="messages__icon__status"></span>
+                  </div>
+                  <div class="messages__data">
+                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <p>Emily : <span>58m</span></p>
+                  </div>
+                </li>
+                <li>
+                  <div class="messages__icon">
+                    <img width="50" src="../../assets/avatar2.png" alt="" />
+                    <span class="messages__icon__status"></span>
+                  </div>
+                  <div class="messages__data">
+                    <h4 class="messages__title">Lorem ipsum dolor sit amet.</h4>
+                    <p class="messages__content">Emily : <span>58m</span></p>
+                  </div>
+                </li>
+                <div class="messages__footer">
+                  <p>Бүх мессеж харах</p>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="profile">
+            <div>
+              <img
+                class="dropdown-toggle"
+                data-toggle="profile__id"
+                width="30"
+                src="../../assets/judge.svg"
+                alt="judge"
+              />
+            </div>
+            <div class="profile__id">
+              <div class="profile__header">
+                <img width="70" src="../../assets/avatar3.png" alt="" />
+                <div>
+                  <h4>User name</h4>
+                  <small>email</small>
+                </div>
+              </div>
+              <ul class="profile__ul">
+                <li>
+                  <i class="fa fa-user"></i>
+                  <h5>Миний профайл</h5>
+                </li>
+                <li>
+                  <i class="fa fa-cog"></i>
+                  <h5>Тохиргоо</h5>
+                </li>
+                <li>
+                  <i class="fa fa-power-off"></i>
+                  <h5>Гарах</h5>
+                </li>
+                <div class="profile__footer">
+                  <button>Профайл харах</button>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- End of Navbar -->
+      <!-- Start of Main section -->
+      <section class="main">
+        <div class="main__container">
+          <!-- Start of Change Code -->
+          <div class="invoice-main-content-container">
+            <div class="header-buttons">
+              <button id="download-invoice" onclick="downloadPdf()">Download</button>
+              <button id="print-invoice" onclick="printIt()">Print</button>
+              
+            </div>
+            <hr>
+            <div id="mainContentContainer">
+              <div class="invoice-header">
+                
+                <span>Invoice</span>
+                <span>2020.02.02</span>
+                <hr>
+              </div>
+              <div class="name-content-container">
+                <div class="name-content-left">
+                  <span>Хаанаас</span>
+                  <br>
+                  <span>MonLaw</span>
+                  <br>
+                  <span >Direction: #504, Meru Tower, Jamiyan Gun Street 18-2, 14210  Sukhbaatar District, 1st Khoroo Ulaanbaatar, Mongolia  </span>
+                  <br>
+                  <span >Mail: Info@nest.edu.mnx</span>
+                  <span >Phone: +976 7507-7500</span>
+                </div>
+                <div class="name-content-right">
+                  <span>Хаана</span>
+                  <br>
+                  <span id="toWhere"></span>
+                  <br>
+                  <span id="toWhereDirection"></span>
+                  <br>
+                  <span id="toMail"></span>
+                  <span id="toPhone"></span>
+                </div>
+              </div>
+              <hr>
+              <div class="name-content-bordered">
+                <span id="invoiceId"></span>
+                <span id="orderId"></span>
+                <span id="paymentDue"></span>
+                <span id="accountNumber"></span>
+              </div>
+              <div id="tableContent">
+              </div>   
+              <div class="footer-content">
+                <span id="paymentDues"></span>
+                <br>
+                <br>
+                <span id="totalAmount"></span>
+                <br>
+                <br>
+                <span id="tax"></span>
+                <br>
+                <span id="total"></span>
+                <br>
+                <br>
+              </div>
+            </div>
+            <div class="footerButton">
+              <button id="SubmitPayment" onclick="sendInvoice()">Send Invoice</button>
+            </div>
+          </div>
+          <!-- End of Change Code -->
+        </div>
+      </section>
+      <!-- End of Main section -->
+      <!-- Sidebar Menu -->
+      <aside id="sideBar" style="width: 17rem" class="sidebar">
+        <div class="sidebar__title">
+          <div class="sidebar__img">
+            <img src="../../assets/logoML.png" alt="Logo" />
+            <h1>МОН-ХУУЛЬ</h1>
+          </div>
+          <i class="fa fa-times" id="sidebarIcon" onclick="closeSidebar()"></i>
+        </div>
+        <ul class="sidebar__menu">
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link">
+              <i class="fa fa-home"></i>
+              <span>Үндсэн Самбар</span>
+            </a>
+          </li>
+          <!-- <h3>Мэдээлэл</h3> -->
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link active" href="#">
+              <i class="fa fa-user-secret"></i>
+
+              <span> Миний самбар</span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-building-o"></i>
+              <span>Компани</span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-gavel"></i>
+              <span>Хэргүүд</span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="../components/client.html">
+              <i class="fa fa-users"></i>
+
+              <span> Хэрэглэгчид </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-question"></i>
+              <span> Хүсэлтүүд </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-tasks"></i>
+              <span> Дотоод журам </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-file"></i>
+              <span> Дотоод файл </span>
+            </a>
+          </li>
+          <!-- <h3>Санхүү</h3> -->
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-money"></i>
+              <span> Цалин </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="#">
+              <i class="fa fa-briefcase"></i>
+              <span> Нэхэмжлэх </span>
+            </a>
+          </li>
+          <li class="sidebar__menu__item">
+            <a
+              class="sidebar__menu__link"
+              href="../components/monlaw_login.html"
+            >
+              <i class="fa fa-power-off"></i>
+              <span>Log out</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End of Sidebar Menu -->
+    </div>
+    <!-- End of Main container -->
+
+    <!-- We Will use apex charts cdn and JS link -->
+    <!-- FIrebase setting script -->
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
     <script src="../js/firebase.js"></script>
+    <!-- FIrebase setting script -->
+    <!-- Additional js libraries -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../js/html2pdf.bundle.min.js"></script>
-
-    <div class="invoice-main-content-container">
-      <div class="header-buttons">
-        <button id="download-invoice" onclick="downloadPdf()">Download</button>
-        <button id="print-invoice" onclick="printIt()">Print</button>
-        <hr>
-      </div>
-      <div id="mainContentContainer">
-        <div class="invoice-header">
-          <span>Invoice</span>
-          <span>2020.02.02</span>
-          <hr>
-        </div>
-        <div class="name-content-container">
-          <div class="name-content-left">
-            <span>Хаанаас</span>
-            <br>
-            <span>MonLaw</span>
-            <br>
-            <span >Direction: #504, Meru Tower, Jamiyan Gun Street 18-2, 14210  Sukhbaatar District, 1st Khoroo Ulaanbaatar, Mongolia  </span>
-            <br>
-            <span >Mail: Info@nest.edu.mnx</span>
-            <span >Phone: +976 7507-7500</span>
-          </div>
-          <div class="name-content-right">
-            <span>Хаана</span>
-            <br>
-            <span id="toWhere"></span>
-            <br>
-            <span id="toWhereDirection"></span>
-            <br>
-            <span id="toMail"></span>
-            <span id="toPhone"></span>
-          </div>
-        </div>
-        <hr>
-        <div class="name-content-bordered">
-          <span id="invoiceId"></span>
-          <span id="orderId"></span>
-          <span id="paymentDue"></span>
-          <span id="accountNumber"></span>
-        </div>
-        <div id="tableContent">
-        </div>   
-        <div class="footer-content">
-          <span id="paymentDues"></span>
-          <br>
-          <br>
-          <span id="totalAmount"></span>
-          <br>
-          <br>
-          <span id="tax"></span>
-          <br>
-          <span id="total"></span>
-          <br>
-          <br>
-        </div>
-      </div>
-      <div class="footerButton">
-        <button id="SubmitPayment" onclick="sendInvoice()">Send Invoice</button>
-      </div>
-    </div>
     <script src="../js/invoice.js"></script>
 
-</body>
+    <!-- Additional js libraries -->
+    <script src="../js/app.js"></script>
+  </body>
 </html>

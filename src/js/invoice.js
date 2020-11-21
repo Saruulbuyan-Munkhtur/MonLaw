@@ -15,6 +15,7 @@ function showTable(){
     getEl.innerHTML="";
     var tableRow = "";
     
+
     var subTotal = 0;
     tableRow='\
          <table id="tableForDownload">\
@@ -27,6 +28,7 @@ function showTable(){
               <th>Нийт төлбөр</th>\
             </tr>\
           </thead>';
+    var count=1;
     for( let i in data){
 
         subTotal=(data[i].quantity * data[i].unitCost);
@@ -34,13 +36,14 @@ function showTable(){
         tableRow+= '\
         <tbody>\
             <tr>\
-            <td id="whatNumber">'+ i +'</td>\
+            <td id="whatNumber">'+count+'</td>\
             <td id="Service Type">'+data[i].serviceType+'</td>\
             <td quantity="Quantity">'+data[i].quantity+'</td>\
             <td unitCost="Unit cost">'+data[i].unitCost+'$</td>\
             <td subTotal="Subtotal">'+subTotal+'$</td>\
             </tr>\
         </tbody>';
+        count++
     };
     tableRow+="</table>";
 
@@ -78,20 +81,15 @@ function downloadPdf(){
     
 }
 
-// function printIt(){
+function printIt() {
+    var printContents = document.getElementById('mainContentContainer').innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
 
-//     // const element = document.getElementById("mainContentContainer");
-//     // objFra.src = html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element);                  
-
-//     // let objFra = document.createElement('iframe');     
-//     // objFra.style.visibility = 'hidden';                
-   
-//     // document.body.appendChild(objFra);  
-//     // objFra.contentWindow.focus();
-//     // objFra.contentWindow.print();      
-    
-// }
-// function sendInvoice(){
-    
-// }
+function sendInvoice(){
+    window.location='https://gmail.com';
+}
 
