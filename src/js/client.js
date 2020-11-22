@@ -1,9 +1,18 @@
+const database = firebase.database();
+var data = {};
+database.ref('client/').on('value', function(snapshot) {
 
+    data = snapshot.val().data; 
+    console.log(data.contents[0].email);
+    showTable(data.contents);
+
+});
 
 var createEl1 = document.createElement('div');
 var createEl2 = document.createElement('div');
 var createEl3_forEdit = document.createElement('div');
 var createEl4_forEdit = document.createElement('div');
+
 //Page iin haruulah utga songoh
 var current_page = 1;
 var records_per_page = 2;
@@ -17,7 +26,7 @@ var nextBtn = document.getElementById("btn-next");
 function showTable(mainData){
     var createEl = document.createElement('div');
     var getEl = document.getElementById("data-content");
-    var tableRows= "";
+    var content ='';
     var datas=mainData;
     getEl.innerHTML="";
     content='\
@@ -43,9 +52,9 @@ function showTable(mainData){
                 <td>'+ datas[i].address + '</td>\
                 <td>'+ datas[i].company + '</td>\
                 <td>'+ datas[i].title + '</td>\
-                <td><i class="fa fa-file-o" onclick="view('+datas[i].id+')"><span id = "view-tooltip">Харах</span></i>\
+                <td><i class="fa fa-file-o" onclick="view('+i+')"><span id = "view-tooltip">Харах</span></i>\
                 </td>\
-                <td><i class="fa fa-pencil-square-o" onclick="edit('+datas[i].id+')"><span id = "edit-tooltip">Өөрчлөх</span></i>\
+                <td><i class="fa fa-pencil-square-o" onclick="edit('+i+')"><span id = "edit-tooltip">Өөрчлөх</span></i>\
                 </td>\
                 <td><i class="fa fa-calendar-plus-o" onclick="hearingDate()"><span id = "appoint-tooltip">Цаг товлох </span></i>\
                 </td>\
@@ -57,7 +66,7 @@ function showTable(mainData){
     getEl.appendChild(createEl);
     
 };
-    showTable(data.contents);
+    
     
 function view(x){
     content1 = "";
@@ -68,7 +77,7 @@ function view(x){
     var datasDetail= data.details;
    
     for(var i in datasContent){
-        if(x == datasContent[i].id){
+        if(x == i){
         content1='\
         <table>\
             <tr>\
@@ -96,7 +105,7 @@ function view(x){
         }
     }
     for(var i in datasDetail){
-        if(x == datasDetail[i].id){  
+        if(x == i){  
             //var con = `<div> ${datasContent[i].id} </div>`; 
             content2='\
             <table>\
@@ -140,7 +149,7 @@ function edit(x){
     var datasContent= data.contents;
     var datasDetail= data.details;
     for(var i in datasContent){
-        if(x == datasContent[i].id){
+        if(x == i){
         content='\
             <table>\
                 <tr>\
@@ -168,7 +177,7 @@ function edit(x){
         }
     }
     for(var i in datasDetail){
-        if(x == datasDetail[i].id){  
+        if(x == i){  
         content2='\
             <table >\
                 <tr>\
@@ -196,7 +205,7 @@ function edit(x){
                     <td><b> Таны хэн болох: </b> <input value="'+ datasDetail[i].who + '" id="emergencyWho"></td>\
                 </tr>\
             </table>\
-                <button id="save" onclick="saveIt()">Хадгалах</button>\
+                <button id="save" onclick="saveIt('+i+')">Хадгалах</button>\
             ' ;
 
         }
@@ -207,14 +216,20 @@ function edit(x){
     getEl.appendChild(createEl4_forEdit);
     
 }
-function saveIt(x){
-    var getEl = document.getElementById('view-client-edit');
-    let newName = document.getElementById('name').value;
-    let newPhone = document.getElementById('phone').value;
-    let newEmail = document.getElementById('email').value;
-    let newAddress = document.getElementById('address').value;
-    let newCompany = document.getElementById('company').value;
-    let newTitle = document.getElementById('title').value;
+function saveIt(idOfCase){
+
+
+
+    let  newName= document.getElementById('name').value;
+    let  newPhone = document.getElementById('phone').value;
+    let  newEmail = document.getElementById('email').value;
+    let  newAddress = document.getElementById('address').value;
+    let  newCompany = document.getElementById('company').value;
+    let  newTitle = document.getElementById('title').value;
+
+    
+    
+
     let newBirthday = document.getElementById('birthDay').value;
     let newSex = document.getElementById('sex').value;
     let newMarital = document.getElementById('marritalSta').value;
@@ -222,18 +237,25 @@ function saveIt(x){
     let newEmergencyname = document.getElementById('emergencyName').value;
     let newEmergencyphone = document.getElementById('emergencyPhone').value;
     let newEmergencywho = document.getElementById('emergencyWho').value;
-    let newContent1 = { id: 1, name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
-    let newContent2 = { birthday: newBirthday, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
-    
-    let i = data.contents.indexOf(x);
-    data.contents[i] = newContent1;
-    view(newContent1);
-    // clientSaveMessage();
-    closeIt();
-}
-// clientSaveMessage(){
 
-// }
+   
+   
+  
+    let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
+    let newContent2 = { birthDay: newBirthday, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
+    
+    database.ref('/client/data/contents/' +idOfCase).update(newContent1);
+    database.ref('/client/data/details/' +idOfCase).update(newContent2);
+
+    document.getElementById('view-background').style.display="none";
+    
+    
+
+}
+
+
+
+
 function closeIt(){
     document.getElementById('view-background').style.display="none";
     createEl1.innerHTML= "";
@@ -432,6 +454,5 @@ function exportFileExl(filename = ''){
 function numPages(totalLength, pageView){
     return Math.ceil(totalLength/pageView);
 }
-window.onload = function() {
-    changePage(numPages(1).value);
-};
+
+

@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МОН-ХУУЛЬ Систем</title>
-    <link rel="stylesheet" href="../css/client.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../src/css/task.css" />
     <link
-      rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
+    
+  
   </head>
-  <body class="light client-color">
+  <body class="light">
     <!-- Start of Container -->
     <div class="container">
       <!-- Start of Navbar -->
@@ -112,7 +116,7 @@
                 class="dropdown-toggle"
                 data-toggle="profile__id"
                 width="30"
-                src="../../assets/judge.svg" alt=""
+                src="../../assets/judge.svg"
                 alt="judge"
               />
             </div>
@@ -150,93 +154,103 @@
       <section class="main">
         <div class="main__container">
           <!-- Start of Change Code -->
-
-            <div class="client-background">
-                <div class="filter">
-                    <div id = "filter-container">
-                        <div id="filterIcon">
-                            <i class = "fa fa-filter"></i>
-                        </div>
-                        <div>
-                            <form>
-                                <input id="name-filter" placeholder="Нэрээр шүүх"  oninput="nameFilter()"></input>
-                                <input id="phone-filter" placeholder="Утсаар хайх" oninput="phoneFilter()"></input>
-                                <input id="company-filter" placeholder="Компаниар шүүх" oninput="companyFilter()"></input>
-                            </form> 
-                        </div>  
-                    </div>
-                    <div class="dropdown-client-file">
-                        <div class= "dropdownBarIcon">
-                            <i class="fa fa-bars"></i>
-                        </div>
-                    
-                        <div class="dropdown-content">
-                            <div id="dropdownBorderTri"></div>
-                            <div class="dropdownIcon">
-                                <div> <i class = "fa fa-plus-square-o">&nbsp;&nbsp;&nbsp;&nbsp;Хэрэглэгч  нэмэх</i></div>
-                                <div> <i class = "fa fa-file-excel-o" onclick = "exportFileExl('client-table')">&nbsp;&nbsp;&nbsp;&nbsp;Файл үүсгэх</i></div>
-                            </div>
-                        </div>
-                    </div>
-                  
+          <div class="task">
+            <div class="task-head">
+                <div>
+                    <button><i class="fa fa-plus" onclick="taskNewButton()">&nbsp;Таск нэмэх</i>
+                    </button>
                 </div>
-                <p></p>
-                <div id = "body-content">
-                    <div id = "case-container">
-                        <div class="case"> Хэрэглэгчид
-                            <hr class="case-text">             
-                            <form class="show-entries" onclick="selectedEntries()">
-                                <label for="entries">Харуулах</label>
-                                    <select name="entries" id="entries">
-                                        <option placeholder="Сонголт">Сонгох</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                        <option value="100">Бүгд</option>
-                                        
-                                    </select>
-                                <span>бичилтүүд</span>
-                            </form>
-                        </div>
+            </div>
+            <div class="task-container">
+                <div class="task-open-col">
+                    <div class="task-open">
+                        <p>Open</p>
                     </div>
-                    
-                    <div id = "data-container">
-                        <div id="data-content"></div>
+                    <div id="task-open-add">
                     </div>
-                    <div class="pagination-container">
-                        <span id="page">
-                            
-                        </span>
-                        <div id="pagination">
-                            <span id = "btn-prv" onclick="prevClicked()">&laquo;</span> 
-                            <span id = "btn-pages"></span>
-                            <span id = "btn-next" onclick="nextClicked()">&raquo;</span>
-                        </div>
-                    </div>
-                    
                 </div>
-                <div id="view-background" >
-                    <div id = "view-client-container">
-                        <div class="closeIcon">
-                                <img src="../../assets/closeicon.png" onclick="closeIt()">
-                        </div>
-                        <div id = "view-client-table-border">
-                            <div id="view-client">
-                                <div >
-                                    <div id="view-client-edit">
+                <div class="task-progress-col">
+                    <div class="task-progress">
+                        <p>In progress</p>
+                    </div>
+                    <div id="task-progress-add">
+                    </div>
+                </div>
+                <div class="task-completed-col">
+                    <div class="task-completed">
+                        <p>Completed</p>
+                    </div>
+                    <div id="task-completed-add">
+                    </div>
+                </div>
+                <div id="task-add-container">
+                    <div class="task-add-form">
+                        <div><i class="fa fa-times" title="Close" onclick="taskClose()"></i></div>
+                        <form >
+                            <input placeholder="Ажлын нэр" id="taskAddInput"> 
+                        </form>
+                        <div id="task-icons">
+                            <span class="task-priority">
+                                <i class="fa fa-flag" title="Priority" onclick = "taskPriority()"></i>
+                                <div class="priority-group">
+                                    <div class="task-priority-high">
+                                        &nbsp;&nbsp;<i class="fa fa-flag"></i>
+                                        <span>&nbsp;&nbsp;Urgent</span>
+                                    </div>
+                                    <hr>
+                                    <div class="task-priority-normal">
+                                        &nbsp;&nbsp;<i class="fa fa-flag"></i>
+                                        <span>&nbsp;&nbsp;Normal</span>
+                                    </div>
+                                    <hr>
+                                    <div class="task-priority-low">
+                                        &nbsp;&nbsp;<i class="fa fa-flag"></i>
+                                        <span>&nbsp;&nbsp;Low</span>
                                     </div>
                                 </div>
-                            </div>
+                            </span>
+                            <span id="task-status" title="Task Status" onclick="taskStatus()">
+                                <i class="fa fa-clock-o"></i>
+                                <div class="status-group">
+                                    <div class="task-status-open">
+                                        &nbsp;&nbsp;<i class="fa fa-clock-o"></i>
+                                        <span>&nbsp;&nbsp;Open</span>
+                                    </div>
+                                    <hr>
+                                    <div class="task-status-progress">
+                                        &nbsp;&nbsp;<i class="fa fa-clock-o"></i>
+                                        <span>&nbsp;&nbsp;In Progress</span>
+                                    </div>
+                                    <hr>
+                                    <div class="task-status-completed">
+                                        &nbsp;&nbsp;<i class="fa fa-clock-o"></i>
+                                        <span>&nbsp;&nbsp;Completed</span>
+                                    </div>
+                                </div>
+                            </span>
+                            <span id="task-start" title="Start day" onclick="taskStart()">
+                                <i class="fa fa-calendar-check-o"></i>
+                                <div>
+                                    <input type="date" value="" id="task-startday">
+                                </div>
+                            </span>
+                            <span class="task-due" title="Due day">
+                                <i class="fa fa-calendar-times-o"></i>
+                                <div>
+                                    <input type="date" value="" id="task-dueday">
+                                </div>
+                            </span>
+                            <span class="task-delete" title="Delete">
+                                <i class="fa fa-trash-o "></i>
+                                
+                            </span>
+                            <button id="taskSave" onclick="taskSaveButton()">Хадгалах</button>
+        
                         </div>
                     </div>
-                
-                    
                 </div>
-       
-          <!-- End of Change Code -->
             </div>
+        </div>
         </div>
       </section>
       <!-- End of Main section -->
@@ -277,7 +291,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="../components/client.html">
+            <a class="sidebar__menu__link" href="./components/client.html">
               <i class="fa fa-users"></i>
 
               <span> Хэрэглэгчид </span>
@@ -317,7 +331,7 @@
           <li class="sidebar__menu__item">
             <a
               class="sidebar__menu__link"
-              href="../components/monlaw_login.html"
+              href="./components/monlaw_login.html"
             >
               <i class="fa fa-power-off"></i>
               <span>Log out</span>
@@ -335,17 +349,19 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
-    <script src="../js/firebase.js"></script>
-    <script src="../js/client.js"></script>
-    <script src="../js/app.js"></script>
+    <script src="./js/firebase.js"></script>
     <!-- FIrebase setting script -->
     <!-- Additional js libraries -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- Additional js libraries -->
-   
-   
+    <script src="../js/app.js"></script>
+    <script src="../js/task.js"></script>
   </body>
 </html>
+
+
+
+
 
 

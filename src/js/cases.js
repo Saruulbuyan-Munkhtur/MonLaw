@@ -426,7 +426,7 @@ function edit(x){
                     <td><b> Хүйс: </b> <input value="'+ datasDetail[i].sex + '" id="sex"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marrital + '" id="marritalSta"></td>\
+                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marital + '" id="marritalSta"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Жолооны үнэмлэхний дугаар: </b> <input value="'+ datasDetail[i].driverID + '" id="driverLi"></td>\
@@ -489,8 +489,8 @@ function saveIt(idOfCase){
     //let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
     let newContent2 = { name: newName, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
     
-    database.ref('/clients/data/contents/' +idOfCase).set(newContent1);
-    database.ref('/clients/data/details/' +idOfCase).set(newContent2);
+    database.ref('/clients/data/contents/' +idOfCase).update(newContent1);
+    database.ref('/clients/data/details/' +idOfCase).update(newContent2);
 
     document.getElementById('about-content').style.display="none";
     var getEl = document.getElementById('about-content-container');
