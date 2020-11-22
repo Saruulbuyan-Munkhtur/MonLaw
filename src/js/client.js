@@ -1,9 +1,9 @@
 const database = firebase.database();
 var data = {};
-database.ref('client/').on('value', function(snapshot) {
 
-    data = snapshot.val().data; 
-    console.log(data.contents[0].email);
+database.ref('data/').on('value', function(snapshot) {
+
+    data = snapshot.val().clients; 
     showTable(data.contents);
 
 });
@@ -113,13 +113,13 @@ function view(x){
                     <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Төрсөн огноо: </b> '+ datasDetail[i].birthday + '</td>\
+                    <td><b> Төрсөн огноо: </b> '+ datasDetail[i].birthDay + '</td>\
                 </tr>\
                 <tr>\
                     <td><b> Хүйс: </b> '+ datasDetail[i].sex + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Гэрлэлт: </b> '+ datasDetail[i].marrital + '</td>\
+                    <td><b> Гэрлэлт: </b> '+ datasDetail[i].marital + '</td>\
                 </tr>\
                 <tr>\
                     <td><b> Жолооны үнэмлэхний дугаар: </b> '+ datasDetail[i].driverID + '</td>\
@@ -184,13 +184,13 @@ function edit(x){
                     <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Төрсөн огноо: </b> <input value="'+ datasDetail[i].birthday + '" id="birthDay"></td>\
+                    <td><b> Төрсөн огноо: </b> <input value="'+ datasDetail[i].birthDay + '" id="birthDay"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Хүйс: </b> <input value="'+ datasDetail[i].sex + '" id="sex"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marrital + '" id="marritalSta"></td>\
+                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marital + '" id="maritalSta"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Жолооны үнэмлэхний дугаар: </b> <input value="'+ datasDetail[i].driverID + '" id="driverLi"></td>\
@@ -232,7 +232,7 @@ function saveIt(idOfCase){
 
     let newBirthday = document.getElementById('birthDay').value;
     let newSex = document.getElementById('sex').value;
-    let newMarital = document.getElementById('marritalSta').value;
+    let newMarital = document.getElementById('maritalSta').value;
     let newDriverli = document.getElementById('driverLi').value;
     let newEmergencyname = document.getElementById('emergencyName').value;
     let newEmergencyphone = document.getElementById('emergencyPhone').value;
@@ -241,7 +241,9 @@ function saveIt(idOfCase){
    
    
   
-    let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
+    let newContent1 = { name: newName, phone: newPhone, 
+        email: newEmail, address: newAddress, 
+        company: newCompany,title: newTitle};
     let newContent2 = { birthDay: newBirthday, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
     
     database.ref('/client/data/contents/' +idOfCase).update(newContent1);

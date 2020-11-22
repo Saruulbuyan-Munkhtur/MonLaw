@@ -93,9 +93,9 @@ h3 {
     display: flex;
 }
 .edit{
-    margin-left: 270px;
+    margin-left: 100px;
     color: orange;
-    position: absolute;
+    position: relative;
 }
 .dropdown-content {
     display: none;
@@ -126,6 +126,19 @@ h3 {
 #board-task-icon{
     margin-top: 20px;
     
+}
+.task-statu{
+    color:rgb(255, 115, 0);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#task-start{
+    color: lightseagreen;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#task-due{
+    color:red;
 }
 
 .task-progress-col, .task-completed-col{

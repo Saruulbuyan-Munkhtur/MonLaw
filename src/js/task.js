@@ -1,18 +1,73 @@
-var data =[
+const database = firebase.database();
 
-            {priority: "Яаралтай", status: 1, taskName: "Task1", start:"20201119", due: "20201120"},
-            {priority: "Хэвийн", status: 1, taskName: "Task2", start:"20201119", due: "20201120"},
-            {priority: "Яаралтай", status: 1, taskName: "Task3", start:"20201119", due: "20201120"},
-            {priority: "Яаралтай", status: 2, taskName: "Task1", start:"20201119", due: "20201120"},
-            {priority: "Яаралтай", status: 2, taskName: "Task4", start:"20201119", due: "20201120"},
-            {priority: "Яаралтай", status: 2, taskName: "Task5", start:"20201119", due: "20201120"},
-            {priority: "Яаралтай", status: 3, taskName: "Task1", start:"20201119", due: "20201120"}
-]
+database.ref('task/').once('value', function(snapshot) {
+    data = snapshot.val().data; 
+    createTask();
+});
+// function sendTaskData(data){
+//     database.push(data);
+//     console.log(data);
+//  }
+
 var taskAddContainer = document.getElementById("task-add-container");
 var taskPri = document.getElementsByClassName("task-priority")[0];
 var taskPriHigh = document.getElementsByClassName("task-priority-high")[0];
 var taskPriorityStatus = document.getElementsByClassName("priority-group")[0];
 var taskStatusEl = document.getElementsByClassName("status-group")[0];
+
+createTask();
+function createTask(){ 
+    var createOpen = document.getElementById("task-open-add");
+    var createProgress = document.getElementById("task-progress-add");
+    var createCompleted = document.getElementById("task-completed-add");
+    
+   
+    var i = 0;
+    // var createBox = "";
+    
+    for(i in data){
+        console.log(data[0]);
+        createBox =`
+            <div id="new-task-board" draggable="true">
+                <div class="board-edit">
+                    <form>
+                        <input value = ${data[i].taskName} >  
+                    </form>
+                    <div class="edit" onclick="taskStatusChange(${data[i].status}, ${i})">
+                        <i class="fa fa-pencil-square-o"></i>
+                        <div class="dropdown-content">
+                            <div class="edit-open"><i class="fa fa-folder-open"></i>Open</div>
+                            <div class="edit-progress"><i class="fa fa-folder-open"></i>Progress</div>
+                            <div class="edit-completed"><i class="fa fa-folder-open"></i>Completed</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="board-task-icon">
+                    <span class="task-priority">
+                        ${data[i].priority}
+                    </span>
+                    <span class="task-statu">
+                        ${data[i].status}
+                    </span>
+                    <span id="task-start">
+                        ${data[i].start}
+                    </span>
+                    <span id="task-due">
+                        ${data[i].due}
+                    </span>
+                </div>
+            </div> `; 
+        if(data[i].status === 1){
+            createOpen.insertAdjacentHTML("beforeend",createBox);
+        }
+        else if(data[i].status === 2){
+            createProgress.insertAdjacentHTML("beforeend",createBox);
+        }
+        else {
+            createCompleted.insertAdjacentHTML("beforeend",createBox);
+        }
+    }
+}
 
 function taskPriority(){
     taskPriorityStatus.style.display = "block";
@@ -67,62 +122,6 @@ taskStatusEl.addEventListener("click",function(e){
     console.log(taskStatusEl);
 });
 
-createTask();
-   
-function createTask(){ 
-    var createOpen = document.getElementById("task-open-add");
-    var createProgress = document.getElementById("task-progress-add");
-    var createCompleted = document.getElementById("task-completed-add");
-    var i = 0;
-    var createBox;
- 
-    for(i in data){
-        createBox =`
-            <div id="new-task-board" draggable="true" onclick="getTaskSta()">
-                <div class="board-edit">
-                    <form>
-                        <input value = ${data[i].taskName} >  
-                    </form>
-                    <div class="edit" >
-                        <i class="fa fa-pencil-square-o" onclick="taskStatusChange(${data[i].status}, ${i} )"></i>
-                        <div class="dropdown-content">
-                            <div class="edit-open">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;&nbsp;Open</div>
-                            
-                            <div class="edit-progress-group">
-                                <div class="edit-progress">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;&nbsp;In progress</div>
-                            </div>
-                            <div class="edit-completed">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;&nbsp;Completed</div>
-                        </div>
-                    </div>
-                   
-                </div>
-                <div id="board-task-icon">
-                    <span class="task-priority">
-                        ${data[i].priority}
-                    </span>
-                    <span class="task-statu">
-                        ${data[i].status}
-                    </span>
-                    <span id="task-start">
-                        ${data[i].start}
-                    </span>
-                    <span id="task-due">
-                        ${data[i].due}
-                    </span>
-                </div>
-            </div> `; 
-        if(data[i].status === 1){
-            createOpen.insertAdjacentHTML("beforeend",createBox);
-        }
-        else if(data[i].status === 2){
-            createProgress.insertAdjacentHTML("beforeend",createBox);
-        }
-        else {
-            createCompleted.insertAdjacentHTML("beforeend",createBox);
-        }
-    }
-}
-
 function taskNewButton(){
     taskAddContainer.style.display="block";
 }
@@ -144,25 +143,48 @@ function taskClose(){
 function taskSaveButton(){
     taskAddContainer.style.display="none";
 }
-function taskStatusChange(getStatus, i){
 
-    let clickEl;
-    console.log(getStatus);
+function taskStatusChange(currentStatus, i){
+    var createOpen = document.getElementById("task-open-add");
+    var createProgress = document.getElementById("task-progress-add");
+    var createCompleted = document.getElementById("task-completed-add");
+   
     var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
     dropdownContent.style.display="block";
-    dropdownContent.addEventListener("click", MyFunction(clickEl));
-}
-function MyFunction(x){
-    
-        console.log(x.target.innerText);
-        if(x.target.innerText === "In progress"){
-
-            data[i].status = 2;
-            console.log("data[i].status");
+    dropdownContent.addEventListener("click", function(e){
+     
+        if(e.target.innerText==="Progress"){
+            
+            currentStatus = 2;
+            // createOpen="";
+            // createProgress="";
+            // createCompleted="";
+            // console.log(currentStatus);
             createTask();
         }
-    
+    });
 }
+// function taskStatusChange(getStatus, i){
+
+//     let clickEl;
+//     console.log(getStatus);
+//     var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
+//     dropdownContent.style.display="block";
+//     dropdownContent.addEventListener("click", MyFunction(clickEl));
+// }
+
+// function changeTaskToProgress(sta,i){
+//    console.log(sta);
+   
+//         sta = 2;
+//     console.log(sta);  
+          
+//         createTask();
+        
+//     }
+
+
+    
 // function getTaskSta(){
 //     var newBoard=document.getElementById("new-task-board");
 //     console.log(data.status);
@@ -191,4 +213,4 @@ function MyFunction(x){
 //     var listitem = event.originalEvent.dataTransfer.getData("text/plain");
 //     event.target.appendChild(document.getElementById(listitem));
 //     event.preventDefault();
-// }
+
