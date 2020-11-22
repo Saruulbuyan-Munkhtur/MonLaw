@@ -145,19 +145,23 @@ function taskSaveButton(){
     taskAddContainer.style.display="none";
 }
 function taskStatusChange(getStatus, i){
+
+    let clickEl;
     console.log(getStatus);
     var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
     dropdownContent.style.display="block";
-    dropdownContent.addEventListener("click", function(e){
-        // console.log(e.target.parentNode.className);
-        // console.log(e.target.innerText)
-        // console.log(e.target.data.status)
-        if(e.target.innerText === "In progress"){
+    dropdownContent.addEventListener("click", MyFunction(clickEl));
+}
+function MyFunction(x){
+    
+        console.log(x.target.innerText);
+        if(x.target.innerText === "In progress"){
+
             data[i].status = 2;
-            console.log(data[i].status);
+            console.log("data[i].status");
             createTask();
         }
-    });
+    
 }
 // function getTaskSta(){
 //     var newBoard=document.getElementById("new-task-board");
