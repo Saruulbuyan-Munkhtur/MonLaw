@@ -1,52 +1,11 @@
+var data = {};
+var postElement = {};
+var testing = firebase.database().ref('client/').once('value').then(function(snapshot) {
+    data = snapshot.val().data; 
+    showTable();
+  });
 
-// var firebaseConfig={
-//     paiKey: 'AIzaSyCqm2OMg4f1gbjSfl5DGlVF3Plpeb4N2i0', //webAPI key
-//     autoDomain:'bobo-b4e12.firebaseapp.com',                                     //
-//     dataBaseURL: 'https://bobo-b4e12.web.app',         //url
-//     projectID: 'bobo-b4e12'                            //project ID
-// };
-// //initialize
-// firebase.initializeApp(firebaseConfig);
-// var database=firebase.database;
-// database().ref('generalInfo').once('value',showForm);
-var data={
-    contents: [
-        {id : "1", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "2", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "3", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "4", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
-        {id : "5", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "6", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "7", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "8", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
-        {id : "9", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "10", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "11", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "12", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'},
-        {id : "13", name : "Болорчимэг", phone : "1009990", email : "bolorchimeg@gmail.com", address : "Худ 11-р хороо", company : "Нанар ХХК", title : "Захирал"},
-        {id : "14", name: "Ганболд", phone : "9910000", email : "ganbold@yahoo.com", address : "СХД 2 хороо", company : "Нэст ХХК",  title : "гүйцэтгэх захирал"},       
-        {id : "15", name : "Рхрл", phone : "8810000", email : "sdjflk@gmail.com", address : "БЗД 7 хороо", company : "Хурд ХХК", title : "менежер"},
-        {id : "16", name: "Хролд", phone : "9610000", email : "khrloo@yahoo.com", address : "БГД 8 хороо", company : "МСS", title: 'инженер'}
-    ],
-    details: [
-        {id : "1", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "2", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "3", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "4", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "5", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "6", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "7", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "8", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "9", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "10", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "11", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "12", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "13", birthday: "1980/09/09", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "14", birthday: "1990/07/18", sex: "Эрэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "15", birthday: "2000/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"},
-        {id : "16", birthday: "2020/04/29", sex: "Эмэгтэй", marrital: "Гэрлэсэн", driverID: "444555", emergencyName: "Хооооо", emergencyPhone: "88998899", who: "Нөхөр"}
-    ]
-};
+
 var createEl1 = document.createElement('div');
 var createEl2 = document.createElement('div');
 var createEl3_forEdit = document.createElement('div');
@@ -59,12 +18,13 @@ var prevClick = document.getElementById("btn-prv");
 var start = 0;
 var nextBtn = document.getElementById("btn-next");
 
-
-function showTable(mainData){
+showTable(data.contents);
+function showTable(datas){
+    
     var createEl = document.createElement('div');
     var getEl = document.getElementById("data-content");
-    var tableRows= "";
-    var datas=mainData;
+    var datas = data.contents;
+    console.log(datas);
     getEl.innerHTML="";
     content='\
         <table id="firstTable">\
@@ -103,7 +63,7 @@ function showTable(mainData){
     getEl.appendChild(createEl);
     
 };
-    showTable(data.contents);
+    
     
 function view(x){
     content1 = "";
@@ -286,20 +246,10 @@ function closeIt(){
 }
 function nameFilter(){
     var inputName = document.getElementById("name-filter");
-    var newData = data.contents.filter(n => n.name.toLowerCase().includes(inputName.value));
-    showTable(newData);
-    var language = "фцужэнгшүзкъйыбөахролдпячёсмитьвю";
-    for(j in inputName){
-        for(i in language){
-          
-        }
-        }
-        if(inputName[j] != language[i]){
-                // console.log(language[i]);
-                // console.log(inputName.value);
-                // alert('Та Монгол хэлийг сонгоно уу')
-    }
-        
+    var datas = data.contents;
+    console.log(datas);
+    var newData = datas.filter(n => n.name.toLowerCase().includes(inputName.value));
+    showTable(newData);      
 }
 function phoneFilter(){
     var inputPhone = document.getElementById("phone-filter");

@@ -82,6 +82,8 @@ h3 {
     margin-right: 8px;
     height: 100px;
     box-shadow: 5px 10px 15px #9b9c9c;
+    cursor: pointer;
+    z-index: 9;
     
 }
 #new-task-board:hover{
