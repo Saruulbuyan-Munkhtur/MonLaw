@@ -27,11 +27,11 @@ body {
   right: 20px;
 }
 
-.chat2{
+.chat1{
   right: 550px;
 }
 
-.chat3{
+.chat2{
   right: 1090px;
 }
 .chat__left {
@@ -47,11 +47,20 @@ body {
   background: lightskyblue;
   border-radius: 10px;
 }
-.chat__left__header > h3 {
+
+.chat__left__header > span{
+  margin-left: 5%;
+  font-weight: bolder;
+  font-size: 1.3em;
+}
+.chat__left__header > i{
+  margin-left: 68%;
+}
+/* .chat__left__header > h3 {
   color: #455a64;
   font-size: 21px;
   font-weight: 500;
-}
+} */
 .chat__left__content {
   height: 70%;
   border: 1px solid #e5e5e5;

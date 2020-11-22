@@ -10,6 +10,8 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
     <title>chat</title>
   </head>
   <body>
@@ -21,66 +23,13 @@
             <input type="text" id="searchUser" placeholder="Search" />
           </div>
         </div>
-        <div id="userList" class="chat__right__list"></div>
-      </div>
-      <div class="chat">
-        <div class="chat__left">
-          <div class="chat__left__header">
-            <h3>Chat Message</h3>
-          </div>
-          <div class="chat__left__content" id="contentMessage">
-           
-          </div>
-          <div class="chat__left__footer">
-            <input type="text" id="inputMsg" placeholder="Type message ..." />
-            <div class="btn__group">
-              <div>
-                <i class="fa fa-paperclip fa-1.5x"></i>
-              </div>
-              <div>
-                <i class="fa fa-smile-o fa-1.5x"></i>
-              </div>
-              <div>
-                <i
-                  class="fa fa-paper-plane fa-1.5x"
-                  onclick="sendMessage()"
-                ></i>
-              </div>
-            </div>
-          </div>
+        <div id="userList" class="chat__right__list">
+          <!-- user list -->
         </div>
       </div>
-      <!-- second chat -->
-      <div class="chat chat2">
-        <div class="chat__left">
-          <div class="chat__left__header">
-            <h3>Chat Message</h3>
-          </div>
-          <div class="chat__left__content" id="contentMessage">
-           
-          </div>
-          <div class="chat__left__footer">
-            <input type="text" id="inputMsg" placeholder="Type message ..." />
-            <div class="btn__group">
-              <div>
-                <i class="fa fa-paperclip fa-1.5x"></i>
-              </div>
-              <div>
-                <i class="fa fa-smile-o fa-1.5x"></i>
-              </div>
-              <div>
-                <i
-                  class="fa fa-paper-plane fa-1.5x"
-                  onclick="sendMessage()"
-                ></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- chat lists -->
   </div> 
   
-
     <audio id="audio" src="../../assets/Messenger.m4r"></audio>
 
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
@@ -95,23 +44,34 @@
       var messagesContent = document.getElementById("contentMessage");
       var userList = document.getElementById('userList');
       var chat = document.getElementsByClassName('container')[0];
+      
+      var countMessanger = 0;
 
       var messagesData = [];
       var me = "zaya";
       var messagesRef = firebase.database().ref("messages/");
-      messagesRef.on("value", function (snapshot) {
-        messagesData = Object.values(snapshot.val());
-        // console.log(messagesData);
-        viewMessage();
-      });
+      // messagesRef.on("value", function (snapshot) {
+      //   messagesData = Object.values(snapshot.val());
+      //   // console.log(messagesData);
+      //   // viewMessage();
+      // });
 
-      function createChat(){
 
-        var chatHTML = `
-            <div class="chat chat3">
+      function createChat(name){
+        console.log(name.children[1].children[0].innerText);
+        countMessanger++;
+        if(countMessanger > 3){
+          countMessanger = 3;
+        }
+
+        for (let i=0; i<countMessanger; i++){
+          var chatHTML = `
+            <div class="chat chat${i}">
               <div class="chat__left">
                 <div class="chat__left__header">
-                  <h3>Chat Message</h3>
+                  <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
+                  <span>${name.children[1].children[0].innerText}</span>
+                  <span><i class="fas fa-times"></i></span>
                 </div>
                 <div class="chat__left__content" id="contentMessage">
                 
@@ -136,7 +96,9 @@
               </div>
             </div>`;
             chat.insertAdjacentHTML('beforeend', chatHTML);
+        }
       }
+
 
       function sendMessage() {
         var today = Date.now();
@@ -171,35 +133,35 @@
         document.getElementById("inputMsg").value = "";
       }
 
-      function viewMessage() {
-        // console.log(messagesData);
-        // console.log(messagesContent);
-        messagesContent.innerHTML = "";
-        for (const message of messagesData) {
-          var htmlContent = 
-          `<div class="chat__message ${message.sender === me ? "you__message" : "other__message"}">
-            <div class="chat__content">
-              <img width="50" src="../../assets/user1.jpg" alt=""/>
-              <div class="chat__message__text">${
-                message.message
-              }</div>
-              <div class="chat__message__time">${message.date}</div>
-            </div>
-          </div>`;
-          messagesContent.insertAdjacentHTML("beforeend", htmlContent);
-          // messagesContent.scrollTop = messagesContent.scrollHeight;
-          // console.log('message');
-          // console.log(message);
-        }
+      // function viewMessage() {
+      //   // console.log(messagesData);
+      //   // console.log(messagesContent);
+      //   messagesContent.innerHTML = "";
+      //   for (const message of messagesData) {
+      //     var htmlContent = 
+      //     `<div class="chat__message ${message.sender === me ? "you__message" : "other__message"}">
+      //       <div class="chat__content">
+      //         <img width="50" src="../../assets/user1.jpg" alt=""/>
+      //         <div class="chat__message__text">${
+      //           message.message
+      //         }</div>
+      //         <div class="chat__message__time">${message.date}</div>
+      //       </div>
+      //     </div>`;
+      //     messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+      //     // messagesContent.scrollTop = messagesContent.scrollHeight;
+      //     // console.log('message');
+      //     // console.log(message);
+      //   }
 
-        // scroll hiih
-        messagesContent.scrollTop = messagesContent.scrollHeight;
+      //   // scroll hiih
+      //   messagesContent.scrollTop = messagesContent.scrollHeight;
 
-        //  audio togluulah
-        // setTimeout(function () {
-        //   var audio = document.getElementById("audio").play();
-        // }, 200);
-      }
+      //   //  audio togluulah
+      //   // setTimeout(function () {
+      //   //   var audio = document.getElementById("audio").play();
+      //   // }, 200);
+      // }
 
 //  get currently signed-in user 
       var usersRef = firebase.database().ref("users/");
@@ -233,7 +195,7 @@
         userList.innerHTML = '';
        for (let i in userLogInState){
         var userHTML = `
-        <div class="chat__right__user" onclick="createChat()">
+        <div class="chat__right__user" onclick="createChat(this)">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
             <p id="${userLogInState[i].email}">${userLogInState[i].name}</p>
@@ -244,24 +206,26 @@
        }
       }
 
-      
+      // userList.addEventListener('click', function(e){
+      //   console.log("user clicked");
+      //   console.log(e.target);
+      // });
 
       function updateLogin(state){
         console.log(state);
         console.log(typeof state);
         if(onCheck){
-          for(let i in userLogInState){
-            if(userLogInState[i].email === currentUser.email){
-              usersRef.child(i).update({"logIn" : state});
+          // for(let i in userLogInState){
+          //   if(userLogInState[i].email === currentUser.email){
+          //     usersRef.child(i).update({"logIn" : state});
               console.log('update successful');
-            }
-          }
+          //   }
+          // }
         }else{
           console.log('update unsuccessful');
         }
       } 
- 
-                               
+                          
     </script>
     <!-- // <div class="chat__message other__message">
       //       <div class="chat__content">
