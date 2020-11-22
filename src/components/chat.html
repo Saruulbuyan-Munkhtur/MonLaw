@@ -28,6 +28,7 @@
         </div>
       </div>
       <!-- chat lists -->
+      <div class="pChat"></div>
   </div> 
   
     <audio id="audio" src="../../assets/Messenger.m4r"></audio>
@@ -41,37 +42,48 @@
       //     checkLogin();
       // });
 
-      var messagesContent = document.getElementById("contentMessage");
+     
       var userList = document.getElementById('userList');
-      var chat = document.getElementsByClassName('container')[0];
+      var chat = document.getElementsByClassName('pChat')[0];
       
-      var countMessanger = 0;
-
+      var countMessanger = [];
+      var idd;
+     
       var messagesData = [];
       var me = "zaya";
       var messagesRef = firebase.database().ref("messages/");
-      // messagesRef.on("value", function (snapshot) {
-      //   messagesData = Object.values(snapshot.val());
-      //   // console.log(messagesData);
-      //   // viewMessage();
-      // });
-
+      messagesRef.on("value", function (snapshot) {
+        // messagesData = Object.values(snapshot.val());
+        messagesData = snapshot.val();
+        console.log(messagesData);
+        if(countMessanger.length > 0){
+          viewMessage();
+        }
+        console.log("firebase finished");
+      });
 
       function createChat(name){
-        console.log(name.children[1].children[0].innerText);
-        countMessanger++;
-        if(countMessanger > 3){
-          countMessanger = 3;
+        const privateChat = {name : name.children[1].children[0].innerText, id : name.children[1].children[0].id}; // <--!!!!! dahij haraarai ukas asuuu....plsss
+       
+        console.log(name.children[1].children[0]);
+        if(countMessanger.length >= 4){
+          // countMessanger = 3;
+          console.log("overflow");
+        }else{
+          countMessanger.push(privateChat);
         }
-
-        for (let i=0; i<countMessanger; i++){
+        chat.innerText = "";
+        var iid;
+        for (let i in countMessanger){
           var chatHTML = `
-            <div class="chat chat${i}">
+            <div class="chat" id="c-${i}">
               <div class="chat__left">
                 <div class="chat__left__header">
-                  <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
-                  <span>${name.children[1].children[0].innerText}</span>
-                  <span><i class="fas fa-times"></i></span>
+                  <div class="header__title">
+                    <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
+                    <div id="${countMessanger[i].id}" class="uuid">${countMessanger[i].name}</div>
+                  </div>
+                  <i class="fas fa-times"></i>
                 </div>
                 <div class="chat__left__content" id="contentMessage">
                 
@@ -96,10 +108,21 @@
               </div>
             </div>`;
             chat.insertAdjacentHTML('beforeend', chatHTML);
+            iid = countMessanger[i].id;
+           
         }
+        var chatClose = document.getElementsByClassName('chat')[0];
+        console.log(chatClose);
+        chatClose.addEventListener('click', function(e){
+          var isId = e.target.parentNode.parentNode.parentNode.id;
+          if(isId){
+            console.log("chat closed");
+          }
+        });
+       viewMessage(iid);
       }
 
-
+     
       function sendMessage() {
         var today = Date.now();
         // var time = today.getHours() + ":" + today.getMinutes();
@@ -107,64 +130,58 @@
         // var day = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
         var msg = document.getElementById("inputMsg").value;
 
-        // uid: "1234",
-        //   name: "azzayaab@gmail.com",
-        //   sender: "zaya",
-        //   date : time,
-        //   message: msg,
-        //   file: "url",
+        var uidKey = document.querySelector(".uuid").id;
+        idd = uidKey;
+        // console.log('uidKey');
+        // console.log(uidKey);
+        // console.log("currentuser name");
+        // console.log(currentUser);
 
-        //  messagesRef.push({
-        //   roomId : 0
-        // }).then(function(result){
-        //   var key = result.key;
-        //   console.log("update completed");
-        //   console.log(key);
-        //   usersRef.child(key).push({
-        //     uid: "1234",
-        //     name: "azzayaab@gmail.com",
-        //     sender: "zaya",
-        //     date : time,
-        //     message: msg,
-        //     file: "url",});
-        //   });
+        messagesChildRef = messagesRef.child("private" + uidKey).push({   
+            uid: uidKey,
+            name: 'azzaya',
+            sender: me,
+            email : 'azzayab@gmail.com',
+            date : time,
+            message: msg,
+            file: "url"
+           });
 
-        messagesChildRef = messagesRef.child("private" + uid).push({data : "hey"});
         document.getElementById("inputMsg").value = "";
       }
 
-      // function viewMessage() {
-      //   // console.log(messagesData);
-      //   // console.log(messagesContent);
-      //   messagesContent.innerHTML = "";
-      //   for (const message of messagesData) {
-      //     var htmlContent = 
-      //     `<div class="chat__message ${message.sender === me ? "you__message" : "other__message"}">
-      //       <div class="chat__content">
-      //         <img width="50" src="../../assets/user1.jpg" alt=""/>
-      //         <div class="chat__message__text">${
-      //           message.message
-      //         }</div>
-      //         <div class="chat__message__time">${message.date}</div>
-      //       </div>
-      //     </div>`;
-      //     messagesContent.insertAdjacentHTML("beforeend", htmlContent);
-      //     // messagesContent.scrollTop = messagesContent.scrollHeight;
-      //     // console.log('message');
-      //     // console.log(message);
-      //   }
+      function viewMessage(cuid) {
+        // console.log(cuid);
+        var messagesContent = document.getElementById("contentMessage");
+        // console.log(messagesContent);
+        messagesContent.innerHTML = "";
+        var mData = messagesData[`private${cuid}`];
+        console.log(mData);
+        for (const i in mData) {
+          var htmlContent = 
+          `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"}">
+            <div class="chat__content">
+              <img width="50" src="../../assets/user1.jpg" alt=""/>
+              <div class="chat__message__text">${
+                mData[i].message
+              }</div>
+              <div class="chat__message__time">${mData[i].date}</div>
+            </div>
+          </div>`;
+          messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+        }
+        // scroll hiih
+        messagesContent.scrollTop = messagesContent.scrollHeight;
 
-      //   // scroll hiih
-      //   messagesContent.scrollTop = messagesContent.scrollHeight;
+        //  audio togluulah
+        // setTimeout(function () {
+        //   var audio = document.getElementById("audio").play();
+        // }, 200);
+      }
 
-      //   //  audio togluulah
-      //   // setTimeout(function () {
-      //   //   var audio = document.getElementById("audio").play();
-      //   // }, 200);
-      // }
-
+    
 //  get currently signed-in user 
-      var usersRef = firebase.database().ref("users/");
+      var usersRef = firebase.database().ref("users/user");
       var userLogInState;
       var currentUser;
       var onCheck = false;
@@ -198,7 +215,7 @@
         <div class="chat__right__user" onclick="createChat(this)">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
-            <p id="${userLogInState[i].email}">${userLogInState[i].name}</p>
+            <p id="${userLogInState[i].uid}">${userLogInState[i].name}</p>
             <p class="chat__user ${userLogInState[i].logIn ? "online" : "offline"}">${userLogInState[i].logIn? "Online" : "Offline"}</p>
           </div>
         </div>`;
@@ -236,5 +253,7 @@
       //         <div class="chat__message__time">20:56 PM</div>
       //       </div>
       //     </div> -->
+
+      
   </body>
 </html>
