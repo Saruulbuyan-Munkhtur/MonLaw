@@ -1,10 +1,7 @@
 const database = firebase.database();
 var data = {};
-<<<<<<< HEAD
+
 database.ref('data/').on('value', function(snapshot) {
-=======
-database.ref('client/').once('value', function(snapshot) {
->>>>>>> 62c8eb21580d43df9cce75841b500b188a375f58
 
     data = snapshot.val().clients; 
     showTable(data.contents);
