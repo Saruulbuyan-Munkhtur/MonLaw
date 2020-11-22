@@ -1,8 +1,8 @@
 var data =[
 
-            {priority: "Яаралтай", status: 1, taskName: "Task1", start:"20201119", due: "20201120"},
+            {priority: "Яаралтай", status: 1, taskName: "Task9", start:"20201119", due: "20201120"},
             {priority: "Хэвийн", status: 1, taskName: "Task2", start:"20201119", due: "20201120"},
-            {priority: "Яаралтай", status: 1, taskName: "Task3", start:"20201119", due: "20201120"},
+            {priority: "Яаралгүй", status: 1, taskName: "Task3", start:"20201119", due: "20201120"},
             {priority: "Яаралтай", status: 2, taskName: "Task1", start:"20201119", due: "20201120"},
             {priority: "Яаралтай", status: 2, taskName: "Task4", start:"20201119", due: "20201120"},
             {priority: "Яаралтай", status: 2, taskName: "Task5", start:"20201119", due: "20201120"},
@@ -69,59 +69,6 @@ taskStatusEl.addEventListener("click",function(e){
 
 createTask();
    
-function createTask(){ 
-    var createOpen = document.getElementById("task-open-add");
-    var createProgress = document.getElementById("task-progress-add");
-    var createCompleted = document.getElementById("task-completed-add");
-    var i = 0;
-    var createBox;
- 
-    for(i in data){
-        createBox =`
-            <div id="new-task-board" draggable="true" onclick="getTaskSta()">
-                <div class="board-edit">
-                    <form>
-                        <input value = ${data[i].taskName} >  
-                    </form>
-                    <div class="edit" >
-                        <i class="fa fa-pencil-square-o" onclick="taskStatusChange(${data[i].status}, ${i} )"></i>
-                        <div class="dropdown-content">
-                            <div class="edit-open">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;&nbsp;Open</div>
-                            
-                            <div class="edit-progress-group">
-                                <div class="edit-progress">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;&nbsp;In progress</div>
-                            </div>
-                            <div class="edit-completed">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;&nbsp;Completed</div>
-                        </div>
-                    </div>
-                   
-                </div>
-                <div id="board-task-icon">
-                    <span class="task-priority">
-                        ${data[i].priority}
-                    </span>
-                    <span class="task-statu">
-                        ${data[i].status}
-                    </span>
-                    <span id="task-start">
-                        ${data[i].start}
-                    </span>
-                    <span id="task-due">
-                        ${data[i].due}
-                    </span>
-                </div>
-            </div> `; 
-        if(data[i].status === 1){
-            createOpen.insertAdjacentHTML("beforeend",createBox);
-        }
-        else if(data[i].status === 2){
-            createProgress.insertAdjacentHTML("beforeend",createBox);
-        }
-        else {
-            createCompleted.insertAdjacentHTML("beforeend",createBox);
-        }
-    }
-}
 
 function taskNewButton(){
     taskAddContainer.style.display="block";
@@ -144,21 +91,84 @@ function taskClose(){
 function taskSaveButton(){
     taskAddContainer.style.display="none";
 }
-function taskStatusChange(getStatus, i){
-    console.log(getStatus);
+function taskStatusChange(currentStatus, i){
+   
     var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
     dropdownContent.style.display="block";
     dropdownContent.addEventListener("click", function(e){
         // console.log(e.target.parentNode.className);
-        // console.log(e.target.innerText)
-        // console.log(e.target.data.status)
-        if(e.target.innerText === "In progress"){
-            data[i].status = 2;
-            console.log(data[i].status);
+        // console.log("ty"+e.target.innerText);
+        // console.log(currentStatus);
+        if(e.target.innerText==="Progress"){
+            
+            currentStatus = 2;
+            console.log(currentStatus);
             createTask();
         }
     });
 }
+// function changeTaskToProgress(sta,i){
+//    console.log(sta);
+   
+//         sta = 2;
+//     console.log(sta);  
+          
+//         createTask();
+        
+//     }
+function createTask(){ 
+        var createOpen = document.getElementById("task-open-add");
+        var createProgress = document.getElementById("task-progress-add");
+        var createCompleted = document.getElementById("task-completed-add");
+        createOpen="";
+        createProgress="";
+        createCompleted="";
+        var i = 0;
+        var createBox = "";
+        
+        for(i in data){
+            createBox =`
+                <div id="new-task-board" draggable="true">
+                    <div class="board-edit">
+                        <form>
+                            <input value = ${data[i].taskName} >  
+                        </form>
+                        <div class="edit" onclick="taskStatusChange(${data[i].status}, ${i})">
+                            <i class="fa fa-pencil-square-o"></i>
+                            <div class="dropdown-content">
+                                <div class="edit-open"><i class="fa fa-folder-open"></i>Open</div>
+                                <div class="edit-progress"><i class="fa fa-folder-open"></i>Progress</div>
+                                <div class="edit-completed"><i class="fa fa-folder-open"></i>Completed</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="board-task-icon">
+                        <span class="task-priority">
+                            ${data[i].priority}
+                        </span>
+                        <span class="task-statu">
+                            ${data[i].status}
+                        </span>
+                        <span id="task-start">
+                            ${data[i].start}
+                        </span>
+                        <span id="task-due">
+                            ${data[i].due}
+                        </span>
+                    </div>
+                </div> `; 
+            if(data[i].status === 1){
+                createOpen.insertAdjacentHTML("beforeend",createBox);
+            }
+            else if(data[i].status === 2){
+                createProgress.insertAdjacentHTML("beforeend",createBox);
+            }
+            else {
+                createCompleted.insertAdjacentHTML("beforeend",createBox);
+            }
+        }
+    }
+    
 // function getTaskSta(){
 //     var newBoard=document.getElementById("new-task-board");
 //     console.log(data.status);
