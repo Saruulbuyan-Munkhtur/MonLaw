@@ -1,29 +1,14 @@
-// var taskData={};
-// taskData = firebase.database().ref("task");
-         
-// taskData.once('value', function(snapshot) { 
-//     taskData = snapshot.val();
-//    console.log(taskData);
-   
-// });
 const database = firebase.database();
-var data = {};
-database.ref('task').once('value', function(snapshot) {
 
-    data = snapshot.val(); 
-    console.log(data);
+database.ref('task/').once('value', function(snapshot) {
+    data = snapshot.val().data; 
+    createTask();
 });
-console.log("kk"+data);
-// var data =[
+// function sendTaskData(data){
+//     database.push(data);
+//     console.log(data);
+//  }
 
-//             {priority: "Яаралтай", status: 1, taskName: "Task9", start:"20201119", due: "20201120"},
-//             {priority: "Хэвийн", status: 1, taskName: "Task2", start:"20201119", due: "20201120"},
-//             {priority: "Яаралгүй", status: 1, taskName: "Task3", start:"20201119", due: "20201120"},
-//             {priority: "Яаралтай", status: 2, taskName: "Task1", start:"20201119", due: "20201120"},
-//             {priority: "Яаралтай", status: 2, taskName: "Task4", start:"20201119", due: "20201120"},
-//             {priority: "Яаралтай", status: 2, taskName: "Task5", start:"20201119", due: "20201120"},
-//             {priority: "Яаралтай", status: 3, taskName: "Task1", start:"20201119", due: "20201120"}
-// ]
 var taskAddContainer = document.getElementById("task-add-container");
 var taskPri = document.getElementsByClassName("task-priority")[0];
 var taskPriHigh = document.getElementsByClassName("task-priority-high")[0];
@@ -36,21 +21,19 @@ function createTask(){
     var createProgress = document.getElementById("task-progress-add");
     var createCompleted = document.getElementById("task-completed-add");
     
-    // createOpen="";
-    // createProgress="";
-    // createCompleted="";
+   
     var i = 0;
     // var createBox = "";
     
-    for(i in taskData){
-        console.log(taskData[0]);
+    for(i in data){
+        console.log(data[0]);
         createBox =`
             <div id="new-task-board" draggable="true">
                 <div class="board-edit">
                     <form>
-                        <input value = ${taskData[i].taskName} >  
+                        <input value = ${data[i].taskName} >  
                     </form>
-                    <div class="edit" onclick="taskStatusChange(${taskData[i].status}, ${i})">
+                    <div class="edit" onclick="taskStatusChange(${data[i].status}, ${i})">
                         <i class="fa fa-pencil-square-o"></i>
                         <div class="dropdown-content">
                             <div class="edit-open"><i class="fa fa-folder-open"></i>Open</div>
@@ -61,23 +44,23 @@ function createTask(){
                 </div>
                 <div id="board-task-icon">
                     <span class="task-priority">
-                        ${taskData[i].priority}
+                        ${data[i].priority}
                     </span>
                     <span class="task-statu">
-                        ${taskData[i].status}
+                        ${data[i].status}
                     </span>
                     <span id="task-start">
-                        ${taskData[i].start}
+                        ${data[i].start}
                     </span>
                     <span id="task-due">
-                        ${taskData[i].due}
+                        ${data[i].due}
                     </span>
                 </div>
             </div> `; 
-        if(taskData[i].status === 1){
+        if(data[i].status === 1){
             createOpen.insertAdjacentHTML("beforeend",createBox);
         }
-        else if(taskData[i].status === 2){
+        else if(data[i].status === 2){
             createProgress.insertAdjacentHTML("beforeend",createBox);
         }
         else {
@@ -162,16 +145,20 @@ function taskSaveButton(){
 }
 
 function taskStatusChange(currentStatus, i){
+    var createOpen = document.getElementById("task-open-add");
+    var createProgress = document.getElementById("task-progress-add");
+    var createCompleted = document.getElementById("task-completed-add");
    
     var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
     dropdownContent.style.display="block";
     dropdownContent.addEventListener("click", function(e){
-        // console.log(e.target.parentNode.className);
-        // console.log("ty"+e.target.innerText);
-        // console.log(currentStatus);
+     
         if(e.target.innerText==="Progress"){
             
             currentStatus = 2;
+            // createOpen="";
+            // createProgress="";
+            // createCompleted="";
             // console.log(currentStatus);
             createTask();
         }
