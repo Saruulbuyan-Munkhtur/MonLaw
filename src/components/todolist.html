@@ -6,262 +6,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo LisT</title>
     <link rel="stylesheet" href="../../src/css/todo.list.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
 </head>
 
 <body>
-    <div class="text_click">
-        <h3 id="text_one">filter by task name...</h3>
-        <h3 id="text_two">Sort by...</h3>
-        <h3 id="text_three">Group by:status...</h3>
-        <h3 id="text_four">Sort by...</h3>
-    </div>
-    <div class="big_box">
-        <!-- 1 dugeeer heseg neelttei section DIV1 -->
-        <div class="item1">
-            <div class="item1_1">
-                <p>OPEN</p>
-                <img src="../../assets/plus.png" id="ic" width="35px" height="35px">
-            </div>
-            <div class="task_1">
-                <div id="task_1_1">
-                    <p>list</p>
-                    <h5>Ажил1</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_1">
-                <div id="task_1_1">
-                    <p>list</p>
-                    <h5>Ажил2</h5>
-                    <div class="number">
-                        <p>2</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_1">
-                <div id="task_1_1">
-                    <p>list</p>
-                    <h5>Ажил3</h5>
-                    <div class="number">
-                        <p>3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_1">
-                <div id="task_1_1">
-                    <p>list</p>
-                    <h5>Ажил4</h5>
-                    <div class="number">
-                        <p>4</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_1">
-                <div id="task_1_1">
-                    <p>list</p>
-                    <h5>Ажил5</h5>
-                    <div class="number">
-                        <p>5</p>
-                    </div>
-                </div>
-            </div>
-
+    <div id="task-background">
+        <div class="text_click">
+            <h3 id="text_one">filter by task name...</h3>
+            <h3 id="text_two">Sort by...</h3>
+            <h3 id="text_three">Group by:status...</h3>
+            <h3 id="text_four">Sort by...</h3>
         </div>
+        <div class="big_box">
+            <!-- 1 dugeeer heseg neelttei section DIV1 -->
+            <div class="item1">
+                <div class="item1_1">
+                    <p>Open</p>
+                    <img src="../../assets/plus.png" id="ic" width="35px" height="35px">
+                </div>
+                <div id="new-task-board">
+                    <form id="frm">
+                        <input placeholder="Даалгаврын нэр">
+                    </form>
+                    <div id="task-icons">
+                        <div class="task-priority" onclick="taskPriority()">
+                            <i class="fa fa-flag"></i>
+                            <div id="task-priority-status">
+                                <div class="task-priority-high">
+                                    <div class="btnGroup">
+                                        <i class="fa fa-flag textRed"></i>
+                                        <span>Яаралтай</span>
+                                    </div>
+                                    <hr>    
+                                </div>
+                                <div id="task-priority-normal">
+                                    <div>
+                                        <i class="fa fa-flag"><span>Хэвийн</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div id="task-priority-low">
+                                    <i class="fa fa-flag"><span>Удаан</span></i>
+                                </div>
+                            </div>
+                        </div> 
+                        <span id="task-check" onclick="taskStatus()">
+                            <i class="fa fa-check-square-o"></i>
+                        </span> 
+                        <span id="task-start">
+                            <i class="fa fa-calendar-check-o"></i>
+                        </span>
+                        <span id="task-due">
+                            <i class="fa fa-calendar-times-o" ></i>
+                        </span>
+                        <button id="task-save" onclick="saveTask()">Хадгалах</button>
+                    </div>
+                    
+                </div>
+                
+                <div id="task-status">
+                    <div id="open" ><i class="fa fa-folder-open-o"><span>Нээгдсэн</span></i></div>
+                    <hr id="task-line">
+                    <div id="in-progress"><i class="fa fa-spinner"><span>Хийгдэж буй</span></i></div>
+                    <hr id="task-line">
+                    <div id="closed"><i class="fa fa-check"><span>Дууссан</span></i></div>
+                </div>
+                <div id="create-open">
+                   
+                </div>
+               
+            </div>
+    
+            <!-- 3section -->
+            <div class="item3">
+                <div class="item3_1">
+                    <p>In Progress</p>
+                    <img src="../../assets/purple.plus.png" id="ic3" width="35px" height="35px">
+                </div>
+                <div id= "create-progress">
 
-        <!-- 2 section -->
-        <div class="item2">
-            <div class="item2_1">
-                <p>PENDING</p>
-                <img src="../../assets/orange.plus.png" id="ic2" width="35px" height="35px">
-            </div>
-            <div class="task_2">
-                <div id="task_2_1">
-                    <p>list</p>
-                    <h5> Төлбөрийн нэхэмжлэл</h5>
-                    <div class="number">
-                        <p>6</p>
-                    </div>
                 </div>
             </div>
-        </div>
+           
 
-        <!-- 3section -->
-        <div class="item3">
-            <div class="item3_1">
-                <p>In Progress</p>
-                <img src="../../assets/purple.plus.png" id="ic3" width="35px" height="35px">
-            </div>
-            <div class="task_3">
-                <div id="task_3_1">
-                    <p>list</p>
-                    <h5>Night mode</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
+    
+            <!-- 4 section -->
+            <div class="item4">
+                <div class="item4_1">
+                    <p>Completed</p>
+                    <img src="../../assets/yellow.plus.png" id="ic4" width="35px" height="35px">
                 </div>
-            </div>
-            <div class="task_3">
-                <div id="task_3_1">
-                    <p>list</p>
-                    <h5>Calendar</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div id= "create-completed">
 
-        <!-- 4 section -->
-        <div class="item4">
-            <div class="item4_1">
-                <p>Completed</p>
-                <img src="../../assets/yellow.plus.png" id="ic4" width="35px" height="35px">
-            </div>
-            <div class="task_4">
-                <div id="task_4_1">
-                    <p>list</p>
-                    <h5>Login form </h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- 5section -->
-        <div class="item5">
-            <div class="item5_1">
-                <p>In Review</p>
-                <img src="../../assets/pink.plus.png" id="ic5" width="35px" height="35px">
-            </div>
-            <div class="task_5">
-                <div id="task_5_1">
-                    <p>list</p>
-                    <h5>Dashboard</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_5">
-                <div id="task_5_1">
-                    <p>list</p>
-                    <h5>Case Register(multi step form)</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_5">
-                <div id="task_5_1">
-                    <p>list</p>
-                    <h5>Login form</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_5">
-                <div id="task_5_1">
-                    <p>list</p>
-                    <h5>cases</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 6section -->
-        <div class="item6">
-            <div class="item6_1">
-                <p>Rejected</p>
-                <img src="../../assets/brown.plus.png" id="ic6" width="35px" height="35px">
-            </div>
-            <div class="task_6">
-                <div id="task_6_1">
-                    <p>list</p>
-                    <h5>Contact form</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_6">
-                <div id="task_6_1">
-                    <p>list</p>
-                    <h5>login Register form</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 7section -->
-        <div class="item7">
-            <div class="item7_1">
-                <p>Closed</p>
-                <img src="../../assets/black.plus.png" id="ic7" width="35px" height="35px">
-            </div>
-            <div class="task_7">
-                <div id="task_7_1">
-                    <p>list</p>
-                    <h5> cases</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_7">
-                <div id="task_7_1">
-                    <p>list</p>
-                    <h5>Login form</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_7">
-                <div id="task_7_1">
-                    <p>list</p>
-                    <h5>Register form</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_7">
-                <div id="task_7_1">
-                    <p>list</p>
-                    <h5>dashboard</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_7">
-                <div id="task_7_1">
-                    <p>list</p>
-                    <h5>night mode</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="task_7">
-                <div id="task_7_1">
-                    <p>list</p>
-                    <h5>Calendar</h5>
-                    <div class="number">
-                        <p>1</p>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
-    </div>
+    <script src="../js/task.js"></script>
 </body>
 
 </html>

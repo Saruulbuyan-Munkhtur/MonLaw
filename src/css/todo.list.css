@@ -3,37 +3,34 @@
     margin: 0;
     box-sizing: border-box;
 }
-
-body {
-    background-color: black;
+#task-background{
+    margin-left: 200px;
+    background-color: ghostwhite;
 }
-
 .big_box {
     margin-top: 20px;
     margin-left: 15px;
     margin-right: 15px;
     width: 2850px;
     display: flex;
-    background-color: ghostwhite;
+    
     height: 800px;
 }
 
 h3 {
-    color: white;
+    color: black;
 
 }
 
 .item1 {
     width: 350px;
     background-color: whitesmoke;
+    margin-right: 20px;
+    margin-left: 20px;
     /* border: 1px solid black; */
 }
 
-.item2 {
-    width: 350px;
-    background-color: whitesmoke;
-    /* border: 1px solid black; */
-}
+
 
 .item3 {
     width: 350px;
@@ -47,23 +44,6 @@ h3 {
     /* border: 1px solid black; */
 }
 
-.item5 {
-    width: 350px;
-    background-color: whitesmoke;
-    /* border: 1px solid black; */
-}
-
-.item6 {
-    width: 350px;
-    background-color: whitesmoke;
-    /* border: 1px solid black; */
-}
-
-.item7 {
-    width: 350px;
-    background-color: whitesmoke;
-    /* border: 1px solid black; */
-}
 
 /* edit  */
 .big_box .item1_1 {
@@ -74,13 +54,12 @@ h3 {
 .big_box .item1_1 {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10px;
     border: 2px solid black;
     background-color: white;
     border-bottom-color: white;
     border-right-color: white;
     border-left-color: white;
-    border-top-color: lightgreen;
+    border-top-color: red;
     border-top-width: 7px;
     border-radius: 10px;
     margin-right: 8px;
@@ -88,14 +67,15 @@ h3 {
 }
 
 .item1_1 #ic {
-    margin-left: 140px;
-    margin-top: 17px;
+    margin-left: 180px;
+    margin-top: 13px;
+    cursor: pointer;
 }
 
 /* open taskkk */
 .task_1 {
     height: 110px;
-    border: 2px solid lightgreen;
+    border: 2px solid red;
     border-top-width: 7px;
     /* border-bottom-color: white;
     border-right: white;
@@ -134,7 +114,7 @@ h3 {
     border-radius: 7px;
     margin-top: 10px;
     background-color: gainsboro;
-    color: #006400;
+    color: red;
     margin-bottom: 4px;
 }
 
@@ -153,75 +133,6 @@ h3 {
 }
 
 
-/* 2 div edit */
-.item2 .item2_1 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    border: 4px solid black;
-    background-color: white;
-    border-bottom-color: white;
-    border-right-color: white;
-    border-left-color: white;
-    border-top-color: orange;
-    border-top-width: 7px;
-    border-radius: 10px;
-    margin-right: 8px;
-    height: 70px;
-}
-
-/* SUUDER */
-.item2_1:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-.item2_1 {
-    display: flex;
-}
-
-.item2_1 #ic2 {
-    margin-left: 120px;
-    margin-top: 17px;
-}
-
-.item2_1 p {
-    margin-left: 20px;
-    font-size: 18px;
-    font-size: 26px;
-    margin-top: 16px;
-}
-
-#task_2_1 h5 {
-    font-size: 19px;
-    margin-top: 5px;
-    margin-left: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/*   new task  */
-.task_2 {
-    height: 110px;
-    border: 2px solid orange;
-    border-top-width: 7px;
-    /* border-bottom-color: white;
-    border-right: white;
-    border-left: white; */
-    margin-left: 10px;
-    border-radius: 9px;
-    margin-top: 10px;
-    margin-right: 7px;
-    background-color: white;
-}
-
-.task_2:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-#task_2_1 {
-    margin-left: 15px;
-    margin-top: 4px;
-}
-
 /* 3 div edit */
 .item3 .item3_1 {
     margin-top: 20px;
@@ -232,7 +143,7 @@ h3 {
     border-bottom-color: white;
     border-right-color: white;
     border-left-color: white;
-    border-top-color: purple;
+    border-top-color: blue;
     border-top-width: 7px;
     border-radius: 10px;
     margin-right: 8px;
@@ -269,7 +180,7 @@ h3 {
 
 .task_3 {
     height: 110px;
-    border: 2px solid purple;
+    border: 2px solid blue;
     border-top-width: 7px;
     /* border-bottom-color: white;
     border-right: white;
@@ -300,7 +211,7 @@ h3 {
     border-bottom-color: white;
     border-right-color: white;
     border-left-color: white;
-    border-top-color: yellow;
+    border-top-color: green;
     border-top-width: 7px;
     border-radius: 10px;
     margin-right: 8px;
@@ -337,7 +248,7 @@ h3 {
 
 .task_4 {
     height: 110px;
-    border: 2px solid yellow;
+    border: 2px solid green;
     border-top-width: 7px;
     /* border-bottom-color: white;
     border-right: white;
@@ -358,209 +269,6 @@ h3 {
     margin-top: 4px;
 }
 
-/* 5 div edit */
-.item5 .item5_1 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    border: 4px solid black;
-    background-color: white;
-    border-bottom-color: white;
-    border-right-color: white;
-    border-left-color: white;
-    border-top-color: #ff1593;
-    border-top-width: 7px;
-    border-radius: 10px;
-    margin-right: 8px;
-    height: 70px;
-}
-
-/* SUUDER */
-.item5_1:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-.item5_1 {
-    display: flex;
-}
-
-.item5_1 #ic5 {
-    margin-left: 100px;
-    margin-top: 17px;
-}
-
-.item5_1 p {
-    margin-left: 20px;
-    font-size: 18px;
-    font-size: 26px;
-    margin-top: 16px;
-}
-
-#task_5_1 h5 {
-    font-size: 19px;
-    margin-top: 5px;
-    margin-left: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.task_5 {
-    height: 110px;
-    border: 2px solid #ff1593;
-    border-top-width: 7px;
-    /* border-bottom-color: white;
-    border-right: white;
-    border-left: white; */
-    margin-left: 10px;
-    border-radius: 9px;
-    margin-top: 10px;
-    margin-right: 7px;
-    background-color: white;
-}
-
-.task_5:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-#task_5_1 {
-    margin-left: 15px;
-    margin-top: 4px;
-}
-
-/* 6 div edit */
-.item6 .item6_1 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    border: 2px solid black;
-    background-color: white;
-    border-bottom-color: white;
-    border-right-color: white;
-    border-left-color: white;
-    border-top-color: brown;
-    border-top-width: 7px;
-    border-radius: 10px;
-    margin-right: 8px;
-    height: 70px;
-}
-
-/* SUUDER */
-.item6_1:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-.item6_1 {
-    display: flex;
-}
-
-.item6_1 #ic6 {
-    margin-left: 120px;
-    margin-top: 17px;
-}
-
-.item6_1 p {
-    margin-left: 20px;
-    font-size: 18px;
-    font-size: 26px;
-    margin-top: 16px;
-}
-
-#task_6_1 h5 {
-    font-size: 19px;
-    margin-top: 5px;
-    margin-left: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.task_6 {
-    height: 110px;
-    border: 2px solid brown;
-    border-top-width: 7px;
-    /* border-bottom-color: white;
-    border-right: white;
-    border-left: white; */
-    margin-left: 10px;
-    border-radius: 9px;
-    margin-top: 10px;
-    margin-right: 7px;
-    background-color: white;
-}
-
-.task_6:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-#task_6_1 {
-    margin-left: 15px;
-    margin-top: 4px;
-}
-
-/* 7 div edit */
-.item7 .item7_1 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    border: 2px solid lightskyblue;
-    background-color: white;
-    border-bottom-color: white;
-    border-right-color: white;
-    border-left-color: white;
-    border-top-color: lightskyblue;
-    border-top-width: 7px;
-    border-radius: 10px;
-    margin-right: 8px;
-    height: 70px;
-}
-
-/* SUUDER */
-.item7_1:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-.item7_1 {
-    display: flex;
-}
-
-.item7_1 #ic7 {
-    margin-left: 140px;
-    margin-top: 17px;
-}
-
-.item7_1 p {
-    margin-left: 20px;
-    font-size: 18px;
-    font-size: 26px;
-    margin-top: 16px;
-}
-
-#task_7_1 h5 {
-    font-size: 19px;
-    margin-top: 5px;
-    margin-left: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.task_7 {
-    height: 110px;
-    border: 2px solid lightskyblue;
-    border-top-width: 7px;
-    /* border-bottom-color: white;
-    border-right: white;
-    border-left: white; */
-    margin-left: 10px;
-    border-radius: 9px;
-    margin-top: 10px;
-    margin-right: 7px;
-    background-color: white;
-}
-
-.task_7:hover {
-    box-shadow: gray 5px 5px 5px 5px;
-}
-
-#task_7_1 {
-    margin-left: 15px;
-    margin-top: 4px;
-}
 
 /*  head clicked text */
 
@@ -580,4 +288,138 @@ h3 {
 
 .text_click #text_four {
     margin-left: 170px;
+}
+
+/************************ new task ************************/
+#new-task-board{
+    width: 342px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid #08c7e0;
+    border-radius: 7px;
+    padding: 20px;
+}
+#new-task-board input{
+    height: 30px;
+    width: 250px;
+    padding-left: 8px;
+    outline: none;
+    outline-color:#08c7e0;
+    /* border: none; */
+}
+.task-priority i {
+    
+    padding-top: 0px ;
+    cursor: pointer;
+}
+#task-check{
+    padding-left: 5%;
+    cursor: pointer;
+}
+#task-start{
+    padding-left: 5%;
+}
+#task-due{
+    padding-left: 5%;
+}
+#task-priority-status{
+    display: none;
+    width: 130px;
+    background-color: white;
+    font-size: 17px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: absolute;
+    left: 23%;
+    box-shadow: 5px 10px 18px #888888;
+    border: none;
+} 
+#task-priority-status span{
+    color: rgb(104, 103, 103);
+    padding-left: 15%;
+}
+#task-priority-status hr{
+    width: 130;
+    border: 0.1px solid gray;
+} 
+
+.task-priority-high:hover, #task-priority-normal:hover, #task-priority-low:hover, #open:hover, #in-progress:hover, #closed:hover {
+    background-color: rgb(243, 241, 241);
+}
+.task-priority-high {
+    color: rgb(231, 36, 36);
+    position: relative;
+    left: 10%;
+   
+}
+.textRed{
+    color: rgb(231, 36, 36);
+}
+.textCyan{
+    color: #08c7e0;
+}
+.textGreen{
+    color:green;
+}
+#task-priority-normal i{
+    color: #08c7e0;
+    position: relative;
+    left: 10%;
+}
+#task-priority-low i{
+    color: green;
+    position: relative;
+    left: 10%;
+}
+#task-status{
+    color: gray;
+    cursor: pointer;
+    position:absolute;
+    left: 28%;
+    background-color: white;
+    box-shadow: 5px 10px 18px #888888;
+    width: 130px;
+    border-radius: 6px;
+    font-size: 17px;
+    display: none;
+    
+}
+#task-status i{
+    position: relative;
+    left: 5%;
+}
+#task-status #open{
+    color: red;
+}
+#task-status #in-progress{
+    color: blue;
+}
+#task-status #closed{
+    color: green;
+}
+#task-status span{
+    color:rgb(105, 104, 104);
+}
+#task-status span{
+    position: relative;
+    left: 7%;
+}
+#task-line{
+    border: 0.1px solid gray;
+}
+#task-save{
+    color: white;
+    background-color: #08c7e0;
+    border: none;
+    border-radius: 4px;
+    width: 80px;
+    margin-left: 30%;
+
+}
+#create-task{
+    margin-top: 5%;
+}
+#task-icons{
+    display: flex;
+    padding-top: 5%;
 }

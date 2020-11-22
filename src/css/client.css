@@ -1,10 +1,19 @@
-*{
-    font-family: 'B612', sans-serif;
+
+:root {
+    --client-main-color:#0bb2d4;
+    --client-view-color: rgb(53, 158, 53);
+    --client-edit-color:  rgb(109, 109, 238);
+
 }
-.background{
+.client-color{
+    --cl-main-color: var(--client-main-color);
+    --view-color: var(--client-view-color);
+    --edit-color: var(--client-edit-color);
+}
+.client-background{
     height: 100vh;
-    width: 100%;
-    position: absolute;
+    /* width: 100%; */
+    /* position: absolute; */
     margin-top: 3%;
 }
 
@@ -15,8 +24,8 @@
     height: 80px;
     border: none; 
     display: flex;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
     justify-content: space-between;
 }
 #filter-container{
@@ -24,7 +33,7 @@
 }
 #filterIcon{
     margin-left: 10px;
-    margin-right: 20px;
+    margin-right:  10px;
 }
 .filter input{
     height: 20px;
@@ -32,13 +41,15 @@
     background-position:3px;
     margin-right: 20px;
     border: 0.5px solid gray;
+    outline-color: var(--cl-main-color);
+    padding-left: 0px;
 }
 
 
 .dropdownBarIcon{
     font-size: 30px;
     cursor: pointer;
-    color: #0bb2d4;
+    color: var(--cl-main-color);
     position: absolute;
     right: 0%;
 }
@@ -49,7 +60,7 @@
     left: 88%;
     border-width: 6px;
     border-style: solid;
-    border-color: transparent transparent #007cba transparent;
+    border-color: transparent transparent var(--cl-main-color) transparent;
 }
 .dropdown-client-file{
     position: absolute;
@@ -61,7 +72,7 @@
 .dropdown-client-file .dropdown-content {
     display: none; 
     position: relative;
-    top: 60%;
+    top: 50%;
     right:6%;
     width: 110%;
     color:rgb(105, 102, 102);
@@ -81,20 +92,20 @@
     cursor: pointer;
 }
 .dropdown-content .fa-plus-square-o:hover{
-    color: #0bb2d4;     
+    color: var(--cl-main-color);     
 }
 .dropdown-content .fa-file-excel-o{
     font-weight: 550;
     cursor: pointer;
 }
 .dropdown-content .fa-file-excel-o:hover{
-    color: #0bb2d4;  
+    color: var(--cl-main-color);  
 }
 .dropdown-client-file:hover .dropdown-content{
     display: block;
 }
 .dropdownIcon{
-    border: 1px solid #0bb2d4;
+    border: 1px solid var(--cl-main-color);
     border-radius: 4px;
     height: 60px;
     padding-left: 5%;
@@ -104,10 +115,10 @@
 
 /* ******************************Case****************************** */
 #body-content{
-    padding-bottom: 40px;
+    padding-bottom: 0px;
 }
 #case-container{
-    margin: 40px;
+    margin: 10px;
 }
 .case{
     background-color: white;
@@ -115,24 +126,29 @@
     color: #5a5c69;
     position: relative;
     font-size: 20px;
+    
 }
 hr.case-text{
-    border-top: inset 0.5px gray;
+    border: 0.3px solid gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .show-entries{
     font-size: 16px;
     display: flex;
-    border-color:#0bb2d4;
+    border-color: var(--cl-main-color);
+
 }
 #entries{
     margin-left:5px;
     margin-right:5px;
+    outline-color: var(--cl-main-color);
 }
 
 #data-container{
-    margin-left: 40px;
-    margin-right: 40px;
-    border:1px solid #0bb2d4;
+    margin-left: 0px;
+    margin-right: 0px;
+    border:1px solid var(--cl-main-color);
 }
 #data-content table{
     width: 100%;
@@ -142,7 +158,7 @@ hr.case-text{
 }
 #data-content table th{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    background-color:#0bb2d4;
+    background-color:var(--cl-main-color);
     font-size: 16px;
     height: 40px;
     color:white;
@@ -187,7 +203,7 @@ hr.case-text{
     font-size: 18px;
 }
 .fa-file-o{
-    color:rgb(53, 158, 53);
+    color: var(--view-color);
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -281,7 +297,7 @@ hr.case-text{
     display: flex;
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid  #0bb2d4;
+    border: 1px solid  var(--cl-main-color);
 }
 #pagination-span{
     margin: 6px;
@@ -293,18 +309,18 @@ hr.case-text{
     border: 0px;
 }
 #pagination .pagination-span:hover{
-    background-color: #0bb2d4;
+    background-color: var(--cl-main-color);
     color: white;
 }
 #pagination .pagination-span:active{
-    background-color: #0bb2d4;
+    background-color: var(--cl-main-color);
     color: white;
 }
 #pagination #btn-prv:hover, #btn-next:hover{
-    color: #0bb2d4;
+    color: var(--cl-main-color);
 }
 #pagination #btn-pages:active {
-    background-color: #0bb2d4;
+    background-color: var(--cl-main-color);
 }
 
 #pagination #btn-pages:first-child {
@@ -317,7 +333,7 @@ hr.case-text{
     border-bottom-right-radius: 5px;
 }
 .active{
-    background-color: #0bb2d4;
+    background-color: var(--cl-main-color);
 }
 
 /* ******************************View Form, Edit form****************************** */
@@ -362,13 +378,13 @@ hr.case-text{
 }
 #view-client-table-border{
     border-collapse: collapse;
-    border:1px solid green;
+    border:1px solid var(--view-color);
     width: 95%;
     position: relative;
     margin-top:4%;
 } 
 #view-client th{
-    background-color:rgb(53, 158, 53);
+    background-color:var(--view-color);
     color:white;
     border-top: none;
     padding-left: 0px;
@@ -409,7 +425,7 @@ hr.case-text{
     position: relative;
 }
 #view-background #save{
-    background-color: rgb(109, 109, 238);
+    background-color: var(--edit-color);
     color:white;
     border: none;
     cursor: pointer;
@@ -423,9 +439,9 @@ hr.case-text{
 
 }
 #view-client-edit th{
-    background-color:  rgb(109, 109, 238) ;
+    background-color: var(--edit-color);
     color: white;
-    box-shadow: 50px 50px 80px 5px rgb(143, 123, 231) inset;
+    box-shadow: 50px 50px 80px 5px var(--edit-color) inset;
 }
 #view-client-edit input{
     border: 1px solid rgb(180, 179, 179);
