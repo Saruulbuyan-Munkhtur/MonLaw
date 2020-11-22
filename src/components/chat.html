@@ -14,13 +14,22 @@
   </head>
   <body>
     <div class="container">
+      <div class="chat__users">
+        <div class="chat__right__header">
+          <div class="chat__search">
+            <i class="fa fa-search"></i>
+            <input type="text" id="searchUser" placeholder="Search" />
+          </div>
+        </div>
+        <div id="userList" class="chat__right__list"></div>
+      </div>
       <div class="chat">
         <div class="chat__left">
           <div class="chat__left__header">
             <h3>Chat Message</h3>
           </div>
           <div class="chat__left__content" id="contentMessage">
-            <!-- chat messages -->
+           
           </div>
           <div class="chat__left__footer">
             <input type="text" id="inputMsg" placeholder="Type message ..." />
@@ -40,19 +49,38 @@
             </div>
           </div>
         </div>
-        <div class="chat__right">
-          <div class="chat__right__header">
-            <div class="chat__search">
-              <i class="fa fa-search"></i>
-              <input type="text" id="searchUser" placeholder="Search" />
-            </div>
+      </div>
+      <!-- second chat -->
+      <div class="chat chat2">
+        <div class="chat__left">
+          <div class="chat__left__header">
+            <h3>Chat Message</h3>
           </div>
-          <div id="userList" class="chat__right__list">
-            
+          <div class="chat__left__content" id="contentMessage">
+           
+          </div>
+          <div class="chat__left__footer">
+            <input type="text" id="inputMsg" placeholder="Type message ..." />
+            <div class="btn__group">
+              <div>
+                <i class="fa fa-paperclip fa-1.5x"></i>
+              </div>
+              <div>
+                <i class="fa fa-smile-o fa-1.5x"></i>
+              </div>
+              <div>
+                <i
+                  class="fa fa-paper-plane fa-1.5x"
+                  onclick="sendMessage()"
+                ></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+  </div> 
+  
+
     <audio id="audio" src="../../assets/Messenger.m4r"></audio>
 
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
@@ -66,6 +94,7 @@
 
       var messagesContent = document.getElementById("contentMessage");
       var userList = document.getElementById('userList');
+      var chat = document.getElementsByClassName('container')[0];
 
       var messagesData = [];
       var me = "zaya";
@@ -76,21 +105,69 @@
         viewMessage();
       });
 
+      function createChat(){
+
+        var chatHTML = `
+            <div class="chat chat3">
+              <div class="chat__left">
+                <div class="chat__left__header">
+                  <h3>Chat Message</h3>
+                </div>
+                <div class="chat__left__content" id="contentMessage">
+                
+                </div>
+                <div class="chat__left__footer">
+                  <input type="text" id="inputMsg" placeholder="Type message ..." />
+                  <div class="btn__group">
+                    <div>
+                      <i class="fa fa-paperclip fa-1.5x"></i>
+                    </div>
+                    <div>
+                      <i class="fa fa-smile-o fa-1.5x"></i>
+                    </div>
+                    <div>
+                      <i
+                        class="fa fa-paper-plane fa-1.5x"
+                        onclick="sendMessage()"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+            chat.insertAdjacentHTML('beforeend', chatHTML);
+      }
+
       function sendMessage() {
-        var today = new Date();
-        var time = today.getHours() + ":" + today.getMinutes();
-        var day = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+        var today = Date.now();
+        // var time = today.getHours() + ":" + today.getMinutes();
+        var time = new Date(today).toLocaleTimeString();
+        // var day = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
         var msg = document.getElementById("inputMsg").value;
 
-        messagesRef.push({
-          uid: "1234",
-          name: "azzayaab@gmail.com",
-          sender: "zaya",
-          day : day,
-          time : time,
-          message: msg,
-          file: "url",
-        });
+        // uid: "1234",
+        //   name: "azzayaab@gmail.com",
+        //   sender: "zaya",
+        //   date : time,
+        //   message: msg,
+        //   file: "url",
+
+        //  messagesRef.push({
+        //   roomId : 0
+        // }).then(function(result){
+        //   var key = result.key;
+        //   console.log("update completed");
+        //   console.log(key);
+        //   usersRef.child(key).push({
+        //     uid: "1234",
+        //     name: "azzayaab@gmail.com",
+        //     sender: "zaya",
+        //     date : time,
+        //     message: msg,
+        //     file: "url",});
+        //   });
+
+        messagesChildRef = messagesRef.child("private" + uid).push({data : "hey"});
         document.getElementById("inputMsg").value = "";
       }
 
@@ -106,7 +183,7 @@
               <div class="chat__message__text">${
                 message.message
               }</div>
-              <div class="chat__message__time">${message.day} ${message.time}</div>
+              <div class="chat__message__time">${message.date}</div>
             </div>
           </div>`;
           messagesContent.insertAdjacentHTML("beforeend", htmlContent);
@@ -156,16 +233,18 @@
         userList.innerHTML = '';
        for (let i in userLogInState){
         var userHTML = `
-        <div class="chat__right__user">
+        <div class="chat__right__user" onclick="createChat()">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
-            <p>${userLogInState[i].name}</p>
+            <p id="${userLogInState[i].email}">${userLogInState[i].name}</p>
             <p class="chat__user ${userLogInState[i].logIn ? "online" : "offline"}">${userLogInState[i].logIn? "Online" : "Offline"}</p>
           </div>
         </div>`;
         userList.insertAdjacentHTML('beforeend', userHTML);
        }
       }
+
+      
 
       function updateLogin(state){
         console.log(state);
