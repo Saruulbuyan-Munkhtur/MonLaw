@@ -1,8 +1,8 @@
 const database = firebase.database();
 var data = {};
-database.ref('clients/').on('value', function(snapshot) {
+database.ref('data/').on('value', function(snapshot) {
 
-    data = snapshot.val().data; 
+    data = snapshot.val().clients; 
     showTable();
 
 });
@@ -118,13 +118,13 @@ function view(x){
                         <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                     </tr>\
                     <tr>\
-                        <td><b> Нэр: </b> '+ datasDetail[i].name + '</td>\
+                        <td><b> Нэр: </b> '+ datasContent[i].name + '</td>\
                     </tr>\
                     <tr>\
                         <td><b> Хүйс: </b> '+ datasDetail[i].sex + '</td>\
                     </tr>\
                     <tr>\
-                        <td><b> Гэрлэлт: </b> '+ datasDetail[i].marrital + '</td>\
+                        <td><b> Гэрлэлт: </b> '+ datasDetail[i].marital + '</td>\
                     </tr>\
                     <tr>\
                         <td><b> Жолооны үнэмлэхний дугаар: </b> '+ datasDetail[i].driverID + '</td>\
@@ -420,13 +420,13 @@ function edit(x){
                     <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Нэр: </b> <input value="'+ datasDetail[i].name + '" id="birthDay"></td>\
+                    <td><b> Нэр: </b> <input value="'+ datasContent[i].name + '" id="birthDay"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Хүйс: </b> <input value="'+ datasDetail[i].sex + '" id="sex"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marital + '" id="marritalSta"></td>\
+                    <td><b> Гэрлэлт: </b> <input value="'+ datasDetail[i].marital + '" id="maritalSta"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Жолооны үнэмлэхний дугаар: </b> <input value="'+ datasDetail[i].driverID + '" id="driverLi"></td>\
@@ -476,18 +476,23 @@ function saveIt(idOfCase){
 
     let newName = document.getElementById('birthDay').value;
     let newSex = document.getElementById('sex').value;
-    let newMarital = document.getElementById('marritalSta').value;
+    let newMarital = document.getElementById('maritalSta').value;
     let newDriverli = document.getElementById('driverLi').value;
     let newEmergencyname = document.getElementById('emergencyName').value;
     let newEmergencyphone = document.getElementById('emergencyPhone').value;
     let newEmergencywho = document.getElementById('emergencyWho').value;
 
     // Ene neg mur Boloroo egchin codond ajillaxgvi
-    let newContent1 = { id: newId, caseName: newCaseName, type: newPhone, where: newEmail, date: newAddress, payment: newCompany, paymentStatus: newTitle, status: newStatus };
+    let newContent1 = { id: newId, caseName: newCaseName, 
+        type: newPhone, where: newEmail, date: newAddress, 
+        payment: newCompany, paymentStatus: newTitle, status: newStatus,  name: newName, };
    
     //ene code tanix deeer ajillana
     //let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
-    let newContent2 = { name: newName, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
+    let newContent2 = { sex: newSex, 
+        marital: newMarital, driverID: newDriverli, 
+        emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, 
+        who: newEmergencywho};
     
     database.ref('/clients/data/contents/' +idOfCase).update(newContent1);
     database.ref('/clients/data/details/' +idOfCase).update(newContent2);
