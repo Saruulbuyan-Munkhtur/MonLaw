@@ -1,5 +1,4 @@
 :root {
-  
   --light-primary-color: #4834d4;
   --success-color: #6ab04c;
   --warning-color: #f0932b;
@@ -11,14 +10,11 @@
   --light-second-background-color: #f1f1f1;
   --light-hover-color: #e1e1e1;
 
-  --dark-color: #909090;
+  --dark-color: #eeeeee;
   --dark-second-color: #f5f6fa;
   --dark-background-color: #23242d;
   /* --dark-background-color: #2a2c3a; */
   --dark-second-background-color: #181818;
-
-
-
 }
 .light {
   --main-bg-color: var(--light-background-color);
@@ -26,8 +22,6 @@
   --main-color: var(--light-color);
   --second-color: var(--light-second-color);
   --main-hover-color: var(--light-hover-color);
-
-
 }
 
 .dark {
@@ -472,8 +466,9 @@ body {
   flex-direction: column;
   justify-content: space-around;
   padding: 10px 30px;
-  background: #ffffff;
-  box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+  background: var(--main-bg-color);
+  box-shadow: 5px 5px 13px var(--second-bg-color),
+    -5px -5px 13px var(--second-bg-color);
 }
 .card__inner {
   display: flex;
@@ -493,8 +488,9 @@ body {
   margin: 0px 10px;
   padding: 25px;
   border-radius: 5px;
-  background: #ffffff;
-  box-shadow: 5px 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+  background: var(--main-bg-color);
+  box-shadow: 5px 5px 5px 13px var(--second-bg-color),
+    -5px -5px 13px var(--second-bg-color);
 }
 .charts__left__title {
   display: flex;
@@ -503,13 +499,13 @@ body {
 }
 .charts__left__title > div > h1 {
   font-size: 1.5rem;
-  color: #2e4a66;
+  color: var(--main-color);
   margin-bottom: 5px;
 }
 .charts__left__title > div > p {
   font-size: 14px;
   font-weight: 700;
-  color: #a5aaad;
+  color: var(--main-color);
 }
 .charts__left__title > i {
   color: #ffffff;
@@ -524,8 +520,9 @@ body {
   margin: 0px 10px;
   padding: 25px;
   border-radius: 5px;
-  background: #ffffff;
-  box-shadow: 5px 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+  background: var(--main-bg-color);
+  box-shadow: 5px 5px 5px 13px var(--second-bg-color),
+    -5px -5px 13px var(--second-bg-color);
 }
 .charts__right__title {
   display: flex;
@@ -739,5 +736,3 @@ body {
 }
 @media only screen and (max-width: 1200px) {
 }
-
-

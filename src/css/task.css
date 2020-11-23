@@ -73,7 +73,7 @@ h3 {
     font-size: 26px;
     margin-top: 16px;
 }
-#new-task-board{
+.new-task-board{
     padding-top: 20px;
     margin-bottom: 20px;
     padding-left: 30px;
@@ -86,11 +86,15 @@ h3 {
     /* z-index: 9; */
     
 }
-#new-task-board:hover{
+.new-task-board:hover{
     box-shadow: 8px 12px 50px #4b4a4a;
 }
 .board-edit{
     display: flex;
+}
+.board-edit input{
+    border: none;
+    width: 180px;
 }
 .edit{
     margin-left: 100px;
@@ -101,9 +105,9 @@ h3 {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #ebebeb;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2);
     border-radius: 4px;
 }
 .dropdown-content div{
@@ -125,7 +129,10 @@ h3 {
 }
 #board-task-icon{
     margin-top: 20px;
-    
+}
+#board-task-icon i {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .task-statu{
     color:rgb(255, 115, 0);
@@ -139,6 +146,8 @@ h3 {
 }
 #task-due{
     color:red;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .task-progress-col, .task-completed-col{
@@ -254,7 +263,7 @@ h3 {
     width: 200px;
     height: 100px;
     background-color: white;
-    border-radius: 3px;
+    border-radius: 4px;
     box-shadow: 5px 10px 18px #cdcfd1;
     position: absolute;
     display: none;
@@ -284,6 +293,7 @@ h3 {
 .task-priority-low{
     color:lightgreen;
 }
+
 .priority-group span{
     color: rgb(63, 62, 62);
 }
@@ -328,3 +338,10 @@ h3 {
     margin-top: 20%;
     font-size: 20px;
 }
+.displayBlock{
+    display: block;
+}
+
+/* .task-priority {
+    color:black;
+} */
