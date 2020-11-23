@@ -27,15 +27,16 @@ var onCheck = false;
 // });
 
 var messagesRef = firebase.database().ref("messages/");
-// messagesRef.on("value", function (snapshot) {
-//   // messagesData = Object.values(snapshot.val());
-//   messagesData = snapshot.val();
-//   console.log(messagesData);
-//   if(countMessanger.length > 0){
-//     viewMessage();
-//   }
-//   // console.log("firebase finished");
-// });
+messagesRef.on("value", function (snapshot) {
+    // messagesData = Object.values(snapshot.val());
+    messagesData = snapshot.val();
+    console.log("Messages");
+    console.log(messagesData);
+    if (countMessanger.length > 0) {
+        viewMessage();
+    }
+    // console.log("firebase finished");
+});
 // var messagesRefpri = firebase
 //     .database()
 //     .ref("messages/privatescrgL0iiPKRb8l6UKi7h21Tx5zR2");
@@ -51,6 +52,7 @@ var messagesRef = firebase.database().ref("messages/");
 // });
 var notificationRef = firebase.database().ref("notification/");
 notificationRef.on("value", function (shot) {
+    console.log("Notification");
     console.log(shot.val());
     notify = shot.val();
 
@@ -63,10 +65,10 @@ notificationRef.on("value", function (shot) {
     }
 });
 var usersRef = firebase.database().ref("users/user");
-
 usersRef.on("value", function (snapshot) {
     var objects = snapshot.val();
     userLogInState = objects;
+    console.log("Users");
     console.log(userLogInState);
     onCheck = true;
     updateUser();
@@ -79,13 +81,14 @@ usersRef.on("value", function (snapshot) {
 
 // Html render section
 function createChat(e) {
+    console.log("Createchat");
     console.log(e);
     console.log(userLogInState[e.id].name);
     console.log(userLogInState[e.id].uid);
 
     const privateChat = {
         name: userLogInState[e.id].name,
-        iud: userLogInState[e.id].uid,
+        uid: userLogInState[e.id].uid,
     };
 
     // console.log(name.children[1].children[0]);
@@ -96,7 +99,6 @@ function createChat(e) {
         countMessanger.push(privateChat);
     }
     chat.innerText = "";
-    var iid;
     for (let i in countMessanger) {
         var chatHTML = `
             <div class="chat" id="c-${i}">
@@ -104,7 +106,7 @@ function createChat(e) {
                 <div class="chat__left__header">
                   <div class="header__title">
                     <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
-                    <div id="${countMessanger[i].iud}" class="uuid">${countMessanger[i].name}</div>
+                    <div id="${countMessanger[i].uid}" class="uuid">${countMessanger[i].name}</div>
                   </div>
                   <i class="fas fa-times"></i>
                 </div>
@@ -131,7 +133,6 @@ function createChat(e) {
               </div>
             </div>`;
         chat.insertAdjacentHTML("beforeend", chatHTML);
-        iid = countMessanger[i].id;
     }
     var chatClose = document.getElementsByClassName("chat")[0];
     console.log(chatClose);
@@ -141,36 +142,41 @@ function createChat(e) {
             console.log("chat closed");
         }
     });
-    viewMessage(iid);
+    viewMessage(privateChat.uid);
 }
 
 function viewMessage(cuid) {
-    // console.log(cuid);
-    var messagesContent = document.getElementById("contentMessage");
-    // console.log(messagesContent);
-    messagesContent.innerHTML = "";
-    var mData = messagesData[`private-${cuid}`];
-    console.log("mData");
-    // console.log(mData);
-    for (const i in mData) {
-        var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
-            }">
+    console.log("ViewMessage");
+    if (cuid) {
+        console.log("hoho");
+        // console.log(cuid);
+        var messagesContent = document.getElementById("contentMessage");
+        // console.log(messagesContent);
+        messagesContent.innerHTML = "";
+        var mData = messagesData[`private-${cuid}`];
+        console.log("mData");
+        console.log(mData);
+        for (const i in mData) {
+            var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
+                }">
             <div class="chat__content">
               <img width="50" src="../../assets/user1.jpg" alt=""/>
               <div class="chat__message__text">${mData[i].message}</div>
               <div class="chat__message__time">${mData[i].date}</div>
             </div>
           </div>`;
-        messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+            messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+        }
+        messagesContent.scrollTop = messagesContent.scrollHeight;
+        //  audio togluulah
+        // setTimeout(function () {
+        //   var audio = document.getElementById("audio").play();
+        // }, 200);
     }
-    messagesContent.scrollTop = messagesContent.scrollHeight;
-    //  audio togluulah
-    // setTimeout(function () {
-    //   var audio = document.getElementById("audio").play();
-    // }, 200);
 }
 
 function updateUser() {
+    console.log("UpdateUser");
     userList.innerHTML = "";
     for (let i in userLogInState) {
         var userHTML = `
@@ -188,6 +194,7 @@ function updateUser() {
 
 // Utilities section
 function doProcess(data) {
+    console.log("DoProcess");
     var { from, to, url } = data;
     console.log(from);
     console.log(to);
@@ -205,6 +212,7 @@ function doProcess(data) {
 }
 
 function updateLogin(state) {
+    console.log("UpdateLogin");
     console.log(state);
     console.log(typeof state);
     if (onCheck) {
@@ -220,10 +228,10 @@ function updateLogin(state) {
 }
 
 function sendMessage() {
+    console.log("SendMessage");
     var time = new Date(Date.now()).toLocaleTimeString();
     var msg = document.getElementById("inputMsg").value;
     var uidKey = document.querySelector(".uuid").id;
-    idd = uidKey;
 
     messagesChildRef = messagesRef.child("private-" + uidKey).push({
         uid: uidKey,
