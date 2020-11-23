@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МОН-ХУУЛЬ Систем</title>
 
-    <link rel="stylesheet" href="../css/invoice.css" />
+    <link rel="stylesheet" href="../css/salary.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -154,51 +154,23 @@
           <!-- Start of Change Code -->
           <div class="invoice-main-content-container">
             <div class="header-buttons">
-              <button id="download-invoice" onclick="downloadPdf()">
+              <button id="download-invoice" onmousedown="downloadPdf()" onmouseleave="showAfterPrintPDF()">
                 PDF Татах
               </button>
-              <button id="print-invoice" onclick="printIt()">Хэвлэх</button>
+              <button id="print-invoice" onmousedown="printIt()" onmouseleave="showAfterPrintPDF()" >Хэвлэх</button>
             </div>
             <hr />
             <div id="mainContentContainer">
               <div class="invoice-header">
-                <span>Нэхэмжлэх</span>
-                <span>2020.02.02</span>
+                <span>Цалингийн мэдээлэл</span>
+                <span>2020</span>
                 <hr />
               </div>
-              <div class="name-content-container">
-                <div class="name-content-left">
-                  <span>Хаанаас</span>
-                  <br />
-                  <span>MonLaw</span>
-                  <br />
-                  <span
-                    >Хаяг: #504, Meru Tower, Jamiyan Gun Street 18-2, 14210
-                    Sukhbaatar District, 1st Khoroo Ulaanbaatar, Mongolia
-                  </span>
-                  <br />
-                  <span>Майл: Info@nest.edu.mnx</span>
-                  <span>Утас: +976 7507-7500</span>
-                </div>
-                <div class="name-content-right">
-                  <span>Хаана</span>
-                  <br />
-                  <span id="toWhere"></span>
-                  <br />
-                  <span id="toWhereDirection"></span>
-                  <br />
-                  <span id="toMail"></span>
-                  <span id="toPhone"></span>
-                </div>
+              <div id="name-content-container">
               </div>
-              <hr />
-              <div class="name-content-bordered">
-                <span id="invoiceId"></span>
-                <span id="orderId"></span>
-                <span id="paymentDue"></span>
-                <span id="accountNumber"></span>
-              </div>
+
               <div id="tableContent"></div>
+              
               <div class="footer-content">
                 <span id="paymentDues"></span>
                 <br />
@@ -207,6 +179,10 @@
                 <br />
                 <br />
                 <span id="tax"></span>
+                <br />
+                <br />
+                <span id="eMendDaatgal"></span>
+                <br />
                 <br />
                 <span id="total"></span>
                 <br />
@@ -319,7 +295,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../js/html2pdf.bundle.min.js"></script>
-    <script src="../js/invoice.js"></script>
+    <script src="../js/salary.js"></script>
+    <script src="../js/currency.js"></script>
 
     <!-- Additional js libraries -->
     <script src="../js/app.js"></script>

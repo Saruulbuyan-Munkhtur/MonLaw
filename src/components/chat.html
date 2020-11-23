@@ -45,7 +45,7 @@
 
       var userList = document.getElementById("userList");
       var chat = document.getElementsByClassName("pChat")[0];
-
+      var notify;
       var countMessanger = [];
       var idd;
 
@@ -61,9 +61,7 @@
       //   }
       //   // console.log("firebase finished");
       // });
-      var messagesRefpri = firebase
-        .database()
-        .ref("messages/privatescrgL0iiPKRb8l6UKi7h21Tx5zR2");
+      var messagesRefpri = firebase.database().ref("messages/privatescrgL0iiPKRb8l6UKi7h21Tx5zR2");
       messagesRefpri.on("child_added", function (data) {
         console.log("Child Added : ");
         console.log(data.val());
@@ -74,14 +72,37 @@
         // }
         // console.log("firebase finished");
       });
+      var notificationRef = firebase.database().ref("notification/");
+      notificationRef.on('value', function(shot){
+        console.log(shot.val());
+        notify = shot.val();
+        
+        // Notification.requestPermission().then(console.log("notification is allowed"));
+        if(notify.new){
+          alert("new notication");
+          notificationRef.update({new : false, from : "", to : "", url: ""});
+          doProcess();
+        }
+      });
 
-      function createChat(name) {
+      function doProcess(){
+        notify 
+        var {from, to, url} = notify;
+        console.log(from);
+        console.log(to);
+        console.log(url);
+        var suid = url.split("-")[1];
+        createChat({name: to, uid : suid});
+      }
+
+      function createChat(obj) {
+        console.log(obj);
         const privateChat = {
-          name: name.children[1].children[0].innerText,
-          id: name.children[1].children[0].id,
-        }; // <--!!!!! dahij haraarai ukas asuuu....plsss
-
-        console.log(name.children[1].children[0]);
+          name: obj.name,
+          iud: obj.uid,
+        };
+       
+        // console.log(name.children[1].children[0]);
         if (countMessanger.length >= 4) {
           // countMessanger = 3;
           console.log("overflow");
@@ -97,7 +118,7 @@
                 <div class="chat__left__header">
                   <div class="header__title">
                     <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
-                    <div id="${countMessanger[i].id}" class="uuid">${countMessanger[i].name}</div>
+                    <div id="${countMessanger[i].iud}" class="uuid">${countMessanger[i].name}</div>
                   </div>
                   <i class="fas fa-times"></i>
                 </div>
@@ -151,7 +172,7 @@
         // console.log("currentuser name");
         // console.log(currentUser);
 
-        messagesChildRef = messagesRef.child("private" + uidKey).push({
+        messagesChildRef = messagesRef.child("private-" + uidKey).push({
           uid: uidKey,
           name: "azzaya",
           sender: me,
@@ -160,6 +181,7 @@
           message: msg,
           file: "url",
         });
+        notificationRef.update({ from : 'zaya', to : "uka", new : true, url : "private-" + uidKey});
 
         document.getElementById("inputMsg").value = "";
       }
@@ -169,8 +191,9 @@
         var messagesContent = document.getElementById("contentMessage");
         // console.log(messagesContent);
         messagesContent.innerHTML = "";
-        var mData = messagesData[`private${cuid}`];
-        console.log(mData);
+        var mData = messagesData[`private-${cuid}`];
+        console.log("mData");
+        // console.log(mData);
         for (const i in mData) {
           var htmlContent = `<div class="chat__message ${
             mData[i].sender === me ? "you__message" : "other__message"
@@ -192,7 +215,7 @@
         // }, 200);
       }
 
-//  get currently signed-in user 
+      //  get currently signed-in user
       var usersRef = firebase.database().ref("users/user");
       var userLogInState;
       var currentUser;
@@ -221,10 +244,11 @@
       });
 
       function updateUser() {
+        // 
         userList.innerHTML = "";
         for (let i in userLogInState) {
           var userHTML = `
-        <div class="chat__right__user" onclick="createChat(this)">
+        <div class="chat__right__user" onclick="createChat(${{name : userLogInState[i].name, uid : userLogInState[i].uid}})">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
             <p id="${userLogInState[i].uid}">${userLogInState[i].name}</p>
