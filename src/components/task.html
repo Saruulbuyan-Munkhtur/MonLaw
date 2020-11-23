@@ -12,8 +12,6 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    
-  
   </head>
   <body class="light">
     <!-- Start of Container -->
@@ -156,83 +154,97 @@
           <!-- Start of Change Code -->
           <div class="task">
             <div class="task-head">
-                <div>
-                    <button><i class="fa fa-plus" onclick="taskNewButton()">&nbsp;Таск нэмэх</i>
-                    </button>
-                </div>
+              <div>
+                <button>
+                  <i class="fa fa-plus" onclick="taskNewButton()"
+                    >&nbsp;Таск нэмэх</i
+                  >
+                </button>
+              </div>
             </div>
             <div class="task-container">
-                <div class="task-open-col">
-                    <div class="task-open">
-                        <p><b>Нээлттэй</b></p>
-                    </div>
-                    <div id="task-open-add">
-                    </div>
+              <div class="task-open-col">
+                <div class="task-open">
+                  <p><b>Нээлттэй</b></p>
                 </div>
-                <div class="task-progress-col">
-                    <div class="task-progress">
-                        <p><b>Хийгдэж буй</b></p>
-                    </div>
-                    <div id="task-progress-add">
-                    </div>
+                <div id="task-open-add"></div>
+              </div>
+              <div class="task-progress-col">
+                <div class="task-progress">
+                  <p><b>Хийгдэж буй</b></p>
                 </div>
-                <div class="task-completed-col">
-                    <div class="task-completed">
-                        <p><b>Дууссан</b></p>
-                    </div>
-                    <div id="task-completed-add">
-                    </div>
+                <div id="task-progress-add"></div>
+              </div>
+              <div class="task-completed-col">
+                <div class="task-completed">
+                  <p><b>Дууссан</b></p>
                 </div>
-                <div id="task-add-container">
-                    <div class="task-add-form">
-                        <div><i class="fa fa-times" title="Close" onclick="taskClose()"></i></div>
-                        <form >
-                            <input placeholder="Ажлын нэр" id="taskAddInput"> 
-                        </form>
-                        <div id="task-icons">
-                            <span class="task-priority">
-                                <i class="fa fa-flag" title="Priority" onclick = "taskPriority()"></i>
-                                <div class="priority-group">
-                                    <div class="task-priority-high">
-                                        &nbsp;&nbsp;<i class="fa fa-flag"></i>
-                                        <span>&nbsp;&nbsp;Яаралтай</span>
-                                    </div>
-                                    <hr>
-                                    <div class="task-priority-normal">
-                                        &nbsp;&nbsp;<i class="fa fa-flag"></i>
-                                        <span>&nbsp;&nbsp;Хэвийн</span>
-                                    </div>
-                                    <hr>
-                                    <div class="task-priority-low">
-                                        &nbsp;&nbsp;<i class="fa fa-flag"></i>
-                                        <span>&nbsp;&nbsp;Яаралтгүй</span>
-                                    </div>
-                                </div>
-                            </span>
-                            
-                            <span class="task-start" >
-                                <i class="fa fa-calendar-check-o" title="Эхлэх хугацаа" onclick="taskStart()"></i>
-                                <div>
-                                    <input type="date" value="" class="task-startday">
-                                </div>
-                            </span>
-                            <span class="task-due" title="Дуусах хугацаа">
-                                <i class="fa fa-calendar-times-o" onclick="taskDue()"></i>
-                                <div>
-                                    <input type="date" value="" class="task-dueday">
-                                </div>
-                            </span>
-                            <span class="task-delete" title="Устгах">
-                                <i class="fa fa-trash-o "></i>
-                                
-                            </span>
-                            <button id="taskSave" onclick="taskSaveButton()">Хадгалах</button>
-        
+                <div id="task-completed-add"></div>
+              </div>
+              <div id="task-add-container">
+                <div class="task-add-form">
+                  <div>
+                    <i
+                      class="fa fa-times"
+                      title="Close"
+                      onclick="taskClose()"
+                    ></i>
+                  </div>
+                  <form>
+                    <input placeholder="Ажлын нэр" id="taskAddInput" />
+                  </form>
+                  <div id="task-icons">
+                    <span class="task-priority">
+                      <i
+                        class="fa fa-flag"
+                        title="Priority"
+                        onclick="taskPriority()"
+                      ></i>
+                      <div class="priority-group">
+                        <div class="task-priority-high">
+                          &nbsp;&nbsp;<i class="fa fa-flag"></i>
+                          <span>&nbsp;&nbsp;Яаралтай</span>
                         </div>
-                    </div>
+                        <hr />
+                        <div class="task-priority-normal">
+                          &nbsp;&nbsp;<i class="fa fa-flag"></i>
+                          <span>&nbsp;&nbsp;Хэвийн</span>
+                        </div>
+                        <hr />
+                        <div class="task-priority-low">
+                          &nbsp;&nbsp;<i class="fa fa-flag"></i>
+                          <span>&nbsp;&nbsp;Яаралтгүй</span>
+                        </div>
+                      </div>
+                    </span>
+
+                    <span class="task-start">
+                      <i
+                        class="fa fa-calendar-check-o"
+                        title="Эхлэх хугацаа"
+                        onclick="taskStart()"
+                      ></i>
+                      <div>
+                        <input type="date" value="" class="task-startday" />
+                      </div>
+                    </span>
+                    <span class="task-due" title="Дуусах хугацаа">
+                      <i class="fa fa-calendar-times-o" onclick="taskDue()"></i>
+                      <div>
+                        <input type="date" value="" class="task-dueday" />
+                      </div>
+                    </span>
+                    <span class="task-delete" title="Устгах">
+                      <i class="fa fa-trash-o"></i>
+                    </span>
+                    <button id="taskSave" onclick="taskSaveButton()">
+                      Хадгалах
+                    </button>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
         </div>
       </section>
       <!-- End of Main section -->
@@ -247,7 +259,7 @@
         </div>
         <ul class="sidebar__menu">
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link">
+            <a class="sidebar__menu__link" href="../../src/index.html">
               <i class="fa fa-home"></i>
               <span>Үндсэн Самбар</span>
             </a>
@@ -256,18 +268,17 @@
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link active" href="#">
               <i class="fa fa-user-secret"></i>
-
               <span> Миний самбар</span>
             </a>
           </li>
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="#">
               <i class="fa fa-building-o"></i>
-              <span>Компани</span>
+              <span>Компани журам</span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="#">
+            <a class="sidebar__menu__link" href="./cases.html">
               <i class="fa fa-gavel"></i>
               <span>Хэргүүд</span>
             </a>
@@ -275,7 +286,6 @@
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="./components/client.html">
               <i class="fa fa-users"></i>
-
               <span> Хэрэглэгчид </span>
             </a>
           </li>
@@ -286,9 +296,9 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="#">
+            <a class="sidebar__menu__link" href="./timeCalendar.html">
               <i class="fa fa-tasks"></i>
-              <span> Дотоод журам </span>
+              <span> Календар</span>
             </a>
           </li>
           <li class="sidebar__menu__item">
@@ -341,9 +351,3 @@
     <script src="../js/task.js"></script>
   </body>
 </html>
-
-
-
-
-
-
