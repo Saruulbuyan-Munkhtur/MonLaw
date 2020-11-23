@@ -1,11 +1,13 @@
 const database = firebase.database();
 var data = {};
 var dataMain = {};
-database.ref('invoice/').on('value', function(snapshot) {
-
-    data = snapshot.val().services; 
-    dataMain = snapshot.val();
+database.ref('data/').on('value', function(snapshot) {
+    
+    dataMain = snapshot.val().invoices; 
+    
+    data = dataMain.services;
     showTable();
+    console.log(dataMain);
 });
 
 function showTable(){

@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МОН-ХУУЛЬ Систем</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/time-calendar.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -40,7 +41,7 @@
               <ul class="notification__ul">
                 <li>
                   <div class="notification__icon">
-                    <img width="50" src="../assets/avatar1.png" alt="" />
+                    <img width="50" src="../../assets/avatar1.png" alt="" />
                     <span class="notification__icon__status"></span>
                   </div>
                   <div class="notification__data">
@@ -50,7 +51,7 @@
                 </li>
                 <li>
                   <div class="notification__icon">
-                    <img width="50" src="../assets/avatar2.png" alt="" />
+                    <img width="50" src="../../assets/avatar2.png" alt="" />
                     <span class="notification__icon__status"></span>
                   </div>
                   <div class="notification__data">
@@ -83,7 +84,7 @@
               <ul class="messages__ul">
                 <li>
                   <div class="messages__icon">
-                    <img width="50" src="../assets/avatar1.png" alt="" />
+                    <img width="50" src="../../assets/avatar1.png" alt="" />
                     <span class="messages__icon__status"></span>
                   </div>
                   <div class="messages__data">
@@ -93,7 +94,7 @@
                 </li>
                 <li>
                   <div class="messages__icon">
-                    <img width="50" src="../assets/avatar2.png" alt="" />
+                    <img width="50" src="../../assets/avatar2.png" alt="" />
                     <span class="messages__icon__status"></span>
                   </div>
                   <div class="messages__data">
@@ -113,13 +114,13 @@
                 class="dropdown-toggle"
                 data-toggle="profile__id"
                 width="30"
-                src="../assets/judge.svg"
+                src="../../assets/judge.svg"
                 alt="judge"
               />
             </div>
             <div class="profile__id">
               <div class="profile__header">
-                <img width="70" src="../assets/avatar3.png" alt="" />
+                <img width="70" src="../../assets/avatar3.png" alt="" />
                 <div>
                   <h4>Нэр</h4>
                   <small>и-мэйл</small>
@@ -151,99 +152,81 @@
       <section class="main">
         <div class="main__container">
           <!-- Start of Change Code -->
-          <div class="main__title">
-            <img src="../assets/lawyers.svg" alt="Hello" />
-            <div class="main__greeting">
-              <h2>Сайн байна уу - Хэрэглэгч</h2>
-              <p>Тавтай морил - таны самбар</p>
+          <div class="calendar__container">
+            <div class="app-calendar">
+              <div class="calendar__header">
+                <div class="month__head">
+                  <div class="head__left">
+                    <button
+                      id="prev"
+                      class="btn prev fa fa-angle-left"
+                    ></button>
+                    <p><span id="today">1</span> сар</p>
+                    <button
+                      id="next"
+                      class="btn next fa fa-angle-right"
+                    ></button>
+                    <p class="thisYear">2020 он</p>
+                  </div>
+                  <div class="head__right">
+                    <button class="btn btn__today">Өнөөдөр</button>
+                  </div>
+                </div>
+                <div class="group_btn">
+                  <button class="btn btn__right activeBtn">7 хоног</button>
+                  <button class="btn btn__left">Сар</button>
+                </div>
+              </div>
+              <div class="calendar__content"></div>
+            </div>
+
+            <!-- Window for Add event -->
+            <!-- start of div -->
+            <div id="event__form" class="event__style">
+              <div class="event__style__content">
+                <button class="btn" id="event__close">
+                  CLOSE <span class="fa fa-close"></span>
+                </button>
+                <form id="addEvent">
+                  <div>
+                    <input placeholder="Гарчиг" type="text" id="eventName" />
+                  </div>
+                  <div>
+                    <input type="datetime-local" id="eventDate" />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Тэмдэглэл"
+                      id="eventDescription"
+                      cols="30"
+                      rows="10"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <select id="eventPriority">
+                      <option value="red">Яаралтай чухал</option>
+                      <option value="yellow">Чухал</option>
+                      <option value="green">Уулзалт</option>
+                      <option value="blue">Ажил</option>
+                    </select>
+                  </div>
+                </form>
+                <br />
+                <button class="btn" id="event__save">
+                  SAVE <span class="fa fa-save"></span>
+                </button>
+              </div>
+            </div>
+            <!-- end of div -->
+
+            <div class="alert hide" id="alert">
+              <span class="fa fa-exclamation-circle"></span>
+              <span class="alert__message" id="am">Гарчиг</span>
+              <span class="alert__close-btn">
+                <span class="fa fa-times"></span>
+              </span>
             </div>
           </div>
-          <div class="main__cards">
-            <!-- card begin -->
-            <div class="card">
-              <i class="fa fa-user-o fa-2x text-lightblue"></i>
-              <div class="card__inner">
-                <p class="text-primary-p">Хэрэглэгчид</p>
-                <span class="font-bold text-title">578</span>
-              </div>
-            </div>
-            <!-- card end -->
-            <!-- card begin -->
-            <div class="card">
-              <i class="fa fa-gavel fa-2x text-green"></i>
-              <div class="card__inner">
-                <p class="text-primary-p">Нийт хэрэг</p>
-                <span class="font-bold text-title">578</span>
-              </div>
-            </div>
-            <!-- card end -->
-            <!-- card begin -->
-            <div class="card">
-              <i class="fa fa-usd fa-2x text-yellow"></i>
-              <div class="card__inner">
-                <p class="text-primary-p">Нийт Мөнгөн Дүн</p>
-                <span class="font-bold text-title">3400</span>
-              </div>
-            </div>
-            <!-- card end -->
-            <!-- card begin -->
-            <div class="card">
-              <i class="fa fa-exclamation-triangle fa-2x text-red"></i>
-              <div class="card__inner">
-                <p class="text-primary-p">Хугацаа хэтэрсэн хэргүүд</p>
-                <span class="font-bold text-title">57</span>
-              </div>
-            </div>
-            <!-- card end -->
-          </div>
-          <div class="charts">
-            <div class="charts__left">
-              <div class="charts__left__title">
-                <div>
-                  <h1>Өдрийн Үзүүлэлт</h1>
-                  <p>Монгол - Улаанбаатар - *** ХХК</p>
-                </div>
-                <i class="fa fa-usd"></i>
-              </div>
-              <div class="dayReport" id="apex1"></div>
-            </div>
-            <div class="charts__right">
-              <div class="charts__right__title">
-                <div>
-                  <h1>Статистик</h1>
-                  <p>Монгол - Улаанбаатар - *** ХХК</p>
-                </div>
-                <i class="fa fa-usd"></i>
-              </div>
-              <div class="charts__right__cards">
-                <div class="card1">
-                  <h1>Орлого</h1>
-                  <p>$75,300</p>
-                </div>
-                <div class="card2">
-                  <h1>Цэвэр ашиг</h1>
-                  <p>$124,300</p>
-                </div>
-                <div class="card3">
-                  <h1>Нийт хэрэглэгчид</h1>
-                  <p>5,920</p>
-                </div>
-                <div class="card4">
-                  <h1>Нийт хэргүүд</h1>
-                  <p>1881</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="table__container">
-            <table>
-              <tr>
-                <th>#</th>
-                <th>Event name</th>
-                <th>Desctiption</th>
-              </tr>
-            </table>
-          </div> -->
           <!-- End of Change Code -->
         </div>
       </section>
@@ -252,14 +235,14 @@
       <aside id="sideBar" style="width: 17rem" class="sidebar">
         <div class="sidebar__title">
           <div class="sidebar__img">
-            <img src="../assets/logoML.png" alt="Logo" />
+            <img src="../../assets/logoML.png" alt="Logo" />
             <h1>МОН-ХУУЛЬ</h1>
           </div>
           <i class="fa fa-times" id="sidebarIcon" onclick="closeSidebar()"></i>
         </div>
         <ul class="sidebar__menu">
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link active" href="#">
+            <a class="sidebar__menu__link" href="../../src/index.html">
               <i class="fa fa-home"></i>
               <span>Үндсэн Самбар</span>
             </a>
@@ -278,13 +261,13 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./components/cases.html">
+            <a class="sidebar__menu__link" href="./cases.html">
               <i class="fa fa-gavel"></i>
               <span>Хэргүүд</span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./components/client.html">
+            <a class="sidebar__menu__link" href="./client.html">
               <i class="fa fa-users"></i>
               <span> Хэрэглэгчид </span>
             </a>
@@ -297,7 +280,7 @@
           </li>
           <li class="sidebar__menu__item">
             <a
-              class="sidebar__menu__link"
+              class="sidebar__menu__link active"
               href="./components/timeCalendar.html"
             >
               <i class="fa fa-tasks"></i>
@@ -318,16 +301,13 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./components/invoice.html">
+            <a class="sidebar__menu__link" href="./invoice.html">
               <i class="fa fa-briefcase"></i>
               <span> Нэхэмжлэх </span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a
-              class="sidebar__menu__link"
-              href="./components/monlaw_login.html"
-            >
+            <a class="sidebar__menu__link" href="./monlaw_login.html">
               <i class="fa fa-power-off"></i>
               <span>Log out</span>
             </a>
@@ -344,12 +324,19 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
-    <script src="./js/firebase.js"></script>
+    <script src="../js/firebase.js"></script>
     <!-- FIrebase setting script -->
     <!-- Additional js libraries -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+      integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../js/timeCalendar.js"></script>
     <!-- Additional js libraries -->
-    <script src="./js/app.js"></script>
+    <script src="../js/app.js"></script>
   </body>
 </html>
