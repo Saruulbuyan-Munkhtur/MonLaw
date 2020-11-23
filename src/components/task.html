@@ -195,52 +195,34 @@
                                 <div class="priority-group">
                                     <div class="task-priority-high">
                                         &nbsp;&nbsp;<i class="fa fa-flag"></i>
-                                        <span>&nbsp;&nbsp;Urgent</span>
+                                        <span>&nbsp;&nbsp;Яаралтай</span>
                                     </div>
                                     <hr>
                                     <div class="task-priority-normal">
                                         &nbsp;&nbsp;<i class="fa fa-flag"></i>
-                                        <span>&nbsp;&nbsp;Normal</span>
+                                        <span>&nbsp;&nbsp;Хэвийн</span>
                                     </div>
                                     <hr>
                                     <div class="task-priority-low">
                                         &nbsp;&nbsp;<i class="fa fa-flag"></i>
-                                        <span>&nbsp;&nbsp;Low</span>
+                                        <span>&nbsp;&nbsp;Яаралтгүй</span>
                                     </div>
                                 </div>
                             </span>
-                            <span id="task-status" title="Task Status" onclick="taskStatus()">
-                                <i class="fa fa-clock-o"></i>
-                                <div class="status-group">
-                                    <div class="task-status-open">
-                                        &nbsp;&nbsp;<i class="fa fa-clock-o"></i>
-                                        <span>&nbsp;&nbsp;Open</span>
-                                    </div>
-                                    <hr>
-                                    <div class="task-status-progress">
-                                        &nbsp;&nbsp;<i class="fa fa-clock-o"></i>
-                                        <span>&nbsp;&nbsp;In Progress</span>
-                                    </div>
-                                    <hr>
-                                    <div class="task-status-completed">
-                                        &nbsp;&nbsp;<i class="fa fa-clock-o"></i>
-                                        <span>&nbsp;&nbsp;Completed</span>
-                                    </div>
-                                </div>
-                            </span>
-                            <span id="task-start" title="Start day" onclick="taskStart()">
-                                <i class="fa fa-calendar-check-o"></i>
+                            
+                            <span class="task-start" >
+                                <i class="fa fa-calendar-check-o" title="Эхлэх хугацаа" onclick="taskStart()"></i>
                                 <div>
-                                    <input type="date" value="" id="task-startday">
+                                    <input type="date" value="" class="task-startday">
                                 </div>
                             </span>
-                            <span class="task-due" title="Due day">
-                                <i class="fa fa-calendar-times-o"></i>
+                            <span class="task-due" title="Дуусах хугацаа">
+                                <i class="fa fa-calendar-times-o" onclick="taskDue()"></i>
                                 <div>
-                                    <input type="date" value="" id="task-dueday">
+                                    <input type="date" value="" class="task-dueday">
                                 </div>
                             </span>
-                            <span class="task-delete" title="Delete">
+                            <span class="task-delete" title="Устгах">
                                 <i class="fa fa-trash-o "></i>
                                 
                             </span>

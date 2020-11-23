@@ -92,6 +92,10 @@ h3 {
 .board-edit{
     display: flex;
 }
+.board-edit input{
+    border: none;
+    width: 180px;
+}
 .edit{
     margin-left: 100px;
     color: orange;
@@ -101,9 +105,9 @@ h3 {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #ebebeb;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2);
     border-radius: 4px;
 }
 .dropdown-content div{
@@ -125,20 +129,26 @@ h3 {
 }
 #board-task-icon{
     margin-top: 20px;
-    
+}
+#board-task-icon i {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .task-statu{
     color:rgb(255, 115, 0);
     padding-left: 10px;
     padding-right: 10px;
 }
-#task-start{
+.task-start{
     color: lightseagreen;
     padding-left: 10px;
     padding-right: 10px;
+    
 }
-#task-due{
+.task-due{
     color:red;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .task-progress-col, .task-completed-col{
@@ -254,7 +264,7 @@ h3 {
     width: 200px;
     height: 100px;
     background-color: white;
-    border-radius: 3px;
+    border-radius: 4px;
     box-shadow: 5px 10px 18px #cdcfd1;
     position: absolute;
     display: none;
@@ -284,6 +294,7 @@ h3 {
 .task-priority-low{
     color:lightgreen;
 }
+
 .priority-group span{
     color: rgb(63, 62, 62);
 }
@@ -294,32 +305,35 @@ h3 {
     width: 200px;
     height: 100px;
     background-color: white;
-    border-radius: 3px;
+    border-radius: 4px;
     box-shadow: 5px 10px 18px #cdcfd1;
     position: absolute;
-    /* margin-left: 30px; */
     display: none;
 }
-.task-status-open:hover, .task-status-progress:hover, .task-status-completed:hover{
-    background-color: rgb(216, 216, 216);
-}
-.task-status-open, .task-status-progress, .task-status-completed{
-    padding-top: 0px;
-    height: 33px;
-}
-.task-status-open i{
-    color: red;
-}
-.task-status-progress i{
-    color: #1877F2;
-}
-.task-status-completed i{
-    color:lightgreen;
-}
-#task-startday, #task-dueday{
-    width: 100px;
+
+.task-startday{
+    width: 130px;
     position: absolute;
     display: none;
+    top:100px;
+    left:50px;
+    border: none;
+    outline: none;
+}
+.task-dueday{
+    width: 130px;
+    position: absolute;
+    display: none;
+    top:100px;
+    left:200px;
+    border: none;
+    outline: none;
+}
+.task-startday{
+    color:lightseagreen;
+}
+.task-dueday{
+    color:red;
 }
 #task-icons{
     display: flex;
@@ -328,6 +342,10 @@ h3 {
     margin-top: 20%;
     font-size: 20px;
 }
-.DisplayBlock{
+.displayBlock{
     display: block;
 }
+
+/* .task-priority {
+    color:black;
+} */
