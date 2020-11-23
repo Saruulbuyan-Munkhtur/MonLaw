@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/time-calendar.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <title>Time Calendar</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-calendar">
+        <div class="calendar__header">
+          <div class="month__head">
+            <div class="head__left">
+              <button id="prev" class="btn prev fa fa-angle-left"></button>
+              <p><span id="today">1</span> сар</p>
+              <button id="next" class="btn next fa fa-angle-right"></button>
+              <p class="thisYear">2020 он</p>
+            </div>
+            <div class="head__right">
+              <button class="btn btn__today">Өнөөдөр</button>
+            </div>
+          </div>
+          <div class="group_btn">
+            <button class="btn btn__right activeBtn">7 хоног</button>
+            <button class="btn btn__left">Сар</button>
+          </div>
+        </div>
+        <div class="calendar__content"></div>
+      </div>
+
+      <!-- Window for Add event -->
+      <!-- start of div -->
+      <div id="event__form" class="event__style">
+        <div class="event__style__content">
+          <button class="btn" id="event__close">
+            CLOSE <span class="fa fa-close"></span>
+          </button>
+          <form id="addEvent">
+            <div>
+              <input placeholder="Гарчиг" type="text" id="eventName" />
+            </div>
+            <div>
+              <input type="datetime-local" id="eventDate" />
+            </div>
+            <div>
+              <textarea
+                placeholder="Тэмдэглэл"
+                id="eventDescription"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+            <div>
+              <select id="eventPriority">
+                <option value="red">Яаралтай чухал</option>
+                <option value="yellow">Чухал</option>
+                <option value="green">Уулзалт</option>
+                <option value="blue">Ажил</option>
+              </select>
+            </div>
+          </form>
+          <br />
+          <button class="btn" id="event__save">
+            SAVE <span class="fa fa-save"></span>
+          </button>
+        </div>
+      </div>
+      <!-- end of div -->
+
+      <div class="alert hide" id="alert">
+        <span class="fa fa-exclamation-circle"></span>
+        <span class="alert__message" id="am">Гарчиг</span>
+        <span class="alert__close-btn">
+          <span class="fa fa-times"></span>
+        </span>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+      integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/timeCalendar.js"></script>
+  </body>
+</html>
