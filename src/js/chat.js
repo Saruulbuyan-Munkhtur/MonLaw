@@ -57,8 +57,9 @@ notificationRef.on("value", function (shot) {
     // Notification.requestPermission().then(console.log("notification is allowed"));
     if (notify.new) {
         alert("new notication");
+        doProcess(notify);
         notificationRef.update({ new: false, from: "", to: "", url: "" });
-        doProcess();
+
     }
 });
 var usersRef = firebase.database().ref("users/user");
@@ -186,14 +187,21 @@ function updateUser() {
 }
 
 // Utilities section
-function doProcess() {
-    notify;
-    var { from, to, url } = notify;
+function doProcess(data) {
+    var { from, to, url } = data;
     console.log(from);
     console.log(to);
     console.log(url);
-    var suid = url.split("-")[1];
-    createChat({ name: to, id: suid });
+    var suid;
+    for (const i in userLogInState) {
+        if (userLogInState[i].uid === to) {
+            console.log(i);
+            suid = i;
+        }
+    }
+    if (suid) {
+        createChat({ id: suid });
+    }
 }
 
 function updateLogin(state) {
@@ -228,7 +236,7 @@ function sendMessage() {
     });
     notificationRef.update({
         from: "zaya",
-        to: "uka",
+        to: uidKey,
         new: true,
         url: "private-" + uidKey,
     });
