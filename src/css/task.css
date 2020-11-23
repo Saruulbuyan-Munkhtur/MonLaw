@@ -139,12 +139,13 @@ h3 {
     padding-left: 10px;
     padding-right: 10px;
 }
-#task-start{
+.task-start{
     color: lightseagreen;
     padding-left: 10px;
     padding-right: 10px;
+    
 }
-#task-due{
+.task-due{
     color:red;
     padding-left: 10px;
     padding-right: 10px;
@@ -304,32 +305,35 @@ h3 {
     width: 200px;
     height: 100px;
     background-color: white;
-    border-radius: 3px;
+    border-radius: 4px;
     box-shadow: 5px 10px 18px #cdcfd1;
     position: absolute;
-    /* margin-left: 30px; */
     display: none;
 }
-.task-status-open:hover, .task-status-progress:hover, .task-status-completed:hover{
-    background-color: rgb(216, 216, 216);
-}
-.task-status-open, .task-status-progress, .task-status-completed{
-    padding-top: 0px;
-    height: 33px;
-}
-.task-status-open i{
-    color: red;
-}
-.task-status-progress i{
-    color: #1877F2;
-}
-.task-status-completed i{
-    color:lightgreen;
-}
-#task-startday, #task-dueday{
-    width: 100px;
+
+.task-startday{
+    width: 130px;
     position: absolute;
     display: none;
+    top:100px;
+    left:50px;
+    border: none;
+    outline: none;
+}
+.task-dueday{
+    width: 130px;
+    position: absolute;
+    display: none;
+    top:100px;
+    left:200px;
+    border: none;
+    outline: none;
+}
+.task-startday{
+    color:lightseagreen;
+}
+.task-dueday{
+    color:red;
 }
 #task-icons{
     display: flex;

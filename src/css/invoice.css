@@ -748,9 +748,10 @@
  
   
   .invoice-main-content-container {
-	  margin-left: 3%;
+	  margin-left: auto;
+	  margin-right: auto;
 	 
-	  width: 95%;
+	  width: 90%;
 	  padding: 2%;
 	  border: 0.3px solid rgb(142, 191, 255);
 	  margin-top: 50px;
@@ -920,7 +921,21 @@
 	  text-align: left; 
 	  font-size: 18px;
 	  }
- 
-  
+
+thead tr th{
+	text-align: center;
+}
+
+tbody tr td:nth-child(3){
+	text-align: center;
+}
+tbody tr td:nth-child(4){
+	
+	text-align: end;
+}
+tbody tr td:nth-child(5){
+	text-align: end;
+}
+
   
   
