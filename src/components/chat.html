@@ -29,12 +29,13 @@
       </div>
       <!-- chat lists -->
       <div class="pChat"></div>
-  </div> 
-  
+    </div>
+
     <audio id="audio" src="../../assets/Messenger.m4r"></audio>
 
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="../js/firebase.js"></script>
     <script>
@@ -42,39 +43,54 @@
       //     checkLogin();
       // });
 
-     
-      var userList = document.getElementById('userList');
-      var chat = document.getElementsByClassName('pChat')[0];
-      
+      var userList = document.getElementById("userList");
+      var chat = document.getElementsByClassName("pChat")[0];
+
       var countMessanger = [];
       var idd;
-     
+
       var messagesData = [];
       var me = "zaya";
       var messagesRef = firebase.database().ref("messages/");
-      messagesRef.on("value", function (snapshot) {
-        // messagesData = Object.values(snapshot.val());
-        messagesData = snapshot.val();
-        console.log(messagesData);
-        if(countMessanger.length > 0){
-          viewMessage();
-        }
-        console.log("firebase finished");
+      // messagesRef.on("value", function (snapshot) {
+      //   // messagesData = Object.values(snapshot.val());
+      //   messagesData = snapshot.val();
+      //   console.log(messagesData);
+      //   if(countMessanger.length > 0){
+      //     viewMessage();
+      //   }
+      //   // console.log("firebase finished");
+      // });
+      var messagesRefpri = firebase
+        .database()
+        .ref("messages/privatescrgL0iiPKRb8l6UKi7h21Tx5zR2");
+      messagesRefpri.on("child_added", function (data) {
+        console.log("Child Added : ");
+        console.log(data.val());
+        // messagesData = snapshot.val();
+        // console.log(messagesData);
+        // if (countMessanger.length > 0) {
+        //   viewMessage();
+        // }
+        // console.log("firebase finished");
       });
 
-      function createChat(name){
-        const privateChat = {name : name.children[1].children[0].innerText, id : name.children[1].children[0].id}; // <--!!!!! dahij haraarai ukas asuuu....plsss
-       
+      function createChat(name) {
+        const privateChat = {
+          name: name.children[1].children[0].innerText,
+          id: name.children[1].children[0].id,
+        }; // <--!!!!! dahij haraarai ukas asuuu....plsss
+
         console.log(name.children[1].children[0]);
-        if(countMessanger.length >= 4){
+        if (countMessanger.length >= 4) {
           // countMessanger = 3;
           console.log("overflow");
-        }else{
+        } else {
           countMessanger.push(privateChat);
         }
         chat.innerText = "";
         var iid;
-        for (let i in countMessanger){
+        for (let i in countMessanger) {
           var chatHTML = `
             <div class="chat" id="c-${i}">
               <div class="chat__left">
@@ -107,22 +123,20 @@
                 </div>
               </div>
             </div>`;
-            chat.insertAdjacentHTML('beforeend', chatHTML);
-            iid = countMessanger[i].id;
-           
+          chat.insertAdjacentHTML("beforeend", chatHTML);
+          iid = countMessanger[i].id;
         }
-        var chatClose = document.getElementsByClassName('chat')[0];
+        var chatClose = document.getElementsByClassName("chat")[0];
         console.log(chatClose);
-        chatClose.addEventListener('click', function(e){
+        chatClose.addEventListener("click", function (e) {
           var isId = e.target.parentNode.parentNode.parentNode.id;
-          if(isId){
+          if (isId) {
             console.log("chat closed");
           }
         });
-       viewMessage(iid);
+        viewMessage(iid);
       }
 
-     
       function sendMessage() {
         var today = Date.now();
         // var time = today.getHours() + ":" + today.getMinutes();
@@ -137,15 +151,15 @@
         // console.log("currentuser name");
         // console.log(currentUser);
 
-        messagesChildRef = messagesRef.child("private" + uidKey).push({   
-            uid: uidKey,
-            name: 'azzaya',
-            sender: me,
-            email : 'azzayab@gmail.com',
-            date : time,
-            message: msg,
-            file: "url"
-           });
+        messagesChildRef = messagesRef.child("private" + uidKey).push({
+          uid: uidKey,
+          name: "azzaya",
+          sender: me,
+          email: "azzayab@gmail.com",
+          date: time,
+          message: msg,
+          file: "url",
+        });
 
         document.getElementById("inputMsg").value = "";
       }
@@ -158,13 +172,12 @@
         var mData = messagesData[`private${cuid}`];
         console.log(mData);
         for (const i in mData) {
-          var htmlContent = 
-          `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"}">
+          var htmlContent = `<div class="chat__message ${
+            mData[i].sender === me ? "you__message" : "other__message"
+          }">
             <div class="chat__content">
               <img width="50" src="../../assets/user1.jpg" alt=""/>
-              <div class="chat__message__text">${
-                mData[i].message
-              }</div>
+              <div class="chat__message__text">${mData[i].message}</div>
               <div class="chat__message__time">${mData[i].date}</div>
             </div>
           </div>`;
@@ -179,48 +192,49 @@
         // }, 200);
       }
 
-    
-//  get currently signed-in user 
+      //  get currently signed-in user
       var usersRef = firebase.database().ref("users/user");
       var userLogInState;
       var currentUser;
       var onCheck = false;
 
-      firebase.auth().onAuthStateChanged(function(user){
-         if(user){
-          console.log("current user");
-          console.log(user.email);
-          currentUser = user;
-          setTimeout(updateLogin, 3000, true);
-          // userLogInState = true;
-          // console.log(userLogInState);
-         }else{
-          setTimeout(updateLogin, 3000, false);
-          console.log('no user did not sign in currently');
-          // get the user that logged out ...
-         }
-      });
+      // firebase.auth().onAuthStateChanged(function (user) {
+      //   if (user) {
+      //     console.log("current user");
+      //     console.log(user.email);
+      //     currentUser = user;
+      //     setTimeout(updateLogin, 3000, true);
+      //     // userLogInState = true;
+      //     // console.log(userLogInState);
+      //   } else {
+      //     setTimeout(updateLogin, 3000, false);
+      //     console.log("no user did not sign in currently");
+      //     // get the user that logged out ...
+      //   }
+      // });
 
-      usersRef.on("value", function(snapshot){
+      usersRef.on("value", function (snapshot) {
         var objects = snapshot.val();
         userLogInState = objects;
         onCheck = true;
         updateUser();
       });
 
-      function updateUser(){
-        userList.innerHTML = '';
-       for (let i in userLogInState){
-        var userHTML = `
+      function updateUser() {
+        userList.innerHTML = "";
+        for (let i in userLogInState) {
+          var userHTML = `
         <div class="chat__right__user" onclick="createChat(this)">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
             <p id="${userLogInState[i].uid}">${userLogInState[i].name}</p>
-            <p class="chat__user ${userLogInState[i].logIn ? "online" : "offline"}">${userLogInState[i].logIn? "Online" : "Offline"}</p>
+            <p class="chat__user ${
+              userLogInState[i].logIn ? "online" : "offline"
+            }">${userLogInState[i].logIn ? "Online" : "Offline"}</p>
           </div>
         </div>`;
-        userList.insertAdjacentHTML('beforeend', userHTML);
-       }
+          userList.insertAdjacentHTML("beforeend", userHTML);
+        }
       }
 
       // userList.addEventListener('click', function(e){
@@ -228,21 +242,20 @@
       //   console.log(e.target);
       // });
 
-      function updateLogin(state){
+      function updateLogin(state) {
         console.log(state);
         console.log(typeof state);
-        if(onCheck){
+        if (onCheck) {
           // for(let i in userLogInState){
           //   if(userLogInState[i].email === currentUser.email){
           //     usersRef.child(i).update({"logIn" : state});
-              console.log('update successful');
+          console.log("update successful");
           //   }
           // }
-        }else{
-          console.log('update unsuccessful');
+        } else {
+          console.log("update unsuccessful");
         }
-      } 
-                          
+      }
     </script>
     <!-- // <div class="chat__message other__message">
       //       <div class="chat__content">
@@ -253,7 +266,5 @@
       //         <div class="chat__message__time">20:56 PM</div>
       //       </div>
       //     </div> -->
-
-      
   </body>
 </html>
