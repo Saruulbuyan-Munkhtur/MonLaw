@@ -6,16 +6,17 @@ var taskPriorityStatus = document.getElementsByClassName("priority-group")[0];
 var taskStatusEl = document.getElementsByClassName("status-group")[0];
 var taskStartInput = document.getElementsByClassName("task-startday")[0];
 var taskDueInput = document.getElementsByClassName("task-dueday")[0];
+var addInput = document.getElementById("taskAddInput");
+var addTask ;
+var priority = "";
 
 const database = firebase.database();
 
-database.ref('task/').once('value', function(snapshot) {
+database.ref('task/').on('value', function(snapshot) {
     tdata = snapshot.val().data;
-    console.log(tdata); 
     createTask();
 });
-var childfire = firebase.database().ref('task/data').push();
-console.log(childfire);
+
 
 createTask();
 function createTask(){ 
@@ -35,19 +36,22 @@ function createTask(){
                     <form>
                         <input value = "${tdata[i].taskName}" >  
                     </form>
-                    <div class="edit" onclick="taskStatusChange(this)" title="Таскын төрөл өөрчлөх">
+                    <div class="edit" onclick="taskStatusChange(this)" title="Ажлын төрөл өөрчлөх">
                         <i class="fa fa-pencil-square-o"></i>
                         <div class="dropdown-content">
-                            <div class="edit-open" id="${i}" onclick="changeStatus(this)"><i class="fa fa-folder-open"></i>Open</div>
-                            <div class="edit-progress" id="${i}" onclick="changeStatus(this)"><i class="fa fa-folder-open"></i>Progress</div>
-                            <div class="edit-completed" id="${i}" onclick="changeStatus(this)"><i class="fa fa-folder-open"></i>Completed</div>
+                            <div class="edit-open" id="${i}" onclick="changeStatus(this)">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>Нээлттэй</div>
+                            <div class="edit-progress" id="${i}" onclick="changeStatus(this)">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>Хийгдэж байгаа</div>
+                            <div class="edit-completed" id="${i}" onclick="changeStatus(this)">&nbsp;&nbsp;<i class="fa fa-folder-open"></i>Дууссан</div>
                         </div>
+                    </div>
+                    <div class="closeBoard" id="${i}" onclick="deleteTask(this)">
+                        <i class="fa fa-times"></i>
                     </div>
                 </div>
                 <div id="board-task-icon">
-                    <i class="text${tdata[i].priority} fa fa-flag" title="Ангилал">
+                    <i class="text${tdata[i].priority} fa fa-flag" title="Ажлын эрэмбэ">
                     </i>
-                    <span class="task-statu" title="Таскын төрөл">
+                    <span class="task-statu" title="Ажлын төрөл">
                         ${tdata[i].status}
                     </span>
                     <span class="task-start" title="Эхлэх хугацаа">
@@ -70,10 +74,11 @@ function createTask(){
     }
 }
 
+
 function taskPriority(){
     taskPriorityStatus.style.display = "block";
 }
-var priority = "";
+
 taskPriorityStatus.addEventListener("click",function(e){
     // console.log(e.target.parentNode.className);
     if(e.target.parentNode.parentNode.className ==="priority-group"){
@@ -121,35 +126,45 @@ function taskClose(){
     taskAddContainer.style.display="none";
 }
 function taskSaveButton(){
+    
     taskAddContainer.style.display="none";
-    tdata.priority = priority;
-    tdata.start = taskStartInput.value;
-    tdata.due = taskDueInput.value
-    // console.log(taskStartInput.value);
-    // console.log(taskDueInput.value);
-    // console.log(priority);
+    addInputTask = addInput.value;
+    addPriority = priority;
+    addStart = taskStartInput.value;
+    addDue = taskDueInput.value
+    addTask = {due: addDue, priority: addPriority, start: addStart, status: 1, taskName: addInputTask };
+    for(var i in tdata.length){
+        
+        // console.log(tdata.length);
+    }
+    firebase.database().ref('task/data').push(addTask);
 }
 
 function taskStatusChange(e){
-    // console.log(e);
-    // console.log(e.classList);
     e.children[1].classList.toggle("displayBlock");
 } 
-
 function changeStatus(e){
     // console.log(e);
-    var id = parseInt(e.id);
     if(e.className==="edit-open"){
-        tdata[id].status = 1;
+        console.log(e.id);
+        firebase.database().ref(`task/data/${e.id}`).update({status:1});
     }
     else if(e.className==="edit-progress"){
-        tdata[id].status = 2;
+        firebase.database().ref(`task/data/${e.id}`).update({status:2});
+        console.log(e.id);
     }
     else{
-        tdata[id].status = 3;
+        firebase.database().ref(`task/data/${e.id}`).update({status:3});
+        console.log(e.id);
     }
-    createTask();
 }
+function deleteTask(e){
+    console.log(e.id);
+    firebase.database().ref(`task/data/${e.id}`).remove();
+}
+
+//     createTask();
+// }
     
 // function getTaskSta(){
 //     var newBoard=document.getElementById("new-task-board");

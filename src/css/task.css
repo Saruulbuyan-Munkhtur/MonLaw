@@ -6,7 +6,9 @@
 .task{
     width: 100%;
     margin:0px;
-    display: inline; 
+    display: flex;
+    flex-direction: column;
+   
 }
 .task-head {
     padding-top: 20px;
@@ -21,7 +23,7 @@
     width: 180px;
     height: 40px;
     box-shadow: 5px 7px 10px gray;
-    font-size: 16px;
+    font-size: 22px;
     background-color: #1877F2;
     color:white;
     outline: none;
@@ -39,13 +41,17 @@ h3 {
     width: 100%;
     display: flex;
     height: 800px;
-    gap: 50px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;    
 }
 .task-open-col {
-    width: 350px;
+    width: 30%;
+    min-width: 300px;
+    
 }
 .task-open{
     display: flex;
+    justify-content: center;
 }
 .task-open {
     margin-top: 20px;
@@ -61,7 +67,6 @@ h3 {
     margin-right: 8px;
     height: 70px;
     box-shadow: 5px 10px 15px #9b9c9c;
-    
 }
 .task-open:hover {
     box-shadow: gray 5px 5px 5px 5px;
@@ -91,27 +96,37 @@ h3 {
 }
 .board-edit{
     display: flex;
+    justify-content: space-evenly;
 }
 .board-edit input{
     border: none;
-    width: 180px;
+    width: 280px;
+    font-size: 22px;
 }
 .edit{
-    margin-left: 100px;
-    color: orange;
+    color: rgb(255, 115, 0);
     position: relative;
+    font-size: 25px;
+}
+.closeBoard{
+    
+    color: rgb(66, 66, 66);
 }
 .dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #ebebeb;
-    min-width: 160px;
+    background-color: #eeeeee;
+    min-width: 210px;
     box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2);
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 20px;
+    z-index: 2;
+    
+    
 }
 .dropdown-content div{
-    height: 30px;
+    height: 35px;
     color: gray;
 }
 .dropdown-content div:hover{
@@ -128,31 +143,28 @@ h3 {
     color:green;
 }
 #board-task-icon{
-    margin-top: 20px;
-}
-#board-task-icon i {
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-top: 15px;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .task-statu{
     color:rgb(255, 115, 0);
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
 }
 .task-start{
     color: lightseagreen;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
     
 }
 .task-due{
     color:red;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
 }
 
 .task-progress-col, .task-completed-col{
-    width: 350px;
+    width: 30%;
+    min-width: 300px;
 }
  
 .task-progress {
@@ -169,6 +181,7 @@ h3 {
     margin-right: 8px;
     height: 70px;
     box-shadow: 5px 10px 15px #9b9c9c;
+    justify-content: center;
     
 }
 
@@ -202,6 +215,7 @@ h3 {
     margin-right: 8px;
     height: 70px;
     box-shadow: 5px 10px 15px #9b9c9c;
+    justify-content: center;
 }
 .task-completed:hover {
     box-shadow: gray 5px 5px 5px 5px;
