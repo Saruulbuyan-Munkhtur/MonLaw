@@ -614,6 +614,7 @@ body {
 .sidebar__title > div > img {
   width: 75px;
   object-fit: contain;
+  background: var(--main-bg-color);
 }
 .sidebar__title > div > h1 {
   font-size: 18px;
