@@ -74,8 +74,8 @@ var options = {
   },
 };
 
-// var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
-// apexChart.render();
+var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
+apexChart.render();
 
 window.onclick = function (event) {
   openCloseDropdown(event);
