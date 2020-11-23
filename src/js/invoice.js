@@ -12,6 +12,7 @@ database.ref('data/').on('value', function(snapshot) {
 
 function showTable(){
 
+
     var createElForTable = document.createElement('div');
     var getEl = document.getElementById("tableContent");
     getEl.innerHTML="";
@@ -41,8 +42,8 @@ function showTable(){
             <td id="whatNumber">'+count+'</td>\
             <td id="Service Type">'+data[i].serviceType+'</td>\
             <td quantity="Quantity">'+data[i].quantity+'</td>\
-            <td unitCost="Unit cost">'+data[i].unitCost+'$</td>\
-            <td subTotal="Subtotal">'+subTotal+'$</td>\
+            <td style="text-align: end;" unitCost="Unit cost">'+data[i].unitCost+'$</td>\
+            <td style="text-align: end;" subTotal="Subtotal">'+subTotal+'$</td>\
             </tr>\
         </tbody>';
         count++
@@ -60,19 +61,19 @@ function showTable(){
     getEl.appendChild(createElForTable);
     
     document.getElementById("toWhere").innerHTML = dataMain.toWhere;
-    document.getElementById("toWhereDirection").innerHTML = dataMain.toWhereDirection;
-    document.getElementById("toMail").innerHTML ='Mail: '+ dataMain.toMail;
-    document.getElementById("toPhone").innerHTML ='Phone: '+ dataMain.toPhone;
+    document.getElementById("toWhereDirection").innerHTML ='Хаяг: '+ dataMain.toWhereDirection;
+    document.getElementById("toMail").innerHTML ='Майл: '+ dataMain.toMail;
+    document.getElementById("toPhone").innerHTML ='Утас: '+ dataMain.toPhone;
 
-    document.getElementById("invoiceId").innerHTML ='Invoice Id: '+ dataMain.invoiceID;
-    document.getElementById("orderId").innerHTML ='Order Id: '+ dataMain.orderId;
-    document.getElementById("paymentDue").innerHTML ='Payment Due: '+ dataMain.paymentDue;
-    document.getElementById("accountNumber").innerHTML ='Account Number: '+ dataMain.accountNumber;
+    document.getElementById("invoiceId").innerHTML ='Нэхэмжлэхийн дугаар: '+ dataMain.invoiceID;
+    document.getElementById("orderId").innerHTML ='Гэрээний дугаар: '+ dataMain.orderId;
+    document.getElementById("paymentDue").innerHTML ='Төлөх хугацаа: '+ dataMain.paymentDue;
+    document.getElementById("accountNumber").innerHTML ='Аккоунтын дугаар: '+ dataMain.accountNumber;
 
-    document.getElementById("paymentDues").innerHTML ='Payment Due: '+ dataMain.paymentDue;
-    document.getElementById("totalAmount").innerHTML =subTotalForTotal + ' $';
-    document.getElementById("tax").innerHTML ='Tax(10%): '+ (subTotalForTotal/10);
-    document.getElementById("total").innerHTML ='Total: '+ (subTotalForTotal-subTotalForTotal/10);
+    document.getElementById("paymentDues").innerHTML ='Төлөх хугацаа: '+ dataMain.paymentDue;
+    document.getElementById("totalAmount").innerHTML ='Нийт: '+ subTotalForTotal + ' $';
+    document.getElementById("tax").innerHTML ='Татвар(10%): '+ (subTotalForTotal/10);
+    document.getElementById("total").innerHTML ='Нийт төлбөр: '+ (subTotalForTotal-subTotalForTotal/10);
 };
 
 
