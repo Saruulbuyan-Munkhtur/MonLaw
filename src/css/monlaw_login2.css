@@ -1,163 +1,168 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: inherit;
-    display: block;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-
 body {
-    background-color: black;
+  background-color: rgb(49, 47, 47);
+  font-weight: inherit;
+  display: block;
 }
 
 .small_box {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .box {
-    display: flex;
-    background-color: gray;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: 700px;
-    border-radius: 30px;
+  display: flex;
+  background-color: gray;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100vh;
+  border-radius: 30px;
 }
 
 .left {
-
-    height: 100%;
-    width: 50%;
-    background-color: white;
+  height: 100%;
+  width: 50%;
+  background-color: white;
 }
 
 .right {
-    height: 100%;
-    width: 50%;
-    background-color: white;
+  height: 100%;
+  width: 50%;
+  background-color: white;
 }
 
 .icon_image {
-    display: flex;
-    margin-top: 40px;
-    margin-left: 200px;
+  display: flex;
+  margin-top: 40px;
+  margin-left: 200px;
 }
 
 .icon_image #pic3 {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .icon_image #pic2 {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .aa hr {
-    width: 170px;
-    margin: 50px;
+  width: 170px;
+  margin: 50px;
 }
 
 .aa {
-    display: flex;
+  display: flex;
 }
 
 .form_user input {
-    width: 450px;
-    height: 50px;
-    border: 1px solid black;
-    margin-left: 70px;
-    border-radius: 30px;
+  width: 450px;
+  height: 50px;
+  border: 1px solid black;
+  margin-left: 70px;
+  border-radius: 30px;
 }
 
 .form_user::placeholder {
-    padding-left: 50px;
+  padding-left: 50px;
 }
 
 .form_password {
-    margin-top: 10px;   
+  margin-top: 10px;
 }
 
 .form_password input {
-    width: 450px;
-    height: 50px;
-    border: 1px solid black;
-    margin-left: 70px;
-    border-radius: 30px;
+  width: 450px;
+  height: 50px;
+  border: 1px solid black;
+  margin-left: 70px;
+  border-radius: 30px;
 }
 
 #forget {
-    margin-left: 75px;
-    margin-top: 10px;
-    color: blue;
+  margin-left: 75px;
+  margin-top: 10px;
+  color: blue;
 }
 
 .towch button {
-    background-color:lightblue;
-    color: black;
-    margin-top: 10px;
-    width: 300px;
-    height: 50px;
-    border: 1px solid black;
-    margin-left: 60px;
-    border-radius: 30px;
+  background-color: #3e8ef7;
+  color: #ffffff;
+  margin-top: 10px;
+  width: 300px;
+  height: 50px;
+  border: none;
+  margin-left: 60px;
+  border-radius: 30px;
+  font-size: 1.2rem;
 }
 
+.towch button a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
 
-.towch :hover {
-    background-color: white;
-    color: black;
-    border: none;
+.towch:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  /* border: none; */
 }
 
 .small_box span {
-    margin-left: 200px;
-    font-weight: bolder;
-    font-size: 30px;
+  margin-left: 200px;
+  font-weight: bolder;
+  font-size: 30px;
 }
 
 .form_user ::placeholder {
-    margin-left: ;
+  margin-left: 20px;
 }
-.false  {
-    color: red;
-    margin-left: 80px;
-    font-size: 16px;
-    margin-top: 10px;
-    display: block;
+.false {
+  color: red;
+  margin-left: 80px;
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;
 }
 .hide {
-    display: none;
+  display: none;
 }
 #idd button {
-    color:blue;
-    border: none;
-    background-color: white;
-    margin-left: 10px;
+  color: blue;
+  border: none;
+  background-color: white;
+  margin-left: 10px;
 }
-#eror{
-    padding-left: 40px;
-    font-size:18px;
+#eror {
+  padding-left: 40px;
+  font-size: 18px;
+  outline: none;
 }
 
-#permitt{
-    padding-left: 40px;
-    font-size:18px;
+#permitt {
+  padding-left: 40px;
+  font-size: 18px;
+  outline: none;
 }
 .welcome p {
-    margin-top: 20px;
-    font-size: 35px;
-    font-weight: lighter;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-top: 20px;
+  font-size: 35px;
+  font-weight: lighter;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 .towch #aaaa button {
-    color: orange;
-    text-decoration: none;
-    width: 400px;
-    text-decoration: none;
+  color: orange;
+  text-decoration: none;
+  width: 400px;
+  text-decoration: none;
 }
-.towch #aaaa button:hover{
-background-color: white;
-color:yellow;
-border: none;
+.towch #aaaa button:hover {
+  background-color: white;
+  color: yellow;
+  border: none;
 }
