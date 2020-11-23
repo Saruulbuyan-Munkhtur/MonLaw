@@ -246,8 +246,8 @@ function saveIt(idOfCase){
         company: newCompany,title: newTitle};
     let newContent2 = { birthDay: newBirthday, sex: newSex, marital: newMarital, driverID: newDriverli, emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, who: newEmergencywho};
     
-    database.ref('/client/data/contents/' +idOfCase).update(newContent1);
-    database.ref('/client/data/details/' +idOfCase).update(newContent2);
+    database.ref('/data/clients/contents/' +idOfCase).update(newContent1);
+    database.ref('/data/clients/details/' +idOfCase).update(newContent2);
 
     document.getElementById('view-background').style.display="none";
     

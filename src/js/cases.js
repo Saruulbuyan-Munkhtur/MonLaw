@@ -494,8 +494,8 @@ function saveIt(idOfCase){
         emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, 
         who: newEmergencywho};
     
-    database.ref('/clients/data/contents/' +idOfCase).update(newContent1);
-    database.ref('/clients/data/details/' +idOfCase).update(newContent2);
+    database.ref('/data/clients/contents/' +idOfCase).update(newContent1);
+    database.ref('/data/clients/details/' +idOfCase).update(newContent2);
 
     document.getElementById('about-content').style.display="none";
     var getEl = document.getElementById('about-content-container');
