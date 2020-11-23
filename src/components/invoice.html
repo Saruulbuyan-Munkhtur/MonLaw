@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МОН-ХУУЛЬ Систем</title>
-    
-    <link rel="stylesheet" href="../css/invoice.css">
+
+    <link rel="stylesheet" href="../css/invoice.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,7 +14,6 @@
     />
   </head>
   <body class="light">
-   
     <!-- Start of Container -->
     <div class="container">
       <!-- Start of Navbar -->
@@ -72,7 +71,7 @@
           </div>
           <div class="messages">
             <div>
-              <i 
+              <i
                 class="fa fa-envelope dropdown-toggle"
                 data-toggle="messages__id"
               ></i>
@@ -155,65 +154,69 @@
           <!-- Start of Change Code -->
           <div class="invoice-main-content-container">
             <div class="header-buttons">
-              <button id="download-invoice" onclick="downloadPdf()">Download</button>
+              <button id="download-invoice" onclick="downloadPdf()">
+                Download
+              </button>
               <button id="print-invoice" onclick="printIt()">Print</button>
-              
             </div>
-            <hr>
+            <hr />
             <div id="mainContentContainer">
               <div class="invoice-header">
-                
                 <span>Invoice</span>
                 <span>2020.02.02</span>
-                <hr>
+                <hr />
               </div>
               <div class="name-content-container">
                 <div class="name-content-left">
                   <span>Хаанаас</span>
-                  <br>
+                  <br />
                   <span>MonLaw</span>
-                  <br>
-                  <span >Direction: #504, Meru Tower, Jamiyan Gun Street 18-2, 14210  Sukhbaatar District, 1st Khoroo Ulaanbaatar, Mongolia  </span>
-                  <br>
-                  <span >Mail: Info@nest.edu.mnx</span>
-                  <span >Phone: +976 7507-7500</span>
+                  <br />
+                  <span
+                    >Direction: #504, Meru Tower, Jamiyan Gun Street 18-2, 14210
+                    Sukhbaatar District, 1st Khoroo Ulaanbaatar, Mongolia
+                  </span>
+                  <br />
+                  <span>Mail: Info@nest.edu.mnx</span>
+                  <span>Phone: +976 7507-7500</span>
                 </div>
                 <div class="name-content-right">
                   <span>Хаана</span>
-                  <br>
+                  <br />
                   <span id="toWhere"></span>
-                  <br>
+                  <br />
                   <span id="toWhereDirection"></span>
-                  <br>
+                  <br />
                   <span id="toMail"></span>
                   <span id="toPhone"></span>
                 </div>
               </div>
-              <hr>
+              <hr />
               <div class="name-content-bordered">
                 <span id="invoiceId"></span>
                 <span id="orderId"></span>
                 <span id="paymentDue"></span>
                 <span id="accountNumber"></span>
               </div>
-              <div id="tableContent">
-              </div>   
+              <div id="tableContent"></div>
               <div class="footer-content">
                 <span id="paymentDues"></span>
-                <br>
-                <br>
+                <br />
+                <br />
                 <span id="totalAmount"></span>
-                <br>
-                <br>
+                <br />
+                <br />
                 <span id="tax"></span>
-                <br>
+                <br />
                 <span id="total"></span>
-                <br>
-                <br>
+                <br />
+                <br />
               </div>
             </div>
             <div class="footerButton">
-              <button id="SubmitPayment" onclick="sendInvoice()">Send Invoice</button>
+              <button id="SubmitPayment" onclick="sendInvoice()">
+                Send Invoice
+              </button>
             </div>
           </div>
           <!-- End of Change Code -->
@@ -238,7 +241,7 @@
           </li>
           <!-- <h3>Мэдээлэл</h3> -->
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link active" href="#">
+            <a class="sidebar__menu__link" href="#">
               <i class="fa fa-user-secret"></i>
 
               <span> Миний самбар</span>
@@ -247,7 +250,7 @@
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="#">
               <i class="fa fa-building-o"></i>
-              <span>Компани</span>
+              <span>Компани журам</span>
             </a>
           </li>
           <li class="sidebar__menu__item">
@@ -270,9 +273,9 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="#">
+            <a class="sidebar__menu__link" href="./timeCalendar.html">
               <i class="fa fa-tasks"></i>
-              <span> Дотоод журам </span>
+              <span> Календар </span>
             </a>
           </li>
           <li class="sidebar__menu__item">
@@ -289,16 +292,13 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="#">
+            <a class="sidebar__menu__link active" href="./invoice.html">
               <i class="fa fa-briefcase"></i>
               <span> Нэхэмжлэх </span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a
-              class="sidebar__menu__link"
-              href="../components/monlaw_login.html"
-            >
+            <a class="sidebar__menu__link" href="./monlaw_login.html">
               <i class="fa fa-power-off"></i>
               <span>Log out</span>
             </a>
