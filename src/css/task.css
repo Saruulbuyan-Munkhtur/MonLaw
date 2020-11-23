@@ -73,7 +73,7 @@ h3 {
     font-size: 26px;
     margin-top: 16px;
 }
-#new-task-board{
+.new-task-board{
     padding-top: 20px;
     margin-bottom: 20px;
     padding-left: 30px;
@@ -86,7 +86,7 @@ h3 {
     /* z-index: 9; */
     
 }
-#new-task-board:hover{
+.new-task-board:hover{
     box-shadow: 8px 12px 50px #4b4a4a;
 }
 .board-edit{
@@ -327,4 +327,7 @@ h3 {
     cursor: pointer;
     margin-top: 20%;
     font-size: 20px;
+}
+.DisplayBlock{
+    display: block;
 }

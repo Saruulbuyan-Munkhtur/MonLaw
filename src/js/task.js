@@ -4,10 +4,6 @@ database.ref('task/').once('value', function(snapshot) {
     data = snapshot.val().data; 
     createTask();
 });
-// function sendTaskData(data){
-//     database.push(data);
-//     console.log(data);
-//  }
 
 var taskAddContainer = document.getElementById("task-add-container");
 var taskPri = document.getElementsByClassName("task-priority")[0];
@@ -16,19 +12,18 @@ var taskPriorityStatus = document.getElementsByClassName("priority-group")[0];
 var taskStatusEl = document.getElementsByClassName("status-group")[0];
 
 createTask();
+var createBox;
 function createTask(){ 
     var createOpen = document.getElementById("task-open-add");
     var createProgress = document.getElementById("task-progress-add");
     var createCompleted = document.getElementById("task-completed-add");
-    
-   
     var i = 0;
     // var createBox = "";
     
     for(i in data){
-        console.log(data[0]);
+        // console.log(data[0]);
         createBox =`
-            <div id="new-task-board" draggable="true">
+            <div class="new-task-board" draggable="true">
                 <div class="board-edit">
                     <form>
                         <input value = ${data[i].taskName} >  
@@ -148,42 +143,34 @@ function taskStatusChange(currentStatus, i){
     var createOpen = document.getElementById("task-open-add");
     var createProgress = document.getElementById("task-progress-add");
     var createCompleted = document.getElementById("task-completed-add");
-   
-    var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
-    dropdownContent.style.display="block";
-    dropdownContent.addEventListener("click", function(e){
-     
+    var updates = {};
+    var taskBoard = document.getElementsByClassName("new-task-board");
+    var editEl = document.getElementsByClassName("edit");
+    editEl[i].lastChild.previousSibling.style.display="block";
+
+    editEl[i].lastChild.previousSibling.addEventListener("click", function(e){
+        editEl[i].lastChild.previousSibling.style.display="none";
         if(e.target.innerText==="Progress"){
-            
             currentStatus = 2;
+            console.log(editEl[i].parentNode.parentNode);
+
+            let taskChanged = editEl[i].parentNode.parentElement;
+            createProgress.insertAdjacentHTML("beforeend",taskChanged);
             // createOpen="";
             // createProgress="";
             // createCompleted="";
-            // console.log(currentStatus);
-            createTask();
+
+            // data.status[i] = currentStatus;
+            // data.status[i].push();
+            
+            // updates['/data/status' + currentStatus] = postData;
+            // return firebase.database().ref().update(updates);
+            // createTask();
         }
-    });
-}
-// function taskStatusChange(getStatus, i){
-
-//     let clickEl;
-//     console.log(getStatus);
-//     var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
-//     dropdownContent.style.display="block";
-//     dropdownContent.addEventListener("click", MyFunction(clickEl));
-// }
-
-// function changeTaskToProgress(sta,i){
-//    console.log(sta);
-   
-//         sta = 2;
-//     console.log(sta);  
-          
-//         createTask();
         
-//     }
-
-
+    });
+    
+}
     
 // function getTaskSta(){
 //     var newBoard=document.getElementById("new-task-board");
