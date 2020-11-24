@@ -49,7 +49,7 @@ function showTable(){
                 <td class="alignRight" unitCost="Unit cost">'+data[i].salaryLevel+'</td>\
                 <td  unitCost="Unit cost">2020</td>\
                 <td style="text-align: end;"  subTotal="Subtotal">'+currency(subTotal).format()+'</td>\
-                <td  id="hideWhenPdf2" id="element-to-hide" data-html2canvas-ignore="true"><button type="button" id="view-button" onclick="showTableForEachOne('+i+')">Харах</button></td>\
+                <td class="to-print"  id="hideWhenPdf2" id="element-to-hide" data-html2canvas-ignore="true"><button type="button" id="view-button" onclick="showTableForEachOne('+i+')">Харах</button></td>\
             </tr>\
         </tbody>';
         count++
@@ -104,18 +104,6 @@ function printIt() {
     window.print();
     document.body.innerHTML = originalContents;
 }
-
-function showAfterPrintPDF(){
-    //showTable();
-
-    let table =document.getElementById('tableForDownload');
-
-    
-    
-  
-    
-}
-
 
 
 function sendInvoice(){
