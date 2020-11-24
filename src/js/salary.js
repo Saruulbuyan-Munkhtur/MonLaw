@@ -49,7 +49,7 @@ function showTable(){
                 <td class="alignRight" unitCost="Unit cost">'+data[i].salaryLevel+'</td>\
                 <td  unitCost="Unit cost">2020</td>\
                 <td style="text-align: end;"  subTotal="Subtotal">'+currency(subTotal).format()+'</td>\
-                <td  id="hideWhenPdf2" id="element-to-hide" data-html2canvas-ignore="true"><button type="button" id="view-button" onclick="showTableForEachOne('+i+')">Харах</button></td>\
+                <td class="to-print"  id="hideWhenPdf2" id="element-to-hide" data-html2canvas-ignore="true"><button type="button" id="view-button" onclick="showTableForEachOne('+i+')">Харах</button></td>\
             </tr>\
         </tbody>';
         count++
@@ -104,18 +104,6 @@ function printIt() {
     window.print();
     document.body.innerHTML = originalContents;
 }
-
-function showAfterPrintPDF(){
-    //showTable();
-
-    let table =document.getElementById('tableForDownload');
-
-    
-    
-  
-    
-}
-
 
 
 function sendInvoice(){
@@ -173,11 +161,11 @@ function showTableForEachOne(x){
             <tr>\
             <td id="whatNumber">'+count+'</td>\
             <td id="whatMonth">'+count+'</td>\
-            <td style="text-align: end;" id="nDaatgal">'+currency(subTotal/10).format()+'$</td>\
-            <td style="text-align: end;" id="tatwar">'+currency(subTotal/10).format()+'$</td>\
-            <td style="text-align: end;" >'+currency(subTotal/80).format() +'$</td>\
-            <td style="text-align: end;" id="Subtotal">'+ currency(subTotal).format() +'$</td>\
-            <td style="text-align: end;" id="SubtotalGiven">'+ currency(subTotalForTotal).format() +'$</td>\
+            <td style="text-align: end;" id="nDaatgal">'+currency(subTotal/10).format()+'</td>\
+            <td style="text-align: end;" id="tatwar">'+currency(subTotal/10).format()+'</td>\
+            <td style="text-align: end;" >'+currency(subTotal/80).format() +'</td>\
+            <td style="text-align: end;" id="Subtotal">'+ currency(subTotal).format() +'</td>\
+            <td style="text-align: end;" id="SubtotalGiven">'+ currency(subTotalForTotal).format() +'</td>\
             </tr>\
         </tbody>';
         count++
@@ -196,11 +184,11 @@ function showTableForEachOne(x){
     document.getElementById("toMail").innerHTML ='Майл: '+ data[x].mail;
 
     
-    document.getElementById("totalAmount").innerHTML ='НиЙгмийн даатгал(10%): '+ currency(subTotalForTatal/10).format()  + '$';
-    document.getElementById("paymentDues").innerHTML ='Нийт Цалин: '+currency(subTotalForTatal).format()   + '$';
-    document.getElementById("tax").innerHTML ='Орлогын албан татвар(10%): '+currency(subTotalForTatal/10).format()  +'$';
-    document.getElementById("eMendDaatgal").innerHTML ='Эрүүл мэндийн даатгал: '+currency(subTotalForTatal/80).format()   + '$';
-    document.getElementById("total").innerHTML ='Гар дээр олгодсон цалин: '+currency((subTotalForTatal-subTotalForTatal/5-subTotalForTatal/80)).format() +'$';
+    document.getElementById("totalAmount").innerHTML ='НиЙгмийн даатгал(10%): '+ currency(subTotalForTatal/10).format()  ;
+    document.getElementById("paymentDues").innerHTML ='Нийт Цалин: '+currency(subTotalForTatal).format()  ;
+    document.getElementById("tax").innerHTML ='Орлогын албан татвар(10%): '+currency(subTotalForTatal/10).format()  ;
+    document.getElementById("eMendDaatgal").innerHTML ='Эрүүл мэндийн даатгал: '+currency(subTotalForTatal/80).format()   ;
+    document.getElementById("total").innerHTML ='Гар дээр олгодсон цалин: '+currency((subTotalForTatal-subTotalForTatal/5-subTotalForTatal/80)).format();
     let elForButton = '<button id="close-salary" onclick="closeSalary()">Буцах</button>'
     document.getElementsByClassName('header-buttons')[0].innerHTML+=elForButton;
     

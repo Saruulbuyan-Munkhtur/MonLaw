@@ -1,7 +1,9 @@
 // --- Form validation STEP1 ---
-var userData ={};
-var userInformation = { cases : [],
-                        bills : []};
+var userData = {};
+var userInformation = {
+   cases: [],
+   bills: []
+};
 
 const lastName = document.getElementById('lastName');
 const firstName = document.getElementById('firstName');
@@ -22,14 +24,14 @@ formArr1.push(userAddress);
 formArr1.push(companyName);
 formArr1.push(userPosition);
 
-let step1Id = [lastName.id, 
-               firstName.id,
-               gender.id, 
-               email.id,
-               userPhone.id,
-               userAddress.id,
-               companyName.id,
-               userPosition.id ];
+let step1Id = [lastName.id,
+firstName.id,
+gender.id,
+email.id,
+userPhone.id,
+userAddress.id,
+companyName.id,
+userPosition.id];
 // form 1 end
 
 // --- Form validation STEP2 ---
@@ -49,12 +51,12 @@ formArr2.push(emergencyName);
 formArr2.push(emergencyCallNumber);
 formArr2.push(emergencyRelatives);
 
-let step2Id = [birthDate.id, 
-               maritalStatus.id,
-               driversLicense.id, 
-               emergencyName.id,
-               emergencyCallNumber.id,
-               emergencyRelatives.id ];
+let step2Id = [birthDate.id,
+maritalStatus.id,
+driversLicense.id,
+emergencyName.id,
+emergencyCallNumber.id,
+emergencyRelatives.id];
 
 // form2 end 
 
@@ -89,14 +91,14 @@ formArr3.push(endDate);
 //             "endDate",
 //             "bills" ];
 
-let step3Id = [caseId.id, 
-               maritalStatus.id,
-               caseType.id, 
-               caseDistrict.id,
-               caseFile.id,
-               caseInfo.id,
-               startDate.id,
-               endDate.id];
+let step3Id = [caseId.id,
+maritalStatus.id,
+caseType.id,
+caseDistrict.id,
+caseFile.id,
+caseInfo.id,
+startDate.id,
+endDate.id];
 
 // form3 end 
 
@@ -114,57 +116,61 @@ formArr4.push(totalFee);
 formArr4.push(paidOrNot);
 
 let step4Id = [serviceType.id,
-               billInfo.id,
-               totalFee.id,
-               paidOrNot.id];
+billInfo.id,
+totalFee.id,
+paidOrNot.id];
 
-               
-               
+
+
 // form4 end 
 // --- BUTTONS --- 
 
 const nextBtn = document.getElementsByClassName('next');
 const pages = document.getElementsByClassName('pages');
 
-nextBtn[0].addEventListener('click', function(){
-   if(form_validation1()){
+nextBtn[0].addEventListener('click', function () {
+   if (form_validation1()) {
       pages[0].style.display = 'none';
       document.getElementById('step2').classList.add('active');
       //console.log(lastName.id);
       step1 = convertToObject(formArr1, step1Id);
-      userInformation = { ...step1,
-                          ...userInformation};                   // --- !!!IMPORTANT!!! ---
+      userInformation = {
+         ...step1,
+         ...userInformation
+      };                   // --- !!!IMPORTANT!!! ---
       console.log('step1');
       console.log(step1);
       console.log('userinformation1');
-      console.log(userInformation);    
-      
-   }else{
+      console.log(userInformation);
+
+   } else {
       pages[0].style.display = 'block';
       document.getElementById('step1').classList.add('active');
-   }   
+   }
 });
 
-nextBtn[1].addEventListener('click', function(){
-   if(form_validation2()){
+nextBtn[1].addEventListener('click', function () {
+   if (form_validation2()) {
       pages[1].style.display = 'none';
       document.getElementById('step3').classList.add('active');
       step2 = convertToObject(formArr2, step2Id);
-      userInformation = {  ...step2,
-                           ...userInformation};
+      userInformation = {
+         ...step2,
+         ...userInformation
+      };
       console.log('step2');
       console.log(step2);
       console.log('userinformation2');
       console.log(userInformation);
-      
-   }else{
+
+   } else {
       pages[1].style.display = 'block';
       document.getElementById('step2').classList.add('active');
-   }   
+   }
 });
 
-nextBtn[2].addEventListener('click', function(){
-   if(form_validation3()){
+nextBtn[2].addEventListener('click', function () {
+   if (form_validation3()) {
       pages[2].style.display = 'none';
       document.getElementById('step4').classList.add('active');
       step3 = convertToObject(formArr3, step3Id);
@@ -173,15 +179,15 @@ nextBtn[2].addEventListener('click', function(){
       console.log(step3);
       console.log('userinformation3');
       console.log(userInformation);
-      
-   }else{
+
+   } else {
       pages[2].style.display = 'block';
       document.getElementById('step3').classList.add('active');
-   }   
+   }
 });
 
-nextBtn[3].addEventListener('click', function(){
-   if(form_validation4()){
+nextBtn[3].addEventListener('click', function () {
+   if (form_validation4()) {
       pages[3].style.display = 'none';
       document.getElementById('step5').classList.add('active');
       step4 = convertToObject(formArr4, step4Id);
@@ -195,169 +201,169 @@ nextBtn[3].addEventListener('click', function(){
       //                         ...step2,                   --- !!!hudlaa jishee haha!!! ---
       //                         cases : [],
       //                         bills : []};
-      }else{
-         pages[3].style.display = 'block';
-         document.getElementById('step4').classList.add('active');
-      }   
+   } else {
+      pages[3].style.display = 'block';
+      document.getElementById('step4').classList.add('active');
+   }
 });
 
-const prevBtn =  document.getElementsByClassName('prev');
+const prevBtn = document.getElementsByClassName('prev');
 
-prevBtn[0].addEventListener('click', function(){
+prevBtn[0].addEventListener('click', function () {
    pages[0].style.display = 'block';
    document.getElementById('step2').classList.remove('active');
 });
 
-prevBtn[1].addEventListener('click', function(){
+prevBtn[1].addEventListener('click', function () {
    pages[1].style.display = 'block';
    document.getElementById('step3').classList.remove('active');
 });
 
-prevBtn[2].addEventListener('click', function(){
+prevBtn[2].addEventListener('click', function () {
    pages[2].style.display = 'block';
    document.getElementById('step4').classList.remove('active');
 });
 // --- success modal ---
-document.getElementById("open-popup-btn").addEventListener("click",function(){
+document.getElementById("open-popup-btn").addEventListener("click", function () {
    document.getElementsByClassName("popup")[0].classList.add("active");
 });
 
-document.getElementById("dismiss-popup-btn").addEventListener("click",function(){
-document.getElementsByClassName("popup")[0].classList.remove("active");
+document.getElementById("dismiss-popup-btn").addEventListener("click", function () {
+   document.getElementsByClassName("popup")[0].classList.remove("active");
 });
 //  --- success modal end ---
 
 // --- FORM VALIDATIONS ---
 
-function form_validation1 (){
-   let numbers =  /^[-+]?[0-9]+$/;
-   let emails =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ;
-   
+function form_validation1() {
+   let numbers = /^[-+]?[0-9]+$/;
+   let emails = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
    let errMessages = ["Эцэг эхийн нэрээ оруулна уу",
-                        "Өөрийн нэрээ оруулна уу",
-                        "Хүйсээ сонгоно уу",
-                        "Майл хаягаа оруулна уу",
-                        "Утасны дугаараа бичнэ үү",
-                        "Гэрийн хаягаа оруулна уу", 
-                        "Компаниа оруулна уу",
-                        "Албан тушаалаа бичнэ үү"];
-  
-   for(let i in formArr1){
-      if(formArr1[i].value == '' || formArr1[i].value == null){
+      "Өөрийн нэрээ оруулна уу",
+      "Хүйсээ сонгоно уу",
+      "Майл хаягаа оруулна уу",
+      "Утасны дугаараа бичнэ үү",
+      "Гэрийн хаягаа оруулна уу",
+      "Компаниа оруулна уу",
+      "Албан тушаалаа бичнэ үү"];
+
+   for (let i in formArr1) {
+      if (formArr1[i].value == '' || formArr1[i].value == null) {
          showError(formArr1[i], errMessages[i]);
          return false;
-      } else{
+      } else {
          showSuccess(formArr1[i]);
-      } 
+      }
    }
 
-   if(formArr1[3].value.match(emails)){
+   if (formArr1[3].value.match(emails)) {
       showSuccess(formArr1[3]);
    } else {
       showError(formArr1[3], errMessages = 'Майл хаягаа зөв оруулна уу');
       return false;
    }
 
-   if(formArr1[4].value.match(numbers)){
+   if (formArr1[4].value.match(numbers)) {
       showSuccess(formArr1[4]);
-   } else{
+   } else {
       showError(formArr1[4], errMessages = 'Утасны дугаараа тоогоор оруулна уу');
       return false;
    }
    return true;
 }
 
-function form_validation2(){
+function form_validation2() {
    let errMessages = ["Төрсөн он сар өдрөө оруулна уу",
-                        "Энэ хэсгийг бөглөнө үү",
-                        "Жолооны үнэмлэхны дугаараа оруулна уу",
-                        "Яаралтай холбоо барих хүний нэрийг бичнэ үү",
-                        "Яаралтай холбоо барих хүний утсыг оруулна уу", 
-                        "Энэ хэсгийг бөглөнө үү",];
-  
-   for(let i in formArr2){
-      if(formArr2[i].value == '' || formArr2[i].value == null){
+      "Энэ хэсгийг бөглөнө үү",
+      "Жолооны үнэмлэхны дугаараа оруулна уу",
+      "Яаралтай холбоо барих хүний нэрийг бичнэ үү",
+      "Яаралтай холбоо барих хүний утсыг оруулна уу",
+      "Энэ хэсгийг бөглөнө үү",];
+
+   for (let i in formArr2) {
+      if (formArr2[i].value == '' || formArr2[i].value == null) {
          showError(formArr2[i], errMessages[i]);
          return false;
-      }else{
+      } else {
          showSuccess(formArr2[i]);
-      } 
+      }
    }
    return true;
 }
 
-function form_validation3(){
+function form_validation3() {
    let errMessages = ["Хэргийн дугаараа оруулна уу",
-                     "Хэргийн нэрээ оруулна уу",
-                     "Хэргийн төрлөө оруулна уу",
-                     "Дүүргээ сонгоно уу",
-                     "Хэргийн зургаа оруулна уу",
-                     "Хэргийн дэлгэрэнгүй мэдээллээ оруулна уу", 
-                     "Хэргийн хүлээж авсан өдрөө оруулна уу",
-                     "Хэргийн шийдвэрлэгдэх өдрөө оруулна уу",
-                     "Төлбөрөө бичнэ үү",];
-  
-   for(let i in formArr3){
-      if(formArr3[i].value == '' || formArr3[i].value == null){
+      "Хэргийн нэрээ оруулна уу",
+      "Хэргийн төрлөө оруулна уу",
+      "Дүүргээ сонгоно уу",
+      "Хэргийн зургаа оруулна уу",
+      "Хэргийн дэлгэрэнгүй мэдээллээ оруулна уу",
+      "Хэргийн хүлээж авсан өдрөө оруулна уу",
+      "Хэргийн шийдвэрлэгдэх өдрөө оруулна уу",
+      "Төлбөрөө бичнэ үү",];
+
+   for (let i in formArr3) {
+      if (formArr3[i].value == '' || formArr3[i].value == null) {
          showError(formArr3[i], errMessages[i]);
          //console.log("err" + i);
          return false;
-      }else{
-         showSuccess(formArr3[i]); 
+      } else {
+         showSuccess(formArr3[i]);
       }
       //console.log("ok" + i);  
    }
    return true;
 }
 
-function form_validation4(){
+function form_validation4() {
    let errMessages = ["үйлчилгээгээ сонгоно уу",
-                     "bills",
-                     "total fee",
-                     "paid or not"];
+      "bills",
+      "total fee",
+      "paid or not"];
 
-   for(let i in formArr4){
-      if(formArr4[i].value == '' || formArr4[i].value == null){
+   for (let i in formArr4) {
+      if (formArr4[i].value == '' || formArr4[i].value == null) {
          showError(formArr4[i], errMessages[i]);
          return false;
-      }else{
-         showSuccess(formArr4[i]); 
+      } else {
+         showSuccess(formArr4[i]);
       }
    }
    return true;
 }
 
-function showError(input, message){
-   let field = input.parentElement;   
+function showError(input, message) {
+   let field = input.parentElement;
    let error = field.querySelector('small');
    field.classList.add('error');
    field.classList.remove('success');
    error.innerText = message;
 }
 
-function showSuccess(input){
+function showSuccess(input) {
    let field = input.parentElement;
    let error = field.querySelector('small');
    field.classList.remove('error');
    field.classList.add('success');
-   error.innerText = ''; 
+   error.innerText = '';
 }
 
 // convert from array to object
 
 //formArr11 = [["user", "user1"], ["number", "number"]];
 
-function convertToObject(formArr,keysId){
-   let newArr=[];
-         for (const key in formArr){
-           newArr[key] = [keysId[key],formArr[key].value];
-         }
-         // With Object.fromEntries, you can convert from Array to Object:
-         // const arr = [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ];
-         // const obj = Object.fromEntries(arr);
-         // console.log(obj); // { 0: "a", 1: "b", 2: "c" }
-   const obj = Object.fromEntries(newArr);  
-   return obj;   
+function convertToObject(formArr, keysId) {
+   let newArr = [];
+   for (const key in formArr) {
+      newArr[key] = [keysId[key], formArr[key].value];
+   }
+   // With Object.fromEntries, you can convert from Array to Object:
+   // const arr = [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ];
+   // const obj = Object.fromEntries(arr);
+   // console.log(obj); // { 0: "a", 1: "b", 2: "c" }
+   const obj = Object.fromEntries(newArr);
+   return obj;
 }
 
 //DESTRUCTINGs
@@ -390,14 +396,16 @@ function convertToObject(formArr,keysId){
 //                                           --- Firebase ---
 
 var informationRef = firebase.database().ref("informations/information");
-         
-informationRef.on('value', function(snapshot) { 
+
+informationRef.on('value', function (snapshot) {
    // informationRef = snapshot.val();  
    // console.log(informationRef);
    // clients ruu usreh yostoi 
 });
 
-function sendInformationData(data){
-   informationRef.push(data);
+function sendInformationData(data) {
+   // informationRef.push(data);
    console.log(data);
+   swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });
+   window.location = "client.html";
 }
