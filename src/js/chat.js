@@ -7,7 +7,7 @@ var idd;
 var messagesData = [];
 var me = "zaya";
 var userLogInState;
-var currentUser;
+var currentUser = {uid: "scrgL0iiPKRb8l6UKi7h21Tx5zR2"};
 var onCheck = false;
 
 // Firebase reference
@@ -80,35 +80,18 @@ usersRef.on("value", function (snapshot) {
 // url: "scrgL0iiPKRb8l6UKi7h21Tx5zR2"
 
 // Html render section
-function createChat(e) {
-    console.log("Createchat");
-    console.log(e);
-    console.log(userLogInState[e.id].name);
-    console.log(userLogInState[e.id].uid);
-
-    const privateChat = {
-        name: userLogInState[e.id].name,
-        uid: userLogInState[e.id].uid,
-    };
-
-    // console.log(name.children[1].children[0]);
-    if (countMessanger.length >= 4) {
-        // countMessanger = 3;
-        console.log("overflow");
-    } else {
-        countMessanger.push(privateChat);
-    }
+function viewChat(e){
     chat.innerText = "";
     for (let i in countMessanger) {
         var chatHTML = `
-            <div class="chat" id="c-${i}">
+            <div class="chat" id="chat">
               <div class="chat__left">
                 <div class="chat__left__header">
                   <div class="header__title">
                     <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
                     <div id="${countMessanger[i].uid}" class="uuid">${countMessanger[i].name}</div>
                   </div>
-                  <i class="fas fa-times"></i>
+                  <i class="fas fa-times" onclick="closeChat(this)" id="${countMessanger[i].uid}"></i>
                 </div>
                 <div class="chat__left__content" id="contentMessage">
 
@@ -133,19 +116,68 @@ function createChat(e) {
               </div>
             </div>`;
         chat.insertAdjacentHTML("beforeend", chatHTML);
+        viewMessage(countMessanger[i].uid, e.idd);
     }
-    var chatClose = document.getElementsByClassName("chat")[0];
-    console.log(chatClose);
-    chatClose.addEventListener("click", function (e) {
-        var isId = e.target.parentNode.parentNode.parentNode.id;
-        if (isId) {
-            console.log("chat closed");
-        }
-    });
-    viewMessage(privateChat.uid);
 }
 
-function viewMessage(cuid) {
+function createChat(e) {
+    console.log("Createchat");
+    console.log(e);
+    console.log(userLogInState[e.id].name);
+    console.log(userLogInState[e.id].uid);
+    var found = false;
+    var privateChat;
+    if(userLogInState[e.id].uid === currentUser.uid){
+        // return;
+        console.log("currentUser's id : " + userLogInState[e.id].uid + " = " + currentUser.uid);
+    }else{
+        privateChat = {
+            name: userLogInState[e.id].name,
+            uid: userLogInState[e.id].uid,
+            chatStatus : true
+        };
+    }
+    
+
+    // console.log(name.children[1].children[0]);
+    if (countMessanger.length >= 4) {
+        // countMessanger = 3;
+        console.log("overflow");
+    } else {
+        for(let i in countMessanger){
+            if(countMessanger[i].uid === privateChat.uid){
+               found = true;
+               break;
+            }
+        }
+        if(!found){
+            countMessanger.push(privateChat);
+        }
+    }
+    viewChat(e);
+}
+
+function closeChat(e){
+    var cf = false;
+    var idx = -1;
+    console.log(e.id);
+    console.log(countMessanger);
+    for(let i in countMessanger){
+        if(countMessanger[i].uid === e.id){
+            cf = true;
+            idx = i;
+            break;
+        }
+    }
+    if(cf){
+        console.log("chat is closed : " + idx);
+        countMessanger.splice(idx,1);
+        
+    }
+    viewChat();
+}
+
+function viewMessage(cuid, idd) {
     console.log("ViewMessage");
     if (cuid) {
         console.log("hoho");
@@ -153,7 +185,7 @@ function viewMessage(cuid) {
         var messagesContent = document.getElementById("contentMessage");
         // console.log(messagesContent);
         messagesContent.innerHTML = "";
-        var mData = messagesData[`private-${cuid}`];
+        var mData = messagesData[`p-${cuid}${idd}`];
         console.log("mData");
         console.log(mData);
         for (const i in mData) {
@@ -188,26 +220,26 @@ function updateUser() {
             }">${userLogInState[i].logIn ? "Online" : "Offline"}</p>
           </div>
         </div>`;
-        userList.insertAdjacentHTML("beforeend", userHTML);
+        if(userLogInState[i].uid === currentUser.uid){
+            console.log("current user is here");
+        }else{
+            userList.insertAdjacentHTML("beforeend", userHTML);
+        }
     }
 }
 
 // Utilities section
 function doProcess(data) {
     console.log("DoProcess");
-    var { from, to, url } = data;
-    console.log(from);
-    console.log(to);
-    console.log(url);
     var suid;
     for (const i in userLogInState) {
-        if (userLogInState[i].uid === to) {
+        if (userLogInState[i].uid === data.from) {
             console.log(i);
             suid = i;
         }
     }
     if (suid) {
-        createChat({ id: suid });
+        createChat({ id: suid, idd: data.to });
     }
 }
 
@@ -243,10 +275,10 @@ function sendMessage() {
         file: "url",
     });
     notificationRef.update({
-        from: "zaya",
+        from: currentUser.uid,
         to: uidKey,
         new: true,
-        url: "private-" + uidKey,
+        url: "p-" + uidKey + currentUser.uid,
     });
     document.getElementById("inputMsg").value = "";
 }

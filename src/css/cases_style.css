@@ -744,7 +744,7 @@ body {
   background-color: var(--main-bg-color);
   margin-left: 1%;
   margin-right: 1%;
-  border: 0.3px solid #3b5999;
+  
 }
 .header-buttons {
   height: 40px;
@@ -882,14 +882,14 @@ table th {
   padding-left: 4px;
   font-weight: inherit;
   font-family: sans-serif;
-  background-color: #3b5999;
+  background-color: #7aa3df;
   font-size: 14px;
   height: 30px;
   color: white;
   border: 0.1px solid white;
 }
 #about-content-container th {
-  background-color: #3b5999;
+  background-color: #354f88;
   color: white;
 }
 table {
@@ -900,7 +900,7 @@ table {
   border-collapse: separate;
 }
 table tr:nth-child(even) {
-  background-color: rgba(124, 174, 250, 0.2);
+  background-color: rgba(208, 225, 250, 0.2);
 }
 table th:nth-child(9) {
   text-align: center;
@@ -932,35 +932,35 @@ table tr:nth-child(2) {
 }
 #view-button {
   outline-style: none;
-  border: 0.3px solid #3b5999;
+  border: 0.3px solid  #6291d8;
   color: white;
-  background-color: #3b5999;
+  background-color:  #6291d8;
   transition: background-color 0.4s;
 }
 #view-button:hover {
   background-color: white;
-  color: #3b5999;
+  color:  #6291d8;
 }
 #edit-button {
   outline-style: none;
-  border: 0.3px solid #3b5999;
+  border: 0.3px solid  #6291d8;
   transition: background-color 0.4s;
-  background-color: #3b5999;
+  background-color:#6291d8;
   color: white;
 }
 #edit-button:hover {
-  color: #3b5999;
+  color: #6291d8;
   background-color: white;
 }
 #appoint-button {
   outline-style: none;
-  border: 0.3px solid #3b5999;
+  border: 0.3px solid #6291d8;
   transition: background-color 0.4s;
-  background-color: #3b5999;
+  background-color: #6291d8;
 }
 #appoint-button:hover {
   background-color: white;
-  color: #3b5999;
+  color: #6291d8;
 }
 #about-content {
   display: none;
@@ -986,7 +986,7 @@ table tr:nth-child(2) {
   left: 65%;
 }
 #about-content-container table {
-  border: 0.3px solid #3b5999;
+  border: 0.3px solid #ce9d76;
   text-align: left;
 }
 #about-content-container table td {

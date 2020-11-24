@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МОН-ХУУЛЬ Систем</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/time-calendar.css" />
+
+    <link rel="stylesheet" href="../css/requests.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -122,8 +122,8 @@
               <div class="profile__header">
                 <img width="70" src="../../assets/avatar3.png" alt="" />
                 <div>
-                  <h4>Нэр</h4>
-                  <small>и-мэйл</small>
+                  <h4>User name</h4>
+                  <small>email</small>
                 </div>
               </div>
               <ul class="profile__ul">
@@ -137,7 +137,7 @@
                 </li>
                 <li>
                   <i class="fa fa-power-off"></i>
-                  <h5><a href="./monlaw_login.html" style="text-decoration: none;">Гарах</a></h5>
+                  <h5>Гарах</h5>
                 </li>
                 <div class="profile__footer">
                   <button>Профайл харах</button>
@@ -152,80 +152,33 @@
       <section class="main">
         <div class="main__container">
           <!-- Start of Change Code -->
-          <div class="calendar__container">
-            <div class="app-calendar">
-              <div class="calendar__header">
-                <div class="month__head">
-                  <div class="head__left">
-                    <button
-                      id="prev"
-                      class="btn prev fa fa-angle-left"
-                    ></button>
-                    <p><span id="today">1</span> сар</p>
-                    <button
-                      id="next"
-                      class="btn next fa fa-angle-right"
-                    ></button>
-                    <p class="thisYear">2020 он</p>
-                  </div>
-                  <div class="head__right">
-                    <button class="btn btn__today">Өнөөдөр</button>
-                  </div>
-                </div>
-                <div class="group_btn">
-                  <button class="btn btn__right activeBtn">7 хоног</button>
-                  <button class="btn btn__left">Сар</button>
-                </div>
-              </div>
-              <div class="calendar__content"></div>
-            </div>
-
-            <!-- Window for Add event -->
-            <!-- start of div -->
-            <div id="event__form" class="event__style">
-              <div class="event__style__content">
-                <button class="btn" id="event__close">
-                  CLOSE <span class="fa fa-close"></span>
+          <div class="invoice-main-content-container">
+            <div class="header-buttons">
+                <button
+                id="download-invoice"
+                onmousedown="downloadPdf()"
+                onmouseleave="showAfterPrintPDF()"
+                >
+                PDF Татах
                 </button>
-                <form id="addEvent">
-                  <div>
-                    <input placeholder="Гарчиг" type="text" id="eventName" />
-                  </div>
-                  <div>
-                    <input type="datetime-local" id="eventDate" />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Тэмдэглэл"
-                      id="eventDescription"
-                      cols="30"
-                      rows="10"
-                    ></textarea>
-                  </div>
-                  <div>
-                    <select id="eventPriority">
-                      <option value="red">Яаралтай чухал</option>
-                      <option value="yellow">Чухал</option>
-                      <option value="green">Уулзалт</option>
-                      <option value="blue">Ажил</option>
-                    </select>
-                  </div>
-                </form>
-                <br />
-                <button class="btn" id="event__save">
-                  SAVE <span class="fa fa-save"></span>
+                <button
+                id="print-invoice"
+                onmousedown="printIt()"
+                onmouseleave="showAfterPrintPDF()"
+                 >
+                Хэвлэх
                 </button>
+            </div>
+            <hr />
+            <div id="mainContentContainer">
+              <div class="invoice-header">
+                <span>Хүсэлтүүд</span>
+                <span>2020</span>
+                <hr />
               </div>
-            </div>
-            <!-- end of div -->
+              <div id="name-content-container"></div>
 
-            <div class="alert hide" id="alert">
-              <span class="fa fa-exclamation-circle"></span>
-              <span class="alert__message" id="am">Гарчиг</span>
-              <span class="alert__close-btn">
-                <span class="fa fa-times"></span>
-              </span>
-            </div>
+              <div id="tableContent"></div>
           </div>
           <!-- End of Change Code -->
         </div>
@@ -235,7 +188,7 @@
       <aside id="sideBar" style="width: 17rem" class="sidebar">
         <div class="sidebar__title">
           <div class="sidebar__img">
-            <img src="../../assets/logoML.png" alt="Logo" />
+            <img src="../../assets/logoML1.png" alt="Logo" />
             <h1>МОН-ХУУЛЬ</h1>
           </div>
           <i class="fa fa-times" id="sidebarIcon" onclick="closeSidebar()"></i>
@@ -273,16 +226,13 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./requests.html">
+            <a class="sidebar__menu__link active" href="./requests.html">
               <i class="fa fa-question"></i>
               <span> Хүсэлтүүд </span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a
-              class="sidebar__menu__link active"
-              href="./components/timeCalendar.html"
-            >
+            <a class="sidebar__menu__link" href="./timeCalendar.html">
               <i class="fa fa-tasks"></i>
               <span> Календар </span>
             </a>
@@ -301,7 +251,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./invoice.html">
+            <a class="sidebar__menu__link " href="./invoice.html">
               <i class="fa fa-briefcase"></i>
               <span> Нэхэмжлэх </span>
             </a>
@@ -327,17 +277,13 @@
     <script src="../js/firebase.js"></script>
     <!-- FIrebase setting script -->
     <!-- Additional js libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
-      integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../js/html2pdf.bundle.min.js"></script>
+    <script src="../js/requests.js"></script>
+    <script src="../js/currency.js"></script>
 
-    <script src="../js/timeCalendar.js"></script>
     <!-- Additional js libraries -->
     <script src="../js/app.js"></script>
-    </script>
   </body>
 </html>

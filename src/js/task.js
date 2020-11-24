@@ -17,7 +17,6 @@ database.ref('task/').on('value', function(snapshot) {
     createTask();
 });
 
-
 createTask();
 function createTask(){ 
     var createOpen = document.getElementById("task-open-add");
