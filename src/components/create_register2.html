@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../src/css/createregister.css">
+    <title>Create register</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+
+<body>
+    <div class="container_register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" />
+
+                <div id="exittt"><button type="button"><a href="/monlaw_login2.html">Буцах</a></button></div>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div id="edit_text">
+                        <h3>Бүртгүүлэх</h3>
+                    </div>
+                    <div class="row register-form">
+                        <div class="box_in">
+                            <div>
+                                <input type="text" id="name" placeholder="Овог">
+                                <div class="error hide" id="errorPanel">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" id="surname" placeholder="Нэр">
+                                <div class="error hide">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="password" class="pwd" placeholder="Нууц үг">
+                                <div class="error hide">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="password" class="pwd2" placeholder="Нууц үг дахин оруулна уу">
+                                <div class="error hide">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="box_in2">
+                            <div>
+                                <input type="email" id="email" placeholder="И-мейл хаяг">
+                                <div class="error hide">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="tel" id="phone_number" minlength="8" maxlength="11"
+                                    placeholder="утасны дугаар">
+                                <div class="error hide">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="submit" class="btnRegister" value="Бүртгүүлэх" onclick="check()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../../src/js/create.regis.js"></script>
+</body>
+
+</html>
