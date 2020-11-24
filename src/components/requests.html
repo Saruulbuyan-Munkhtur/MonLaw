@@ -3,14 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Written by Dashka" />
     <title>МОН-ХУУЛЬ Систем</title>
-    <link rel="stylesheet" href="../css/cases_style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=B612&display=swap"
-      rel="stylesheet"
-    />
+
+    <link rel="stylesheet" href="../css/requests.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -157,26 +152,33 @@
       <section class="main">
         <div class="main__container">
           <!-- Start of Change Code -->
-          <div class="main-content-container">
+          <div class="invoice-main-content-container">
             <div class="header-buttons">
-              <button onclick="sortAll()" id="header-button-first">
-                ХЭРГҮҮД
-              </button>
-              <button>ШИНЭЭР НЭМЭХ</button>
-              <button onclick="exportFileExl()">FILE татах</button>
-              <button id="header-button-fourth">МИНИЙ ХЭРГҮҮД</button>
-              <button id="header-button-fifth" onclick="sortMyWorks()">
-                ТӨЛБӨР
-              </button>
-              <button onclick="sortByActive()">ИДЭВХИТЭЙ</button>
-              <button id="header-button-last" onclick="sortByClosed()">
-                ШИЙДЭГДСЭН
-              </button>
+                <button
+                id="download-invoice"
+                onmousedown="downloadPdf()"
+                onmouseleave="showAfterPrintPDF()"
+                >
+                PDF Татах
+                </button>
+                <button
+                id="print-invoice"
+                onmousedown="printIt()"
+                onmouseleave="showAfterPrintPDF()"
+                 >
+                Хэвлэх
+                </button>
             </div>
-            <div id="main-content"></div>
-          </div>
-          <div id="about-content">
-            <div id="about-content-container"></div>
+            <hr />
+            <div id="mainContentContainer">
+              <div class="invoice-header">
+                <span>Хүсэлтүүд</span>
+                <span>2020</span>
+                <hr />
+              </div>
+              <div id="name-content-container"></div>
+
+              <div id="tableContent"></div>
           </div>
           <!-- End of Change Code -->
         </div>
@@ -202,7 +204,6 @@
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="#">
               <i class="fa fa-user-secret"></i>
-
               <span> Миний самбар</span>
             </a>
           </li>
@@ -213,7 +214,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link active" href="./cases.html">
+            <a class="sidebar__menu__link" href="./cases.html">
               <i class="fa fa-gavel"></i>
               <span>Хэргүүд</span>
             </a>
@@ -221,12 +222,11 @@
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="./client.html">
               <i class="fa fa-users"></i>
-
               <span> Хэрэглэгчид </span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./requests.html">
+            <a class="sidebar__menu__link active" href="./requests.html">
               <i class="fa fa-question"></i>
               <span> Хүсэлтүүд </span>
             </a>
@@ -251,7 +251,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./invoice.html">
+            <a class="sidebar__menu__link " href="./invoice.html">
               <i class="fa fa-briefcase"></i>
               <span> Нэхэмжлэх </span>
             </a>
@@ -279,8 +279,11 @@
     <!-- Additional js libraries -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../js/html2pdf.bundle.min.js"></script>
+    <script src="../js/requests.js"></script>
+    <script src="../js/currency.js"></script>
+
     <!-- Additional js libraries -->
     <script src="../js/app.js"></script>
-    <script src="../js/cases.js"></script>
   </body>
 </html>
