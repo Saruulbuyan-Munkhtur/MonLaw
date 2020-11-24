@@ -1,18 +1,7 @@
-const database = firebase.database();
-var data = {};
-
-database.ref('data/').on('value', function(snapshot) {
-
-    data = snapshot.val().clients; 
-    showTable(data.contents);
-
-});
-
 var createEl1 = document.createElement('div');
 var createEl2 = document.createElement('div');
 var createEl3_forEdit = document.createElement('div');
 var createEl4_forEdit = document.createElement('div');
-
 //Page iin haruulah utga songoh
 var current_page = 1;
 var records_per_page = 2;
@@ -21,6 +10,17 @@ var prevClick = document.getElementById("btn-prv");
 var start = 0;
 var preBtn = document.getElementById("btn-prv");
 var nextBtn = document.getElementById("btn-next");
+var data = {};
+var paginationQuery = document.getElementsByClassName("btn-pages")[0];
+var pageClick;
+
+const database = firebase.database();
+database.ref('data/').on('value', function(snapshot) {
+
+    data = snapshot.val().clients; 
+    showTable(data.contents);
+
+});
 
 
 function showTable(mainData){
@@ -32,13 +32,13 @@ function showTable(mainData){
     content='\
         <table id="firstTable">\
             <tr>\
-                <th>№</th>\
-                <th id="headName" onclick="sortByName(0)">Овог нэр</th>\
-                <th>Утас</th>\
-                <th>И-мэйл</th>\
-                <th>Гэрийн хаяг</th>\
-                <th>Компани</th>\
-                <th>Албан тушаал</th>\
+                <th onclick="sortByName(0)">№</th>\
+                <th id="headName" onclick="sortByName(1)"<div class="sortIcons"></div>Овог нэр</th>\
+                <th onclick="sortByName(2)">Утас</th>\
+                <th onclick="sortByName(3)">И-мэйл</th>\
+                <th onclick="sortByName(4)">Гэрийн хаяг</th>\
+                <th onclick="sortByName(5)">Компани</th>\
+                <th onclick="sortByName(6)">Албан тушаал</th>\
                 <th colspan="3" id="action">Үйлдэл</th>\
             </tr>';
 
@@ -66,7 +66,6 @@ function showTable(mainData){
     getEl.appendChild(createEl);
     
 };
-    
     
 function view(x){
     content1 = "";
@@ -217,19 +216,12 @@ function edit(x){
     
 }
 function saveIt(idOfCase){
-
-
-
     let  newName= document.getElementById('name').value;
     let  newPhone = document.getElementById('phone').value;
     let  newEmail = document.getElementById('email').value;
     let  newAddress = document.getElementById('address').value;
     let  newCompany = document.getElementById('company').value;
     let  newTitle = document.getElementById('title').value;
-
-    
-    
-
     let newBirthday = document.getElementById('birthDay').value;
     let newSex = document.getElementById('sex').value;
     let newMarital = document.getElementById('maritalSta').value;
@@ -237,9 +229,6 @@ function saveIt(idOfCase){
     let newEmergencyname = document.getElementById('emergencyName').value;
     let newEmergencyphone = document.getElementById('emergencyPhone').value;
     let newEmergencywho = document.getElementById('emergencyWho').value;
-
-   
-   
   
     let newContent1 = { name: newName, phone: newPhone, 
         email: newEmail, address: newAddress, 
@@ -248,16 +237,8 @@ function saveIt(idOfCase){
     
     database.ref('/data/clients/contents/' +idOfCase).update(newContent1);
     database.ref('/data/clients/details/' +idOfCase).update(newContent2);
-
     document.getElementById('view-background').style.display="none";
-    
-    
-
 }
-
-
-
-
 function closeIt(){
     document.getElementById('view-background').style.display="none";
     createEl1.innerHTML= "";
@@ -269,18 +250,7 @@ function nameFilter(){
     var inputName = document.getElementById("name-filter");
     var newData = data.contents.filter(n => n.name.toLowerCase().includes(inputName.value));
     showTable(newData);
-    var language = "фцужэнгшүзкъйыбөахролдпячёсмитьвю";
-    for(j in inputName){
-        for(i in language){
-          
-        }
-        }
-        if(inputName[j] != language[i]){
-                // console.log(language[i]);
-                // console.log(inputName.value);
-                // alert('Та Монгол хэлийг сонгоно уу')
-    }
-        
+         
 }
 function phoneFilter(){
     var inputPhone = document.getElementById("phone-filter");
@@ -293,9 +263,11 @@ function companyFilter(){
     showTable(newData);
 }
 
-function selectedEntries(pageCount){
+function selectedEntries(){
+    
+    var pageCount = numPages(data.contents.length, entriesNumber.value);
     var i = 0;
-    var paginationQuery = document.getElementById("btn-pages");
+    
     for(var i in data.contents){
         k = data.contents[i].id;
         if(k >= entriesNumber.value)
@@ -305,7 +277,7 @@ function selectedEntries(pageCount){
 
 //**************Pagination Show heseg******************
 
-    var pageCount = numPages(data.contents.length, entriesNumber.value);
+    
     paginationQuery.innerHTML = ""; 
     paginationQuery.innerHTML +='\
         <span class="pagination-span active">\
@@ -332,28 +304,13 @@ function selectedEntries(pageCount){
             
         showTable(showActiveTable); 
         });  
-       
-        // for (var i in pageClick.length){
-        //     if (pageClick[i] === preEnd / parseInt(entriesNumber.value)
-    
-        
     }
 }
+
+
 function prevClicked(){
-    selectedEntries(pageCount);
-    console.log("ff"+ pageCount);
-    for (var i in selectedEntries(pageCount)){
-        
-    }
-//   if (pageCount[j] === prevClicked(preEnd)/parseInt(entriesNumber.value)){
-                
-//             }
-    // var currentActivePage = document.getElementsByClassName("active");
-    // currentActivePage[0].className = currentActivePage[0].className.replace(" active", "");
-    // this.className += " active";
-    var startEls = parseInt(document.getElementById("startElements").value);
-    var startEl = startEls - 1;
-    var start = startEl - parseInt(entriesNumber.value);
+    var startEls = parseInt(document.getElementById("startElements").innerText);
+    var start = (startEls-1) - parseInt(entriesNumber.value);
     if (start < 0)
         start = 0;
     let preStart = start;
@@ -364,34 +321,40 @@ function prevClicked(){
 }
 
 function nextClicked(){
-    let startEls = parseInt(document.getElementById("startElements").innerText);
-    let start = startEls + parseInt(entriesNumber.value);
-    let endEl = start-1 
-    if (endEl > data.contents.length)
-        endEl = data.contents.length;
-    var nextStart = endEl-1;
-    var nextEnd = endEl;
-    var nextShow = data.contents.slice(nextStart, nextEnd);
+    var pageClick=document.getElementsByClassName('pagination-span');
+    let startEl = parseInt(document.getElementById("startElements").innerText);
+    let start = startEl+parseInt(entriesNumber.value)-1;
+    let end = start + parseInt(entriesNumber.value);
+    
+    if (end > data.contents.length){
+        end = data.contents.length;
+        startElement= end-(data.contents.length % parseInt(entriesNumber.value));
+        start = startElement;
+    }
+    let i=0;
+    var dis = end/parseInt(entriesNumber.value);
+    for(i; i< pageClick.length; i++){
+        if(i == dis){
+            pageClick[i+1].classList.add("active");
+            pageClick[i].classList.remove("active");
+        }
+    };
+    var nextShow = data.contents.slice(start, end);
 
     showTable(nextShow);
 }
-
 function sortByName(n){
-    let table = document.getElementById("firstTable");
-    console.log(table.innerText);
     let switching = true;
-    var dir;
+    let dir;
     dir = "asc";
     let switchCount = 0;
-    var shouldSwitch;
-            
+    let shouldSwitch;
+    let table = document.getElementById("firstTable");
     while(switching){
         switching = false
         rows = table.rows;
-        for(var i = 1; i<rows.length; i++){
+        for(var i = 1; i<(rows.length-1); i++){
             shouldSwitch = false;
-        // console.log(rows[i].innerText);
-
             rowFrst = rows[i].getElementsByTagName("TD")[n];
             rowNxt = rows[i + 1].getElementsByTagName("TD")[n];
             if (dir == "asc"){
@@ -411,14 +374,14 @@ function sortByName(n){
             rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
             switching = true;
             switchCount ++;
-            }
+        }
         else {
             if (switchCount == 0 && dir == "asc"){
                 dir = "desc";
                 switching = true;
             }
         }
-        
+              
     }  
     
 }
