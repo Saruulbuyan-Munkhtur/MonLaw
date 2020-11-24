@@ -42,8 +42,8 @@ function showTable(){
             <td id="whatNumber">'+count+'</td>\
             <td id="Service Type">'+data[i].serviceType+'</td>\
             <td quantity="Quantity">'+data[i].quantity+'</td>\
-            <td style="text-align: end;" unitCost="Unit cost">'+data[i].unitCost+'$</td>\
-            <td style="text-align: end;" subTotal="Subtotal">'+subTotal+'$</td>\
+            <td style="text-align: end;" unitCost="Unit cost">'+currency(data[i].unitCost).format()+'</td>\
+            <td style="text-align: end;" subTotal="Subtotal">'+currency(subTotal).format()+'</td>\
             </tr>\
         </tbody>';
         count++
@@ -71,9 +71,9 @@ function showTable(){
     document.getElementById("accountNumber").innerHTML ='Аккоунтын дугаар: '+ dataMain.accountNumber;
 
     document.getElementById("paymentDues").innerHTML ='Төлөх хугацаа: '+ dataMain.paymentDue;
-    document.getElementById("totalAmount").innerHTML ='Нийт: '+ subTotalForTotal + ' $';
-    document.getElementById("tax").innerHTML ='Татвар(10%): '+ (subTotalForTotal/10);
-    document.getElementById("total").innerHTML ='Нийт төлбөр: '+ (subTotalForTotal-subTotalForTotal/10);
+    document.getElementById("totalAmount").innerHTML ='Нийт: '+ currency(subTotalForTotal).format();
+    document.getElementById("tax").innerHTML ='Татвар(10%): '+ currency(subTotalForTotal/10).format();
+    document.getElementById("total").innerHTML ='Нийт төлбөр: '+ currency(subTotalForTotal-subTotalForTotal/10).format();
 };
 
 
