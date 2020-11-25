@@ -2,12 +2,13 @@
 var userList = document.getElementById("userList");
 var chat = document.getElementsByClassName("pChat")[0];
 var notify;
+var notCheck = false;
 var countMessanger = [];
 var idd;
 var messagesData = [];
 var me = "zaya";
 var userLogInState;
-var currentUser = {uid: "scrgL0iiPKRb8l6UKi7h21Tx5zR2"};
+var currentUser = { uid: "scrgL0iiPKRb8l6UKi7h21Tx5zR2" };
 var onCheck = false;
 
 // Firebase reference
@@ -60,6 +61,7 @@ notificationRef.on("value", function (shot) {
     if (notify.new) {
         alert("new notication");
         doProcess(notify);
+        notCheck = true;
         notificationRef.update({ new: false, from: "", to: "", url: "" });
 
     }
@@ -80,7 +82,10 @@ usersRef.on("value", function (snapshot) {
 // url: "scrgL0iiPKRb8l6UKi7h21Tx5zR2"
 
 // Html render section
-function viewChat(e){
+function viewChat(e) {
+    console.log("ViewChat");
+    console.log(e);
+    console.log(onCheck);
     chat.innerText = "";
     for (let i in countMessanger) {
         var chatHTML = `
@@ -116,7 +121,13 @@ function viewChat(e){
               </div>
             </div>`;
         chat.insertAdjacentHTML("beforeend", chatHTML);
-        viewMessage(countMessanger[i].uid, e.idd);
+        if (notCheck === true) {
+            viewMessage(countMessanger[i].uid, e.to);
+        }
+        else {
+            viewMessage(countMessanger[i].uid, currentUser.uid);
+        }
+
     }
 }
 
@@ -127,52 +138,52 @@ function createChat(e) {
     console.log(userLogInState[e.id].uid);
     var found = false;
     var privateChat;
-    if(userLogInState[e.id].uid === currentUser.uid){
+    if (userLogInState[e.id].uid === currentUser.uid) {
         // return;
         console.log("currentUser's id : " + userLogInState[e.id].uid + " = " + currentUser.uid);
-    }else{
+    } else {
         privateChat = {
             name: userLogInState[e.id].name,
             uid: userLogInState[e.id].uid,
-            chatStatus : true
+            chatStatus: true
         };
     }
-    
+
 
     // console.log(name.children[1].children[0]);
     if (countMessanger.length >= 4) {
         // countMessanger = 3;
         console.log("overflow");
     } else {
-        for(let i in countMessanger){
-            if(countMessanger[i].uid === privateChat.uid){
-               found = true;
-               break;
+        for (let i in countMessanger) {
+            if (countMessanger[i].uid === privateChat.uid) {
+                found = true;
+                break;
             }
         }
-        if(!found){
+        if (!found) {
             countMessanger.push(privateChat);
         }
     }
     viewChat(e);
 }
 
-function closeChat(e){
+function closeChat(e) {
     var cf = false;
     var idx = -1;
     console.log(e.id);
     console.log(countMessanger);
-    for(let i in countMessanger){
-        if(countMessanger[i].uid === e.id){
+    for (let i in countMessanger) {
+        if (countMessanger[i].uid === e.id) {
             cf = true;
             idx = i;
             break;
         }
     }
-    if(cf){
+    if (cf) {
         console.log("chat is closed : " + idx);
-        countMessanger.splice(idx,1);
-        
+        countMessanger.splice(idx, 1);
+
     }
     viewChat();
 }
@@ -180,7 +191,7 @@ function closeChat(e){
 function viewMessage(cuid, idd) {
     console.log("ViewMessage");
     if (cuid) {
-        console.log("hoho");
+        console.log("Uid : " + cuid + " - " + idd);
         // console.log(cuid);
         var messagesContent = document.getElementById("contentMessage");
         // console.log(messagesContent);
@@ -216,13 +227,13 @@ function updateUser() {
           <img src="../../assets/avatar1.png" alt="" />
           <div>
             <p id="${userLogInState[i].uid}">${userLogInState[i].name}</p>
-            <p class="chat__user ${userLogInState[i].logIn ? "online" : "offline"
-            }">${userLogInState[i].logIn ? "Online" : "Offline"}</p>
+            <p class="chat__user ${userLogInState[i].logIn === true ? "online" : "offline"}">${userLogInState[i].logIn === true ? "Online" : "Offline"}</p>
           </div>
         </div>`;
-        if(userLogInState[i].uid === currentUser.uid){
+        if (userLogInState[i].uid === currentUser.uid) {
             console.log("current user is here");
-        }else{
+        } else {
+            console.log(userLogInState[i].logIn);
             userList.insertAdjacentHTML("beforeend", userHTML);
         }
     }
@@ -239,7 +250,7 @@ function doProcess(data) {
         }
     }
     if (suid) {
-        createChat({ id: suid, idd: data.to });
+        createChat({ id: suid, to: data.to });
     }
 }
 
