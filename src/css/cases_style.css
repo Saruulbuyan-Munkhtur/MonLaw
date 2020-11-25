@@ -882,14 +882,14 @@ table th {
   padding-left: 4px;
   font-weight: inherit;
   font-family: sans-serif;
-  background-color: #7aa3df;
-  font-size: 14px;
+  background-color: #3670c7;
+  font-size: 17px;
   height: 30px;
   color: white;
   border: 0.1px solid white;
 }
 #about-content-container th {
-  background-color: #354f88;
+  background-color:#3670c7;
   color: white;
 }
 table {
@@ -909,13 +909,13 @@ table td {
   padding-left: 4px;
   border: 0.1px solid white;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  height: 35px;
+  font-size: 15px;
+  height: 45px;
 }
 table td button {
   color: white;
   width: 90%;
-  height: 20px;
+  height: 25px;
   font-size: 11px;
   border: none;
   border-radius: 2px;
@@ -926,7 +926,7 @@ table tr:nth-child(2) {
 
 #main-content {
   background-color: white;
-  margin-top: 15px;
+  margin-top: 30px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -975,7 +975,6 @@ table tr:nth-child(2) {
   margin-top: 100px;
   margin-left: 17%;
   width: 50%;
-  height: 70vh;
   background-color: white;
 }
 
@@ -986,13 +985,12 @@ table tr:nth-child(2) {
   left: 65%;
 }
 #about-content-container table {
-  border: 0.3px solid #ce9d76;
   text-align: left;
 }
 #about-content-container table td {
   font-size: 15px;
 }
-#about-content-container table th,
+
 #about-content-container table td {
   padding-left: 10px;
 }
