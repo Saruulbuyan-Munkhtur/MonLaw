@@ -33,9 +33,9 @@ messagesRef.on("value", function (snapshot) {
     messagesData = snapshot.val();
     console.log("Messages");
     console.log(messagesData);
-    if (countMessanger.length > 0) {
-        viewMessage();
-    }
+    // if (countMessanger.length > 0) {
+    //     viewMessage();
+    // }
     // console.log("firebase finished");
 });
 // var messagesRefpri = firebase
@@ -94,7 +94,7 @@ function viewChat(e) {
                 <div class="chat__left__header">
                   <div class="header__title">
                     <img src="../../assets/avatar1.png" alt="" width="40px" style="border-radius:50%"/>
-                    <div id="${countMessanger[i].uid}" class="uuid">${countMessanger[i].name}</div>
+                    <div id="${countMessanger[i].uid}" data-status="${countMessanger[i].state}" class="uuid">${countMessanger[i].name}</div>
                   </div>
                   <i class="fas fa-times" onclick="closeChat(this)" id="${countMessanger[i].uid}"></i>
                 </div>
@@ -121,40 +121,52 @@ function viewChat(e) {
               </div>
             </div>`;
         chat.insertAdjacentHTML("beforeend", chatHTML);
-        if (notCheck === true) {
-            viewMessage(countMessanger[i].uid, e.to);
+        if (countMessanger[i].state === 1) {
+            // State : 1 - When clicked a user on userlist
+            viewMessage(countMessanger[i]);
         }
         else {
-            viewMessage(countMessanger[i].uid, currentUser.uid);
+            // State : 2 - When notification from firebase.
+            viewMessage(countMessanger[i]);
         }
 
     }
 }
 
 function createChat(e) {
-    console.log("Createchat");
-    console.log(e);
-    console.log(userLogInState[e.id].name);
-    console.log(userLogInState[e.id].uid);
+    console.log("Create-chat");
+    // console.log(e.dataset.state);
     var found = false;
     var privateChat;
     if (userLogInState[e.id].uid === currentUser.uid) {
         // return;
         console.log("currentUser's id : " + userLogInState[e.id].uid + " = " + currentUser.uid);
     } else {
-        privateChat = {
-            name: userLogInState[e.id].name,
-            uid: userLogInState[e.id].uid,
-            chatStatus: true
-        };
+        if (parseInt(e.dataset.state) === 1) {
+            privateChat = {
+                name: userLogInState[e.id].name,
+                uid: userLogInState[e.id].uid,
+                chatStatus: true,
+                state: e.dataset.state
+            };
+        }
+        else {
+            privateChat = {
+                name: userLogInState[e.id].name,
+                uid: userLogInState[e.id].uid,
+                chatStatus: true,
+                state: e.state
+            }
+        }
+
     }
 
-
-    // console.log(name.children[1].children[0]);
     if (countMessanger.length >= 4) {
         // countMessanger = 3;
         console.log("overflow");
     } else {
+        console.log("New-Notif");
+        console.log(e);
         for (let i in countMessanger) {
             if (countMessanger[i].uid === privateChat.uid) {
                 found = true;
@@ -165,7 +177,9 @@ function createChat(e) {
             countMessanger.push(privateChat);
         }
     }
-    viewChat(e);
+    console.log("CountMessenger");
+    console.log(countMessanger);
+    // viewChat(e);
 }
 
 function closeChat(e) {
@@ -188,28 +202,28 @@ function closeChat(e) {
     viewChat();
 }
 
-function viewMessage(cuid, idd) {
+function viewMessage(user) {
     console.log("ViewMessage");
     if (cuid) {
-        console.log("Uid : " + cuid + " - " + idd);
+        console.log("View message - User : OK");
         // console.log(cuid);
         var messagesContent = document.getElementById("contentMessage");
         // console.log(messagesContent);
         messagesContent.innerHTML = "";
-        var mData = messagesData[`p-${cuid}${idd}`];
+        var mData = messagesData[`p-${"hehe"}`];
         console.log("mData");
         console.log(mData);
-        for (const i in mData) {
-            var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
-                }">
-            <div class="chat__content">
-              <img width="50" src="../../assets/user1.jpg" alt=""/>
-              <div class="chat__message__text">${mData[i].message}</div>
-              <div class="chat__message__time">${mData[i].date}</div>
-            </div>
-          </div>`;
-            messagesContent.insertAdjacentHTML("beforeend", htmlContent);
-        }
+        // for (const i in mData) {
+        //     var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
+        //         }">
+        //     <div class="chat__content">
+        //       <img width="50" src="../../assets/user1.jpg" alt=""/>
+        //       <div class="chat__message__text">${mData[i].message}</div>
+        //       <div class="chat__message__time">${mData[i].date}</div>
+        //     </div>
+        //   </div>`;
+        //     messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+        // }
         messagesContent.scrollTop = messagesContent.scrollHeight;
         //  audio togluulah
         // setTimeout(function () {
@@ -223,7 +237,7 @@ function updateUser() {
     userList.innerHTML = "";
     for (let i in userLogInState) {
         var userHTML = `
-        <div class="chat__right__user" id="${i}" onclick="createChat(this)">
+        <div class="chat__right__user" id="${i}" data-state="1" onclick="createChat(this)">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
             <p id="${userLogInState[i].uid}">${userLogInState[i].name}</p>
@@ -244,13 +258,14 @@ function doProcess(data) {
     console.log("DoProcess");
     var suid;
     for (const i in userLogInState) {
-        if (userLogInState[i].uid === data.from) {
+        if (userLogInState[i].uid === data.to) {
             console.log(i);
             suid = i;
         }
     }
     if (suid) {
-        createChat({ id: suid, to: data.to });
+        console.log("Do-CreateChat");
+        createChat({ id: suid, to: data.to, mUrl: data.url, dataset: { state: 2 } });
     }
 }
 
@@ -293,3 +308,30 @@ function sendMessage() {
     });
     document.getElementById("inputMsg").value = "";
 }
+
+
+// var user1 = {
+//     email: "tuguldurkh@gmail.com",
+//     logIn: "false",
+//     name: "Tuguldur",
+//     uid: "DJRY2iUrbIWCUppsW3TfylVO2N23",
+//     url: "DJRY2iUrbIWCUppsW3TfylVO2N23",
+// }
+// var user2 = {
+//     email: "boloroog@gmail.com",
+//     logIn: "false",
+//     name: "Boloroo",
+//     uid: "Hmb9DM6PNQP2Twe5L1Qx7LPF0312",
+//     url: "Hmb9DM6PNQP2Twe5L1Qx7LPF0312",
+// }
+// var user3 = {
+//     email: "dashkab@gmail.com",
+//     logIn: "false",
+//     name: "Dashka",
+//     uid: "xbrzHeSgbnOVx4jIvW6cAOul5k43",
+//     url: "xbrzHeSgbnOVx4jIvW6cAOul5k43",
+// }
+
+// usersRef.push(user1);
+// usersRef.push(user2);
+// usersRef.push(user3);

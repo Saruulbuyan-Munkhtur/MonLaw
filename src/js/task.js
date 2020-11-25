@@ -7,29 +7,29 @@ var taskStatusEl = document.getElementsByClassName("status-group")[0];
 var taskStartInput = document.getElementsByClassName("task-startday")[0];
 var taskDueInput = document.getElementsByClassName("task-dueday")[0];
 var addInput = document.getElementById("taskAddInput");
-var addTask ;
+var addTask;
 var priority = "";
 
 const database = firebase.database();
 
-database.ref('task/').on('value', function(snapshot) {
+database.ref('task/').on('value', function (snapshot) {
     tdata = snapshot.val().data;
     createTask();
 });
 
 createTask();
-function createTask(){ 
+function createTask() {
     var createOpen = document.getElementById("task-open-add");
     var createProgress = document.getElementById("task-progress-add");
     var createCompleted = document.getElementById("task-completed-add");
     var i = 0;
-    createOpen.innerHTML="";
-    createProgress.innerHTML="";
-    createCompleted.innerHTML="";
+    createOpen.innerHTML = "";
+    createProgress.innerHTML = "";
+    createCompleted.innerHTML = "";
 
-    for(i in tdata){
-        
-        createBox =`
+    for (i in tdata) {
+
+        createBox = `
             <div class="new-task-board" draggable="true">
                 <div class="board-edit">
                     <form>
@@ -60,34 +60,34 @@ function createTask(){
                         ${tdata[i].due}
                     </span>
                 </div>
-            </div> `; 
-        if(tdata[i].status === 1){
-            createOpen.insertAdjacentHTML("beforeend",createBox);
+            </div> `;
+        if (tdata[i].status === 1) {
+            createOpen.insertAdjacentHTML("beforeend", createBox);
         }
-        else if(tdata[i].status === 2){
-            createProgress.insertAdjacentHTML("beforeend",createBox);
+        else if (tdata[i].status === 2) {
+            createProgress.insertAdjacentHTML("beforeend", createBox);
         }
         else {
-            createCompleted.insertAdjacentHTML("beforeend",createBox);
+            createCompleted.insertAdjacentHTML("beforeend", createBox);
         }
     }
 }
 
 
-function taskPriority(){
+function taskPriority() {
     taskPriorityStatus.style.display = "block";
 }
 
-taskPriorityStatus.addEventListener("click",function(e){
+taskPriorityStatus.addEventListener("click", function (e) {
     // console.log(e.target.parentNode.className);
-    if(e.target.parentNode.parentNode.className ==="priority-group"){
-        if(e.target.innerText === "Urgent"||e.target.parentNode.className ==="task-priority-high"){
+    if (e.target.parentNode.parentNode.className === "priority-group") {
+        if (e.target.innerText === "Urgent" || e.target.parentNode.className === "task-priority-high") {
             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textRed");
             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textBlue");
             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
             priority = "Red";
         }
-        else if(e.target.innerText === "Normal"||e.target.parentNode.className ==="task-priority-normal"){
+        else if (e.target.innerText === "Normal" || e.target.parentNode.className === "task-priority-normal") {
             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textRed");
             e.target.parentNode.parentNode.parentNode.children[0].classList.add("textBlue");
             e.target.parentNode.parentNode.parentNode.children[0].classList.remove("textGreen");
@@ -100,18 +100,18 @@ taskPriorityStatus.addEventListener("click",function(e){
             priority = "Green";
         }
     }
-    taskPriorityStatus.style.display="none";
+    taskPriorityStatus.style.display = "none";
 });
 
 
-function taskNewButton(){
-    taskAddContainer.style.display="block";
+function taskNewButton() {
+    taskAddContainer.style.display = "block";
 }
 
-function taskStart(){
+function taskStart() {
     taskStartInput.classList.toggle("displayBlock");
 }
-function taskDue(){
+function taskDue() {
     taskDueInput.classList.toggle("displayBlock");
 }
 var taskStartDate;
@@ -121,50 +121,50 @@ var taskStartDate;
 //     taskCalendar.style.display="none";
 // });
 
-function taskClose(){
-    taskAddContainer.style.display="none";
+function taskClose() {
+    taskAddContainer.style.display = "none";
 }
-function taskSaveButton(){
-    
-    taskAddContainer.style.display="none";
+function taskSaveButton() {
+
+    taskAddContainer.style.display = "none";
     addInputTask = addInput.value;
     addPriority = priority;
     addStart = taskStartInput.value;
     addDue = taskDueInput.value
-    addTask = {due: addDue, priority: addPriority, start: addStart, status: 1, taskName: addInputTask };
-    for(var i in tdata.length){
-        
+    addTask = { due: addDue, priority: addPriority, start: addStart, status: 1, taskName: addInputTask };
+    for (var i in tdata.length) {
+
         // console.log(tdata.length);
     }
     firebase.database().ref('task/data').push(addTask);
 }
 
-function taskStatusChange(e){
+function taskStatusChange(e) {
     e.children[1].classList.toggle("displayBlock");
-} 
-function changeStatus(e){
+}
+function changeStatus(e) {
     // console.log(e);
-    if(e.className==="edit-open"){
+    if (e.className === "edit-open") {
         console.log(e.id);
-        firebase.database().ref(`task/data/${e.id}`).update({status:1});
+        firebase.database().ref(`task/data/${e.id}`).update({ status: 1 });
     }
-    else if(e.className==="edit-progress"){
-        firebase.database().ref(`task/data/${e.id}`).update({status:2});
+    else if (e.className === "edit-progress") {
+        firebase.database().ref(`task/data/${e.id}`).update({ status: 2 });
         console.log(e.id);
     }
-    else{
-        firebase.database().ref(`task/data/${e.id}`).update({status:3});
+    else {
+        firebase.database().ref(`task/data/${e.id}`).update({ status: 3 });
         console.log(e.id);
     }
 }
-function deleteTask(e){
+function deleteTask(e) {
     console.log(e.id);
     firebase.database().ref(`task/data/${e.id}`).remove();
 }
 
 //     createTask();
 // }
-    
+
 // function getTaskSta(){
 //     var newBoard=document.getElementById("new-task-board");
 //     console.log(data.status);
@@ -193,4 +193,3 @@ function deleteTask(e){
 //     var listitem = event.originalEvent.dataTransfer.getData("text/plain");
 //     event.target.appendChild(document.getElementById(listitem));
 //     event.preventDefault();
-
