@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МОН-ХУУЛЬ Систем</title>
-    <link rel="stylesheet" href="../css/client.css" />
+
+    <link rel="stylesheet" href="../css/fileUpload.css" />
     <link
-      rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
   </head>
-  <body class="light client-color">
+  <body class="light">
     <!-- Start of Container -->
     <div class="container">
       <!-- Start of Navbar -->
@@ -112,7 +114,7 @@
                 class="dropdown-toggle"
                 data-toggle="profile__id"
                 width="30"
-                src="../../assets/judge.svg" alt=""
+                src="../../assets/judge.svg"
                 alt="judge"
               />
             </div>
@@ -150,93 +152,43 @@
       <section class="main">
         <div class="main__container">
           <!-- Start of Change Code -->
-
-            <div class="client-background">
-                <div class="filter">
-                    <div id = "filter-container">
-                        <div id="filterIcon">
-                            <i class = "fa fa-filter"></i>
-                        </div>
-                        <div>
-                            <form>
-                                <input id="name-filter" placeholder="Нэрээр шүүх"  oninput="nameFilter()"></input>
-                                <input id="phone-filter" placeholder="Утсаар хайх" oninput="phoneFilter()"></input>
-                                <input id="company-filter" placeholder="Компаниар шүүх" oninput="companyFilter()"></input>
-                            </form> 
-                        </div>  
-                    </div>
-                    <div class="dropdown-client-file">
-                        <div class= "dropdownBarIcon">
-                            <i class="fa fa-bars"></i>
-                        </div>
-                    
-                        <div class="dropdown-content">
-                            <div id="dropdownBorderTri"></div>
-                            <div class="dropdownIcon">
-                                <div> <i class = "fa fa-plus-square-o">&nbsp;&nbsp;&nbsp;&nbsp;Хэрэглэгч  нэмэх</i></div>
-                                <div> <i class = "fa fa-file-excel-o" onclick = "exportFileExl('client-table')">&nbsp;&nbsp;&nbsp;&nbsp;Файл үүсгэх</i></div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                </div>
-                <p></p>
-                <div id = "body-content">
-                    <div id = "case-container">
-                        <div class="case"> Хэрэглэгчид
-                            <hr class="case-text">             
-                            <form class="show-entries" onclick="selectedEntries()">
-                                <label for="entries">Харуулах</label>
-                                    <select name="entries" id="entries">
-                                        <option placeholder="Сонгох">Сонгох</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                        <option value="100">Бүгд</option>
-                                        
-                                    </select>
-                                <span>бичилтүүд</span>
-                            </form>
-                        </div>
-                    </div>
-                    
-                    <div id = "data-container">
-                        <div id="data-content"></div>
-                    </div>
-                    <div class="pagination-container">
-                        <span id="page">
-                            
-                        </span>
-                        <div id="pagination">
-                            <span id = "btn-prv" onclick="prevClicked()">&laquo;</span> 
-                            <span class = "btn-pages"></span>
-                            <span id = "btn-next" onclick="nextClicked()">&raquo;</span>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div id="view-background" >
-                    <div id = "view-client-container">
-                        <div class="closeIcon">
-                                <img src="../../assets/closeicon.png" onclick="closeIt()">
-                        </div>
-                        <div id = "view-client-table-border">
-                            <div id="view-client">
-                                <div >
-                                    <div id="view-client-edit">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="invoice-main-content-container">
+            <div class="header-buttons">
                 
-                    
-                </div>
-       
-          <!-- End of Change Code -->
+              <input type="file" id="files" multiple>
+              
+              <button id="send">
+                File нэмэх
+              </button>
+              <div id="rigth-side">
+                <p id="uploading"></p>
+                <progress value="0" max="100" id="progress"></progress>
+              </div>
+              
             </div>
+            <hr />
+            <div id="mainContentContainer">
+              <div class="invoice-header">
+                <span>Дотоод File-ууд</span>
+                <hr />
+              </div>
+              <div id="tableContent">
+                <span>Зурагнууд</span>
+                <div id="listImages">
+                    <p id="listFilesImages"></p>
+                </div>
+                <span>Документууд</span>
+                <div id="listFiles">
+                    <p id="listFilesDoc"></p>
+                </div>
+                
+                
+              </div>
+              <div class="footer-content">
+              </div>
+            </div>
+          </div>
+          <!-- End of Change Code -->
         </div>
       </section>
       <!-- End of Main section -->
@@ -260,7 +212,6 @@
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="#">
               <i class="fa fa-user-secret"></i>
-
               <span> Миний самбар</span>
             </a>
           </li>
@@ -277,7 +228,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link active" href="./client.html">
+            <a class="sidebar__menu__link" href="./client.html">
               <i class="fa fa-users"></i>
               <span> Хэрэглэгчид </span>
             </a>
@@ -295,7 +246,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="#">
+            <a class="sidebar__menu__link" href="./task.html">
               <i class="fa fa-file"></i>
               <span> Ажлын жагсаалт </span>
             </a>
@@ -308,16 +259,13 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="./invoice.html">
+            <a class="sidebar__menu__link active" href="./invoice.html">
               <i class="fa fa-briefcase"></i>
               <span> Нэхэмжлэх </span>
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a
-              class="sidebar__menu__link"
-              href="./monlaw_login.html"
-            >
+            <a class="sidebar__menu__link" href="./monlaw_login.html">
               <i class="fa fa-power-off"></i>
               <span>Log out</span>
             </a>
@@ -335,14 +283,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
     <script src="../js/firebase.js"></script>
-    <script src="../js/client.js"></script>
-    <script src="../js/app.js"></script>
     <!-- FIrebase setting script -->
     <!-- Additional js libraries -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../js/html2pdf.bundle.min.js"></script>
+    <script src="../js/fileUpload.js"></script>
+    <script src="../js/currency.js"></script>
+
     <!-- Additional js libraries -->
-   
-   
+    <script src="../js/app.js"></script>
   </body>
 </html>
