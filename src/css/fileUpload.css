@@ -747,7 +747,7 @@
   /* invoice css included */
  
   
-  .invoice-main-content-container {
+.invoice-main-content-container {
 	  margin-left: auto;
 	  margin-right: auto;
 	 
@@ -756,34 +756,34 @@
 	  border: 0.3px solid rgb(142, 191, 255);
 	  margin-top: 50px;
   }
-  thead>tr>th:nth-child(1){
+thead>tr>th:nth-child(1){
 	  width: 2%;
   }
-  button:hover{
+button:hover{
 	  cursor: pointer;
   }
-  .header-buttons{
+.header-buttons{
     
 	  height: 50px;
   }
  
-  progress{
+progress{
       height: 30px;
   }
-  .header-buttons button {
+.header-buttons button {
 	  width: 120px;
 	  height: 30px;
   }
-  #rigth-side p{
+#rigth-side p{
       
       color: cornflowerblue;
   }
-  #rigth-side{
+#rigth-side{
       float: right;
   }
 
  
-  .header-buttons button{
+.header-buttons button{
 	  
 	  color: white;
 	  background-color: #17b3a3;
@@ -793,12 +793,41 @@
 	  height: 30px;
 	  width: 100px;
   }
-  .header-buttons button:hover{
+#img-area{
+
+	  height: 420px;
+	  display: grid;
+	  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%  ;
+	  grid-template-rows: max-content;
+	  text-align: center;
+	  align-items: center;
+	  overflow-y: auto;
+
+  }
+#listFiles{
+
+	height: 420px;
+	display: grid;
+	grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+	grid-template-rows: max-content;
+	text-align: center;
+	align-items: center;
+	overflow-y: auto;
+
+  }
+ 
+ 
+.header-buttons button:hover{
+	  
 	  color: #17b3a3;
 	  background-color:  white;
   }
- 
-  #SubmitPayment{
+ #imagesFromStorage{
+	 padding: 10%;
+	 padding-bottom: 0%;
+	 width: 100%;
+ }
+#SubmitPayment{
 	  color: white;
 	  background-color: #17b3a3;
 	  border: 0.3px solid #17b3a3;
@@ -808,19 +837,19 @@
 	  width: 100px;
 	  
   }
-  #SubmitPayment:hover{
+#SubmitPayment:hover{
 	  color:#17b3a3;
 	  background-color:  white;
   }
  
 
   
-  #tableContent{
+#tableContent{
 	  margin-top: 20px;
   }
 
  
-  table { 
+table { 
 	  
 	  width: 100%; 
 	  border-collapse: collapse; 
@@ -829,12 +858,12 @@
 	  margin-right: auto;
 	  }
   
-  th { 
+th { 
 	  color: var(--main-color);
 	  font-weight: bold; 
 	  }
   
-  td, th { 
+td, th { 
 	  padding: 10px; 
 	  border: 1px solid #ccc; 
 	  text-align: left; 
@@ -855,6 +884,35 @@ tbody tr td:nth-child(4){
 tbody tr td:nth-child(5){
 	text-align: end;
 }
+#fileSpan{
+	font-size: 30px;
+	
+}
+#imgSpan{
+	margin-left: 10px;
+	font-size: 20px;
+	
+}
+#docSpan{
+	margin-left: 10px;
+	font-size: 20px;
+}
+#docFileContainer p{
+	font-size: 13px;
+}
+#imagesFromStorage:hover{
+	cursor: pointer;	
+}
 
-  
+#img-area{
+	border: 0.3px solid #17b384;
+	
+	border-bottom: none;
+	
+}
+#listFiles{
+	border: 0.3px solid  #17b384;
+	
+	border-bottom: none;
+}
   
