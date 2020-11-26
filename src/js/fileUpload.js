@@ -1,36 +1,55 @@
 
-// function downloadIt(){
+var storageRef = firebase.storage().ref('Images');
+storageRef.listAll().then(function(result) {
+result.items.forEach(function(imgRef) {
+    imgRef.getDownloadURL().then(function(url){
+        var imgLoc = document.getElementById('img-area');
+        imgLoc.innerHTML += '<div id="imgContainer"><img id="imagesFromStorage" class="imgStorage" src=' +url+' ></div>';
+        
+        var imgsEl = document.getElementsByClassName("imgStorage");
+         for(let i in imgsEl){
 
-//     var storageRef = firebase.storage().ref();
-//     var listRef = storageRef.child('');
-//     listRef.listAll();
-//     listRef.getDownloadURL().then(function(url) {
-//       console.log(url);
-//     });
+            imgsEl[i].addEventListener("click", function(){
+                console.log(imgsEl[i].src);
+                var xhr = new XMLHttpRequest();
+                xhr.responseType = 'blob';
+                xhr.onload = function(event) {
+                    var blob = xhr.response;
+                };
+                xhr.open('GET', imgsEl[i].src);
+                xhr.send();
+                 
+                });
+            };
+        
+        });
+    });
+});
 
+var storageRefDoc = firebase.storage().ref('docs');
+storageRefDoc.listAll().then(function(result) {
+result.items.forEach(function(imgRef) {
+    imgRef.getMetadata().then(function(url){
+        var imgLoc = document.getElementById('listFiles');
+        imgLoc.innerHTML += '<div id="docFileContainer"><img alt="'+url.name+'" id="imagesFromStorage" src="../../assets/file.png"><p>'+url.name+'</p></div>';
+        });
+    });
+});
+
+
+
+
+
+// imgEl.addEventListener("click", function(){
+//         console.log("hi");
+// });
+
+// function downloadIt(sentEl){
+//     console.log(sentEl);
 // }
 
 
-function showList() {
-    
-    var storageRef = firebase.storage().ref('docs/');
-    storageRef.listAll().then(function(result) {
-    result.items.forEach(function(urlFile) {document.getElementById("listFilesDoc").innerHTML +=  `${urlFile}  <br />`; });
-    }).catch(function(error) {alert("No file chosen."); });
-
-    var storageRef = firebase.storage().ref('Images/');
-    storageRef.listAll().then(function(result) {
-        result.items.forEach(function(urlFile) {
-            document.getElementById("listFilesImages").innerHTML +=  `${urlFile}  <br />`; });
-            }).catch(function(error) {alert("No file chosen."); });
-    
-    
-
-
-};
-
-showList();
-
+// onclick="downloadIt(' +sentAttr+')"
 
 
 
@@ -106,18 +125,7 @@ document.getElementById("send").addEventListener("click", function() {
 });
 
 
-// function getFileUrl() {
-//     //create a storage reference
-//     var storage = firebase.storage().ref().listAll();
-  
-//     //get file url
-//     storage
-//       .getDownloadURL()
-//       .then(function(url) {
-//         console.log(url);
-//       })
-//       .catch(function(error) {
-//         console.log("error encountered");
-//       });
-//   }
-//   getFileUrl();
+   
+
+
+ 
