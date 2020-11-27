@@ -1,0 +1,297 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1.2s;
+    background-color: #ff4d4d;
+}
+
+.container {
+    width: 90%;
+    background: url("/undrawwwwwww.svg") no-repeat;
+    background-size: 50%;
+    background-position: left;
+    padding: 180px 0;
+}
+
+.inner-container {
+    float: right;
+    background-color: white;
+    padding: 40px 90px 60px 90px;
+    position: relative;
+    right: 10%;
+    max-width: 200px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.inner-container .content-container {
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.inner-container .content-container #forget-password {
+    margin-left: 10px;
+}
+
+.inner-container .content-container #forget-password h3 {
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.inner-container .content-container #sign-in {
+    text-align: left;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.inner-container nav input[type="button"] {
+    float: right;
+    border: none;
+    outline: none;
+    border: 1px solid orange;
+    padding: 2px;
+    color: black;
+    cursor: pointer;
+
+}
+
+.inner-container nav input[type="button"]:first-of-type {
+    border-right: none;
+    border-radius: 50px 0px 0px 50px;
+    position: absolute;
+    right: 80px;
+}
+
+.inner-container nav input[type="button"]:last-of-type {
+    border-right: none;
+    border-radius: 0px 50px 50px 0px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.inner-container img {
+    width: 100px;
+    transition: 1s;
+
+}
+
+.inner-container img:hover {
+    transform: scale(1.20);
+}
+
+
+.inner-container h1 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.inner-container .forget-password {
+    font-size: 10px;
+    font-size: 13px;
+}
+
+
+.inner-container .forget-password a {
+    color: #f39c12;
+}
+
+.inner-container .forget-password a:hover {
+    font-weight: bold;
+}
+
+
+.inner-container input[type="email"],
+.inner-container input[type="password"],
+.inner-container input[type="text"] {
+    display: block;
+    margin-bottom: 20px;
+    padding: 8px 56px 8px 4px;
+    background: white;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid;
+    transition: 0.2s;
+    width: 240px;
+
+    font-size: 17px;
+
+}
+
+
+.inner-container input[type="email"]:focus,
+.inner-container input[type="password"]:focus,
+.inner-container input[type="text"]:focus {
+    padding: 8px 50px 8px 10px;
+    border-bottom: 3px solid orange;
+    color: black;
+
+}
+
+
+.inner-container input:last-of-type {
+    margin-top: 20px;
+    padding: 10px 78px;
+    border-radius: 50px;
+    border: 2px solid black;
+    margin-left: 20px;
+    background: none;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 16px;
+}
+
+
+
+.inner-container input[type="submit"]:hover {
+    background-color: #f39c12;
+    color: black;
+}
+
+
+.inner-container input[type="submit"]:hover {
+    background-color: orange;
+    color: black;
+}
+
+
+
+.background-color ul li {
+    list-style-type: none;
+    display: inline-block;
+    border-radius: 100px;
+}
+}
+
+/* 33 oooooo */
+.background-color #gray {
+    background-color: lightgray;
+    width: 200px;
+    height: 10px;
+    transition: 0.2s;
+}
+
+.background-color #orange {
+    background-color: pink;
+    width: 10px;
+    height: 10px;
+    transition: 0.2s;
+}
+
+.background-color #pink {
+    background-color: orange;
+    width: 10px;
+    height: 10px;
+    transition: 0.2s;
+}
+
+/* end */
+
+
+
+@media screen and (max-width:1100px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .inner-container {
+        right: 5%;
+
+    }
+}
+
+
+@media screen and (max-width:1050px) {
+
+    .container {
+        width: 100%;
+        background-position: center;
+        background-size: 70%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .inner-container {
+        right: 0%;
+        background-color: white;
+    }
+}
+
+@media screen and (max-width:850px) {
+
+    .container {
+        background: none;
+    }
+
+    .inner-container {
+        background-color: yellow;
+    }
+
+}
+
+
+@media screen and (max-width:550px) {
+    .inner-container {
+        padding: 80px 60px;
+    }
+
+    .inner-container h1 {
+        font-size: 22px;
+    }
+
+    .inner-container img {
+        width: 40%;
+
+    }
+
+    .inner-container nav input[type="button"] {
+        padding: 0.5px;
+    }
+
+    .inner-container nav input[type="button"]:first-of-type {
+        border-right: none;
+        border-radius: 50px 0px 0px 50px;
+        position: absolute;
+        top: 40px;
+        right: 74px;
+    }
+}
+
+.tttt {
+    background-color: white;
+    width: 220px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    border-color: black;
+    font-size: 16px;
+}
+
+.tttt:hover {
+    background-color: orange;
+}
+
+.error {
+    color: red;
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+.hide {
+    display: none;
+}
