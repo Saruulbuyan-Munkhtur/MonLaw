@@ -856,5 +856,65 @@ tbody tr td:nth-child(5){
 	text-align: end;
 }
 
-  
+#fileSpan{
+	font-size: 30px;
+
+}
+#imgSpan{
+	margin-left: 10px;
+	font-size: 20px;
+
+}
+#docSpan{
+	margin-left: 10px;
+	font-size: 20px;
+}
+#docFileContainer p{
+	font-size: 13px;
+}
+#imagesFromStorage:hover{
+	cursor: pointer;	
+}
+
+
+#img-area{
+	border: 0.3px solid #17b384;
+
+	border-bottom: none;
+
+}
+#listFiles{
+	border: 0.3px solid  #17b384;
+
+	border-bottom: none;
+}
+
+#imagesFromStorage{
+	padding: 10%;
+	padding-bottom: 0%;
+	width: 100%;
+}
+
+#img-area{
+
+	height: 420px;
+	display: grid;
+	grid-template-columns: 14% 14% 14% 14% 14% 14% 14%  ;
+	grid-template-rows: max-content;
+	text-align: center;
+	align-items: center;
+	overflow-y: auto;
+
+}
+#listFiles{
+
+  height: 420px;
+  display: grid;
+  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+  grid-template-rows: max-content;
+  text-align: center;
+  align-items: center;
+  overflow-y: auto;
+
+}
   
