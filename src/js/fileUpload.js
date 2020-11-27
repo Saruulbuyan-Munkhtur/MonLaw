@@ -116,18 +116,3 @@ document.getElementById("send").addEventListener("click", function () {
 });
 
 
-// function getFileUrl() {
-//     //create a storage reference
-//     var storage = firebase.storage().ref().listAll();
-
-//     //get file url
-//     storage
-//       .getDownloadURL()
-//       .then(function(url) {
-//         console.log(url);
-//       })
-//       .catch(function(error) {
-//         console.log("error encountered");
-//       });
-//   }
-//   getFileUrl();
