@@ -21,13 +21,11 @@ database.ref('data/').on('value', function(snapshot) {
     showTable(data.contents);
 
 });
-
-
 function showTable(mainData){
     var createEl = document.createElement('div');
     var getEl = document.getElementById("data-content");
     var content ='';
-    var datas=mainData;
+    var datas = mainData;
     getEl.innerHTML="";
     content='\
         <table id="firstTable">\
@@ -64,7 +62,6 @@ function showTable(mainData){
 
     createEl.innerHTML = content;
     getEl.appendChild(createEl);
-    
 };
     
 function view(x){
@@ -267,7 +264,6 @@ function selectedEntries(){
     
     var pageCount = numPages(data.contents.length, entriesNumber.value);
     var i = 0;
-    
     for(var i in data.contents){
         k = data.contents[i].id;
         if(k >= entriesNumber.value)
@@ -279,13 +275,20 @@ function selectedEntries(){
 
     
     paginationQuery.innerHTML = ""; 
+   
+    if(entriesNumber.value>data.contents.length || entriesNumber.value ==""){
+        paginationQuery.innerHTML +='\
+            <span class="pagination-span active">\
+                <div>' + 1 + '</div>\
+            </span>';
+            console.log("clicked")
+    }
     paginationQuery.innerHTML +='\
         <span class="pagination-span active">\
             <div>' + 1 + '</div>\
         </span>';
-    
-    for ( j =1; j<pageCount; j++){
         
+    for ( j =1; j<pageCount; j++){
         paginationQuery.innerHTML += '\
             <span class="pagination-span">\
                 <div>' + (j+1) + '</div>\
@@ -309,13 +312,26 @@ function selectedEntries(){
 
 
 function prevClicked(){
+    var pageClick=document.getElementsByClassName('pagination-span');
     var startEls = parseInt(document.getElementById("startElements").innerText);
     var start = (startEls-1) - parseInt(entriesNumber.value);
+    let preEnd = start + (parseInt(entriesNumber.value));
+    let totalPage = parseInt(pageClick.length)-1;
+    let i = totalPage;
+    
+    let currentPage = (Math.ceil(preEnd / parseInt(entriesNumber.value)));
+    
     if (start < 0)
         start = 0;
     let preStart = start;
-    let preEnd = start + (parseInt(entriesNumber.value));
     let preShow = data.contents.slice(preStart, preEnd);
+    for(i; i >= 0 ; i--){
+        if(i== currentPage){
+                pageClick[i-1].classList.add("active");
+                pageClick[i].classList.remove("active");
+            }
+       
+    };
     showTable(preShow);
     
 }
@@ -332,12 +348,13 @@ function nextClicked(){
         start = startElement;
     }
     let i=0;
-    var dis = end/parseInt(entriesNumber.value);
+    var currentPage = Math.ceil(end / parseInt(entriesNumber.value))-1;
     for(i; i< pageClick.length; i++){
-        if(i == dis){
-            pageClick[i+1].classList.add("active");
-            pageClick[i].classList.remove("active");
-        }
+        if(i == currentPage){
+                pageClick[i].classList.add("active");
+                pageClick[i-1].classList.remove("active");
+            }
+       
     };
     var nextShow = data.contents.slice(start, end);
 

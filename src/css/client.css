@@ -112,6 +112,10 @@
     padding-top: 3%;
     margin: 0px;
 }
+.dropdownIcon #addClient a{
+  color:rgb(100, 100, 100);
+}
+
 
 /* ******************************Case****************************** */
 #body-content{
@@ -154,6 +158,7 @@ hr.case-text{
     text-align: left;
     border-collapse: collapse;
     background-color: white;
+    box-shadow: 3px 3px 3px 3px gray;
 }
 #data-content table th{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";

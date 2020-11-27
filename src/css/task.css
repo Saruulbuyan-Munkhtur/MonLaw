@@ -97,10 +97,11 @@ h3 {
 .board-edit{
     display: flex;
     justify-content: space-evenly;
+    padding-right: 7px;
 }
 .board-edit input{
     border: none;
-    width: 280px;
+    width: 240px;
     font-size: 22px;
 }
 .edit{
