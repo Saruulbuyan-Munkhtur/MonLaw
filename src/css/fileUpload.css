@@ -763,41 +763,67 @@
 	  cursor: pointer;
   }
   .header-buttons{
-    
-	  height: 50px;
-  }
- 
-  progress{
-      height: 30px;
+	  height: 40px;
   }
   .header-buttons button {
 	  width: 120px;
 	  height: 30px;
   }
-  #rigth-side p{
-      
-      color: cornflowerblue;
+  .invoice-header {
+	  align-items: center;
+	 
   }
-  #rigth-side{
-      float: right;
+  .invoice-header span:nth-child(1){
+	  font-size: 30px;
   }
-
- 
-  .header-buttons button{
-	  
+  .invoice-header span:nth-child(2){
+	  margin-top: 8px;
+	  font-size: 20px;
+	  float: right;
+  }
+  .header-buttons button:nth-child(1){
 	  color: white;
 	  background-color: #17b3a3;
 	  border: 0.3px solid #17b3a3;
 	  outline-style: none;
 	  transition: background-color 0.4s;
-	  height: 30px;
-	  width: 100px;
   }
-  .header-buttons button:hover{
-	  color: #17b3a3;
+  .header-buttons button:nth-child(1):hover{
+	  color:#17b3a3;
 	  background-color:  white;
   }
- 
+  .header-buttons button:nth-child(2){
+	  margin-left: 10px;
+	  color: white;
+	  background-color:#faa700;
+	  border: 0.3px solid #faa700;
+	  outline-style: none;
+	  transition: background-color 0.4s;
+  }
+  .header-buttons button:nth-child(2):hover{
+	  color:#faa700;
+	  background-color:  white;
+  }
+  .name-content-container{
+	  display: flex;
+	  margin-top: 20px;
+	  width: 100%;
+	  height: 140px;
+	  justify-content: space-between;
+	  
+  }
+  .name-content-left{
+	width: 40%;
+	
+	  
+  }
+  .footer-content{
+	  margin-top: 20px;
+	  text-align: right;
+  }
+  .footerButton{
+	  text-align: right;
+  }
   #SubmitPayment{
 	  color: white;
 	  background-color: #17b3a3;
@@ -812,13 +838,68 @@
 	  color:#17b3a3;
 	  background-color:  white;
   }
- 
-
+  .footer-content span:nth-child(1){
+	  font-weight: bold;
+	  font-size: 18px;
+  }
+  .footer-content span:nth-child(4){
+	  font-size: 16px;
+  }
+  .footer-content span:nth-child(7){
+	  font-size: 16px;
+  }
+  #total{
+	  font-size: 22px;
+	  font-weight: bold;
+  }
+  .name-content-left span{
+	  margin-top: 400px;
+  }
+  .name-content-left span:nth-child(3){
+	  color: #3b5999;
+	  font-size: 25px;
+  }
+  .name-content-left span:nth-child(5){
+	  font-size: 15px;
+  }
+  
+  .name-content-left span:nth-child(9){
+	  font-size: 12px;
+  }
+  .name-content-right span:nth-child(3){
+	  color: #3b5999;
+	  font-size: 25px;
+  }
+  .name-content-right span:nth-child(5){
+	  font-size: 15px;
+  }
+  
+  .name-content-right span:nth-child(9){
+	  font-size: 12px;
+  }
+  
+  .name-content-right{
+	  
+	  width: 40%;
+	  text-align: end;
+	  
+  }
   
   #tableContent{
 	  margin-top: 20px;
   }
-
+  .name-content-bordered{
+	  margin-top: 20px;
+	  background: var(--main-bg-color);
+	  color: var(--main-color);
+	  align-items: center;
+	  border: 0.3px solid  var(--main-color) ;
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: space-evenly;
+	  height: 30px;
+  }
+  
  
   table { 
 	  
@@ -856,45 +937,8 @@ tbody tr td:nth-child(5){
 	text-align: end;
 }
 
-#fileSpan{
-	font-size: 30px;
-
-}
-#imgSpan{
-	margin-left: 10px;
-	font-size: 20px;
-
-}
-#docSpan{
-	margin-left: 10px;
-	font-size: 20px;
-}
-#docFileContainer p{
-	font-size: 13px;
-}
-#imagesFromStorage:hover{
-	cursor: pointer;	
-}
-
-
-#img-area{
-	border: 0.3px solid #17b384;
-
-	border-bottom: none;
-
-}
-#listFiles{
-	border: 0.3px solid  #17b384;
-
-	border-bottom: none;
-}
-
-#imagesFromStorage{
-	padding: 10%;
-	padding-bottom: 0%;
-	width: 100%;
-}
-
+  
+  
 #img-area{
 
 	height: 420px;
@@ -917,4 +961,44 @@ tbody tr td:nth-child(5){
   overflow-y: auto;
 
 }
-  
+
+
+
+#imagesFromStorage{
+	padding: 10%;
+	padding-bottom: 0%;
+	width: 100%;
+}
+#tableContent{
+	margin-top: 20px;
+}
+#fileSpan{
+	font-size: 30px;
+	
+}
+#imgSpan{
+	margin-left: 10px;
+	font-size: 20px;
+	
+}
+#docSpan{
+	margin-left: 10px;
+	font-size: 20px;
+}
+#docFileContainer p{
+	font-size: 13px;
+}
+#imagesFromStorage:hover{
+	cursor: pointer;	
+}
+#img-area{
+	border: 0.3px solid #17b384;
+	
+	border-bottom: none;
+	
+}
+#listFiles{
+	border: 0.3px solid  #17b384;
+	
+	border-bottom: none;
+}
