@@ -73,9 +73,12 @@ var options = {
     },
   },
 };
+var chartDiv = document.querySelector("#apex1");
+if (chartDiv) {
+  var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
+  apexChart.render();
+}
 
-var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
-apexChart.render();
 
 window.onclick = function (event) {
   openCloseDropdown(event);
