@@ -8,24 +8,36 @@ var idd;
 var messagesData = [];
 var me = "zaya";
 var userLogInState;
-var currentUser = { uid: "scrgL0iiPKRb8l6UKi7h21Tx5zR2" };
+var currentUser;
 var onCheck = false;
 
 // Firebase reference
-// firebase.auth().onAuthStateChanged(function (user) {
-//   if (user) {
-//     console.log("current user");
-//     console.log(user.email);
-//     currentUser = user;
-//     setTimeout(updateLogin, 3000, true);
-//     // userLogInState = true;
-//     // console.log(userLogInState);
-//   } else {
-//     setTimeout(updateLogin, 3000, false);
-//     console.log("no user did not sign in currently");
-//     // get the user that logged out ...
-//   }
-// });
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        console.log("current user");
+        console.log(user);
+        var logName = document.getElementById("loginName");
+        var logEmail = document.getElementById("loginEmail");
+        currentUser = user;
+        logName.textContent = user.displayName;
+        logEmail.textContent = user.email;
+        setTimeout(updateLogin, 2000, true);
+    } else {
+        setTimeout(updateLogin, 2000, false);
+        console.log("no user did not sign in currently");
+        // get the user that logged out ...
+        window.location = "../components/monlaw_login.html";
+    }
+});
+
+function logOut() {
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        console.log("Sign-out");
+    }).catch(function (error) {
+        // An error happened.
+    });
+}
 
 var messagesRef = firebase.database().ref("messages/");
 messagesRef.on("value", function (snapshot) {
@@ -82,10 +94,8 @@ usersRef.on("value", function (snapshot) {
 // url: "scrgL0iiPKRb8l6UKi7h21Tx5zR2"
 
 // Html render section
-function viewChat(e) {
+function viewChat() {
     console.log("ViewChat");
-    console.log(e);
-    console.log(onCheck);
     chat.innerText = "";
     for (let i in countMessanger) {
         var chatHTML = `
@@ -121,33 +131,34 @@ function viewChat(e) {
               </div>
             </div>`;
         chat.insertAdjacentHTML("beforeend", chatHTML);
-        if (countMessanger[i].state === 1) {
-            // State : 1 - When clicked a user on userlist
-            viewMessage(countMessanger[i]);
-        }
-        else {
-            // State : 2 - When notification from firebase.
-            viewMessage(countMessanger[i]);
-        }
+        console.log("State-Notif : ");
+        viewMessage(countMessanger[i].url);
 
     }
 }
 
 function createChat(e) {
     console.log("Create-chat");
-    // console.log(e.dataset.state);
     var found = false;
     var privateChat;
+    var cUser = false;
     if (userLogInState[e.id].uid === currentUser.uid) {
         // return;
         console.log("currentUser's id : " + userLogInState[e.id].uid + " = " + currentUser.uid);
+        // Khunruu yavuulsan message iig unshina.
+        // for (let i in countMessanger) {
+        //     countMessanger[i].
+        // }
+        cUser = true;
+
     } else {
         if (parseInt(e.dataset.state) === 1) {
             privateChat = {
                 name: userLogInState[e.id].name,
                 uid: userLogInState[e.id].uid,
                 chatStatus: true,
-                state: e.dataset.state
+                state: e.dataset.state,
+                url: "p-" + userLogInState[e.id].uid
             };
         }
         else {
@@ -155,17 +166,18 @@ function createChat(e) {
                 name: userLogInState[e.id].name,
                 uid: userLogInState[e.id].uid,
                 chatStatus: true,
-                state: e.state
+                state: e.dataset.state,
+                url: e.dataset.mUrl
             }
         }
 
     }
 
     if (countMessanger.length >= 4) {
-        // countMessanger = 3;
+        // countMessanger = 4-ees deesh tsonh gargahgui.
         console.log("overflow");
     } else {
-        console.log("New-Notif");
+        console.log("New-Window");
         console.log(e);
         for (let i in countMessanger) {
             if (countMessanger[i].uid === privateChat.uid) {
@@ -177,9 +189,7 @@ function createChat(e) {
             countMessanger.push(privateChat);
         }
     }
-    console.log("CountMessenger");
-    console.log(countMessanger);
-    // viewChat(e);
+    viewChat(cUser);
 }
 
 function closeChat(e) {
@@ -202,34 +212,33 @@ function closeChat(e) {
     viewChat();
 }
 
-function viewMessage(user) {
+function viewMessage(id, uid) {
     console.log("ViewMessage");
-    if (cuid) {
-        console.log("View message - User : OK");
-        // console.log(cuid);
-        var messagesContent = document.getElementById("contentMessage");
-        // console.log(messagesContent);
-        messagesContent.innerHTML = "";
-        var mData = messagesData[`p-${"hehe"}`];
-        console.log("mData");
-        console.log(mData);
-        // for (const i in mData) {
-        //     var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
-        //         }">
-        //     <div class="chat__content">
-        //       <img width="50" src="../../assets/user1.jpg" alt=""/>
-        //       <div class="chat__message__text">${mData[i].message}</div>
-        //       <div class="chat__message__time">${mData[i].date}</div>
-        //     </div>
-        //   </div>`;
-        //     messagesContent.insertAdjacentHTML("beforeend", htmlContent);
-        // }
-        messagesContent.scrollTop = messagesContent.scrollHeight;
-        //  audio togluulah
-        // setTimeout(function () {
-        //   var audio = document.getElementById("audio").play();
-        // }, 200);
+    console.log("View message - User : OK");
+    console.log(id);
+    var messagesContent = document.getElementById("contentMessage");
+    // console.log(messagesContent);
+    messagesContent.innerHTML = "";
+    var mData
+    console.log(messagesData);
+    mData = messagesData[`p-${id}`];
+    console.log(mData);
+    for (const i in mData) {
+        var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
+            }">
+            <div class="chat__content">
+              <img width="50" src="../../assets/user1.jpg" alt=""/>
+              <div class="chat__message__text">${mData[i].message}</div>
+              <div class="chat__message__time">${mData[i].date}</div>
+            </div>
+          </div>`;
+        messagesContent.insertAdjacentHTML("beforeend", htmlContent);
     }
+    messagesContent.scrollTop = messagesContent.scrollHeight;
+    //  audio togluulah
+    // setTimeout(function () {
+    //   var audio = document.getElementById("audio").play();
+    // }, 200);
 }
 
 function updateUser() {
@@ -237,7 +246,7 @@ function updateUser() {
     userList.innerHTML = "";
     for (let i in userLogInState) {
         var userHTML = `
-        <div class="chat__right__user" id="${i}" data-state="1" onclick="createChat(this)">
+        <div class="chat__right__user" id="${i}" data-state="1", data-mUrl="" onclick="createChat(this)">
           <img src="../../assets/avatar1.png" alt="" />
           <div>
             <p id="${userLogInState[i].uid}">${userLogInState[i].name}</p>
@@ -258,8 +267,8 @@ function doProcess(data) {
     console.log("DoProcess");
     var suid;
     for (const i in userLogInState) {
-        if (userLogInState[i].uid === data.to) {
-            console.log(i);
+        if (userLogInState[i].uid === data.from) {
+            console.log("from: " + i);
             suid = i;
         }
     }
@@ -274,12 +283,12 @@ function updateLogin(state) {
     console.log(state);
     console.log(typeof state);
     if (onCheck) {
-        // for(let i in userLogInState){
-        //   if(userLogInState[i].email === currentUser.email){
-        //     usersRef.child(i).update({"logIn" : state});
-        console.log("update successful");
-        //   }
-        // }
+        for (let i in userLogInState) {
+            if (userLogInState[i].email === currentUser.email) {
+                usersRef.child(i).update({ "logIn": state });
+                console.log("update successful");
+            }
+        }
     } else {
         console.log("update unsuccessful");
     }
@@ -290,21 +299,23 @@ function sendMessage() {
     var time = new Date(Date.now()).toLocaleTimeString();
     var msg = document.getElementById("inputMsg").value;
     var uidKey = document.querySelector(".uuid").id;
+    // var uidKey = currentUser.uid;
 
-    messagesChildRef = messagesRef.child("private-" + uidKey).push({
+    messagesChildRef = messagesRef.child("p-" + uidKey).push({
         uid: uidKey,
-        name: "azzaya",
+        name: "Anyone",
         sender: me,
-        email: "azzayab@gmail.com",
+        email: currentUser.email,
         date: time,
         message: msg,
         file: "url",
     });
+
     notificationRef.update({
         from: currentUser.uid,
         to: uidKey,
         new: true,
-        url: "p-" + uidKey + currentUser.uid,
+        url: "p-" + uidKey,
     });
     document.getElementById("inputMsg").value = "";
 }
