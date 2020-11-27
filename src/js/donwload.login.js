@@ -42,7 +42,7 @@ function signIn() {
                 1
             );
             console.log("Login UnSuccessfully.");
-            
+
         }
     }
 }
@@ -58,16 +58,16 @@ function showError(message, type) {
     }
 }
 
-function login(email, pass){
+function login(email, pass) {
     console.log(email);
     console.log(pass);
 
     // var email = document.getElementById('eror').value;
     // var pass = document.getElementById('permitt').value;
 
-    firebase.auth().signInWithEmailAndPassword(email, pass).then(function(){
-        window.location = "chat.html?v=" + Math.random();
-    }).catch(function (error){
+    firebase.auth().signInWithEmailAndPassword(email, pass).then(function () {
+        window.location = "index.html?v=" + Math.random();
+    }).catch(function (error) {
         alert(error.code + ':' + error.message);
     });
 

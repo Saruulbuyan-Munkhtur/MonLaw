@@ -152,19 +152,15 @@
       <section class="main">
         <div class="main__container">
           <!-- Start of Change Code -->
-          <div class="invoice-main-content-container">
+          <div class="file__section">
             <div class="header-buttons">
-                
-              <input type="file" id="files" multiple>
-              
-              <button id="send">
-                File нэмэх
-              </button>
+              <input type="file" id="files" multiple />
+
+              <button id="send">File нэмэх</button>
               <div id="rigth-side">
                 <p id="uploading"></p>
                 <progress value="0" max="100" id="progress"></progress>
               </div>
-              
             </div>
             <hr />
             <div id="mainContentContainer">
@@ -175,15 +171,9 @@
               <div id="tableContent">
                 <span id="imgSpan">Зурагнууд</span>
                 <div id="img-area"></div>
-                   
-                </div>
-                <span id="docSpan">Документууд</span>
-                <div id="listFiles">
-                 
-                </div>
               </div>
-              <div class="footer-content">
-              </div>
+              <span id="docSpan">Документууд</span>
+              <div id="listFiles"></div>
             </div>
           </div>
           <!-- End of Change Code -->
@@ -214,9 +204,9 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link" href="#">
+            <a class="sidebar__menu__link active" href="./fileUpload.html">
               <i class="fa fa-building-o"></i>
-              <span>Компани журам</span>
+              <span>Компани файл</span>
             </a>
           </li>
           <li class="sidebar__menu__item">
@@ -249,6 +239,12 @@
               <span> Ажлын жагсаалт </span>
             </a>
           </li>
+          <li class="sidebar__menu__item">
+            <a class="sidebar__menu__link" href="./chat.html">
+              <i class="fa fa-file"></i>
+              <span> Чат </span>
+            </a>
+          </li>
           <!-- <h3>Санхүү</h3> -->
           <li class="sidebar__menu__item">
             <a class="sidebar__menu__link" href="./salary.html">
@@ -257,7 +253,7 @@
             </a>
           </li>
           <li class="sidebar__menu__item">
-            <a class="sidebar__menu__link active" href="./invoice.html">
+            <a class="sidebar__menu__link" href="./invoice.html">
               <i class="fa fa-briefcase"></i>
               <span> Нэхэмжлэх </span>
             </a>
