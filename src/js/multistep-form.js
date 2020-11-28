@@ -229,6 +229,7 @@ document.getElementById("open-popup-btn").addEventListener("click", function () 
 });
 
 document.getElementById("dismiss-popup-btn").addEventListener("click", function () {
+   window.location = "client.html";
    document.getElementsByClassName("popup")[0].classList.remove("active");
 });
 //  --- success modal end ---
