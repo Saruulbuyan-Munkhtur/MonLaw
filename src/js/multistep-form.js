@@ -205,7 +205,7 @@ nextBtn[3].addEventListener('click', function () {
       pages[3].style.display = 'block';
       document.getElementById('step4').classList.add('active');
    }
-});
+});   
 
 const prevBtn = document.getElementsByClassName('prev');
 
@@ -229,6 +229,7 @@ document.getElementById("open-popup-btn").addEventListener("click", function () 
 });
 
 document.getElementById("dismiss-popup-btn").addEventListener("click", function () {
+   window.location = "client.html";
    document.getElementsByClassName("popup")[0].classList.remove("active");
 });
 //  --- success modal end ---
@@ -406,6 +407,6 @@ informationRef.on('value', function (snapshot) {
 function sendInformationData(data) {
    informationRef.push(data);
    console.log(data);
-   swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });
-   window.location = "client.html";
+   // swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });            
+   // window.location = "client.html";
 }
