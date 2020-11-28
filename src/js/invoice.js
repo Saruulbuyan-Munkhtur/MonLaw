@@ -73,7 +73,7 @@ function showTable(){
     document.getElementById("paymentDues").innerHTML ='Төлөх хугацаа: '+ dataMain.paymentDue;
     document.getElementById("totalAmount").innerHTML ='Нийт: '+ currency(subTotalForTotal).format();
     document.getElementById("tax").innerHTML ='Татвар(10%): '+ currency(subTotalForTotal/10).format();
-    document.getElementById("total").innerHTML ='Нийт төлбөр: '+ currency(subTotalForTotal-subTotalForTotal/10).format();
+    document.getElementById("total").innerHTML ='Нийт төлбөр: '+ currency(subTotalForTotal+subTotalForTotal/10).format();
 };
 
 
