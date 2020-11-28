@@ -395,17 +395,17 @@ function convertToObject(formArr, keysId) {
 
 //                                           --- Firebase ---
 
-var informationRef = firebase.database().ref("informations/information");
+var informationRef = firebase.database().ref("informations/");
 
-informationRef.on('value', function (snapshot) {
-   // informationRef = snapshot.val();  
-   // console.log(informationRef);
-   // clients ruu usreh yostoi 
-});
+// informationRef.on('value', function (snapshot) {
+//    // informationRef = snapshot.val();  
+//    // console.log(informationRef);
+//    // clients ruu usreh yostoi 
+// });
 
 function sendInformationData(data) {
-   // informationRef.push(data);
+   informationRef.push(data);
    console.log(data);
-   swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });
-   window.location = "client.html";
+   // swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });
+   window.location = "../components/client.html";
 }
