@@ -122,8 +122,8 @@
               <div class="profile__header">
                 <img width="70" src="../assets/avatar3.png" alt="" />
                 <div>
-                  <h4>Нэр</h4>
-                  <small>и-мэйл</small>
+                  <h4 id="loginName">Нэр</h4>
+                  <small id="loginEmail">и-мэйл</small>
                 </div>
               </div>
               <ul class="profile__ul">
@@ -135,7 +135,7 @@
                   <i class="fa fa-cog"></i>
                   <h5>Тохиргоо</h5>
                 </li>
-                <li>
+                <li onclick="logOut()">
                   <i class="fa fa-power-off"></i>
                   <h5><a href="">Гарах</a></h5>
                 </li>
@@ -337,14 +337,12 @@
               <span> Нэхэмжлэх </span>
             </a>
           </li>
-          <li class="sidebar__menu__item">
-            <a
-              class="sidebar__menu__link"
-              href="./components/monlaw_login.html"
-            >
+          <li class="sidebar__menu__item" onclick="logOut()">
+            <div class="sidebar__menu__link">
               <i class="fa fa-power-off"></i>
               <span>Log out</span>
-            </a>
+              <!-- href="./components/monlaw_login.html" -->
+            </div>
           </li>
         </ul>
       </aside>
@@ -357,7 +355,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
     <script src="./js/firebase.js"></script>
     <!-- FIrebase setting script -->
     <!-- Additional js libraries -->

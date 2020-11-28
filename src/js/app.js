@@ -1,3 +1,6 @@
+var currentUser;
+var onCheck = false;
+
 const body = document.getElementsByTagName("body")[0];
 
 function switchTheme() {
@@ -73,6 +76,54 @@ var options = {
     },
   },
 };
+
+// Firebase Login Section
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    console.log("current user");
+    // console.log(user);
+    var logName = document.getElementById("loginName");
+    var logEmail = document.getElementById("loginEmail");
+    currentUser = user;
+    logName.textContent = user.displayName;
+    logEmail.textContent = user.email;
+    setTimeout(updateLogin, 2000, true);
+  } else {
+    setTimeout(updateLogin, 2000, false);
+    console.log("no user did not sign in currently");
+    // get the user that logged out ...
+    window.location = "./components/monlaw_login.html?k=" + Math.random();
+  }
+});
+
+function updateLogin(state) {
+  console.log("UpdateLogin");
+  console.log(state);
+  console.log(typeof state);
+  if (onCheck) {
+    for (let i in userLogInState) {
+      if (userLogInState[i].email === currentUser.email) {
+        usersRef.child(i).update({ "logIn": state });
+        console.log("update successful");
+      }
+    }
+  } else {
+    console.log("update unsuccessful");
+  }
+}
+
+function logOut() {
+  // console.log("log out");
+  firebase.auth().signOut().then(function () {
+    // Sign-out successful.
+    console.log("Sign-out");
+  }).catch(function (error) {
+    // An error happened.
+  });
+}
+
+
+// Chart Section
 var chartDiv = document.querySelector("#apex1");
 if (chartDiv) {
   var apexChart = new ApexCharts(document.querySelector("#apex1"), options);
@@ -142,33 +193,3 @@ function toggleSidebar() {
 
 
 }
-// Top Bar Menu dropdown windows
-// function viewToggle(e) {
-//   console.log(e);
-//   console.log(e.classList.value);
-//   let select = e.classList.value;
-//   var selectedNotific = document.getElementsByClassName(`notification__id`);
-//   var selectedMessage = document.getElementsByClassName(`messages__id`);
-//   var selectedProfile = document.getElementsByClassName(`profile__id`);
-//   switch (select) {
-//     case "notification":
-//       selectedNotific[0].classList.toggle("dropdown_expand");
-//       selectedMessage[0].classList.remove("dropdown_expand");
-//       selectedProfile[0].classList.remove("dropdown_expand");
-//       break;
-//     case "messages":
-//       selectedMessage[0].classList.toggle("dropdown_expand");
-//       selectedNotific[0].classList.remove("dropdown_expand");
-//       selectedProfile[0].classList.remove("dropdown_expand");
-//       break;
-//     case "profile":
-//       selectedProfile[0].classList.toggle("dropdown_expand");
-//       selectedMessage[0].classList.remove("dropdown_expand");
-//       selectedNotific[0].classList.remove("dropdown_expand");
-//       break;
-
-//     default:
-//       break;
-//   }
-
-// }

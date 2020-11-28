@@ -66,7 +66,8 @@ function login(email, pass) {
     // var pass = document.getElementById('permitt').value;
 
     firebase.auth().signInWithEmailAndPassword(email, pass).then(function () {
-        window.location = "index.html?v=" + Math.random();
+        window.location = "../../src/index.html?k=" + Math.random();;
+        // + Math.random();
     }).catch(function (error) {
         alert(error.code + ':' + error.message);
     });

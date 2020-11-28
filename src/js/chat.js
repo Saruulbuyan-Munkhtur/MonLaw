@@ -8,36 +8,35 @@ var idd;
 var messagesData = [];
 var me = "zaya";
 var userLogInState;
-var currentUser;
-var onCheck = false;
+
 
 // Firebase reference
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        console.log("current user");
-        console.log(user);
-        var logName = document.getElementById("loginName");
-        var logEmail = document.getElementById("loginEmail");
-        currentUser = user;
-        logName.textContent = user.displayName;
-        logEmail.textContent = user.email;
-        setTimeout(updateLogin, 2000, true);
-    } else {
-        setTimeout(updateLogin, 2000, false);
-        console.log("no user did not sign in currently");
-        // get the user that logged out ...
-        window.location = "../components/monlaw_login.html";
-    }
-});
+// firebase.auth().onAuthStateChanged(function (user) {
+//     if (user) {
+//         console.log("current user");
+//         console.log(user);
+//         var logName = document.getElementById("loginName");
+//         var logEmail = document.getElementById("loginEmail");
+//         currentUser = user;
+//         logName.textContent = user.displayName;
+//         logEmail.textContent = user.email;
+//         setTimeout(updateLogin, 2000, true);
+//     } else {
+//         setTimeout(updateLogin, 2000, false);
+//         console.log("no user did not sign in currently");
+//         // get the user that logged out ...
+//         window.location = "../components/monlaw_login.html";
+//     }
+// });
 
-function logOut() {
-    firebase.auth().signOut().then(function () {
-        // Sign-out successful.
-        console.log("Sign-out");
-    }).catch(function (error) {
-        // An error happened.
-    });
-}
+// function logOut() {
+//     firebase.auth().signOut().then(function () {
+//         // Sign-out successful.
+//         console.log("Sign-out");
+//     }).catch(function (error) {
+//         // An error happened.
+//     });
+// }
 
 var messagesRef = firebase.database().ref("messages/");
 messagesRef.on("value", function (snapshot) {
@@ -278,21 +277,21 @@ function doProcess(data) {
     }
 }
 
-function updateLogin(state) {
-    console.log("UpdateLogin");
-    console.log(state);
-    console.log(typeof state);
-    if (onCheck) {
-        for (let i in userLogInState) {
-            if (userLogInState[i].email === currentUser.email) {
-                usersRef.child(i).update({ "logIn": state });
-                console.log("update successful");
-            }
-        }
-    } else {
-        console.log("update unsuccessful");
-    }
-}
+// function updateLogin(state) {
+//     console.log("UpdateLogin");
+//     console.log(state);
+//     console.log(typeof state);
+//     if (onCheck) {
+//         for (let i in userLogInState) {
+//             if (userLogInState[i].email === currentUser.email) {
+//                 usersRef.child(i).update({ "logIn": state });
+//                 console.log("update successful");
+//             }
+//         }
+//     } else {
+//         console.log("update unsuccessful");
+//     }
+// }
 
 function sendMessage() {
     console.log("SendMessage");
