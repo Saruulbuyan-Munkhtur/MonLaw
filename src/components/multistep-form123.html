@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client's register form</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/multistep-form.css">
+   
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div id="background">
+        <div class="container">
+            <div>
+                <header>Register</header>
+                <div class="multi-step">
+                    <ul id="progressbar" class="text-center">
+                        <li class="step0 active" id="step1"><span>1</span></li>
+                        <li class="step0" id="step2"><span>2</span></li>
+                        <li class="step0" id="step3"><span>3</span></li>
+                        <li class="step0" id="step4"><span>4</span></li>
+                        <li class="step0" id="step5" style="display:none;"><span>5</span></li>
+                    </ul>
+                    <!--
+                    <div class="icons">
+                        <div class="icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="icons">
+                        <div class="icon">
+                            <i class="fas fa-address-card"></i>
+                        </div>
+                        <div class="check"> 
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="icons">
+                        <div class="icon"> 
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    -->
+                    
+                </div>
+                <div class="form-outer">
+                    <form>
+                        <section class="pages">
+                            <div class="title">Хэрэглэгчийн мэдээлэл:</div>
+                            <div class="field">
+                                <div class="label">Эцэг эхийн нэр</div>
+                                <input type="text" id="lastName">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэрэглэгчийн нэр</div>
+                                <input type="text" id="firstName" >
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хүйс</div>
+                                <select id="gender">
+                                    <option value="male">Эрэгтэй</option>
+                                    <option value="woman">Эмэгтэй</option>
+                                    <option value="other">Бусад</option>
+                                </select>
+                                <small></small>
+                            </div>     
+                            <div class="field">
+                                <div class="label">Майл хаяг</div>
+                                <input type="text" id="email" placeholder="name@gmail.com">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Утасны дугаар</div>
+                                <input type="text" id="userPhone" placeholder="99999999" maxlength="8">
+                                <small></small>
+                            </div> 
+                            <div class="field">
+                                <div class="label">Гэрийн хаяг</div>
+                                <input type="text" id="userAddress">
+                                <small></small>
+                            </div> 
+                            <div class="field">
+                                <div class="label">Компани</div>
+                                <input type="text" id="companyName">
+                                <small></small>
+                            </div>   
+                            <div class="field">
+                                <div class="label">Албан тушаал</div>
+                                <input type="text" id="userPosition">
+                                <small></small>
+                            </div>                  
+                            <div class="field btn">
+                                <button type="button" class="next" onclick="form_validation1()">Дараагийнх</button>
+                            </div>
+                        </section>
+
+                        <section class="pages">
+                            <div class="title">Хэрэглэгчийн дэлгэрэнгүй мэдээлэл:</div>
+                            <div class="field">
+                                <div class="label">Төрсөн он, сар, өдөр</div>
+                                <input type="date" id="birthDate">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Гэрлэлт</div>
+                                <input type="text" id="maritalStatus">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Жолооны үнэмлэхний дугаар</div>
+                                <input type="text" id="driversLicense">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Яаралтай холбоо барих хүний нэр</div>
+                                <input type="text" id="emergencyName">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Яаралтай холбоо барих хүний дугаар</div>
+                                <input type="text" id="emergencyCallNumber">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Таны хэн болох</div>
+                                <input type="text" id="emergencyRelatives">
+                                <small></small>
+                            </div>
+                            <div class="field btn">
+                                <button type="button" class="prev prev2" >Өмнөх</button>
+                                <button type="button" class="next next2" onclick="form_validation2()">Дараагийнх</button>
+                            </div>
+                        </section>
+
+                        <section class="pages">
+                            <div class="title">Хэргийн мэдээлэл:</div>
+                            <div class="field">
+                                <div class="label">Хэргийн дугаар</div>
+                                <input type="text" id="caseId">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэргийн нэр</div>
+                                <input type="text" id="caseName">
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэргийн төрөл</div>
+                                <input type="text" id="caseType"></input>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label" >Дүүрэг</div>
+                                <select id="caseDistrict">
+                                    <option value="khan-uul">Хан-Уул</option>
+                                    <option value="songino-khairkhan">Сонгино-хайрхан</option>
+                                    <option value="chingeltei">Чингэлтэй</option>
+                                    <option value="bayanzurkh">Баянзүрх</option>
+                                    <option value="sukhbaatar">Сүхбаатар</option>
+                                    <option value="bayangol">Баянгол</option>
+                                    <option value="nalaikh">Налайх</option> 
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэргийн зураг сонгох</div>
+                                <input type="file" id="file"></input>
+                                <small></small>
+                            </div>
+                            <div class="desc">
+                                <div class="label">Хэргийн дэлгэрэнгүй мэдээлэл</div>
+                                <textarea type="text" id="caseInfo"></textarea>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэрэг хүлээж авсан өдөр</div>
+                                <input type="date" id="startDate"></input>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Хэрэг шийдвэрлэгдэх өдөр</div>
+                                <input type="date" id="endDate"></input>
+                                <small></small>
+                            </div>
+                            <div class="field btn">
+                                <button type="button" class="prev prev3">Өмнөх</button>
+                                <button type="button" class="next next3" onclick="form_validation3()">Дараагийнх</button>
+                            </div>
+                        </section>
+                           
+                        <section class="pages">
+                            <div class="title">Төлбөрийн мэдээлэл:</div>
+                            <div class="field">
+                                <select id="serviceType">
+                                    <option value="1">Хуулийн зөвлөгөө</option>
+                                    <option value="2">Хуулийн №</option>
+                                    <option value="3"> Хуулийн -</option>
+                                    <option value="4"> Хуулийн "</option>
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Төлбөрийн мэдээлэл</div>
+                                <input type="text" id="billInfo"></input>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Нийт төлөх дүн</div>
+                                <input type="text" id="totalFee"></input>
+                                <small></small>
+                            </div>
+                            <div class="field">
+                                <div class="label">Төлбөр төлсөн эсэх</div>
+                                <select id="paidOrNot">
+                                    <option value="yes">Төлсөн </option>
+                                    <option value="no">Төлөөгүй</option>
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="field btn">
+                                <button type="button" class="prev prev4">Өмнөх</button>
+                                <button type="button" class="next next4" id="open-popup-btn" onclick="form_validation4()">Дуусгах</button>
+                            </div>
+                        </section>
+                      
+                        <section class="pages">
+                            <div class="popup center active">
+                                <div class="icon">
+                                  <i class="fa fa-check"></i>
+                                </div>
+                                <div class="title">
+                                  Таны мэдээлэл амжилттай хадгалагдлаа
+                                </div>
+                                <div class="description">
+                                </div>
+                                <div class="dismiss-btn">
+                                  <button id="dismiss-popup-btn">
+                                    Гарах
+                                  </button>
+                                </div>
+                              </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script> 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/multistep-form.js"></script>
+    
+     <!--<script src="multi-step1.js"></script>-->
+     <!-- <script>
+        document.getElementById("open-popup-btn").addEventListener("click",function(){
+        document.getElementsByClassName("popup")[0].classList.add("active");
+});
+
+document.getElementById("dismiss-popup-btn").addEventListener("click",function(){
+document.getElementsByClassName("popup")[0].classList.remove("active");
+});
+    </script>-->
+</body> 
+</html>

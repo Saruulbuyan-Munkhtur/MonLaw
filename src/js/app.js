@@ -1,7 +1,12 @@
 var currentUser;
 var onCheck = false;
+var data_frame;
 
 const body = document.getElementsByTagName("body")[0];
+const countUser = document.getElementById("countUser");
+const countCase = document.getElementById("countCase");
+const countPrice = document.getElementById("totalPrice");
+const countLateCase = document.getElementById("totalLateCase");
 
 function switchTheme() {
   var ico = document.getElementsByClassName("switchIcon");
@@ -78,39 +83,23 @@ var options = {
 };
 
 // Firebase Login Section
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    console.log("current user");
-    // console.log(user);
-    var logName = document.getElementById("loginName");
-    var logEmail = document.getElementById("loginEmail");
-    currentUser = user;
-    logName.textContent = user.displayName;
-    logEmail.textContent = user.email;
-    setTimeout(updateLogin, 2000, true);
-  } else {
-    setTimeout(updateLogin, 2000, false);
-    console.log("no user did not sign in currently");
-    // get the user that logged out ...
-    window.location = "./components/monlaw_login.html?k=" + Math.random();
-  }
-});
-
-function updateLogin(state) {
-  console.log("UpdateLogin");
-  console.log(state);
-  console.log(typeof state);
-  if (onCheck) {
-    for (let i in userLogInState) {
-      if (userLogInState[i].email === currentUser.email) {
-        usersRef.child(i).update({ "logIn": state });
-        console.log("update successful");
-      }
-    }
-  } else {
-    console.log("update unsuccessful");
-  }
-}
+// firebase.auth().onAuthStateChanged(function (user) {
+//   if (user) {
+//     console.log("current user");
+//     // console.log(user);
+//     var logName = document.getElementById("loginName");
+//     var logEmail = document.getElementById("loginEmail");
+//     currentUser = user;
+//     logName.textContent = user.displayName;
+//     logEmail.textContent = user.email;
+//     // setTimeout(updateLogin, 2000, true);
+//   } else {
+//     // setTimeout(updateLogin, 2000, false);
+//     console.log("no user did not sign in currently");
+//     // get the user that logged out ...
+//     window.location = "./components/monlaw_login.html?k=" + Math.random();
+//   }
+// });
 
 function logOut() {
   // console.log("log out");
@@ -122,6 +111,20 @@ function logOut() {
   });
 }
 
+// Firebase Raw Data
+const dateRef = firebase.database().ref("data/");
+dateRef.on('value', function (snapshot) {
+  data_frame = snapshot.val();
+  console.log(data_frame);
+  showData(data_frame);
+});
+
+function showData(data) {
+  console.log(data);
+  var countUs = data.clients.contents.length;
+  console.log(countUs);
+  countUser.textContent = countUs;
+}
 
 // Chart Section
 var chartDiv = document.querySelector("#apex1");

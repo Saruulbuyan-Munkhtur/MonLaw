@@ -832,7 +832,7 @@ tbody tr td:nth-child(5) {
 }
 
 #fileSpan {
-  font-size: 30px;
+  font-size: 24px;
 }
 #imgSpan {
   margin-left: 10px;
@@ -850,9 +850,8 @@ tbody tr td:nth-child(5) {
 }
 
 #img-area {
-  border: 0.3px solid #17b384;
-
-  border-bottom: none;
+  border: 0.3px solid lightgray;
+  /* border-bottom: none; */
 }
 #listFiles {
   border: 0.3px solid #17b384;
@@ -890,4 +889,8 @@ tbody tr td:nth-child(5) {
   height: 90vh;
   margin-left: auto;
   margin-right: auto;
+}
+
+.imgFile {
+  width: 30px;
 }

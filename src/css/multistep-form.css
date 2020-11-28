@@ -1,70 +1,74 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    box-sizing: border-box;
-}
-body{
-    background: grey;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
- #background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;   
+.overlay1 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.container {
-   width: 80%; 
-   background: #fff;
-   border-radius: 20px;
-   padding: 50px 35px 30px 35px;
-   text-align: center;
+#background {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.container header{
-    font-size: 35px;
-    margin-bottom: 30px;
+.multi__container {
+  width: 80%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 50px 35px 30px 35px;
+  text-align: center;
 }
 
-.form-outer{
-    width: 100%;
+.multi__container header {
+  font-size: 35px;
+  margin-bottom: 30px;
+}
+
+.form-outer {
+  width: 100%;
 }
 
 .form-outer form {
-    display: flex;
-    width: 500%;
+  display: flex;
+  width: 500%;
 }
 
-.form-outer form .pages{
-    width: 20%;
-   position: relative;
+.form-outer form .pages {
+  width: 20%;
+  position: relative;
 }
 
-.form-outer .pages .title{
-    /* text-align: left; */
-    font-size: 25px;
+.form-outer .pages .title {
+  /* text-align: left; */
+  font-size: 25px;
 }
 
-.form-outer .field{
-    height: auto;
-    width: 100%;
-    margin: 25px 0;   
+.form-outer .field {
+  height: auto;
+  width: 100%;
+  margin: 25px 0;
 }
 
 .form-outer .pages .field .label {
- margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.form-outer .pages .field input{
-    height: 100%;
-    width: 100%;
-    border: 1px solid lightgrey;
-    border-radius: 20px;
-    padding: 15px;
-    font-size: 1em;
-    outline: none;
+.form-outer .pages .field input {
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  padding: 15px;
+  font-size: 1em;
+  outline: none;
 }
 /*
 .field textarea{
@@ -76,247 +80,242 @@ body{
     font-size: 1em;
 }
 */
-.form-outer .pages .field button{
-    width: 100%;
-    border-radius: 20px;
-    border: none;
-    height: 40px;
-    background-color: lightblue;
-    font-size: 1em;
-    cursor: pointer;
-    outline: none;
-    margin: 10px;
+.form-outer .pages .field button {
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  height: 40px;
+  background-color: lightblue;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none;
+  margin: 10px;
 }
 
 .form-outer .pages .field button:hover {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
-form .pages select{
-    height: 100%;
-    width: 100%;
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 15px;
-    padding-right: 5px;
-    font-size: 1em;
+form .pages select {
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 15px;
+  padding-right: 5px;
+  font-size: 1em;
 }
 
 .form-outer .pages .btn {
-    display: flex;
+  display: flex;
 }
 
-.form-outer{
-      overflow: hidden; /* IMPORTANT!!! */
+.form-outer {
+  overflow: hidden; /* IMPORTANT!!! */
 }
 
-
-.desc textarea{
-    height: 200px;
-    width: 100%;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: -20px;
-    padding: 20px;
-    border-radius: 20px;
-    border:1px solid lightgray;
+.desc textarea {
+  height: 200px;
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid lightgray;
 }
 
 #progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    color: lightgrey;
-    padding-left: 0px
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: lightgrey;
+  padding-left: 0px;
 }
 
 #progressbar .active {
-    color: green;
+  color: green;
 }
 
 #progressbar li {
-    list-style-type: none;
-    font-size: 15px;
-    width: 25%;
-    float: left;
-    position: relative;
-    font-weight: 400
+  list-style-type: none;
+  font-size: 15px;
+  width: 25%;
+  float: left;
+  position: relative;
+  font-weight: 400;
 }
 
 #progressbar .step0:before {
-    content: ""
+  content: "";
 }
 
 #progressbar li:before {
-    width: 40px;
-    height: 40px;
-    line-height: 45px;
-    display: block;
-    font-size: 20px;
-    background: #E0E0E0;
-    border-radius: 50%;
-    margin: auto;
-    padding: 2px
+  width: 40px;
+  height: 40px;
+  line-height: 45px;
+  display: block;
+  font-size: 20px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  margin: auto;
+  padding: 2px;
 }
 
 #progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 10px;
-    background: #E0E0E0;
-    position: absolute;
-    left: 0;
-    top: 17px;
-    
+  content: "";
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  position: absolute;
+  left: 0;
+  top: 17px;
 }
 
 #progressbar li:last-child:after {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #progressbar li:first-child:after {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: orange;
+  background: orange;
 }
 
-span {
-    font-size: 1.8em;
+.multi__container ~ span {
+  font-size: 1.8em;
 }
 
-
- .form-outer .pages .error input{
-    border-color: red;
+.form-outer .pages .error input {
+  border-color: red;
 }
 
-.form-outer .pages .success input{
-    border-color: green;
+.form-outer .pages .success input {
+  border-color: green;
 }
 
-.form-outer .field small{
-    color: red;
-    font-size: 1em;
-    position: relative;
-    display: flex;
-    padding-left: 2%;
+.form-outer .field small {
+  color: red;
+  font-size: 1em;
+  position: relative;
+  display: flex;
+  padding-left: 2%;
 }
 
-.form-outer .field .error select{
-    border-color: red;
+.form-outer .field .error select {
+  border-color: red;
 }
 
 .form-outer .pages button #fileSubmit {
-    
-    border-radius: 20px;
-    border: none;
-    height: 40px;
-    background-color: lightblue;
-    font-size: 1em;
-    cursor: pointer;
-    outline: none;
-    margin: 10px;
+  border-radius: 20px;
+  border: none;
+  height: 40px;
+  background-color: lightblue;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none;
+  margin: 10px;
 }
 
 .form-outer .field #file {
-   border:  none;
+  border: none;
 }
 
 /* success modal */
 
-  .center {
-    position: relative;;
-    top:0%;
-    left:50%;
-    transform:translate(-50%,-50%);
-  }
-  .popup {
-    width:350px;
-    height:280px;
-    padding:30px 20px;
-    background:orange;
-    border-radius:10px;
-    box-sizing:border-box;
-    z-index:2;
-    text-align:center;
-    opacity:0;
-    top:-200%;
-    transform:translate(-50%,-50%) scale(0.5);
-    transition: opacity 300ms ease-in-out,
-                top 1000ms ease-in-out,
-                transform 1000ms ease-in-out;
-  }
-  .popup.active {
-    opacity:1;
-    top:50%;
-    transform:translate(-50%,-50%) scale(1);
-    transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
-  }
-  .popup .icon {
-    margin:5px 0px;
-    width:50px;
-    height:50px;
-    border:2px solid #34f234;
-    text-align:center;
-    display:inline-block;
-    border-radius:50%;
-    line-height:60px;
-  }
-  .popup .icon i.fa {
-    font-size:30px;
-    color:#34f234;
-  } 
-  .popup .title {
-    margin:5px 0px;
-    font-size:30px;
-    font-weight:600;
-  }
-  .popup .description {
-    color:#222;
-    font-size:15px;
-    padding:5px;
-  }
-  .popup .dismiss-btn {
-    margin-top:15px;
-  }
-  .popup .dismiss-btn button {
-    padding:10px 20px;
-    background:#111;
-    color:#f5f5f5;
-    border:2px solid #111;
-    font-size:16px;
-    font-weight:600;
-    outline:none;
-    border-radius:10px;
-    cursor:pointer;
-    transition: all 300ms ease-in-out;
-  }
-  .popup .dismiss-btn button:hover {
-    color:#111;
-    background:#f5f5f5;
-  }
-  .popup > div {
-    position:relative;
-    top:10px;
-    opacity:0;
-  }
-  .popup.active > div {
-    top:0px;
-    opacity:1;
-  }
-  .popup.active .icon {
-    transition: all 300ms ease-in-out 250ms;
-  }
-  .popup.active .title {
-    transition: all 300ms ease-in-out 300ms;
-  }
-  .popup.active .description {
-    transition: all 300ms ease-in-out 350ms;
-  }
-  .popup.active .dismiss-btn {
-    transition: all 300ms ease-in-out 400ms;
-  }
+.center {
+  position: relative;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup {
+  width: 350px;
+  height: 280px;
+  padding: 30px 20px;
+  background: orange;
+  border-radius: 10px;
+  box-sizing: border-box;
+  z-index: 2;
+  text-align: center;
+  opacity: 0;
+  top: -200%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: opacity 300ms ease-in-out, top 1000ms ease-in-out,
+    transform 1000ms ease-in-out;
+}
+.popup.active {
+  opacity: 1;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
+}
+.popup .icon {
+  margin: 5px 0px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #34f234;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  line-height: 60px;
+}
+.popup .icon i.fa {
+  font-size: 30px;
+  color: #34f234;
+}
+.popup .title {
+  margin: 5px 0px;
+  font-size: 30px;
+  font-weight: 600;
+}
+.popup .description {
+  color: #222;
+  font-size: 15px;
+  padding: 5px;
+}
+.popup .dismiss-btn {
+  margin-top: 15px;
+}
+.popup .dismiss-btn button {
+  padding: 10px 20px;
+  background: #111;
+  color: #f5f5f5;
+  border: 2px solid #111;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.popup .dismiss-btn button:hover {
+  color: #111;
+  background: #f5f5f5;
+}
+.popup > div {
+  position: relative;
+  top: 10px;
+  opacity: 0;
+}
+.popup.active > div {
+  top: 0px;
+  opacity: 1;
+}
+.popup.active .icon {
+  transition: all 300ms ease-in-out 250ms;
+}
+.popup.active .title {
+  transition: all 300ms ease-in-out 300ms;
+}
+.popup.active .description {
+  transition: all 300ms ease-in-out 350ms;
+}
+.popup.active .dismiss-btn {
+  transition: all 300ms ease-in-out 400ms;
+}

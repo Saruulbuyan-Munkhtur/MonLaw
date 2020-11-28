@@ -1,24 +1,24 @@
 
 
 var storageRef = firebase.storage().ref('Images');
-storageRef.listAll().then(function(result) {
-result.items.forEach(function(imgRef) {
-    imgRef.getDownloadURL().then(function(url){
-        var imgLoc = document.getElementById('img-area');
-        imgLoc.innerHTML += '<div id="imgContainer"><img id="imagesFromStorage" class="imgStorage" src=' +url+' ></div>';
+storageRef.listAll().then(function (result) {
+    result.items.forEach(function (imgRef) {
+        imgRef.getDownloadURL().then(function (url) {
+            var imgLoc = document.getElementById('img-area');
+            imgLoc.innerHTML += '<div id="imgContainer"><img class="imgFile" id="imagesFromStorage" class="imgStorage" src=' + url + ' ></div>';
 
-        var imgsEl = document.getElementsByClassName("imgStorage");
-         for(let i in imgsEl){
+            var imgsEl = document.getElementsByClassName("imgStorage");
+            for (let i in imgsEl) {
 
-            imgsEl[i].addEventListener("click", function(){
-                console.log(imgsEl[i].src);
-                var xhr = new XMLHttpRequest();
-                xhr.responseType = 'blob';
-                xhr.onload = function(event) {
-                    var blob = xhr.response;
-                };
-                xhr.open('GET', imgsEl[i].src);
-                xhr.send();
+                imgsEl[i].addEventListener("click", function () {
+                    console.log(imgsEl[i].src);
+                    var xhr = new XMLHttpRequest();
+                    xhr.responseType = 'blob';
+                    xhr.onload = function (event) {
+                        var blob = xhr.response;
+                    };
+                    xhr.open('GET', imgsEl[i].src);
+                    xhr.send();
 
                 });
             };
@@ -30,11 +30,11 @@ result.items.forEach(function(imgRef) {
 
 
 var storageRefDoc = firebase.storage().ref('docs');
-storageRefDoc.listAll().then(function(result) {
-result.items.forEach(function(imgRef) {
-    imgRef.getMetadata().then(function(url){
-        var imgLoc = document.getElementById('listFiles');
-        imgLoc.innerHTML += '<div id="docFileContainer"><img alt="'+url.name+'" id="imagesFromStorage" src="../../assets/file.png"><p>'+url.name+'</p></div>';
+storageRefDoc.listAll().then(function (result) {
+    result.items.forEach(function (imgRef) {
+        imgRef.getMetadata().then(function (url) {
+            var imgLoc = document.getElementById('listFiles');
+            imgLoc.innerHTML += '<div id="docFileContainer"><img alt="' + url.name + '" id="imagesFromStorage" src="../../assets/file.png"><p>' + url.name + '</p></div>';
         });
     });
 });
@@ -114,5 +114,3 @@ document.getElementById("send").addEventListener("click", function () {
     }
 
 });
-
-
