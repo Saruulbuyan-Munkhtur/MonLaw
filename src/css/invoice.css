@@ -937,5 +937,16 @@ tbody tr td:nth-child(5){
 	text-align: end;
 }
 
-  
-  
+#selectClient{
+	
+	float: right;
+	margin-right: 1%;
+}
+.selectClient{
+	margin-top: 2px;
+	font-size: 15px;
+}
+.selectItem{
+	font-size: 18px;
+	margin-top: 1px;
+}
