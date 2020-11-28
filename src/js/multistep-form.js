@@ -404,7 +404,7 @@ informationRef.on('value', function (snapshot) {
 });
 
 function sendInformationData(data) {
-   // informationRef.push(data);
+   informationRef.push(data);
    console.log(data);
    swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });
    window.location = "client.html";
