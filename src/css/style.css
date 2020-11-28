@@ -615,7 +615,7 @@ body {
   align-items: center;
 }
 .sidebar__title > div > img {
-  width: 75px;
+  width: 65px;
   object-fit: contain;
   background: var(--main-bg-color);
 }
