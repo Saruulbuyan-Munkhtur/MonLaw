@@ -171,7 +171,7 @@ function sortByActive(){
         </tr>';
     
     for( var i in datas){
-        if(datas[i].status == "Ongoing"){
+        if(datas[i].status == "open"){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
@@ -218,7 +218,7 @@ function sortByClosed(){
             </tr>';
     
     for( var i in datas){
-        if(datas[i].status == "Closed"){
+        if(datas[i].status == "close"){
         tableRow+= '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
