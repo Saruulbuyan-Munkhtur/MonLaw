@@ -120,10 +120,10 @@ dateRef.on('value', function (snapshot) {
 });
 
 function showData(data) {
-  console.log(data);
   var countUs = data.clients.contents.length;
-  console.log(countUs);
-  countUser.textContent = countUs;
+  if (countUser !== null) {
+    countUser.textContent = countUs;
+  }
 }
 
 // Chart Section

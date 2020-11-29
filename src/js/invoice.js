@@ -1,26 +1,35 @@
+let originalData;
+
+const userOption = document.getElementById("useListIn");
+
 const database = firebase.database();
 var data = {};
 var dataMain = {};
-database.ref('data/').on('value', function(snapshot) {
-    
-    dataMain = snapshot.val().invoices; 
-    
+database.ref('data/').on('value', function (snapshot) {
+    dataMain = snapshot.val().invoices;
     data = dataMain.services;
     showTable();
     console.log(dataMain);
 });
 
-function showTable(){
+const informationRef = firebase.database().ref("informations/");
+informationRef.on("value", function (snapshot) {
+    console.log("Info");
+    originalData = snapshot.val();
+    viewUserList();
+});
+
+function showTable() {
 
 
     var createElForTable = document.createElement('div');
     var getEl = document.getElementById("tableContent");
-    getEl.innerHTML="";
+    getEl.innerHTML = "";
     var tableRow = "";
-    
+
 
     var subTotal = 0;
-    tableRow='\
+    tableRow = '\
          <table id="tableForDownload">\
           <thead>\
             <tr>\
@@ -31,57 +40,57 @@ function showTable(){
               <th>Нийт төлбөр</th>\
             </tr>\
           </thead>';
-    var count=1;
-    for( let i in data){
+    var count = 1;
+    for (let i in data) {
 
-        subTotal=(data[i].quantity * data[i].unitCost);
+        subTotal = (data[i].quantity * data[i].unitCost);
 
-        tableRow+= '\
+        tableRow += '\
         <tbody>\
             <tr>\
-            <td id="whatNumber">'+count+'</td>\
-            <td id="Service Type">'+data[i].serviceType+'</td>\
-            <td quantity="Quantity">'+data[i].quantity+'</td>\
-            <td style="text-align: end;" unitCost="Unit cost">'+currency(data[i].unitCost).format()+'</td>\
-            <td style="text-align: end;" subTotal="Subtotal">'+currency(subTotal).format()+'</td>\
+            <td id="whatNumber">'+ count + '</td>\
+            <td id="Service Type">'+ data[i].serviceType + '</td>\
+            <td quantity="Quantity">'+ data[i].quantity + '</td>\
+            <td style="text-align: end;" unitCost="Unit cost">'+ currency(data[i].unitCost).format() + '</td>\
+            <td style="text-align: end;" subTotal="Subtotal">'+ currency(subTotal).format() + '</td>\
             </tr>\
         </tbody>';
         count++
     };
-    tableRow+="</table>";
+    tableRow += "</table>";
 
-    var subTotalForTotal=0;
-    for (let i in data){
-       subTotalForTotal+=(data[i].quantity * data[i].unitCost);
-        
-    };  
-    
+    var subTotalForTotal = 0;
+    for (let i in data) {
+        subTotalForTotal += (data[i].quantity * data[i].unitCost);
+
+    };
+
 
     createElForTable.innerHTML = tableRow;
     getEl.appendChild(createElForTable);
-    
+
     document.getElementById("toWhere").innerHTML = dataMain.toWhere;
-    document.getElementById("toWhereDirection").innerHTML ='Хаяг: '+ dataMain.toWhereDirection;
-    document.getElementById("toMail").innerHTML ='Майл: '+ dataMain.toMail;
-    document.getElementById("toPhone").innerHTML ='Утас: '+ dataMain.toPhone;
+    document.getElementById("toWhereDirection").innerHTML = 'Хаяг: ' + dataMain.toWhereDirection;
+    document.getElementById("toMail").innerHTML = 'Майл: ' + dataMain.toMail;
+    document.getElementById("toPhone").innerHTML = 'Утас: ' + dataMain.toPhone;
 
-    document.getElementById("invoiceId").innerHTML ='Нэхэмжлэхийн дугаар: '+ dataMain.invoiceID;
-    document.getElementById("orderId").innerHTML ='Гэрээний дугаар: '+ dataMain.orderId;
-    document.getElementById("paymentDue").innerHTML ='Төлөх хугацаа: '+ dataMain.paymentDue;
-    document.getElementById("accountNumber").innerHTML ='Аккоунтын дугаар: '+ dataMain.accountNumber;
+    document.getElementById("invoiceId").innerHTML = 'Нэхэмжлэхийн дугаар: ' + dataMain.invoiceID;
+    document.getElementById("orderId").innerHTML = 'Гэрээний дугаар: ' + dataMain.orderId;
+    document.getElementById("paymentDue").innerHTML = 'Төлөх хугацаа: ' + dataMain.paymentDue;
+    document.getElementById("accountNumber").innerHTML = 'Аккоунтын дугаар: ' + dataMain.accountNumber;
 
-    document.getElementById("paymentDues").innerHTML ='Төлөх хугацаа: '+ dataMain.paymentDue;
-    document.getElementById("totalAmount").innerHTML ='Нийт: '+ currency(subTotalForTotal).format();
-    document.getElementById("tax").innerHTML ='Татвар(10%): '+ currency(subTotalForTotal/10).format();
-    document.getElementById("total").innerHTML ='Нийт төлбөр: '+ currency(subTotalForTotal+subTotalForTotal/10).format();
+    document.getElementById("paymentDues").innerHTML = 'Төлөх хугацаа: ' + dataMain.paymentDue;
+    document.getElementById("totalAmount").innerHTML = 'Нийт: ' + currency(subTotalForTotal).format();
+    document.getElementById("tax").innerHTML = 'Татвар(10%): ' + currency(subTotalForTotal / 10).format();
+    document.getElementById("total").innerHTML = 'Нийт төлбөр: ' + currency(subTotalForTotal + subTotalForTotal / 10).format();
 };
 
 
-function downloadPdf(){
+function downloadPdf() {
 
     const element = document.getElementById("mainContentContainer");
     html2pdf().set({ html2canvas: { scale: 10 }, format: "A4", margin: 10 }).from(element).save();
-    
+
 }
 
 function printIt() {
@@ -92,7 +101,22 @@ function printIt() {
     document.body.innerHTML = originalContents;
 }
 
-function sendInvoice(){
-    window.location='https://gmail.com';
+function sendInvoice() {
+    window.location = 'https://gmail.com';
 }
 
+function viewUserList() {
+
+    for (let i in originalData) {
+        var listOp = `
+        <option>${originalData[i].lastName}</option >
+        `;
+        userOption.insertAdjacentHTML("beforeend", listOp);
+    }
+}
+
+userOption.addEventListener("change", function (e) {
+    console.log("User changed");
+    console.log(e.target.value);
+    console.log(e.target.id);
+});

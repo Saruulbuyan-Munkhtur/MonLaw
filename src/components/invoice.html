@@ -154,13 +154,16 @@
           <!-- Start of Change Code -->
           <div class="invoice-main-content-container">
             <div class="header-buttons">
-              <button id="download-invoice" onclick="downloadPdf()">
-                PDF Татах
-              </button>
-              <button id="print-invoice" onclick="printIt()">Хэвлэх</button>
-              <input id="selectClient" class="selectClient" type="text">
-              <span id="selectClient" class="selectItem">Үйлчүүлэгч сонгох</span>
-              
+              <div>
+                <button id="download-invoice" onclick="downloadPdf()">
+                  PDF Татах
+                </button>
+                <button id="print-invoice" onclick="printIt()">Хэвлэх</button>
+              </div>
+              <div>
+                <span class="selectItem">Үйлчүүлэгч сонгох</span>
+                <select id="useListIn"></select>
+              </div>
             </div>
             <hr />
             <div id="mainContentContainer">
