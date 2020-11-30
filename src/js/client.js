@@ -17,9 +17,9 @@ var rawData;
 
 const clientRef = firebase.database().ref("informations/");
 clientRef.on('value', function (snapshot) {
-    console.log("Informations");
+    // console.log("Informations");
     rawData = snapshot.val();
-    console.log(rawData);
+    // console.log(rawData);
     showTable(rawData);
 });
 
@@ -75,7 +75,7 @@ function showTable(mainData) {
 
 function view(e) {
     var ids = e.dataset.ids;
-    console.log(ids);
+    // console.log(ids);
     content1 = "";
     content2 = "";
     document.getElementById('view-background').style.display = "flex";
@@ -91,10 +91,10 @@ function view(e) {
                 <th id="table-radius">ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
             </tr>\
                 <tr>\
-                    <td><b> Овог: </b> '+ datasContent[i].firstName + '</td>\
+                    <td><b> Овог: </b> '+ datasContent[i].lastName + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Нэр: </b> '+ datasContent[i].lastName + '</td>\
+                    <td><b> Нэр: </b> '+ datasContent[i].firstName + '</td>\
                 </tr>\
                 <tr>\
                     <td><b> Утас: </b> '+ datasContent[i].userPhone + '</td>\
@@ -167,10 +167,10 @@ function edit(e) {
                     <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                    <td><b> Овог: </b> <input value="'+ datasContent[i].firstName + '" id="name"></td>\
+                    <td><b> Овог: </b> <input value="'+ datasContent[i].lastName + '" id="name"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Нэр: </b> <input value="'+ datasContent[i].lastName + '" id="name"></td>\
+                    <td><b> Нэр: </b> <input value="'+ datasContent[i].firstName + '" id="name"></td>\
                 </tr>\
                 <tr>\
                     <td><b> Утас: </b><input value="'+ datasContent[i].userPhone + '" id="phone"></td>\

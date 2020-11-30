@@ -56,7 +56,8 @@ body {
 }
 
 .text-title {
-  color: #2e4a66;
+  color: #3e648a;
+  padding: 15px;
 }
 
 .text-lightblue {
@@ -435,7 +436,7 @@ body {
   overflow: auto;
 }
 .main__container {
-  padding: 20px 50px;
+  padding: 20px;
   position: relative;
 }
 .main__title {
@@ -472,6 +473,7 @@ body {
   background: var(--main-bg-color);
   box-shadow: 5px 5px 13px var(--second-bg-color),
     -5px -5px 13px var(--second-bg-color);
+  min-width: ;
 }
 .card__inner {
   display: flex;
@@ -484,7 +486,7 @@ body {
 .charts {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 20px;
   margin-top: 50px;
 }
 .charts__left {
@@ -595,7 +597,7 @@ body {
 
 .sidebar {
   display: block;
-  height: 100vh;
+  /* height: 100vh; */
   width: 17rem;
   background: var(--main-bg-color);
   box-shadow: rgba(0, 0, 0, 0.12) 0 1px 4px 1px;
@@ -641,7 +643,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  /* min-height: 650px; */
+  height: 85vh;
+  scroll-snap-type: proximity;
+  overflow-y: auto;
+}
+.sidebar__menu::-webkit-scrollbar {
+  width: 0;
 }
 .sidebar__menu__item {
   width: 100%;

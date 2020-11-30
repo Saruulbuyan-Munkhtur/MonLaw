@@ -6,9 +6,8 @@ var notCheck = false;
 var countMessanger = [];
 var idd;
 var messagesData = [];
-var me = "zaya";
+var me;
 var userLogInState;
-
 
 // Firebase reference
 // firebase.auth().onAuthStateChanged(function (user) {
@@ -45,13 +44,21 @@ messagesRef.on("value", function (snapshot) {
     console.log("Messages");
     console.log(messagesData);
     // if (countMessanger.length > 0) {
-    //     viewMessage();
+    var logUid = document.getElementById("loginUID").textContent;
+    console.log(logUid);
+    if (logUid) {
+        viewMessage(logUid);
+        setTimeout(function () {
+            var audio = document.getElementById("audio").play();
+        }, 500);
+    }
+
     // }
     // console.log("firebase finished");
 });
 // var messagesRefpri = firebase
 //     .database()
-//     .ref("messages/privatescrgL0iiPKRb8l6UKi7h21Tx5zR2");
+//     .ref("messages/");
 // messagesRefpri.on("child_added", function (data) {
 //     console.log("Child Added : ");
 //     console.log(data.val());
@@ -62,21 +69,22 @@ messagesRef.on("value", function (snapshot) {
 //     // }
 //     // console.log("firebase finished");
 // });
-var notificationRef = firebase.database().ref("notification/");
-notificationRef.on("value", function (shot) {
-    console.log("Notification");
-    console.log(shot.val());
-    notify = shot.val();
 
-    // Notification.requestPermission().then(console.log("notification is allowed"));
-    if (notify.new) {
-        alert("new notication");
-        doProcess(notify);
-        notCheck = true;
-        notificationRef.update({ new: false, from: "", to: "", url: "" });
+// var notificationRef = firebase.database().ref("notification/");
+// notificationRef.on("value", function (shot) {
+//     console.log("Notification");
+//     console.log(shot.val());
+//     notify = shot.val();
 
-    }
-});
+//     // Notification.requestPermission().then(console.log("notification is allowed"));
+//     if (notify.new) {
+//         // alert("new notication");
+//         doProcess(notify);
+//         notCheck = true;
+//         notificationRef.update({ new: false, from: "", to: "", url: "" });
+
+//     }
+// });
 var usersRef = firebase.database().ref("users/user");
 usersRef.on("value", function (snapshot) {
     var objects = snapshot.val();
@@ -131,7 +139,7 @@ function viewChat() {
             </div>`;
         chat.insertAdjacentHTML("beforeend", chatHTML);
         console.log("State-Notif : ");
-        viewMessage(countMessanger[i].url);
+        viewMessage(currentUser.uid);
 
     }
 }
@@ -211,33 +219,34 @@ function closeChat(e) {
     viewChat();
 }
 
-function viewMessage(id, uid) {
+function viewMessage(id) {
     console.log("ViewMessage");
     console.log("View message - User : OK");
     console.log(id);
     var messagesContent = document.getElementById("contentMessage");
     // console.log(messagesContent);
-    messagesContent.innerHTML = "";
-    var mData
-    console.log(messagesData);
-    mData = messagesData[`p-${id}`];
-    console.log(mData);
-    for (const i in mData) {
-        var htmlContent = `<div class="chat__message ${mData[i].sender === me ? "you__message" : "other__message"
-            }">
+    if (messagesContent) {
+        messagesContent.innerHTML = "";
+        var mData
+        console.log(messagesData);
+        mData = messagesData;;
+        console.log(mData);
+        for (const i in mData) {
+            var htmlContent = `<div class="chat__message ${mData[i].uid === currentUser.uid ? "you__message" : "other__message"
+                }">
             <div class="chat__content">
               <img width="50" src="../../assets/user1.jpg" alt=""/>
               <div class="chat__message__text">${mData[i].message}</div>
               <div class="chat__message__time">${mData[i].date}</div>
             </div>
           </div>`;
-        messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+            messagesContent.insertAdjacentHTML("beforeend", htmlContent);
+        }
+        messagesContent.scrollTop = messagesContent.scrollHeight;
     }
-    messagesContent.scrollTop = messagesContent.scrollHeight;
+
     //  audio togluulah
-    // setTimeout(function () {
-    //   var audio = document.getElementById("audio").play();
-    // }, 200);
+
 }
 
 function updateUser() {
@@ -298,24 +307,32 @@ function sendMessage() {
     var time = new Date(Date.now()).toLocaleTimeString();
     var msg = document.getElementById("inputMsg").value;
     var uidKey = document.querySelector(".uuid").id;
+    var logUid = document.getElementById("loginUID").textContent;
     // var uidKey = currentUser.uid;
-
-    messagesChildRef = messagesRef.child("p-" + uidKey).push({
-        uid: uidKey,
-        name: "Anyone",
-        sender: me,
+    var name;
+    var email;
+    for (const i in userLogInState) {
+        if (userLogInState[i].uid === currentUser.uid) {
+            name = userLogInState[i].name;
+            email = userLogInState[i].email;
+        }
+    }
+    messagesRef.push({
+        uid: logUid,
+        name: name,
+        sender: name,
         email: currentUser.email,
         date: time,
         message: msg,
         file: "url",
     });
 
-    notificationRef.update({
-        from: currentUser.uid,
-        to: uidKey,
-        new: true,
-        url: "p-" + uidKey,
-    });
+    // notificationRef.update({
+    //     from: currentUser.uid,
+    //     to: uidKey,
+    //     new: true,
+    //     url: "p-" + uidKey,
+    // });
     document.getElementById("inputMsg").value = "";
 }
 

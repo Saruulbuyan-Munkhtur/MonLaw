@@ -1,10 +1,14 @@
 const database = firebase.database();
 var data = {};
-database.ref('data/').on('value', function(snapshot) {
-
-    data = snapshot.val().clients; 
-    showTable();
-
+var rawData;
+database.ref('data/').on('value', function (snapshot) {
+    data = snapshot.val().clients;
+    // showTable();
+});
+database.ref('informations/').on('value', function (snapshot) {
+    console.log("Client");
+    rawData = snapshot.val();
+    showTable(rawData);
 });
 
 
@@ -13,14 +17,15 @@ var createEl2 = document.createElement('div');
 var createEl3 = document.createElement('div');
 var createEl4 = document.createElement('div');
 
-function showTable(){
-
+function showTable(cases) {
+    console.log("Show Table");
+    // console.log(cases);
     var createElForTable = document.createElement('div');
     var getEl = document.getElementById("main-content");
-    getEl.innerHTML="";
+    getEl.innerHTML = "";
     var tableRow = "";
-    var datas= data.contents;
-    tableRow='\
+    var datas = cases;
+    tableRow = '\
         <table id="firstTable">\
             <tr>\
                 <th>ID<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
@@ -28,56 +33,70 @@ function showTable(){
                 <th>Хэргийн төрөл<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th>Хаана<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th>Хугацаа<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
-                <th>Төлбөр<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
+                <th style="text-align: end;">Төлбөр<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th>Төлбөр төлөлт<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th>Төлөв<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th colspan="3">Үйлдэл</th>\
             </tr>';
-    
-    for( var i in datas){
-        tableRow+= '\
+    console.log(datas);
+    /**
+     * <td>'+ datas[i].cases[0].caseId + '</td>\
+            <td>'+ datas[i].cases[0].caseinfo + '</td>\
+            <td>'+ datas[i].cases[0].caseType + '</td>\
+            <td>'+ datas[i].cases[0].caseDistrict + '</td>\
+            <td>'+ datas[i].cases[0].startDate + '</td>\
+            <td>'+ datas[i].bills[0].totalFee + '</td>\
+            <td>'+ datas[i].bills[0].paidOrNot === "no" ? "Төлөгдөөгүй" : "Төлсөн" + '</td>\
+            <td>'+ datas[i].cases[0].caseStatus + '</td>\
+     */
+    var payStatus;
+    var caseStatus;
+    for (var i in datas) {
+        payStatus = datas[i].bills[0].paidOrNot === "no" ? "Төлөгдөөгүй" : "Төлсөн";
+        caseStatus = datas[i].cases[0].caseStatus === "open" ? "Нээлттэй" : "Хаагдсан";
+        tableRow += '\
         <tr>\
-            <td>'+ datas[i].id + '</td>\
-            <td>'+ datas[i].caseName + '</td>\
-            <td>'+ datas[i].type + '</td>\
-            <td>'+ datas[i].where + '</td>\
-            <td>'+ datas[i].date + '</td>\
-            <td>'+ datas[i].payment + '</td>\
-            <td>'+ datas[i].paymentStatus + '</td>\
-            <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
+            <td>'+ datas[i].cases[0].caseId + '</td>\
+            <td>'+ datas[i].cases[0].maritalStatus + '</td>\
+            <td>'+ datas[i].cases[0].caseType + '</td>\
+            <td>'+ datas[i].cases[0].caseDistrict + '</td>\
+            <td>'+ datas[i].cases[0].startDate + '</td>\
+            <td>'+ currency(datas[i].bills[0].totalFee).format() + '</td>\
+            <td>'+ payStatus + '</td>\
+            <td>'+ caseStatus + '</td>\
+            <td><button type="button" id="view-button" onclick="view('+ i + ')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' + i + ')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' + i + ')">Устгах</button>\
             </td>\
         </tr>';
-        };
-    tableRow+="</table>";
-    
+    };
+    tableRow += "</table>";
+
     createElForTable.innerHTML = tableRow;
     getEl.appendChild(createElForTable);
-    
+
 };
 
 
 
-function view(x){
+function view(x) {
 
     var content1 = "";
     var content2 = "";
-    
-    document.getElementById('about-content').style.display="block";
-    var getEl = document.getElementById('about-content-container');
-    var datasContent= data.contents;
-    var datasDetail= data.details;
-    
-    
 
-    getEl.innerHTML="";
-    for(var i in datasContent){
-        if(x == i){
-        content1='\
+    document.getElementById('about-content').style.display = "block";
+    var getEl = document.getElementById('about-content-container');
+    var datasContent = data.contents;
+    var datasDetail = data.details;
+
+
+
+    getEl.innerHTML = "";
+    for (var i in datasContent) {
+        if (x == i) {
+            content1 = '\
         <img src="../../assets/closeicon.png" onclick="closeIt()">\
         <table >\
             <tr>\
@@ -87,32 +106,32 @@ function view(x){
                     <td><b> Хэргийн ID: </b> '+ datasContent[i].id + '</td>\
                 </tr>\
                 <tr>\
-                <td><b> Хэргийн нэр: </b> '+datasContent[i].caseName + '</td>\
+                <td><b> Хэргийн нэр: </b> '+ datasContent[i].caseName + '</td>\
             </tr>\
                 <tr>\
-                    <td><b> Хэргийн төрөл: </b> '+datasContent[i].type + '</td>\
+                    <td><b> Хэргийн төрөл: </b> '+ datasContent[i].type + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хаана: </b> '+datasContent[i].where + '</td>\
+                    <td><b> Хаана: </b> '+ datasContent[i].where + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хугацаа: </b> '+datasContent[i].date + '</td>\
+                    <td><b> Хугацаа: </b> '+ datasContent[i].date + '</td>\
                 </tr>\
                 <tr>\
-                    <td><b> Төлбөр: </b> '+datasContent[i].payment + '</td>\
+                    <td><b> Төлбөр: </b> '+ datasContent[i].payment + '</td>\
                 </tr>\
                 <tr>\
-                <td><b> Төлбөр төлөлт: </b> '+datasContent[i].paymentStatus + '</td>\
+                <td><b> Төлбөр төлөлт: </b> '+ datasContent[i].paymentStatus + '</td>\
                 </tr>\
                 <tr>\
-                <td><b> Төлөв: </b> '+datasContent[i].status + '</td>\
+                <td><b> Төлөв: </b> '+ datasContent[i].status + '</td>\
             </tr>\
             </table>';
         }
     }
-    for(var i in datasDetail){
-        if(x == i){  
-            content2='\
+    for (var i in datasDetail) {
+        if (x == i) {
+            content2 = '\
                 <table>\
                     <tr>\
                         <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
@@ -142,21 +161,21 @@ function view(x){
                 ' ;
         }
     }
-    
-    
-    createEl1.innerHTML= content1;
+
+
+    createEl1.innerHTML = content1;
     createEl2.innerHTML = content2;
     getEl.appendChild(createEl1);
     getEl.appendChild(createEl2);
 }
 
-function sortByActive(){
+function sortByActive() {
     var sortEl = document.getElementById("main-content");
     sortEl.innerHTML = "";
     var createElForTable = document.createElement('div');
     var tableRow = "";
-    var datas= data.contents;
-    tableRow='\
+    var datas = data.contents;
+    tableRow = '\
         <table id="firstTable">\
         <tr>\
             <th>ID<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
@@ -169,10 +188,10 @@ function sortByActive(){
             <th>Төлөв<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
             <th colspan="3">Үйлдэл</th>\
         </tr>';
-    
-    for( var i in datas){
-        if(datas[i].status == "open"){
-        tableRow+= '\
+
+    for (var i in datas) {
+        if (datas[i].status == "open") {
+            tableRow += '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
             <td>'+ datas[i].caseName + '</td>\
@@ -182,28 +201,28 @@ function sortByActive(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+ i + ')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' + i + ')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' + i + ')">Устгах</button>\
             </td>\
         </tr>';
         };
     }
-    tableRow+="</table>";
+    tableRow += "</table>";
     createElForTable.innerHTML = tableRow;
     sortEl.appendChild(createElForTable);
 
 }
 
-function sortByClosed(){
+function sortByClosed() {
     var sortEl = document.getElementById("main-content");
     sortEl.innerHTML = "";
     var createElForTable = document.createElement('div');
     var tableRow = "";
-    var datas= data.contents;
-    tableRow='\
+    var datas = data.contents;
+    tableRow = '\
         <table id="firstTable">\
             <tr>\
                 <th>ID<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
@@ -216,10 +235,10 @@ function sortByClosed(){
                 <th>Төлөв<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th colspan="3">Үйлдэл</th>\
             </tr>';
-    
-    for( var i in datas){
-        if(datas[i].status == "close"){
-        tableRow+= '\
+
+    for (var i in datas) {
+        if (datas[i].status == "close") {
+            tableRow += '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
             <td>'+ datas[i].caseName + '</td>\
@@ -229,28 +248,28 @@ function sortByClosed(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+ i + ')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' + i + ')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' + i + ')">Устгах</button>\
             </td>\
         </tr>';
         };
     }
-    tableRow+="</table>";
+    tableRow += "</table>";
     createElForTable.innerHTML = tableRow;
     sortEl.appendChild(createElForTable);
 
 }
-function sortAll(){
+function sortAll() {
 
     var sortEl = document.getElementById("main-content");
     sortEl.innerHTML = "";
     var createElForTable = document.createElement('div');
     var tableRow = "";
-    var datas= data.contents;
-    tableRow='\
+    var datas = data.contents;
+    tableRow = '\
         <table id="firstTable">\
             <tr>\
                 <th>ID<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
@@ -263,9 +282,9 @@ function sortAll(){
                 <th>Төлөв<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th colspan="3">Үйлдэл</th>\
             </tr>';
-    
-    for( var i in datas){
-        tableRow+= '\
+
+    for (var i in datas) {
+        tableRow += '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
             <td>'+ datas[i].caseName + '</td>\
@@ -275,26 +294,26 @@ function sortAll(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+ i + ')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' + i + ')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' + i + ')">Устгах</button>\
             </td>\
         </tr>';
-        };
-    tableRow+="</table>";
+    };
+    tableRow += "</table>";
     createElForTable.innerHTML = tableRow;
     sortEl.appendChild(createElForTable);
 }
-function sortMyWorks(){
+function sortMyWorks() {
 
     var sortEl = document.getElementById("main-content");
     sortEl.innerHTML = "";
     var createElForTable = document.createElement('div');
     var tableRow = "";
-    var datas= data.contents;
-    tableRow='\
+    var datas = data.contents;
+    tableRow = '\
         <table id="firstTable">\
             <tr>\
                 <th>ID<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
@@ -307,10 +326,10 @@ function sortMyWorks(){
                 <th>Төлөв<img src="../../assets/upDownRow.png" heigth=12px width=12px ></th>\
                 <th colspan="3">Үйлдэл</th>\
             </tr>';
-    
-    for( var i in datas){
-        if(datas[i].paymentStatus == "Төлөгдөөгүй"){
-        tableRow+= '\
+
+    for (var i in datas) {
+        if (datas[i].paymentStatus == "Төлөгдөөгүй") {
+            tableRow += '\
         <tr>\
             <td>'+ datas[i].id + '</td>\
             <td>'+ datas[i].caseName + '</td>\
@@ -320,101 +339,101 @@ function sortMyWorks(){
             <td>'+ datas[i].payment + '</td>\
             <td>'+ datas[i].paymentStatus + '</td>\
             <td>'+ datas[i].status + '</td>\
-            <td><button type="button" id="view-button" onclick="view('+i+')">Харах</button>\
+            <td><button type="button" id="view-button" onclick="view('+ i + ')">Харах</button>\
             </td>\
-            <td><button type="button" id="edit-button" onclick="edit(' +i+')">Өөрчлөх</button>\
+            <td><button type="button" id="edit-button" onclick="edit(' + i + ')">Өөрчлөх</button>\
             </td>\
-            <td><button type="button" id="appoint-button" onclick="remove(' +i+')">Устгах</button>\
+            <td><button type="button" id="appoint-button" onclick="remove(' + i + ')">Устгах</button>\
             </td>\
         </tr>';
         };
     }
-    tableRow+="</table>";
+    tableRow += "</table>";
     createElForTable.innerHTML = tableRow;
     sortEl.appendChild(createElForTable);
 
 }
-function exportFileExl(filename = ''){
+function exportFileExl(filename = '') {
     // console.log("Started");
     var tableSelect = document.getElementById("firstTable");
     // console.log(tableSelect);
 
-        var downloadurl;
-        var dataFileType = 'application/vnd.ms-excel';
-        
-        var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
-        // Specify file name
-        filename = filename?filename+'.xls':'export_excel_data.xls';
-        // Create download link element
-        downloadurl = document.createElement("a");
-        document.body.appendChild(downloadurl);
-        
-        if(navigator.msSaveOrOpenBlob){
-            var blob = new Blob(['\ufeff', tableHTMLData], {
-                type: dataFileType
-            });
-            navigator.msSaveOrOpenBlob( blob, filename);
-        }
-        else{
-            // Create a link to the file
-            downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
-            // Setting the file name
-            downloadurl.download = filename;
-            
-            //triggering the function
-            downloadurl.click();
-        }
+    var downloadurl;
+    var dataFileType = 'application/vnd.ms-excel';
+
+    var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
+    // Specify file name
+    filename = filename ? filename + '.xls' : 'export_excel_data.xls';
+    // Create download link element
+    downloadurl = document.createElement("a");
+    document.body.appendChild(downloadurl);
+
+    if (navigator.msSaveOrOpenBlob) {
+        var blob = new Blob(['\ufeff', tableHTMLData], {
+            type: dataFileType
+        });
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }
+    else {
+        // Create a link to the file
+        downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
+        // Setting the file name
+        downloadurl.download = filename;
+
+        //triggering the function
+        downloadurl.click();
+    }
 }
 
-function edit(x){
+function edit(x) {
     var content3 = "";
-    var content4= "";
+    var content4 = "";
 
-    document.getElementById('about-content').style.display="block";
+    document.getElementById('about-content').style.display = "block";
     var getEl = document.getElementById('about-content-container');
-    getEl.innerHTML="";
-    var datasContent= data.contents;
-    var datasDetail= data.details;
+    getEl.innerHTML = "";
+    var datasContent = data.contents;
+    var datasDetail = data.details;
 
 
-    for(var i in datasContent){
-        if(x == i){
-        content3='\
+    for (var i in datasContent) {
+        if (x == i) {
+            content3 = '\
             <img src="../../assets/closeicon.png" onclick="closeIt()">\
             <table>\
                 <tr>\
                     <th>ЕРӨНХИЙ МЭДЭЭЛЭЛ</th>\
                 </tr>\
                 <tr>\
-                <td><b> Хэргийн ID: </b> <input value="'+datasContent[i].id + '" id="caseId"></td>\
+                <td><b> Хэргийн ID: </b> <input value="'+ datasContent[i].id + '" id="caseId"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хэргийн нэр: </b> <input value="'+datasContent[i].caseName + '" id="name"></td>\
+                    <td><b> Хэргийн нэр: </b> <input value="'+ datasContent[i].caseName + '" id="name"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хэргийн төрөл: </b><input value="'+datasContent[i].type + '" id="phone"></td>\
+                    <td><b> Хэргийн төрөл: </b><input value="'+ datasContent[i].type + '" id="phone"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хаана: </b><input value="'+datasContent[i].where + '" id="email"></td>\
+                    <td><b> Хаана: </b><input value="'+ datasContent[i].where + '" id="email"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Хугацаа: </b><input value="'+datasContent[i].date + '" id="address"></td>\
+                    <td><b> Хугацаа: </b><input value="'+ datasContent[i].date + '" id="address"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Төлбөр: </b><input value="'+datasContent[i].payment + '" id="company"></td>\
+                    <td><b> Төлбөр: </b><input value="'+ datasContent[i].payment + '" id="company"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Төлбөр төлөлт: </b><input value="'+datasContent[i].paymentStatus + '" id="title"></td>\
+                    <td><b> Төлбөр төлөлт: </b><input value="'+ datasContent[i].paymentStatus + '" id="title"></td>\
                 </tr>\
                 <tr>\
-                    <td><b> Төлөв: </b><input value="'+datasContent[i].status + '" id="caseStatus"></td>\
+                    <td><b> Төлөв: </b><input value="'+ datasContent[i].status + '" id="caseStatus"></td>\
                 </tr>\
             </table>';
         }
     }
-    for(var i in datasDetail){
-        if(x == i){  
-        content4='\
+    for (var i in datasDetail) {
+        if (x == i) {
+            content4 = '\
             <table >\
                 <tr>\
                     <th>НАРИЙВЧИЛСАН МЭДЭЭЛЭЛ</th>\
@@ -441,35 +460,35 @@ function edit(x){
                     <td><b> Таны хэн болох: </b> <input value="'+ datasDetail[i].who + '" id="emergencyWho"></td>\
                 </tr>\
             </table>\
-                <button id="save-button" onclick="saveIt('+ i +')">Хадгалах</button>\
+                <button id="save-button" onclick="saveIt('+ i + ')">Хадгалах</button>\
             ' ;
 
         }
     }
-    createEl3.innerHTML =content3;
-    createEl4.innerHTML =content4;
-    
+    createEl3.innerHTML = content3;
+    createEl4.innerHTML = content4;
+
     getEl.appendChild(createEl3);
     getEl.appendChild(createEl4);
-    
+
 }
 
 
-function closeIt(){
-    document.getElementById('about-content').style.display="none";
+function closeIt() {
+    document.getElementById('about-content').style.display = "none";
 }
 
-function saveIt(idOfCase){
+function saveIt(idOfCase) {
     //deer bga saveIt in idOfCase n saveIt in onclick deer damjuulj bui  [i] utga shvv. onclick deere saveIt('+i+') nemeerei
     // Ene 1 mur Boloroo egchin codond ajillaxgvi
     var newId = document.getElementById('caseId').value;
 
-    let  newCaseName = document.getElementById('name').value;
-    let  newPhone = document.getElementById('phone').value;
-    let  newEmail = document.getElementById('email').value;
-    let  newAddress = document.getElementById('address').value;
-    let  newCompany = document.getElementById('company').value;
-    let  newTitle = document.getElementById('title').value;
+    let newCaseName = document.getElementById('name').value;
+    let newPhone = document.getElementById('phone').value;
+    let newEmail = document.getElementById('email').value;
+    let newAddress = document.getElementById('address').value;
+    let newCompany = document.getElementById('company').value;
+    let newTitle = document.getElementById('title').value;
 
     // Ene 1 mur Boloroo egchin codond ajillaxgvi
     let newStatus = document.getElementById('caseStatus').value;
@@ -483,23 +502,48 @@ function saveIt(idOfCase){
     let newEmergencywho = document.getElementById('emergencyWho').value;
 
     // Ene neg mur Boloroo egchin codond ajillaxgvi
-    let newContent1 = { id: newId, caseName: newCaseName, 
-        type: newPhone, where: newEmail, date: newAddress, 
-        payment: newCompany, paymentStatus: newTitle, status: newStatus,  name: newName, };
-   
+    let newContent1 = {
+        id: newId, caseName: newCaseName,
+        type: newPhone, where: newEmail, date: newAddress,
+        payment: newCompany, paymentStatus: newTitle, status: newStatus, name: newName,
+    };
+
     //ene code tanix deeer ajillana
     //let newContent1 = { name: newName, phone: newPhone, email: newEmail, address: newAddress, company: newCompany,title: newTitle};
-    let newContent2 = { sex: newSex, 
-        marital: newMarital, driverID: newDriverli, 
-        emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone, 
-        who: newEmergencywho};
-    
-    database.ref('/data/clients/contents/' +idOfCase).update(newContent1);
-    database.ref('/data/clients/details/' +idOfCase).update(newContent2);
+    let newContent2 = {
+        sex: newSex,
+        marital: newMarital, driverID: newDriverli,
+        emergencyName: newEmergencyname, emergencyPhone: newEmergencyphone,
+        who: newEmergencywho
+    };
 
-    document.getElementById('about-content').style.display="none";
+    database.ref('/data/clients/contents/' + idOfCase).update(newContent1);
+    database.ref('/data/clients/details/' + idOfCase).update(newContent2);
+
+    document.getElementById('about-content').style.display = "none";
     var getEl = document.getElementById('about-content-container');
-    getEl.innerHTML="";
-    
+    getEl.innerHTML = "";
+
 
 }
+
+/*
+console.log(datas[i].cases[0].caseId);
+        tableRow += '\
+        <tr>\
+            <td>'+ datas[i].cases[0].caseId + '</td>\
+            <td>'+ datas[i].cases[0].caseinfo + '</td>\
+            <td>'+ datas[i].cases[0].caseType + '</td>\
+            <td>'+ datas[i].cases[0].caseDistrict + '</td>\
+            <td>'+ datas[i].cases[0].startDate + '</td>\
+            <td>'+ datas[i].bills[0].totalFee + '</td>\
+            <td>'+ datas[i].bills[0].paidOrNot === "no" ? "Төлөгдөөгүй" : "Төлсөн" + '</td>\
+            <td>'+ datas[i].cases[0].caseStatus + '</td>\
+            <td><button type="button" id="view-button" onclick="view('+ i + ')">Харах</button>\
+            </td>\
+            <td><button type="button" id="edit-button" onclick="edit(' + i + ')">Өөрчлөх</button>\
+            </td>\
+            <td><button type="button" id="appoint-button" onclick="remove(' + i + ')">Устгах</button>\
+            </td>\
+        </tr>';
+*/

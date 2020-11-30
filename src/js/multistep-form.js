@@ -1,8 +1,10 @@
 // --- Form validation STEP1 ---
+
 var userData = {};
 var userInformation = {
    cases: [],
-   bills: []
+   bills: [],
+   assigned: null,
 };
 
 const lastName = document.getElementById('lastName');
@@ -71,6 +73,8 @@ const caseInfo = document.getElementById('caseInfo');
 const startDate = document.getElementById('startDate');
 const endDate = document.getElementById('endDate');
 const bills = document.getElementById('bills');
+const caseStatus = document.getElementById('caseStatus');
+const caseTorol = document.getElementById('caseTorol');
 
 const formArr3 = [];
 formArr3.push(caseId);
@@ -81,6 +85,8 @@ formArr3.push(caseFile);
 formArr3.push(caseInfo);
 formArr3.push(startDate);
 formArr3.push(endDate);
+formArr3.push(caseStatus);
+formArr3.push(caseTorol);
 
 // var keys = ["caseId",
 //             "caseName",
@@ -98,7 +104,9 @@ caseDistrict.id,
 caseFile.id,
 caseInfo.id,
 startDate.id,
-endDate.id];
+endDate.id,
+caseStatus.id,
+caseTorol.id];
 
 // form3 end 
 
@@ -108,17 +116,20 @@ const serviceType = document.getElementById('serviceType');
 const billInfo = document.getElementById('billInfo');
 const totalFee = document.getElementById('totalFee');
 const paidOrNot = document.getElementById('paidOrNot');
+const billDueDate = document.getElementById("billDueDate");
 
 const formArr4 = [];
 formArr4.push(serviceType);
 formArr4.push(billInfo);
 formArr4.push(totalFee);
 formArr4.push(paidOrNot);
+formArr4.push(billDueDate);
 
 let step4Id = [serviceType.id,
 billInfo.id,
 totalFee.id,
-paidOrNot.id];
+paidOrNot.id,
+billDueDate.id];
 
 
 
@@ -134,18 +145,22 @@ nextBtn[0].addEventListener('click', function () {
       document.getElementById('step2').classList.add('active');
       //console.log(lastName.id);
       step1 = convertToObject(formArr1, step1Id);
+      var logId = document.getElementById("loginUID").textContent;
       userInformation = {
          ...step1,
          ...userInformation
-      };                   // --- !!!IMPORTANT!!! ---
-      console.log('step1');
+      };
+      userInformation.assigned = logId,                 // --- !!!IMPORTANT!!! ---
+         console.log('step1');
       console.log(step1);
       console.log('userinformation1');
       console.log(userInformation);
 
+
    } else {
       pages[0].style.display = 'block';
       document.getElementById('step1').classList.add('active');
+      console.log("ID : " + logId.textContent);
    }
 });
 
@@ -377,6 +392,7 @@ function convertToObject(formArr, keysId) {
 // const userCase1 = {caseName: "Case2", caseProblem:"bla bla,"};
 
 // userSave.cases.push(userCase);
+// Spread
 // userSave = {
 //    ...step1,
 //    .. step2,

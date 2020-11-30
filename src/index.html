@@ -124,6 +124,7 @@
                 <div>
                   <h4 id="loginName">Нэр</h4>
                   <small id="loginEmail">и-мэйл</small>
+                  <small style="display: none" id="loginUID"></small>
                 </div>
               </div>
               <ul class="profile__ul">
@@ -173,8 +174,8 @@
             <div class="card">
               <i class="fa fa-gavel fa-2x text-green"></i>
               <div class="card__inner">
-                <p class="text-primary-p" id="countCase">Нийт хэрэг</p>
-                <span class="font-bold text-title">578</span>
+                <p class="text-primary-p">Нийт хэрэг</p>
+                <span id="countCase" class="font-bold text-title">578</span>
               </div>
             </div>
             <!-- card end -->
@@ -182,7 +183,7 @@
             <div class="card">
               <i class="fa fa-usd fa-2x text-yellow"></i>
               <div class="card__inner">
-                <p class="text-primary-p">Нийт Мөнгөн Дүн</p>
+                <p class="text-primary-p">Нэхэмжлэх</p>
                 <span class="font-bold text-title" id="totalPrice">3400</span>
               </div>
             </div>
@@ -201,10 +202,10 @@
             <div class="charts__left">
               <div class="charts__left__title">
                 <div>
-                  <h1>Өдрийн Үзүүлэлт</h1>
+                  <h1>Үзүүлэлт</h1>
                   <p>Монгол - Улаанбаатар - *** ХХК</p>
                 </div>
-                <i class="fa fa-usd"></i>
+                <i class="fa fa-signal"></i>
               </div>
               <div class="dayReport" id="apex1"></div>
             </div>
@@ -214,25 +215,25 @@
                   <h1>Статистик</h1>
                   <p>Монгол - Улаанбаатар - *** ХХК</p>
                 </div>
-                <i class="fa fa-usd"></i>
+                <i class="fa fa-signal"></i>
               </div>
               <div class="charts__right__cards">
                 <div class="card1">
-                  <h1>Орлого</h1>
-                  <p>$75,300</p>
+                  <h1>Захиргааны хэрэг</h1>
+                  <p style="padding: 20px; font-size: 24px" id="zaId">5</p>
                 </div>
                 <div class="card2">
-                  <h1>Цэвэр ашиг</h1>
-                  <p>$124,300</p>
-                </div>
-                <div class="card3">
-                  <h1>Нийт хэрэглэгчид</h1>
-                  <p>5,920</p>
+                  <h1>Иргэний хэрэг</h1>
+                  <p style="padding: 20px; font-size: 24px" id="irId">4</p>
                 </div>
                 <div class="card4">
-                  <h1>Нийт хэргүүд</h1>
-                  <p>1881</p>
+                  <h1>Эрүүгийн хэрэг</h1>
+                  <p style="padding: 20px; font-size: 24px" id="erId">5</p>
                 </div>
+                <!-- <div class="card3">
+                  <h1>Нийт хэрэглэгчид</h1>
+                  <p>5,920</p>
+                </div> -->
               </div>
             </div>
           </div>
@@ -356,11 +357,13 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
-    <script src="./js/firebase.js"></script>
+
     <!-- FIrebase setting script -->
     <!-- Additional js libraries -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../src/js/currency.js"></script>
+    <script src="./js/firebase.js"></script>
     <!-- Additional js libraries -->
     <script src="./js/app.js"></script>
   </body>
