@@ -281,14 +281,15 @@ function companyFilter() {
 }
 
 function selectedEntries() {
-
-    var pageCount = numPages(data.contents.length, entriesNumber.value);
+    var paged = Object.keys(rawData);
+    var data = Object.values(rawData);
+    var pageCount = numPages(paged.length, entriesNumber.value);
     var i = 0;
 
-    for (var i in data.contents) {
-        k = data.contents[i].id;
+    for (var i in data) {
+        k = i;
         if (k >= entriesNumber.value)
-            showSelectedEntries = data.contents.slice(0, entriesNumber.value);
+            showSelectedEntries = data.slice(0, entriesNumber.value);
     }
     showTable(showSelectedEntries);
 
@@ -317,7 +318,7 @@ function selectedEntries() {
             this.className += " active";
             var end = parseInt(ev.target.innerText) * (entriesNumber.value);
             start = end - entriesNumber.value;
-            var showActiveTable = data.contents.slice(start, end);
+            var showActiveTable = data.slice(start, end);
 
             showTable(showActiveTable);
         });
