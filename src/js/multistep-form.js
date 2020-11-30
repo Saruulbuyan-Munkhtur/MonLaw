@@ -244,7 +244,7 @@ document.getElementById("open-popup-btn").addEventListener("click", function () 
 });
 
 document.getElementById("dismiss-popup-btn").addEventListener("click", function () {
-   window.location = "client.html";
+   window.location = "../components/client.html";
    document.getElementsByClassName("popup")[0].classList.remove("active");
 });
 //  --- success modal end ---
@@ -424,5 +424,5 @@ function sendInformationData(data) {
    informationRef.push(data);
    console.log(data);
    // swal({ title: "Амжилттай хадгалагдлаа.", text: "таны мэдээлэл", icon: "success", button: "Хаах" });
-   window.location = "../components/client.html";
+   // window.location = "../components/client.html";
 }
