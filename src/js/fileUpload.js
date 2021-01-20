@@ -1,9 +1,8 @@
 
-
 var storageRef = firebase.storage().ref('Images');
 storageRef.listAll().then(function (result) {
     result.items.forEach(function (imgRef) {
-        imgRef.getDownloadURL().then(function (url) {
+        imgRef.getDownloadURL().then( (url)=> {
             var imgLoc = document.getElementById('img-area');
             imgLoc.innerHTML += '<div id="imgContainer"><img class="imgFile" id="imagesFromStorage" class="imgStorage" src=' + url + ' ></div>';
 
@@ -38,10 +37,6 @@ storageRefDoc.listAll().then(function (result) {
         });
     });
 });
-
-
-
-
 
 
 var files = [];
